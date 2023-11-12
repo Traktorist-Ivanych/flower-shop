@@ -7,6 +7,7 @@ public class FlowerSaleTable : FlowerTable
     [Inject] private readonly FlowerSaleTablesForByers flowerSaleTablesForByers;
     [Inject] private readonly FlowersForSaleCoefCalculator flowersForSaleCoefCalculator;
     [Inject] private readonly PlayerComponents playerComponents;
+    [Inject] private readonly PlayerMoney playerMoney;
 
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private Transform buyerDestinationTarget;
@@ -99,5 +100,6 @@ public class FlowerSaleTable : FlowerTable
         salableFlowerRenderer.enabled = false;
         flowersForSaleCoefCalculator.RemoveFlowerSaleTableWithoutFLowerFromList(this);
         isFlowerOnSaleTable = false;
+        playerMoney.AddPlayerMoney(flowerForSale.FlowerSellingPrice);
     }
 }

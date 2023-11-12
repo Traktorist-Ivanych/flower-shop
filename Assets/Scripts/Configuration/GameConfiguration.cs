@@ -18,45 +18,45 @@ public class GameConfiguration : MonoBehaviour
     public readonly float ObjectsRotateDegreesPerSecond = 360;
 
     [Header("SoilPreparationTable")]
-    public readonly float SoilPreparationTime = 1;
-    public readonly float SoilPreparationLvlTimeDelta = 0.2f;
+    public readonly float SoilPreparationTime = 3;
+    public readonly float SoilPreparationLvlTimeDelta = 1f;
 
     [Header("WateringCan")]
-    public readonly int WateringsNumber = 10;
-    public readonly int WateringsNumberLvlDelta = 2;
+    public readonly int WateringsNumber = 3;
+    public readonly int WateringsNumberLvlDelta = 3;
     public readonly float ReplenishWateringCanTime = 5;
 
     [Header("FlowerGrowingTable")]
-    public readonly float UpGrowingLvlTime = 5;
-    public readonly float UpGrowingLvlTableLvlTimeDelta = 1;
+    public readonly float UpGrowingLvlTime = 45;
+    public readonly float UpGrowingLvlTableLvlTimeDelta = 10f;
 
     [Header("CrossingTable")]
-    public readonly float CrossingFlowerTime = 6;
-    public readonly float CrossingFlowerLvlTimeDelta = 2;
+    public readonly float CrossingFlowerTime = 25;
+    public readonly float CrossingFlowerLvlTimeDelta = 10;
 
     [Header("Buyers")]
-    public readonly float MinBuyerSpawnTime = 90;
-    public readonly float MinBuyerSpawnTimeDelta = 60;
-    public readonly float MaxBuyerSpawnTime = 120;
-    public readonly float MaxBuyerSpawnTimeDelta = 75;
+    public readonly float MinBuyerSpawnTime = 150;
+    public readonly float MinBuyerSpawnTimeDelta = 120;
+    public readonly float MaxBuyerSpawnTime = 250;
+    public readonly float MaxBuyerSpawnTimeDelta = 190;
 
     [Header("Weeds")]
-    public readonly float MinWeedPlantTime = 300;
-    public readonly float MaxWeedPlantTime = 400;
+    public readonly float MinWeedPlantTime = 120;
+    public readonly float MaxWeedPlantTime = 240;
     public readonly float WeedingTime = 9;
     public readonly float WeedingTimeLvlDelta = 3;
 
     [Header("Improvements")]
-    public readonly float TableImprovementTime = 2;
+    public readonly float TableImprovementTime = 10;
 
     [Header("Repairs")]
     public readonly float TableRepairTime = 8;
-    public readonly int SoilPreparationMinQuantity = 2;
-    public readonly int SoilPreparationMaxQuantity = 4;
-    public readonly int WateringTableMinQuantity = 2;
-    public readonly int WateringTableMaxQuantity = 4;
-    public readonly int FlowerGrowingTableMinQuantity = 3;
-    public readonly int FlowerGrowingTableMaxQuantity = 5;
-    public readonly int CrossingTableMinQuantity = 1;
-    public readonly int CrossingTableMaxQuantity = 3;
+    public readonly int SoilPreparationMinQuantity = 8;
+    public readonly int SoilPreparationMaxQuantity = 16;
+    public readonly int WateringTableMinQuantity = 6;
+    public readonly int WateringTableMaxQuantity = 12;
+    public readonly int FlowerGrowingTableMinQuantity = 8;
+    public readonly int FlowerGrowingTableMaxQuantity = 16;
+    public readonly int CrossingTableMinQuantity = 5;
+    public readonly int CrossingTableMaxQuantity = 10;
 }

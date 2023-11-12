@@ -12586,6 +12586,7 @@ GameObject:
   - component: {fileID: 1125621668}
   - component: {fileID: 1125621670}
   - component: {fileID: 1125621669}
+  - component: {fileID: 1125621671}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -12710,6 +12711,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125621667}
   m_CullTransparentMesh: 1
+--- !u!114 &1125621671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125621667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae430aedf895b94a8bfe13f4694b1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewAdapterTypeName: 
+  viewAdapterOptions: {fileID: 0}
+  viewModelPropertyName: PlayerStatsModelView.PlayerMoney
+  viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &1129041953
 GameObject:
   m_ObjectHideFlags: 0
@@ -17985,7 +18002,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   improvementModelView: {fileID: 536576003}
+  playerStatsModelView: {fileID: 2026734337}
   improvementCanvas: {fileID: 536576002}
+  playerStatsCanvas: {fileID: 2026734336}
 --- !u!1 &1625452700
 GameObject:
   m_ObjectHideFlags: 0
@@ -22910,6 +22929,7 @@ GameObject:
   - component: {fileID: 2026734336}
   - component: {fileID: 2026734335}
   - component: {fileID: 2026734334}
+  - component: {fileID: 2026734337}
   m_Layer: 0
   m_Name: PlayerStatsCanvas
   m_TagString: Untagged
@@ -22999,6 +23019,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &2026734337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026734332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255c927c4c419d841a97327ca8993aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2027163649
 GameObject:
   m_ObjectHideFlags: 0
