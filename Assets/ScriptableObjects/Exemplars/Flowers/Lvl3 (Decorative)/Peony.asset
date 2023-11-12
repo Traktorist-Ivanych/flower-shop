@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: Peony
+  m_EditorClassIdentifier: 
+  flowerName: "\u041F\u0438\u043E\u043D"
+  flowerSprite: {fileID: 21300000, guid: e2826345ace0e654380b590476ab45e1, type: 3}
+  flowerEnum: 14
+  flowerGrowingRoom: 2
+  flowerLvl: 3
+  flowerSellingPrice: 770
+  flowerLvlMeshes:
+  - {fileID: 2965215601118900591, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -3795482655254780787, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
+  - {fileID: -6455164259359670278, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
+  - {fileID: 104830401222042613, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
+  firstCrossingFlowerEnum: 7
+  secondCrossingFlowerEnum: 5
