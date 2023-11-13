@@ -140,6 +140,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2659333761519265360, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659333761519265360, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659333761519265360, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2985566014123080490, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
       propertyPath: m_Name
       value: SoilPotDecorative
@@ -188,10 +200,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6342350784888021760, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342350784888021760, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d13378e7b8d21f43a847639a7e3aedc, type: 2}
     - target: {fileID: 6384138468712461549, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6900386843978148972, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7648256814207469170, guid: f56266e115d0d4746bf3bae298d94205, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04cd2e6c71a5f4b468898c4934ca2d34, type: 3}
 --- !u!23 &888319420685874430 stripped

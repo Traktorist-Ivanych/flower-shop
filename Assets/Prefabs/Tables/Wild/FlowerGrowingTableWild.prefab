@@ -5251,7 +5251,7 @@ GameObject:
   - component: {fileID: 951367575}
   - component: {fileID: 6756072784890184190}
   - component: {fileID: 50640805948526565}
-  - component: {fileID: 6556474612655469200}
+  - component: {fileID: 3546608370683430025}
   m_Layer: 3
   m_Name: FlowerGrowingTableWild
   m_TagString: Untagged
@@ -5382,7 +5382,7 @@ MonoBehaviour:
   improvementIndicatorRenderer: {fileID: 5657155406452421337}
   tableMeshFilter: {fileID: 3958062518772623368}
   improvementTable: {fileID: 11400000, guid: c78cb53820da836439d6232b46104e5c, type: 2}
---- !u!114 &6556474612655469200
+--- !u!114 &3546608370683430025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5391,7 +5391,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7044243329059890031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deca1b63097695d47968f4efa221a312, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bcd0ccd2dbb22747b3a6a9203f10275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 1242825150}

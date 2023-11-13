@@ -4909,7 +4909,7 @@ GameObject:
   - component: {fileID: 3643616801619644146}
   - component: {fileID: 4095546986937269651}
   - component: {fileID: 4341118490401631265}
-  - component: {fileID: 8340086420952709303}
+  - component: {fileID: 7920077856314075000}
   m_Layer: 3
   m_Name: SoilPreparationTableExotic
   m_TagString: Untagged
@@ -5040,7 +5040,7 @@ MonoBehaviour:
   improvementIndicatorRenderer: {fileID: 7918996133156489379}
   tableMeshFilter: {fileID: 8744585879739538037}
   improvementTable: {fileID: 11400000, guid: 10702cd995e60e44699c16e770cdabd1, type: 2}
---- !u!114 &8340086420952709303
+--- !u!114 &7920077856314075000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5049,7 +5049,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3365078888185579295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deca1b63097695d47968f4efa221a312, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bcd0ccd2dbb22747b3a6a9203f10275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 7714997485913465916}

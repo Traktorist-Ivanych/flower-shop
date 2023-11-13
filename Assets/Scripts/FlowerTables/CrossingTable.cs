@@ -24,7 +24,7 @@ public class CrossingTable : FlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (isPotOnCrossingTable)
+            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing)
             {
                 if (playerDinamicObject.IsPlayerDinamicObjectNull())
                 {
@@ -36,7 +36,7 @@ public class CrossingTable : FlowerTable
             else if (playerDinamicObject.GetCurrentPlayerDinamicObject() is Pot)
             {
                 potOnTable = playerDinamicObject.GetCurrentPlayerDinamicObject() as Pot;
-                if (potOnTable.GetGroweringRoom() == groweringRoom && potOnTable.FlowerGrowingLvl > 2 &&
+                if (potOnTable.GetGroweringRoom() == groweringRoom && potOnTable.FlowerGrowingLvl >= 3 &&
                     !potOnTable.IsWeedInPot && !crossingTableProcess.IsTableBroken)
                 {
                     SetPlayerDestination();

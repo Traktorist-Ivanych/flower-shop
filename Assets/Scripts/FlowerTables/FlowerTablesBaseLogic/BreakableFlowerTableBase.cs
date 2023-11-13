@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-public class BreakableFlowerTableBaseLogic : MonoBehaviour, IBreakableTable
+public class BreakableFlowerTableBase : MonoBehaviour, IBreakableTable
 {
     [Inject] private readonly GameConfiguration gameConfiguration;
     [Inject] private readonly PlayerComponents playerComponents;

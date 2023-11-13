@@ -34,6 +34,11 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
     private bool isFlowerReadyForCrossing;
     private bool isCrossingSeedReady;
 
+    public bool IsSeedCrossing
+    {
+        get => isSeedCrossing;
+    }
+
     private protected override void Start()
     {
         base.Start();

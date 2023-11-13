@@ -35,7 +35,7 @@ public class DinamicObjectMoving : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(startTransform.rotation, finishTransform.rotation, currentMovingTime);
             }
 
-            if (currentMovingTime > 1)
+            if (currentMovingTime >= 1)
             {
                 currentMovingTime = 0;
                 isDinamicObjectNeedForMoving = false;

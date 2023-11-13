@@ -1,37 +1,37 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BreakableFlowerTableBaseLogic))]
+[RequireComponent(typeof(BreakableFlowerTableBase))]
 public abstract class BreakableFlowerTable : FlowerTable, IBreakableTable
 {
-    [SerializeField] private BreakableFlowerTableBaseLogic breakableBaseLogic;
+    [SerializeField] private BreakableFlowerTableBase breakableFlowerTableBase;
 
     public bool IsTableBroken
     {
-        get => breakableBaseLogic.IsTableBroken;
+        get => breakableFlowerTableBase.IsTableBroken;
     }
 
     public void ShowBreakdownIndicator()
     {
-        breakableBaseLogic.ShowBreakdownIndicator();
+        breakableFlowerTableBase.ShowBreakdownIndicator();
     }
 
     public void HideBreakdownIndicator()
     {
-        breakableBaseLogic.HideBreakdownIndicator();
+        breakableFlowerTableBase.HideBreakdownIndicator();
     }
 
     public void UseBreakableFlowerTable()
     {
-        breakableBaseLogic.UseBreakableFlowerTable();
+        breakableFlowerTableBase.UseBreakableFlowerTable();
     }
 
     public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
     {
-        breakableBaseLogic.FixBreakableFlowerTable(minQuantity, maxQuantity);
+        breakableFlowerTableBase.FixBreakableFlowerTable(minQuantity, maxQuantity);
     }
 
     public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
     {
-        breakableBaseLogic.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
+        breakableFlowerTableBase.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
     }
 }

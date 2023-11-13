@@ -2,22 +2,22 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent (typeof(BreakableFlowerTableBaseLogic))]
+[RequireComponent (typeof(BreakableFlowerTableBase))]
 public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IBreakableTable
 {
     [Inject] private protected readonly GameConfiguration gameConfiguration;
 
-    private BreakableFlowerTableBaseLogic breakableBaseLogic;
+    private BreakableFlowerTableBase breakableFlowerTablebase;
 
     public bool IsTableBroken 
     {
-        get => breakableBaseLogic.IsTableBroken;
+        get => breakableFlowerTablebase.IsTableBroken;
     }
 
     private protected override void Start()
     {
         base.Start();
-        breakableBaseLogic = GetComponent<BreakableFlowerTableBaseLogic>();
+        breakableFlowerTablebase = GetComponent<BreakableFlowerTableBase>();
     }
 
     public override void ShowImprovableIndicator()
@@ -46,28 +46,28 @@ public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IB
 
     public void ShowBreakdownIndicator()
     {
-        breakableBaseLogic.ShowBreakdownIndicator();
+        breakableFlowerTablebase.ShowBreakdownIndicator();
     }
 
     public void HideBreakdownIndicator()
     {
-        breakableBaseLogic.HideBreakdownIndicator();
+        breakableFlowerTablebase.HideBreakdownIndicator();
     }
 
     public void UseBreakableFlowerTable()
     {
-        breakableBaseLogic.UseBreakableFlowerTable();
+        breakableFlowerTablebase.UseBreakableFlowerTable();
     }
 
     public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
     {
-        breakableBaseLogic.FixBreakableFlowerTable(minQuantity, maxQuantity);
+        breakableFlowerTablebase.FixBreakableFlowerTable(minQuantity, maxQuantity);
         StartCoroutine(ShowImprovableIndicatorAfterRepair());
     }
 
     public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
     {
-        breakableBaseLogic.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
+        breakableFlowerTablebase.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
     }
 
     private IEnumerator ShowImprovableIndicatorAfterRepair()

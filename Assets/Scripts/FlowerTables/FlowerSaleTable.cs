@@ -64,7 +64,7 @@ public class FlowerSaleTable : FlowerTable
             playerDinamicObject.GetCurrentPlayerDinamicObject() is Pot)
         {
             potForSale = playerDinamicObject.GetCurrentPlayerDinamicObject() as Pot;
-            if (potForSale.FlowerGrowingLvl > 2 && !potForSale.IsWeedInPot)
+            if (potForSale.FlowerGrowingLvl >= 3 && !potForSale.IsWeedInPot)
             {
                 SetPlayerDestination();
             }

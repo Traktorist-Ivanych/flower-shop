@@ -5003,7 +5003,7 @@ GameObject:
   - component: {fileID: 1396400165271548464}
   - component: {fileID: 7364537175028966191}
   - component: {fileID: 6348992566922335871}
-  - component: {fileID: 3158307791953815160}
+  - component: {fileID: 4490451648949480863}
   m_Layer: 3
   m_Name: WateringTableDecorative
   m_TagString: Untagged
@@ -5129,7 +5129,7 @@ MonoBehaviour:
   improvementIndicatorRenderer: {fileID: 6824546164961731343}
   tableMeshFilter: {fileID: 8163452150826697715}
   improvementTable: {fileID: 11400000, guid: da3c3f619af2e234ea51f35ed2fd6692, type: 2}
---- !u!114 &3158307791953815160
+--- !u!114 &4490451648949480863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5138,7 +5138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6361228823193045297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deca1b63097695d47968f4efa221a312, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bcd0ccd2dbb22747b3a6a9203f10275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 821594536406471282}

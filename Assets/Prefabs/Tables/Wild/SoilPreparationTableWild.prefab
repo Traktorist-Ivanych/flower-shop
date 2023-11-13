@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 1263385199048002877}
   - component: {fileID: 553887409}
   - component: {fileID: 1347176982656080445}
-  - component: {fileID: 800353751498257215}
+  - component: {fileID: 4930097974311756762}
   m_Layer: 3
   m_Name: SoilPreparationTableWild
   m_TagString: Untagged
@@ -322,7 +322,6 @@ MonoBehaviour:
   groweringRoom: 0
   destinationTarget: {fileID: 6505507747950842616}
   targetToLookAt: {fileID: 589898925821568170}
-  breakableBaseLogic: {fileID: 0}
   potOnTableTransform: {fileID: 8842498139184533921}
   gearsTransform:
   - {fileID: 1855615483161057621}
@@ -343,7 +342,7 @@ MonoBehaviour:
   improvementIndicatorRenderer: {fileID: 4186684632471072381}
   tableMeshFilter: {fileID: 9193816051323859788}
   improvementTable: {fileID: 11400000, guid: 78ee33b3a563cff4b8d5bab046c63fa5, type: 2}
---- !u!114 &800353751498257215
+--- !u!114 &4930097974311756762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4022124901925100039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deca1b63097695d47968f4efa221a312, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bcd0ccd2dbb22747b3a6a9203f10275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 2706293239451386753}
