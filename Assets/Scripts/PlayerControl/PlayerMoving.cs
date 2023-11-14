@@ -23,9 +23,10 @@ public class PlayerMoving : MonoBehaviour
         playerAgent.speed = gameConfiguration.PlayerNavAgentSpeed;
         playerAgent.angularSpeed = gameConfiguration.PlayerNavAgentAngularSpeed;
         playerAgent.acceleration = gameConfiguration.PlayerNavAgentAcceleration;
-        rotationSpeed = gameConfiguration.PlayerMovingRotation;
 
         playerAnimator = GetComponent<Animator>();
+
+        SetOrdinaryRotationSpeed();
     }
 
     private void Update()
@@ -61,5 +62,15 @@ public class PlayerMoving : MonoBehaviour
         playerAgent.destination = destinationTarget;
         targetToLookAt = TargetToLookAt;
         needForRotation = true;
+    }
+
+    public void SetCoffeRotationSpeed()
+    {
+        rotationSpeed = gameConfiguration.PlayerMovingCoffeRotation;
+    }
+
+    public void SetOrdinaryRotationSpeed()
+    {
+        rotationSpeed = gameConfiguration.PlayerMovingRotation;
     }
 }

@@ -59,4 +59,7 @@ public class GameConfiguration : MonoBehaviour
     public readonly int FlowerGrowingTableMaxQuantity = 16;
     public readonly int CrossingTableMinQuantity = 5;
     public readonly int CrossingTableMaxQuantity = 10;
+
+    [Header("Coffe")]
+    public readonly float CoffeEffectDurationTime = 600;
 }
