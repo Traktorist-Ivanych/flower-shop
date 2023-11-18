@@ -81,7 +81,7 @@ public class FlowerSaleTable : FlowerTable
         potForSale.CleanPot();
 
         saleTableAnimator.SetTrigger("PutSoilOnTable");
-        playerComponents.PlayerAnimator.SetTrigger("Throw");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
 
         isFlowerOnSaleTable = true;
 

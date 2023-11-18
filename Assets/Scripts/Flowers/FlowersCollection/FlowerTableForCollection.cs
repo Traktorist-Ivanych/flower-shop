@@ -73,7 +73,7 @@ public class FlowerTableForCollection : FlowerTable
 
     public override void ExecutePlayerAbility()
     {
-        playerComponents.PlayerAnimator.SetTrigger("Throw");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
         flowerForCollection = playerPot.PlantedFlower;
         flowersForCollection.AddFlowerToCollectionList(flowerForCollection);
         playerPot.CleanPot();

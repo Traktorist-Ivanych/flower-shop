@@ -6,7 +6,7 @@ public class ImprovementButton : MonoBehaviour
 {
     [Inject] private readonly PlayerMoney playerMoney;
     [Inject] private readonly PlayerBusyness playerBusyness;
-    [Inject] private readonly ModelViewAll modelViewAll;
+    [Inject] private readonly AllCanvasLiaisons allCanvasLiaisons;
     [Inject] private readonly Hammer hammer;
 
     private Button improvementButton;
@@ -19,11 +19,11 @@ public class ImprovementButton : MonoBehaviour
 
     public void OnImprovementButtonClick()
     {
-        if (modelViewAll.ImprovementModelView.PriceInt <= playerMoney.CurrentPlayerMoney)
+        if (allCanvasLiaisons.ImprovementCanvasLiaison.PriceInt <= playerMoney.CurrentPlayerMoney)
         {
-            playerMoney.TakePlayerMoney(modelViewAll.ImprovementModelView.PriceInt);
+            playerMoney.TakePlayerMoney(allCanvasLiaisons.ImprovementCanvasLiaison.PriceInt);
             StartCoroutine(hammer.ImproveTable());
-            modelViewAll.ImprovementCanvas.enabled = false;
+            allCanvasLiaisons.ImprovementCanvas.enabled = false;
         }
         else
         {

@@ -25,10 +25,9 @@ public class BuyerActions : MonoBehaviour
         if (isSoilNeedForMoving)
         {
             currentMovingTime += Time.deltaTime * 3.5f;
-            buyerSoilTransform.position = Vector3.Lerp(startSoilPosition.position, buyerHandsTransform.position, 
-                                                       currentMovingTime);
-            buyerSoilTransform.rotation = Quaternion.Slerp(startSoilPosition.rotation, buyerHandsTransform.rotation, 
-                                                           currentMovingTime);
+            buyerSoilTransform.SetPositionAndRotation(
+                Vector3.Lerp(startSoilPosition.position, buyerHandsTransform.position, currentMovingTime), 
+                Quaternion.Slerp(startSoilPosition.rotation, buyerHandsTransform.rotation, currentMovingTime));
 
             if (currentMovingTime >= 1)
             {

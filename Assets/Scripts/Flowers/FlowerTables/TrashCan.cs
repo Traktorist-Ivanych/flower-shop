@@ -36,7 +36,7 @@ public class TrashCan : FlowerTable
 
     public override void ExecutePlayerAbility()
     {
-        playerComponents.PlayerAnimator.SetTrigger("Throw");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
         trashCanAnimator.SetTrigger("Throw");
 
         if (playerPot.PlantedFlower.FlowerEnum != IFlower.Flower.Empty)

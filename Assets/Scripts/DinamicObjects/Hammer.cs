@@ -35,10 +35,10 @@ public class Hammer : MonoBehaviour, IDinamicObject
 
     public IEnumerator ImproveTable()
     {
-        playerComponents.PlayerAnimator.SetTrigger("StartBuilds");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
         improvableTable.HideImprovableIndicator();
         yield return new WaitForSeconds(gameConfiguration.TableImprovementTime);
-        playerComponents.PlayerAnimator.SetTrigger("FinishBuilds");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
         improvableTable.ImproveTable();
         playerBusyness.SetPlayerFree();
     }

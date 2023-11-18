@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityWeld.Binding;
 
 [Binding]
-public class ImprovementModelView : MonoBehaviour, INotifyPropertyChanged
+public class ImprovementCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
 {
     [SerializeField] private Canvas improvementCanvas;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityWeld.Binding;
 
 [Binding]
-public class PlayerStatsModelView : MonoBehaviour, INotifyPropertyChanged
+public class PlayerStatsCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 

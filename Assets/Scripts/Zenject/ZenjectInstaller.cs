@@ -12,6 +12,7 @@ public class ZenjectInstaller : MonoInstaller
     [SerializeField] private PlayerBusyness playerBusyness;
     [SerializeField] private PlayerComponents playerComponents;
     [SerializeField] private PlayerMoney playerMoney;
+    [SerializeField] private PlayerCoffeEffect playerCoffeEffect;
     [Header("Crossing")]
     [SerializeField] private FlowersContainer flowersContainer;
     [Header("Sale")]
@@ -21,8 +22,8 @@ public class ZenjectInstaller : MonoInstaller
     [SerializeField] private GameConfiguration gameConfiguration;
     [Header("Buyers")]
     [SerializeField] private BuyersSpawner buyersSpawner;
-    [Header("ModelView")]
-    [SerializeField] private ModelViewAll modelViewAll;
+    [Header("Canvases")]
+    [SerializeField] private AllCanvasLiaisons allCanvasLiaisons;
     [Header("Repair And Improvement")]
     [SerializeField] private RepairAndImprovementTable repairAndImprovementTable;
     [SerializeField] private Hammer hammer;
@@ -36,6 +37,7 @@ public class ZenjectInstaller : MonoInstaller
         Container.Bind<PlayerBusyness>().FromInstance(playerBusyness).AsSingle().NonLazy();
         Container.Bind<PlayerComponents>().FromInstance(playerComponents).AsSingle().NonLazy();
         Container.Bind<PlayerMoney>().FromInstance(playerMoney).AsSingle().NonLazy();
+        Container.Bind<PlayerCoffeEffect>().FromInstance(playerCoffeEffect).AsSingle().NonLazy();
 
         Container.Bind<FlowersContainer>().FromInstance(flowersContainer).AsSingle().NonLazy();
 
@@ -46,7 +48,7 @@ public class ZenjectInstaller : MonoInstaller
 
         Container.Bind<BuyersSpawner>().FromInstance(buyersSpawner).AsSingle().NonLazy();
 
-        Container.Bind<ModelViewAll>().FromInstance(modelViewAll).AsSingle().NonLazy();
+        Container.Bind<AllCanvasLiaisons>().FromInstance(allCanvasLiaisons).AsSingle().NonLazy();
 
         Container.Bind<RepairAndImprovementTable>().FromInstance(repairAndImprovementTable).AsSingle().NonLazy();
         Container.Bind<Hammer>().FromInstance(hammer).AsSingle().NonLazy();

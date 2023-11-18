@@ -38,9 +38,9 @@ public class Hoe : MonoBehaviour, IDinamicObject, IGrowingRoom
 
     public IEnumerator DeleteWeedWithHoe(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotInList)
     {
-        playerComponents.PlayerAnimator.SetTrigger("StartWeeding");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartWeedingTrigger);
         yield return new WaitForSeconds(gameConfiguration.WeedingTime - gameConfiguration.WeedingTimeLvlDelta * hoeLvl);
-        playerComponents.PlayerAnimator.SetTrigger("FinishWeeding");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishWeedingTrigger);
         potForDeletingWeed.DeleteWeed();
         weedPlanterToAddPotInList.AddPotInPlantingWeedList(potForDeletingWeed);
         playerBusyness.SetPlayerFree();

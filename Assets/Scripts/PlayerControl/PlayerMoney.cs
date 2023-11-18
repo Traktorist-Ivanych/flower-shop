@@ -3,9 +3,9 @@ using Zenject;
 
 public class PlayerMoney : MonoBehaviour
 {
-    [Inject] private ModelViewAll ModelViewAll;
+    [Inject] private readonly AllCanvasLiaisons allCanvasLiaisons;
 
-    private int currentPlayerMoney = 0;
+    private int currentPlayerMoney = 5000;
 
     public int CurrentPlayerMoney
     {
@@ -31,6 +31,6 @@ public class PlayerMoney : MonoBehaviour
 
     private void UpdatePlayerMoneyOnCanvas()
     {
-        ModelViewAll.PlayerStatsModelView.UpdatePlayerMoneyOnCanvas(currentPlayerMoney.ToString());
+        allCanvasLiaisons.PlayerStatsCanvasLiaison.UpdatePlayerMoneyOnCanvas(currentPlayerMoney.ToString());
     }
 }

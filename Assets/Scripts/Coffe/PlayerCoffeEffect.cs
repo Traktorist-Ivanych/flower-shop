@@ -29,7 +29,7 @@ public class PlayerCoffeEffect : MonoBehaviour
         }
     }
 
-    public void DrinkCoffe()
+    public void StartCoffeEffect()
     {
         isCoffeEffectActive = true;
 

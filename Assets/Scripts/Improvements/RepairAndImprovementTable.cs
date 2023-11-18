@@ -13,7 +13,7 @@ public class RepairAndImprovementTable : FlowerTable
     private delegate void RepairAndImprovementTableAction();
     private event RepairAndImprovementTableAction RepairAndImprovementTableEvent;
 
-    private List<IImprovableTable> improvableTables = new();
+    private readonly List<IImprovableTable> improvableTables = new();
 
     public override void ExecuteClickableAbility()
     {

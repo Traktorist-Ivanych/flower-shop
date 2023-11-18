@@ -86,8 +86,7 @@ public class BuyerMoving : MonoBehaviour
 
     public void BuyerThink()
     {
-        int buyerThinkResult = Random.Range(0, 10);
-        if (buyerThinkResult >= 7)
+        if (gameConfiguration.IsByerBuyingFlower())
         {
             buyerAnimator.SetTrigger("No");
         }

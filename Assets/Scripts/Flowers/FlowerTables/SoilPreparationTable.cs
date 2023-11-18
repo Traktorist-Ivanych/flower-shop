@@ -16,6 +16,11 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
     private float currentSoilPreparationTime;
     private bool isSoilBeingPrepared;
 
+    public int TableLvl
+    {
+        get => tableLvl;
+    }
+
     private protected override void Start()
     {
         base.Start();

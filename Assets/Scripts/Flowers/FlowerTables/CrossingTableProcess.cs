@@ -184,7 +184,7 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
 
     private IEnumerator StartFlowerCrossingProcess()
     {
-        playerComponents.PlayerAnimator.SetTrigger("StartCrossing");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartCrossingTrigger);
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         isSeedCrossing = true;

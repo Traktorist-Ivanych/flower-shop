@@ -46,7 +46,7 @@ public class BreakableFlowerTableBase : MonoBehaviour, IBreakableTable
 
     public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
     {
-        playerComponents.PlayerAnimator.SetTrigger("StartBuilds");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
         breakdownIndicatorRenderer.enabled = false;
         SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
 
@@ -62,7 +62,7 @@ public class BreakableFlowerTableBase : MonoBehaviour, IBreakableTable
     {
         yield return new WaitForSeconds(gameConfiguration.TableRepairTime);
 
-        playerComponents.PlayerAnimator.SetTrigger("FinishBuilds");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
         isTableBroken = false;
         playerBusyness.SetPlayerFree();
 

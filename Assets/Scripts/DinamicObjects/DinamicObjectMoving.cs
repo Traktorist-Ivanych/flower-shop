@@ -57,14 +57,14 @@ public class DinamicObjectMoving : MonoBehaviour
     {
         shouldDinamicObjectRotate = true;
         finishTransform = playerComponents.PlayerHandsForLittleObjectTransform;
-        playerComponents.PlayerAnimator.SetTrigger("TakeLittleObject");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.TakeLittleObjectTrigger);
         MoveDinamicObject();
     }
 
     public void PutLittleDinamicObjectOnTableWithRotation(Transform tableTransform)
     {
         shouldDinamicObjectRotate = true;
-        playerComponents.PlayerAnimator.SetTrigger("GiveLittleObject");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.GiveLittleObjectTrigger);
         finishTransform = tableTransform;
         MoveDinamicObject();
     }
@@ -72,13 +72,13 @@ public class DinamicObjectMoving : MonoBehaviour
     public void PutBigDinamicObjectInPlayerHands()
     {
         finishTransform = playerComponents.PlayerHandsTransform;
-        playerComponents.PlayerAnimator.SetTrigger("Take");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.TakeBigObjectTrigger);
         MoveDinamicObject();
     }
 
     public void PutBigDinamicObjectOnTable(Transform tableTransform)
     {
-        playerComponents.PlayerAnimator.SetTrigger("Give");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.GiveBigObjectTrigger);
         finishTransform = tableTransform;
         MoveDinamicObject();
     }

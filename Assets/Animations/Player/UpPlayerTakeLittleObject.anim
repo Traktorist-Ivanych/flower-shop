@@ -296,7 +296,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5
-        value: {x: -89.952, y: 0, z: -15}
+        value: {x: -69.519, y: 74.876, z: -89.867}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1278,7 +1278,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: -89.952
+        value: -69.519
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1307,7 +1307,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0
+        value: 74.876
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1336,7 +1336,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: -15
+        value: -89.867
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1359,7 +1359,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1369,7 +1369,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1379,7 +1379,40 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
+      R Forearm/Bip001 R Hand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
+      R Forearm/Bip001 R Hand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
+      R Forearm/Bip001 R Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1482,69 +1515,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
-      L Forearm/Bip001 L Hand
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
-      L Forearm/Bip001 L Hand
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
-      L Forearm/Bip001 L Hand
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
     path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
       L Forearm
     classID: 4
@@ -1577,9 +1547,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
-      R Forearm/Bip001 R Hand
+    attribute: m_LocalEulerAngles.z
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1589,8 +1558,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
-      R Forearm/Bip001 R Hand
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
+      L Forearm/Bip001 L Hand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
+      L Forearm/Bip001 L Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1600,8 +1600,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
-      R Forearm/Bip001 R Hand
+    path: PlayerBones/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
+      L Forearm/Bip001 L Hand
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

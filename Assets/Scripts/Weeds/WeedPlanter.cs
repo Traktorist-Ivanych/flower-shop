@@ -27,8 +27,7 @@ public class WeedPlanter : MonoBehaviour
             SetCurrentWeedPlantTime();
             if (potsForPlantingWeed.Count > 0)
             {
-                int weedPlantingChance = Random.Range(0, 10);
-                if (weedPlantingChance >= 5)
+                if (gameConfiguration.IsWeedPlanting())
                 {
                     Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
                     potForPlantingWeed.PlantWeed();
@@ -53,6 +52,7 @@ public class WeedPlanter : MonoBehaviour
 
     private void SetCurrentWeedPlantTime()
     {
-        currentWeedPlantTime = Random.Range(gameConfiguration.MinWeedPlantTime, gameConfiguration.MaxWeedPlantTime);
+        currentWeedPlantTime = Random.Range(gameConfiguration.MinWeedPlantTime * (soilPreparationTable.TableLvl + 1), 
+                                            gameConfiguration.MaxWeedPlantTime * (soilPreparationTable.TableLvl + 1));
     }
 }

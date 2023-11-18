@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 public class FlowersForSaleCoefCalculator : MonoBehaviour
 {
+    [Inject] private readonly GameConfiguration gameConfiguration;
+
     private readonly List<FlowerSaleTable> saleTablesWithFlowers = new();
     private readonly HashSet<Flower> uniqueFlowersForSale = new();
     private float currentFlowersForSaleCoef;
@@ -37,8 +40,13 @@ public class FlowersForSaleCoefCalculator : MonoBehaviour
 
     private void CalculateFlowersForSaleCoef()
     {
-        float allFlowersForSaleCoef = Mathf.Min(saleTablesWithFlowers.Count, 10f) / 15;
-        float uniqueFlowersForSaleCoef = Mathf.Min(uniqueFlowersForSale.Count, 5f) / 15;
+        float allAndUniqueFlowersForSale = gameConfiguration.AllFlowersForSale + gameConfiguration.UniqueFlowersForSale;
+
+        float allFlowersForSaleCoef = 
+            Mathf.Min(saleTablesWithFlowers.Count, gameConfiguration.AllFlowersForSale) / allAndUniqueFlowersForSale;
+
+        float uniqueFlowersForSaleCoef = 
+            Mathf.Min(uniqueFlowersForSale.Count, gameConfiguration.UniqueFlowersForSale) / allAndUniqueFlowersForSale;
 
         currentFlowersForSaleCoef = allFlowersForSaleCoef + uniqueFlowersForSaleCoef;
     }

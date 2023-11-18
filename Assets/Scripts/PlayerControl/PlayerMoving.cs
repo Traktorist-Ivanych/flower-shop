@@ -33,7 +33,7 @@ public class PlayerMoving : MonoBehaviour
     {
         if (playerAgent.velocity == Vector3.zero)
         {
-            playerAnimator.SetBool("IsPlayerWalk", false);
+            playerAnimator.SetBool(PlayerAnimatorParameters.IsPlayerWalkBool, false);
 
             if (playerAgent.remainingDistance < 0.1f && needForRotation)
             {
@@ -53,7 +53,7 @@ public class PlayerMoving : MonoBehaviour
         }
         else
         {
-            playerAnimator.SetBool("IsPlayerWalk", true);
+            playerAnimator.SetBool(PlayerAnimatorParameters.IsPlayerWalkBool, true);
         }
     }
 

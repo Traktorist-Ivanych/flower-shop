@@ -50,7 +50,7 @@ public class WateringCan : MonoBehaviour, IDinamicObject, IGrowingRoom
 
     public void PourPotWithWateringCan()
     {
-        playerComponents.PlayerAnimator.SetTrigger("Pour");
+        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
         currentWateringsNumber--;
         UpdateWateringCanIndicator();
     }
