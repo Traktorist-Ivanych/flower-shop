@@ -1,33 +1,27 @@
 using UnityEngine;
 
+// rename to Pickable...Handler
 public class CurrentPlayerDinamicObject : MonoBehaviour
 {
-    private IDinamicObject dinamicObject;
+    private IDynamicObject dynamicObject;
 
-    public IDinamicObject GetCurrentPlayerDinamicObject()
+    public IDynamicObject GetCurrentPlayerDinamicObject()
     {
-        return dinamicObject;
+        return dynamicObject;
     }
 
-    public bool IsPlayerDinamicObjectNull()
+    public bool IsPlayerDynamicObjectNull()
     {
-        if (dinamicObject == null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return dynamicObject == null;
     }
 
-    public void SetPlayerDinamicObject(IDinamicObject transmittedDinamicObject)
+    public void SetPlayerDinamicObject(IDynamicObject transmittedDynamicObject)
     {
-        dinamicObject = transmittedDinamicObject;
+        dynamicObject = transmittedDynamicObject;
     }
 
     public void ClearPlayerDinamicObject()
     {
-        dinamicObject = null;
+        dynamicObject = null;
     }
 }

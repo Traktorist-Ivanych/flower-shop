@@ -10,14 +10,9 @@ public class DinamicObjectMoving : MonoBehaviour
     private Transform finishTransform;
     private float currentMovingTime;
     private bool isDinamicObjectNeedForMoving;
-    private bool shouldPlayerBecomeFree;
     private bool shouldDinamicObjectRotate;
 
-    public bool ShouldPlayerBecomeFree
-    {
-        get { return shouldPlayerBecomeFree; }
-        set { shouldPlayerBecomeFree = value; }
-    }
+    public bool ShouldPlayerBecomeFree { get; set; }
 
     private void Start()
     {
@@ -26,6 +21,7 @@ public class DinamicObjectMoving : MonoBehaviour
 
     private void Update()
     {
+        // to dotween animation, remake 'isDinamicObjectNeedForMoving' to property and start animation in set there
         if (isDinamicObjectNeedForMoving)
         {
             currentMovingTime += Time.deltaTime * 2;
@@ -34,25 +30,27 @@ public class DinamicObjectMoving : MonoBehaviour
             {
                 transform.rotation = Quaternion.Lerp(startTransform.rotation, finishTransform.rotation, currentMovingTime);
             }
-
+            
             if (currentMovingTime >= 1)
             {
+                // move to reset method
                 currentMovingTime = 0;
                 isDinamicObjectNeedForMoving = false;
                 transform.SetParent(finishTransform);
                 transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-                if (shouldPlayerBecomeFree)
+                if (ShouldPlayerBecomeFree)
                 {
                     playerBusyness.SetPlayerFree();
                 }
 
-                shouldPlayerBecomeFree = true;
+                ShouldPlayerBecomeFree = true;
                 shouldDinamicObjectRotate = false;
             }
         }
     }
 
+    // replace with settings (object size)
     public void PutLittleDinamicObjectInPlayerHandsWithRotation()
     {
         shouldDinamicObjectRotate = true;

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// set defines for UNITY_Editor and debug
 public class FPS : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fpsText;

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// THINK about Create FlowerSaleTablesCollection class which contains all flowerSaleTables and contains method for getting TablesForByers (where...)
+// and unite with FlowersForSaleCoefCalculator
 public class FlowerSaleTablesForByers : MonoBehaviour
 {
     private readonly List<FlowerSaleTable> saleTables = new();

@@ -5,7 +5,7 @@ public class GameConfiguration : MonoBehaviour
     [Header("Buyers")]
     [SerializeField] private AnimationCurve buyerBuyingFlower;
     [SerializeField] private float buyerBuyingFlowerSuccessBorder;
-    public readonly float MinBuyerSpawnTime = 150;
+    [field: SerializeField] public float MinBuyerSpawnTime { get; private set; } = 150;
     public readonly float MinBuyerSpawnTimeDelta = 120;
     public readonly float MaxBuyerSpawnTime = 250;
     public readonly float MaxBuyerSpawnTimeDelta = 190;
@@ -46,7 +46,7 @@ public class GameConfiguration : MonoBehaviour
     public readonly float UpGrowingLvlTime = 3;
     public readonly float UpGrowingLvlTableLvlTimeDelta = 10f;
 
-    [Header("CrossingTable")]
+    [Header("FlowersCrossingTable")]
     public readonly float CrossingFlowerTime = 3;
     public readonly float CrossingFlowerLvlTimeDelta = 10;
 

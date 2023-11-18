@@ -5,6 +5,7 @@ public class BuyerActions : MonoBehaviour
 {
     [SerializeField] private Transform buyerHandsTransform;
     [SerializeField] private Transform buyerSoilTransform;
+    [Tooltip("")]
     [SerializeField] private MeshRenderer buyerSoilRenderer;
     [SerializeField] private MeshRenderer buyerFlowerRenderer;
 

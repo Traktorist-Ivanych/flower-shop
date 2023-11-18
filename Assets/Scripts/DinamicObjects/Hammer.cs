@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-public class Hammer : MonoBehaviour, IDinamicObject
+// rename to UpgradingHammer(andRepairing) (class should say what he does)
+public class Hammer : MonoBehaviour, IDynamicObject
 {
     [Inject] private readonly CurrentPlayerDinamicObject playerDinamicObject;
     [Inject] private readonly PlayerBusyness playerBusyness;

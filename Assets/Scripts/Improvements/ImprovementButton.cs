@@ -14,6 +14,7 @@ public class ImprovementButton : MonoBehaviour
     private void Start()
     {
         improvementButton = GetComponent<Button>();
+        // when we do some addListner we should removeListener in destroy or etc, if we subscribe to event somewhere we should ALWAYS unsubscibe
         improvementButton.onClick.AddListener(OnImprovementButtonClick);
     }
 

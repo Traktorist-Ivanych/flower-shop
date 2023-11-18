@@ -7,23 +7,25 @@ public class CoffeCap : MonoBehaviour
     [SerializeField] private Transform coffeLiquidEmptyTransform;
     [SerializeField] private Transform coffeLiquidFullTransform;
 
-    private DinamicObjectMoving dinamicObjectMoving;
+    private DinamicObjectMoving dynamicObjectMoving;
+    // correct CoffeE
     private MeshRenderer coffeLiquidRenderer;
     private Transform startPosition;
     private Transform endPosition;
     private bool isCoffeLiquidNeedForMoving;
     private bool hideCoffeLiquidAfterMoving;
+    // shouldn't be constant - setting
     private const float coffeLiquidMovingTime = 0.5f;
     private float currentcoffeLiquidMovingTime;
 
-    public DinamicObjectMoving DinamicObjectMoving
+    public DinamicObjectMoving DynamicObjectMoving
     {
-        get => dinamicObjectMoving;
+        get => dynamicObjectMoving;
     }
 
     private void Start()
     {
-        dinamicObjectMoving = GetComponent<DinamicObjectMoving>();
+        dynamicObjectMoving = GetComponent<DinamicObjectMoving>();
         coffeLiquidRenderer = coffeLiquidTransform.GetComponent<MeshRenderer>();
     }
 
@@ -66,7 +68,7 @@ public class CoffeCap : MonoBehaviour
 
     public void TakeCoffeCapInPlayerHands()
     {
-        dinamicObjectMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
+        dynamicObjectMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
     }
 
     public void EmptyCoffeCap()
@@ -79,6 +81,6 @@ public class CoffeCap : MonoBehaviour
 
     public void PutCoffeCapOnTable(Transform coffeCapOnTableTransform)
     {
-        dinamicObjectMoving.PutLittleDinamicObjectOnTableWithRotation(coffeCapOnTableTransform);
+        dynamicObjectMoving.PutLittleDinamicObjectOnTableWithRotation(coffeCapOnTableTransform);
     }
 }

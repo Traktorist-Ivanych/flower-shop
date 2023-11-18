@@ -43,6 +43,7 @@ public class CameraMoving : MonoBehaviour
         targetPosition = new Vector3(cameraPositionX, mainCamera.transform.position.y, cameraPositionZ);
     }
 
+    // it should on pc as well for fast testing and etc - add logic in defines UNITY_EDITOR
     public void MoveCameraY(Vector2 touch0Position, Vector2 touch1Position)
     {
         Vector2 scaledTouch0Position = new (touch0Position.x * resolutionScaleX, touch0Position.y * resolutionScaleY);

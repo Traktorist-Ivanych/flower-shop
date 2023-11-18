@@ -12,7 +12,7 @@ public abstract class FlowerTable : MonoBehaviour, IClickableAbility, IPlayerAbi
     [SerializeField] protected private Transform destinationTarget;
     [SerializeField] protected private Transform targetToLookAt;
 
-
+    // in overrides probably better call .base, and don't call 'throw new System.NotImplementedException()' for now - just empty method
     public virtual void ExecuteClickableAbility()
     {
         throw new System.NotImplementedException();

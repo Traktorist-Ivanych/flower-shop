@@ -39,6 +39,7 @@ public abstract class ImprovableFlowerTable : FlowerTable, IImprovableTable
 
     public virtual void ShowImprovableIndicator()
     {
+        // should be in settings (comparing with maxLevel)
         if (tableLvl < 2)
         {
             improvementTableComponents.ShowImprovementIndicator();

@@ -7,19 +7,20 @@ public class WeedingTable : ImprovableFlowerTable
 
     private delegate void WeedingTableAction();
     private event WeedingTableAction WeedingTableEvent;
+    // redo in all places to something like that using either HelperCalss or try to create extensionMethod for bool? with implicit operator from bool? to bool
+    private readonly bool? nullableTrue = true;
 
     public override void ExecuteClickableAbility()
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (playerDinamicObject.IsPlayerDinamicObjectNull())
+            if (playerDinamicObject.IsPlayerDynamicObjectNull())
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += TakeHoeInPlayerHands;
             }
-            else if ((playerDinamicObject.GetCurrentPlayerDinamicObject() is Hoe) &&
-                     (playerDinamicObject.GetCurrentPlayerDinamicObject() as Hoe).Equals(hoe))
+            else if ((playerDinamicObject.GetCurrentPlayerDinamicObject() as Hoe)?.Equals(hoe) == nullableTrue)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;

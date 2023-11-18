@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public class CrossingTable : FlowerTable
+// rename to FlowersCrossingTable
+public class FlowersCrossingTable : FlowerTable
 {
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private CrossingTableProcess crossingTableProcess;
 
     private delegate void CrossingTableAction();
+    // MAYBE rename to ExecutePlayerAbility or etc ('CrossingTable'Event and we already in class with such name)
     private event CrossingTableAction CrossingTableEvent;
 
     private Pot potOnTable;
@@ -24,14 +26,11 @@ public class CrossingTable : FlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing)
+            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing && playerDinamicObject.IsPlayerDynamicObjectNull())
             {
-                if (playerDinamicObject.IsPlayerDinamicObjectNull())
-                {
-                    SetPlayerDestination();
-                    CrossingTableEvent = null;
-                    CrossingTableEvent += GetPotFromCrossingTable;
-                }
+                SetPlayerDestination();
+                CrossingTableEvent = null;
+                CrossingTableEvent += GetPotFromCrossingTable;
             }
             else if (playerDinamicObject.GetCurrentPlayerDinamicObject() is Pot)
             {

@@ -1,6 +1,9 @@
 using UnityEngine;
 using Zenject;
 
+/// <summary>
+/// better to add description comment (how it is used in gameplay) or rename CollectablesFlowerTables
+/// </summary>
 public class FlowerTableForCollection : FlowerTable
 {
     [Inject] private readonly PlayerComponents playerComponents;
@@ -29,6 +32,7 @@ public class FlowerTableForCollection : FlowerTable
 
     private void Update()
     {
+        // dotween and move all 'moving' logic to separate class
         if (isSoilNeedForMovingToTransitionalPosition)
         {
             currentMovingTime += Time.deltaTime;

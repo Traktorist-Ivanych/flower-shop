@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(DinamicObjectMoving))]
-public class Hoe : MonoBehaviour, IDinamicObject, IGrowingRoom
+public class Hoe : MonoBehaviour, IDynamicObject, IGrowingRoom
 {
     [Inject] private readonly CurrentPlayerDinamicObject playerDinamicObject;
     [Inject] private readonly PlayerBusyness playerBusyness;
@@ -36,6 +36,7 @@ public class Hoe : MonoBehaviour, IDinamicObject, IGrowingRoom
         hoeMoving.PutLittleDinamicObjectOnTableWithRotation(targetTransfom);
     }
 
+    // with hue is redundant
     public IEnumerator DeleteWeedWithHoe(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotInList)
     {
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartWeedingTrigger);
@@ -46,6 +47,7 @@ public class Hoe : MonoBehaviour, IDinamicObject, IGrowingRoom
         playerBusyness.SetPlayerFree();
     }
 
+    // hoe is redundant
     public void ImproveHoe()
     {
         hoeLvl++;

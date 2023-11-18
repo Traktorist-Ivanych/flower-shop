@@ -1,5 +1,7 @@
 public interface IFlower
 {
+    // consider to remove enum (replace .Empty check with string.Empty check or etc) 
+    // for receips use scriptable objects of flowers, not strings (не будет ошибок из-за неверных строк)
     enum Flower
     {
         Empty,

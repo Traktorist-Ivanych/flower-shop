@@ -12,6 +12,7 @@ public class BuyCoffeButton : MonoBehaviour
 
     private Button buyButton;
 
+    // можно перенести на onvalidate, buyButton - serializeField
     private void Start()
     {
         buyButton = GetComponent<Button>();

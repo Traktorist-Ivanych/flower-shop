@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent (typeof(PlayerMoving))]
 public class PlayerBusyness : MonoBehaviour
 {
+    // can be moved to IsPlayerFree property
     [SerializeField] private bool isPlayerFree;
 
     private PlayerMoving playerMoving;

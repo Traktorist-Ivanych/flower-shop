@@ -1,6 +1,6 @@
 public interface IGrowingRoom
 {
-    enum GroweringRoom
+    public enum GroweringRoom
     {
         Wild,
         Exotic,

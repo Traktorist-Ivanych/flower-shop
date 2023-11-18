@@ -12,13 +12,6 @@ public class FlowersForCollection : MonoBehaviour
 
     public bool IsFlowerForCollectionUnique(Flower verifiableFlower)
     {
-        if (flowerCollection.Contains(verifiableFlower))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !flowerCollection.Contains(verifiableFlower);
     }
 }

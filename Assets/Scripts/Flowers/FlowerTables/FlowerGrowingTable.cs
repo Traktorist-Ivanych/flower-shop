@@ -46,7 +46,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
             {
                 if (isPotOnTable)
                 {
-                    if (playerDinamicObject.IsPlayerDinamicObjectNull())
+                    if (playerDinamicObject.IsPlayerDynamicObjectNull())
                     {
                         SetPlayerDestination();
                         FlowerGrowingTableEvent = null;

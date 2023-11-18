@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+
+/// <summary>
+/// your description what it does here
+/// </summary>
 public class FlowersForSaleCoefCalculator : MonoBehaviour
 {
     [Inject] private readonly GameConfiguration gameConfiguration;

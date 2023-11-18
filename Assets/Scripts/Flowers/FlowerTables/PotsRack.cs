@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// it is not exactly flowerTable, but just table for pots (maybe rename flowerTable to just table)
 public class PotsRack : ImprovableFlowerTable
 {
     [SerializeField] private Transform PotObjectsTransform;
@@ -17,7 +18,7 @@ public class PotsRack : ImprovableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (playerDinamicObject.IsPlayerDinamicObjectNull() && currentFreePots > 0)
+            if (playerDinamicObject.IsPlayerDynamicObjectNull() && currentFreePots > 0)
             {
                 SetPlayerDestination();
                 PotsRackEvent = null;

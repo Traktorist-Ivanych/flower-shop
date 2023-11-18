@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AllCanvasLiaisons : MonoBehaviour
 {
-    [Header("Model-View")]
+    [Header("Liaisons")]
     [SerializeField] private ImprovementCanvasLiaison improvementCanvasLiaison;
     [SerializeField] private PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
     [SerializeField] private CoffeCanvasLiaison coffeCanvasLiaison;

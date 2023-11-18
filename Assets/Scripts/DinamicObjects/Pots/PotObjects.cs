@@ -69,7 +69,7 @@ public class PotObjects : MonoBehaviour
         weedRenderer.enabled = false;
     }
 
-    public void ShowWaterIndivator()
+    public void ShowWaterIndicator()
     {
         waterIndicator.enabled = true;
     }

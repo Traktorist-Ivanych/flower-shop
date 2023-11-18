@@ -2,7 +2,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(DinamicObjectMoving))]
-public class WateringCan : MonoBehaviour, IDinamicObject, IGrowingRoom
+public class WateringCan : MonoBehaviour, IDynamicObject, IGrowingRoom
 {
     [Inject] private readonly CurrentPlayerDinamicObject playerDinamicObject;
     [Inject] private readonly GameConfiguration gameConfiguration;
@@ -19,6 +19,7 @@ public class WateringCan : MonoBehaviour, IDinamicObject, IGrowingRoom
     private int maxWateringsNumber;
     private int wateringCanLvl;
 
+    // can be just property
     public int CurrentWateringsNumber
     {
         get { return currentWateringsNumber; }

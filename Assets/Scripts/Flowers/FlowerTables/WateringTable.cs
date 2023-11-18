@@ -24,12 +24,13 @@ public class WateringTable : ImprovableBreakableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (playerDinamicObject.IsPlayerDinamicObjectNull() && !wateringCan.IsWateringCanNeedForReplenish() && !IsTableBroken)
+            if (playerDinamicObject.IsPlayerDynamicObjectNull() && !wateringCan.IsWateringCanNeedForReplenish() && !IsTableBroken)
             {
                 SetPlayerDestination();
                 WateringTableEvent = null;
                 WateringTableEvent += TakeWateringCanFromTable;
             }
+            // try to do with one check/cast
             else if ((playerDinamicObject.GetCurrentPlayerDinamicObject() is WateringCan) &&
                      (playerDinamicObject.GetCurrentPlayerDinamicObject() as WateringCan).Equals(wateringCan))
             {

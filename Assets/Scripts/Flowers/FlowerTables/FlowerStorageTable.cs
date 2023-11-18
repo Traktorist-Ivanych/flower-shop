@@ -15,16 +15,19 @@ public class FlowerStorageTable : FlowerTable
 
     public override void ExecuteClickableAbility()
     {
+        // kill me (please)
+        // if branches should be separate methods
         if (playerBusyness.IsPlayerFree)
         {
             if (isFlowerOnStorageTable)
             {
-                if (playerDinamicObject.IsPlayerDinamicObjectNull())
+                if (playerDinamicObject.IsPlayerDynamicObjectNull())
                 {
                     FlowerStorageTableEvent = null;
                     FlowerStorageTableEvent += TakePot;
                     SetPlayerDestination();
                 }
+                // playerDinamicObject.GetCurrentPlayerDinamicObject() to some local variable (repeated method access)
                 else if (playerDinamicObject.GetCurrentPlayerDinamicObject() is WateringCan)
                 {
                     wateringCan = playerDinamicObject.GetCurrentPlayerDinamicObject() as WateringCan;

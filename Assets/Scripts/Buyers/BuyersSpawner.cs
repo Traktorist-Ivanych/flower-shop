@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Buyers;
+using ModestTree;
 using UnityEngine;
 using Zenject;
 
@@ -58,6 +60,7 @@ public class BuyersSpawner : MonoBehaviour
 
     public void RemoveBuyerMoving(BuyerMoving buyerMoving)
     {
+        //Assert.That(buyersMoving.Contains(buyerMoving));
         if (buyersMoving.Contains(buyerMoving))
         {
             buyersMoving.Remove(buyerMoving);

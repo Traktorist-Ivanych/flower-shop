@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class CrossingTableProcess : ImprovableBreakableFlowerTable
@@ -16,9 +17,10 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
     [SerializeField] private MeshRenderer crossedFlowerRoomBlueIndicator;
     [SerializeField] private MeshRenderer crossedFlowerRoomYellowIndicator;
     [SerializeField] private MeshRenderer crossedFlowerRoomGreenIndicator;
+    [FormerlySerializedAs("firstCrossingTable")]
     [Header("CrossingTables")]
-    [SerializeField] private CrossingTable firstCrossingTable;
-    [SerializeField] private CrossingTable secondCrossingTable;
+    [SerializeField] private FlowersCrossingTable firstFlowersCrossingTable;
+    [FormerlySerializedAs("secondCrossingTable")] [SerializeField] private FlowersCrossingTable secondFlowersCrossingTable;
     [Header("CrossingTableBlender")]
     [SerializeField] private MeshFilter crossingTableBlenderMeshFilter;
     [SerializeField] private Mesh[] crossingTableBlenderLvlMeshes = new Mesh[2];
@@ -67,8 +69,8 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
 
                 crossingAbilityRedIndicator.enabled = true;
                 crossingAbilityGreenIndicator.enabled = false;
-                firstCrossingTable.GetPotOnTable().CrossFlower();
-                secondCrossingTable.GetPotOnTable().CrossFlower();
+                firstFlowersCrossingTable.GetPotOnTable().CrossFlower();
+                secondFlowersCrossingTable.GetPotOnTable().CrossFlower();
                 UseBreakableFlowerTable();
             }
         }
@@ -94,7 +96,7 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
                         }
                     }
                 }
-                else if (playerDinamicObject.IsPlayerDinamicObjectNull() && isFlowerReadyForCrossing)
+                else if (playerDinamicObject.IsPlayerDynamicObjectNull() && isFlowerReadyForCrossing)
                 {
                     SetPlayerDestination();
                     CrossingTableProcessEvent = null;
@@ -134,12 +136,12 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
         crossedFlowerRoomYellowIndicator.enabled = false;
         crossedFlowerRoomGreenIndicator.enabled = false;
 
-        if (firstCrossingTable.IsPotOnCrossingTable && firstCrossingTable.GetPotOnTable().FlowerGrowingLvl >= 3 &&
-            secondCrossingTable.IsPotOnCrossingTable && secondCrossingTable.GetPotOnTable().FlowerGrowingLvl >= 3)
+        if (firstFlowersCrossingTable.IsPotOnCrossingTable && firstFlowersCrossingTable.GetPotOnTable().FlowerGrowingLvl >= 3 &&
+            secondFlowersCrossingTable.IsPotOnCrossingTable && secondFlowersCrossingTable.GetPotOnTable().FlowerGrowingLvl >= 3)
         {
             flowerForPlanting = flowersContainer.GetFlowerFromCrossingRecipe(
-                firstCrossingTable.GetPotOnTable().PlantedFlower.FlowerEnum,
-                secondCrossingTable.GetPotOnTable().PlantedFlower.FlowerEnum
+                firstFlowersCrossingTable.GetPotOnTable().PlantedFlower.FlowerEnum,
+                secondFlowersCrossingTable.GetPotOnTable().PlantedFlower.FlowerEnum
                 );
 
             if (flowerForPlanting.FlowerEnum == IFlower.Flower.Empty)

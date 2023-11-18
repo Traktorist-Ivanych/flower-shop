@@ -1,15 +1,17 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 [RequireComponent (typeof(DinamicObjectMoving))]
 [RequireComponent(typeof(PotObjects))]
-public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
+public class Pot : MonoBehaviour, IDynamicObject, IGrowingRoom
 {
     [Inject] private readonly CurrentPlayerDinamicObject playerDinamicObject;
     [Inject] private readonly GameConfiguration gameConfiguration;
     [Inject] private readonly FlowersContainer flowersContainer;
 
-    [SerializeField] private IGrowingRoom.GroweringRoom groweringRoom;
+    // move to IGrowingRoom (as propery, field: SerializeField...)
+    [FormerlySerializedAs("groweringRoom")] [SerializeField] private IGrowingRoom.GroweringRoom growingRoom;
 
     private Flower plantedFlower;
     private DinamicObjectMoving potMoving;
@@ -28,7 +30,7 @@ public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
         get => potObjects; 
     }
 
-    public IGrowingRoom.GroweringRoom GetGroweringRoom() { return groweringRoom; }
+    public IGrowingRoom.GroweringRoom GetGroweringRoom() { return growingRoom; }
 
     public Flower PlantedFlower
     {
@@ -57,6 +59,7 @@ public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
 
     private void Start()
     {
+        // move to awake because we don't need to recashing it on disable/enable
         potMoving = GetComponent<DinamicObjectMoving>();
         potObjects = GetComponent<PotObjects>();
         upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime;
@@ -67,6 +70,7 @@ public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
     {
         if (isWeedInPot)
         {
+            // 3 should be in settings
             if (weedGrowingLvl < 3 && ShouldGrowingLvlIncrease())
             {
                 currentUpGrowingLvlTime = 0; 
@@ -74,14 +78,11 @@ public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
                 potObjects.SetWeedLvlMesh(weedGrowingLvl);
             }
         }
-        else if (isPotOnGrowingTable && !isFlowerNeedWater && flowerGrowingLvl < 3)
+        else if (isPotOnGrowingTable && !isFlowerNeedWater && flowerGrowingLvl < 3 && ShouldGrowingLvlIncrease())
         {
-            if (ShouldGrowingLvlIncrease())
-            {
-                currentUpGrowingLvlTime = 0;
-                isFlowerNeedWater = true;
-                potObjects.ShowWaterIndivator();
-            }
+            currentUpGrowingLvlTime = 0;
+            isFlowerNeedWater = true;
+            potObjects.ShowWaterIndicator();
         }
     }
 
@@ -180,7 +181,7 @@ public class Pot : MonoBehaviour, IDinamicObject, IGrowingRoom
         ++flowerGrowingLvl;
         potObjects.SetFlowerLvlMesh(plantedFlower, flowerGrowingLvl);
 
-        (playerDinamicObject.GetCurrentPlayerDinamicObject() as WateringCan).PourPotWithWateringCan();
+        ((WateringCan)playerDinamicObject.GetCurrentPlayerDinamicObject()).PourPotWithWateringCan();
     }
 
     public void CrossFlower()

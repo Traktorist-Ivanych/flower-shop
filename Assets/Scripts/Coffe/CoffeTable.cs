@@ -18,6 +18,7 @@ public class CoffeTable : FlowerTable
 
     private void Update()
     {
+        // Replace with dotween StartAnimation
         if (isCoffeMaking)
         {
             coffeeGrinderTransform.Rotate(Vector3.forward, gameConfiguration.ObjectsRotateDegreesPerSecond * Time.deltaTime);
@@ -26,7 +27,7 @@ public class CoffeTable : FlowerTable
 
     public override void ExecuteClickableAbility()
     {
-        if (playerBusyness.IsPlayerFree && playerDinamicObject.IsPlayerDinamicObjectNull() && 
+        if (playerBusyness.IsPlayerFree && playerDinamicObject.IsPlayerDynamicObjectNull() && 
             !playerCoffeEffect.IsCoffeEffectActive)
         {
             SetPlayerDestination();
@@ -42,29 +43,32 @@ public class CoffeTable : FlowerTable
     {
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeTrigger);
         playerMoney.TakePlayerMoney(gameConfiguration.CoffePrice);
-        StartCoroutine(MakeCoffeProcces());
+        StartCoroutine(MakeCoffeeProcess());
     }
 
-    private IEnumerator MakeCoffeProcces()
+    private IEnumerator MakeCoffeeProcess()
     {
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         isCoffeMaking = true;
 
+        // 4 - should be in settings
         yield return new WaitForSeconds(4);
         isCoffeMaking = false;
         coffeCap.FillCoffeCap();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        coffeCap.DinamicObjectMoving.ShouldPlayerBecomeFree = false;
+        coffeCap.DynamicObjectMoving.ShouldPlayerBecomeFree = false;
         coffeCap.TakeCoffeCapInPlayerHands();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeTrigger);
 
+        // should be in settings
         yield return new WaitForSeconds(0.35f);
         coffeCap.EmptyCoffeCap();
         playerCoffeEffect.StartCoffeEffect();
 
+        // either animation event either get time through animation clip
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay * 2);
         coffeCap.PutCoffeCapOnTable(coffeCapOnTableTransform);
     }

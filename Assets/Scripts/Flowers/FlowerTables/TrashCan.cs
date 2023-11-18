@@ -14,6 +14,7 @@ public class TrashCan : FlowerTable
     private Pot playerPot;
     private MeshFilter flowerMeshFilter;
     private MeshFilter weedMeshFilter;
+    private static readonly int Throw = Animator.StringToHash("Throw");
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class TrashCan : FlowerTable
     public override void ExecutePlayerAbility()
     {
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
-        trashCanAnimator.SetTrigger("Throw");
+        trashCanAnimator.SetTrigger(Throw);
 
         if (playerPot.PlantedFlower.FlowerEnum != IFlower.Flower.Empty)
         {

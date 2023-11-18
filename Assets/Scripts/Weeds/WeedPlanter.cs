@@ -25,14 +25,12 @@ public class WeedPlanter : MonoBehaviour
         else
         {
             SetCurrentWeedPlantTime();
-            if (potsForPlantingWeed.Count > 0)
+            
+            if (potsForPlantingWeed.Count > 0 && gameConfiguration.IsWeedPlanting())
             {
-                if (gameConfiguration.IsWeedPlanting())
-                {
-                    Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
-                    potForPlantingWeed.PlantWeed();
-                    RemovePotFormPlantingWeedList(potForPlantingWeed);
-                }
+                Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
+                potForPlantingWeed.PlantWeed();
+                RemovePotFormPlantingWeedList(potForPlantingWeed);
             }
         }
     }

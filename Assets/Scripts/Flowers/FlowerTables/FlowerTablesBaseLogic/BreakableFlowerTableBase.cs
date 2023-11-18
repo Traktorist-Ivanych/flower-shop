@@ -9,6 +9,7 @@ public class BreakableFlowerTableBase : MonoBehaviour, IBreakableTable
     [Inject] private readonly PlayerBusyness playerBusyness;
 
     [SerializeField] private MeshRenderer breakdownIndicatorRenderer;
+    // rename to brokenEffects
     [SerializeField] private ParticleSystem[] brokenParticleSystems;
 
     private bool isTableBroken;

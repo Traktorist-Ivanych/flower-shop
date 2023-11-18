@@ -3,138 +3,160 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-[RequireComponent(typeof(BuyerActions))]
-public class BuyerMoving : MonoBehaviour
+namespace Buyers
 {
-    [Inject] private readonly FlowerSaleTablesForByers flowerSaleTablesForByers;
-    [Inject] private readonly BuyersSpawner buyersSpawner;
-    [Inject] private readonly GameConfiguration gameConfiguration;
-
-    [SerializeField] private Transform waitingTransform;
-
-    private BuyerActions buyerActions;
-    private FlowerSaleTable buyerFlowerSaleTable;
-    private NavMeshAgent buyerAgent;
-    private Animator buyerAnimator;
-    private Vector3 targetToLookAt;
-    private float rotationSpeed;
-    private bool needForRotation;
-    private bool isBuyerBusy;
-
-    private void Start()
+    [RequireComponent(typeof(BuyerActions))]
+    public class BuyerMoving : MonoBehaviour
     {
-        buyerActions = GetComponent<BuyerActions>();
-        buyerAgent = GetComponent<NavMeshAgent>();
-        buyerAnimator = GetComponent<Animator>();
-        rotationSpeed = gameConfiguration.PlayerMovingRotation;
+        private FlowerSaleTablesForByers flowerSaleTablesForByers;
+        private BuyersSpawner buyersSpawner;
+        private GameConfiguration gameConfiguration;
 
-        if (!isBuyerBusy)
+        [Inject] 
+        private void Construct(GameConfiguration gameConfiguration, BuyersSpawner buyersSpawner, FlowerSaleTablesForByers flowerSaleTablesForByers)
         {
-            buyersSpawner.AddBuyerMoving(this);
+            this.flowerSaleTablesForByers = flowerSaleTablesForByers;
+            this.buyersSpawner = buyersSpawner;
+            this.gameConfiguration = gameConfiguration;
         }
-    }
 
-    private void Update()
-    {
-        if (buyerAgent.velocity == Vector3.zero)
+        [SerializeField] private Transform waitingTransform;
+
+        private BuyerActions buyerActions;
+        private FlowerSaleTable buyerFlowerSaleTable;
+        private NavMeshAgent buyerAgent;
+        private Animator buyerAnimator;
+        private Vector3 targetToLookAt;
+        private float rotationSpeed;
+        private bool needForRotation;
+        private bool isBuyerBusy;
+
+        private static class AnimatorKeys
         {
-            buyerAnimator.SetBool("IsPlayerWalk", false);
+            public static readonly int IsPlayerWalk = Animator.StringToHash("IsPlayerWalk");
+            public static readonly int Think = Animator.StringToHash("Think");
+            public static readonly int Clear = Animator.StringToHash("Clear");
+            public static readonly int WalkSpeed = Animator.StringToHash("WalkSpeed");
+            public static readonly int No = Animator.StringToHash("No");
+            public static readonly int Yes = Animator.StringToHash("Yes");
+        }
 
-            if (buyerAgent.remainingDistance < 0.1f && needForRotation)
+        private void Start()
+        {
+            buyerActions = GetComponent<BuyerActions>();
+            buyerAgent = GetComponent<NavMeshAgent>();
+            buyerAnimator = GetComponent<Animator>();
+            rotationSpeed = gameConfiguration.PlayerMovingRotation;
+
+            if (!isBuyerBusy)
             {
-                Vector3 relativeTargetDiraction = new(targetToLookAt.x - transform.position.x, 0,
-                                                       targetToLookAt.z - transform.position.z);
+                buyersSpawner.AddBuyerMoving(this);
+            }
+        }
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction),
-                                                      Time.deltaTime * rotationSpeed);
+        private void Update()
+        {
+            if (buyerAgent.velocity == Vector3.zero)
+            {
+                buyerAnimator.SetBool(AnimatorKeys.IsPlayerWalk, false);
 
-                if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction)) < 2.5f)
+                // Move to navmesh settings (0.1f)
+                if (buyerAgent.remainingDistance < 0.1f && needForRotation)
                 {
-                    transform.rotation = Quaternion.LookRotation(relativeTargetDiraction);
-                    needForRotation = false;
-                    if (isBuyerBusy)
+                    Vector3 relativeTargetDiraction = new(targetToLookAt.x - transform.position.x, 0,
+                        targetToLookAt.z - transform.position.z);
+
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction),
+                        Time.deltaTime * rotationSpeed);
+
+                    if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction)) < 2.5f)
                     {
-                        buyerAnimator.SetTrigger("Think");
-                    }
-                    else
-                    {
-                        buyerAnimator.SetTrigger("Clear");
-                        buyerActions.ClearFlowerInHands();
-                        buyerAgent.isStopped = true;
-                        transform.position = waitingTransform.position;
-                        buyersSpawner.AddBuyerMoving(this);
+                        transform.rotation = Quaternion.LookRotation(relativeTargetDiraction);
+                        needForRotation = false;
+                        if (isBuyerBusy)
+                        {
+                            buyerAnimator.SetTrigger(AnimatorKeys.Think);
+                        }
+                        else
+                        {
+                            buyerAnimator.SetTrigger(AnimatorKeys.Clear);
+                            buyerActions.ClearFlowerInHands();
+                            buyerAgent.isStopped = true;
+                            transform.position = waitingTransform.position;
+                            buyersSpawner.AddBuyerMoving(this);
+                        }
                     }
                 }
             }
+            else
+            {
+                buyerAnimator.SetBool(AnimatorKeys.IsPlayerWalk, true);
+                buyerAnimator.SetFloat(AnimatorKeys.WalkSpeed, buyerAgent.velocity.magnitude / gameConfiguration.PlayerNavAgentSpeed);
+            }
         }
-        else
-        {
-            buyerAnimator.SetBool("IsPlayerWalk", true);
-            buyerAnimator.SetFloat("WalkSpeed", buyerAgent.velocity.magnitude / gameConfiguration.PlayerNavAgentSpeed);
-        }
-    }
 
-    public void SetBuyerStartDestination(Transform startTransform, FlowerSaleTable targetFlowerSaleTable)
-    {
-        buyerFlowerSaleTable = targetFlowerSaleTable;
-        transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
-        SetBuyerDestination();
-        isBuyerBusy = true;
-        buyerAgent.isStopped = false;
-        buyersSpawner.RemoveBuyerMoving(this);
-    }
-
-    public void BuyerThink()
-    {
-        if (gameConfiguration.IsByerBuyingFlower())
+        public void SetBuyerStartDestination(Transform startTransform, FlowerSaleTable targetFlowerSaleTable)
         {
-            buyerAnimator.SetTrigger("No");
-        }
-        else
-        {
-            buyerAnimator.SetTrigger("Yes");
-        }
-    }
-
-    public void BuyerThinkNo()
-    {
-        FlowerSaleTable nextSaleTable = flowerSaleTablesForByers.GetSaleTableWithFlower();
-        flowerSaleTablesForByers.AddSaleTableWithFlower(buyerFlowerSaleTable);
-
-        buyerFlowerSaleTable = nextSaleTable;
-        if (buyerFlowerSaleTable != null)
-        {
+            buyerFlowerSaleTable = targetFlowerSaleTable;
+            transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
             SetBuyerDestination();
+            isBuyerBusy = true;
+            buyerAgent.isStopped = false;
+            buyersSpawner.RemoveBuyerMoving(this);
         }
-        else
+
+        public void BuyerThink()
         {
+            if (gameConfiguration.IsByerBuyingFlower())
+            {
+                buyerAnimator.SetTrigger(AnimatorKeys.No);
+            }
+            else
+            {
+                buyerAnimator.SetTrigger(AnimatorKeys.Yes);
+            }
+        }
+
+        public void BuyerThinkNo()
+        {
+            FlowerSaleTable nextSaleTable = flowerSaleTablesForByers.GetSaleTableWithFlower();
+            flowerSaleTablesForByers.AddSaleTableWithFlower(buyerFlowerSaleTable);
+
+            buyerFlowerSaleTable = nextSaleTable;
+            if (buyerFlowerSaleTable != null)
+            {
+                SetBuyerDestination();
+            }
+            else
+            {
+                SetBuyerEndTransform();
+            }
+        }
+
+        public void BuyerThinkYes()
+        {
+            buyerActions.BuyFlower(buyerFlowerSaleTable);
+            StartCoroutine(SetBuyerEndTransformWithFlower());
+        }
+
+        private void SetBuyerDestination()
+        {
+            buyerAgent.destination = buyerFlowerSaleTable.BuyerDestinationTarget.position;
+            targetToLookAt = buyerFlowerSaleTable.TargetToLookAt.position;
+            needForRotation = true;
+        }
+
+        private void SetBuyerEndTransform()
+        {
+            buyerAgent.destination = buyersSpawner.GetEndTransform().position;
+            needForRotation = true;
+            isBuyerBusy = false;
+        }
+
+        private IEnumerator SetBuyerEndTransformWithFlower()
+        {
+            yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
             SetBuyerEndTransform();
         }
-    }
-
-    public void BuyerThinkYes()
-    {
-        buyerActions.BuyFlower(buyerFlowerSaleTable);
-        StartCoroutine(SetBuyerEndTransformWithFlower());
-    }
-
-    private void SetBuyerDestination()
-    {
-        buyerAgent.destination = buyerFlowerSaleTable.BuyerDestinationTarget.position;
-        targetToLookAt = buyerFlowerSaleTable.TargetToLookAt.position;
-        needForRotation = true;
-    }
-
-    private void SetBuyerEndTransform()
-    {
-        buyerAgent.destination = buyersSpawner.GetEndTransform().position;
-        needForRotation = true;
-        isBuyerBusy = false;
-    }
-
-    private IEnumerator SetBuyerEndTransformWithFlower()
-    {
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        SetBuyerEndTransform();
     }
 }

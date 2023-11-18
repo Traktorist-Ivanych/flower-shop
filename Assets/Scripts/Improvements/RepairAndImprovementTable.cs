@@ -19,7 +19,7 @@ public class RepairAndImprovementTable : FlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (playerDinamicObject.IsPlayerDinamicObjectNull())
+            if (playerDinamicObject.IsPlayerDynamicObjectNull())
             {
                 SetPlayerDestination();
                 RepairAndImprovementTableEvent = null;
