@@ -34,20 +34,20 @@ public class GameConfiguration : MonoBehaviour
     public readonly float ObjectsRotateDegreesPerSecond = 360;
 
     [Header("SoilPreparationTable")]
-    public readonly float SoilPreparationTime = 1;
-    public readonly float SoilPreparationLvlTimeDelta = 1f;
+    public readonly float SoilPreparationTime = 3;
+    public readonly float SoilPreparationLvlTimeDelta = 1;
 
     [Header("WateringCan")]
-    public readonly int WateringsNumber = 9;
+    public readonly int WateringsNumber = 3;
     public readonly int WateringsNumberLvlDelta = 3;
     public readonly float ReplenishWateringCanTime = 5;
 
     [Header("FlowerGrowingTable")]
-    public readonly float UpGrowingLvlTime = 3;
+    public readonly float UpGrowingLvlTime = 45;
     public readonly float UpGrowingLvlTableLvlTimeDelta = 10f;
 
     [Header("FlowersCrossingTable")]
-    public readonly float CrossingFlowerTime = 3;
+    public readonly float CrossingFlowerTime = 30;
     public readonly float CrossingFlowerLvlTimeDelta = 10;
 
     [Header("Flowers For Sale Coef")]

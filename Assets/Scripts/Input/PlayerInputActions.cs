@@ -5,49 +5,46 @@ public class PlayerInputActions : MonoBehaviour
 {
     [SerializeField] private CameraMoving cameraMoving;
     [SerializeField] private PlayerTapInput playerTapInput;
-    private MobileInputActions inputControls;
+    private InputActions inputControls;
 
-    private void Start()
+    private void Awake()
     {
-        inputControls = new MobileInputActions();
-        inputControls.ActionMap.Enable();
-
-        inputControls.ActionMap.Tap.started += TapInput;
-        inputControls.ActionMap.UIButton.started += ButtonsProcessing;
+        inputControls = new InputActions();
     }
 
     private void Update()
     {
-        if (!IsScreenButtonPressed())
+        if (inputControls.Player.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
         {
-            if (inputControls.ActionMap.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
-            {
-                cameraMoving.MoveCameraXZ(inputControls.ActionMap.Touch0Delta.ReadValue<Vector2>());
-                cameraMoving.ReserTouchesDistance();
-            }
-            else
-            {
-                cameraMoving.MoveCameraY(inputControls.ActionMap.Touch0Position.ReadValue<Vector2>(),
-                                         inputControls.ActionMap.Touch1Position.ReadValue<Vector2>());
-            }
+            cameraMoving.MoveCameraXZ(inputControls.Player.Touch0Delta.ReadValue<Vector2>());
+        }
+        else
+        {
+            cameraMoving.MoveCameraY(inputControls.Player.Touch0Position.ReadValue<Vector2>(),
+                                     inputControls.Player.Touch1Position.ReadValue<Vector2>());
         }
     }
 
-    private bool IsScreenButtonPressed()
+    private void OnEnable()
     {
-        return inputControls.ActionMap.UIButton.IsPressed();
+        inputControls.Player.Enable();
+        inputControls.Player.Tap.started += TapInput;
+        inputControls.Player.Touch1Position.canceled += ResetTouchesDistance;
     }
 
-    private void ButtonsProcessing(InputAction.CallbackContext context)
+    private void OnDisable()
     {
-
+        inputControls.Player.Tap.started -= TapInput;
+        inputControls.Player.Disable();
     }
 
     private void TapInput(InputAction.CallbackContext context)
     {
-        if (!IsScreenButtonPressed())
-        {
-            playerTapInput.PlayerTap(inputControls.ActionMap.TapPosition.ReadValue<Vector2>());
-        }
+        playerTapInput.PlayerTap(inputControls.Player.TapPosition.ReadValue<Vector2>());
+    }
+    
+    private void ResetTouchesDistance(InputAction.CallbackContext context)
+    {
+        cameraMoving.ResetTouchesDistance();
     }
 }

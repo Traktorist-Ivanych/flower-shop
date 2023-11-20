@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CameraMoving : MonoBehaviour
 {
-    [SerializeField] private float cameraStartYPosition;
     [SerializeField] private float inputScaleXZ;
     [SerializeField] private float inputScaleY;
     [SerializeField] private float maxPositionX;
@@ -12,7 +11,7 @@ public class CameraMoving : MonoBehaviour
     [SerializeField] private float maxPositionZ;
     [SerializeField] private float minPositionZ;
     private Camera mainCamera;
-    private Vector3 targetPosition;
+    private float cameraStartYPosition;
     private float scaleXZWithCameraZPosition;
     private float resolutionScaleX;
     private float resolutionScaleY;
@@ -22,25 +21,23 @@ public class CameraMoving : MonoBehaviour
     {
         scaleXZWithCameraZPosition = 1;
         mainCamera = Camera.main;
-        targetPosition = mainCamera.transform.position;
+        cameraStartYPosition = mainCamera.transform.position.y;
         resolutionScaleX = 360f / Screen.width;
         resolutionScaleY = 740f / Screen.height;
     }
 
-    private void Update()
-    {
-        mainCamera.transform.position = targetPosition;
-    }
-
     public void MoveCameraXZ(Vector2 touch0Delta)
     {
+        Vector3 cameraPosition = mainCamera.transform.position;
+        
         float touch0DeltaX = touch0Delta.x * resolutionScaleX * inputScaleXZ * scaleXZWithCameraZPosition;
-        float cameraPositionX = Mathf.Clamp(mainCamera.transform.position.x - touch0DeltaX, minPositionX, maxPositionX);
+        float cameraPositionX = Mathf.Clamp(cameraPosition.x - touch0DeltaX, minPositionX, maxPositionX);
 
         float touch0DeltaZ = touch0Delta.y * resolutionScaleY * inputScaleXZ * scaleXZWithCameraZPosition;
-        float cameraPositionZ = Mathf.Clamp(mainCamera.transform.position.z - touch0DeltaZ, minPositionZ, maxPositionZ);
+        float cameraPositionZ = Mathf.Clamp(cameraPosition.z - touch0DeltaZ, minPositionZ, maxPositionZ);
 
-        targetPosition = new Vector3(cameraPositionX, mainCamera.transform.position.y, cameraPositionZ);
+        Vector3 cameraTargetPosition = new Vector3(cameraPositionX, cameraPosition.y, cameraPositionZ);
+        UpdateCameraPosition(cameraTargetPosition);
     }
 
     // it should on pc as well for fast testing and etc - add logic in defines UNITY_EDITOR
@@ -53,18 +50,26 @@ public class CameraMoving : MonoBehaviour
 
         if (pastTouchesDistance != 0)
         {
+            Vector3 cameraPosition = mainCamera.transform.position;
+            
             float touchesDistanceDelta = currentTouchesDistance - pastTouchesDistance;
-            float targetCameraY = Mathf.Clamp(mainCamera.transform.position.y - touchesDistanceDelta * inputScaleY,
+            float targetCameraY = Mathf.Clamp(cameraPosition.y - touchesDistanceDelta * inputScaleY,
                                               minPositionY, maxPositionY);
 
-            targetPosition = new Vector3(mainCamera.transform.position.x, targetCameraY, mainCamera.transform.position.z);
+            Vector3 cameraTargetPosition = new Vector3(cameraPosition.x, targetCameraY, cameraPosition.z);
+            UpdateCameraPosition(cameraTargetPosition);
         }
         pastTouchesDistance = currentTouchesDistance;
 
         scaleXZWithCameraZPosition = mainCamera.transform.position.y / cameraStartYPosition;
     }
 
-    public void ReserTouchesDistance()
+    private void UpdateCameraPosition(Vector3 targetCameraPosition)
+    {
+        mainCamera.transform.position = targetCameraPosition;
+    }
+
+    public void ResetTouchesDistance()
     {
         pastTouchesDistance = 0;
     }
