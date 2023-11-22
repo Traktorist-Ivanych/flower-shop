@@ -7,17 +7,12 @@ public class PlayerStatsCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
-    private string playerMoney;
-
     [Binding]
-    public string PlayerMoney
-    {
-        get => playerMoney;
-    }
+    public string PlayerMoney { get; private set; }
 
-    public void UpdatePlayerMoneyOnCanvas(string playerMoney)
+    public void UpdatePlayerMoneyOnCanvas(string transmittedPlayerMoney)
     {
-        this.playerMoney = playerMoney;
+        PlayerMoney = transmittedPlayerMoney;
         OnPropertyChanged("PlayerMoney");
     }
 

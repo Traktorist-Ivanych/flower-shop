@@ -6,6 +6,10 @@ public class PlayerInputActions : MonoBehaviour
     [SerializeField] private CameraMoving cameraMoving;
     [SerializeField] private PlayerTapInput playerTapInput;
     private InputActions inputControls;
+    
+#if UNITY_EDITOR
+    [SerializeField] private bool moveCameraY;
+#endif
 
     private void Awake()
     {
@@ -14,6 +18,15 @@ public class PlayerInputActions : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if (moveCameraY)
+        {
+            cameraMoving.MoveCameraY(inputControls.Player.Touch0Position.ReadValue<Vector2>(),
+                Vector2.zero);
+            return;
+        }
+#endif
+        
         if (inputControls.Player.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
         {
             cameraMoving.MoveCameraXZ(inputControls.Player.Touch0Delta.ReadValue<Vector2>());
@@ -21,7 +34,7 @@ public class PlayerInputActions : MonoBehaviour
         else
         {
             cameraMoving.MoveCameraY(inputControls.Player.Touch0Position.ReadValue<Vector2>(),
-                                     inputControls.Player.Touch1Position.ReadValue<Vector2>());
+                inputControls.Player.Touch1Position.ReadValue<Vector2>());
         }
     }
 
@@ -35,6 +48,7 @@ public class PlayerInputActions : MonoBehaviour
     private void OnDisable()
     {
         inputControls.Player.Tap.started -= TapInput;
+        inputControls.Player.Touch1Position.canceled -= ResetTouchesDistance;
         inputControls.Player.Disable();
     }
 

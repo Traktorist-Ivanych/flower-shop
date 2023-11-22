@@ -3,13 +3,23 @@ using UnityEngine;
 [RequireComponent (typeof(PlayerMoving))]
 public class PlayerAbilityExecutor : MonoBehaviour
 {
-    private PlayerMoving playerMoving;
+    [SerializeField] private PlayerMoving playerMoving;
+    
     private IPlayerAbility playerAbility;
-
-    private void Start()
+    
+    private void OnValidate()
     {
         playerMoving = GetComponent<PlayerMoving>();
+    }
+    
+    private void OnEnable()
+    {
         playerMoving.PlayerHasArrivedEvent += ExecutePlayerAbility;
+    }
+
+    private void OnDisable()
+    {
+        playerMoving.PlayerHasArrivedEvent -= ExecutePlayerAbility;
     }
 
     public void SetIPlayerAbility(IPlayerAbility transmittedPlayerAbility)
@@ -17,7 +27,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
         playerAbility = transmittedPlayerAbility;
     }
 
-    public void ExecutePlayerAbility()
+    private void ExecutePlayerAbility()
     {
         playerAbility?.ExecutePlayerAbility();
         playerAbility = null;

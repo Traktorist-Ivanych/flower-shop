@@ -6,27 +6,27 @@ using Zenject;
 [RequireComponent(typeof(Animator))]
 public class PlayerMoving : MonoBehaviour
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
+    [Inject] private readonly PlayerControlSettings playerControlSettings;
 
+    [SerializeField] private NavMeshAgent playerAgent;
+    [SerializeField] private Animator playerAnimator;
+    
     public delegate void PlayerHasArrived();
     public event PlayerHasArrived PlayerHasArrivedEvent;
-
-    private NavMeshAgent playerAgent;
-    private Animator playerAnimator;
+    
     private Vector3 targetToLookAt;
     private float rotationSpeed;
     private bool needForRotation;
 
-    private void Start()
+    private void OnValidate()
     {
         playerAgent = GetComponent<NavMeshAgent>();
-        playerAgent.speed = gameConfiguration.PlayerNavAgentSpeed;
-        playerAgent.angularSpeed = gameConfiguration.PlayerNavAgentAngularSpeed;
-        playerAgent.acceleration = gameConfiguration.PlayerNavAgentAcceleration;
-
         playerAnimator = GetComponent<Animator>();
+    }
 
-        SetOrdinaryRotationSpeed();
+    private void Start()
+    {
+        SetOrdinaryNavAgentSetting();
     }
 
     private void Update()
@@ -37,15 +37,15 @@ public class PlayerMoving : MonoBehaviour
 
             if (playerAgent.remainingDistance < 0.1f && needForRotation)
             {
-                Vector3 relativeTargetDiraction = new(targetToLookAt.x - transform.position.x, 0,
-                                                       targetToLookAt.z - transform.position.z);
+                Vector3 relativeTargetDirection = new(targetToLookAt.x - transform.position.x, 0,
+                                                      targetToLookAt.z - transform.position.z);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction),
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativeTargetDirection),
                                                       Time.deltaTime * rotationSpeed);
 
-                if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDiraction)) < 2.5f)
+                if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDirection)) < 2.5f)
                 {
-                    transform.rotation = Quaternion.LookRotation(relativeTargetDiraction);
+                    transform.rotation = Quaternion.LookRotation(relativeTargetDirection);
                     needForRotation = false;
                     PlayerHasArrivedEvent?.Invoke();
                 }
@@ -57,20 +57,26 @@ public class PlayerMoving : MonoBehaviour
         }
     }
 
-    public void SetPlayerDestination(Vector3 destinationTarget, Vector3 TargetToLookAt)
+    public void SetPlayerDestination(Vector3 destinationTarget, Vector3 transmittedTargetToLookAt)
     {
         playerAgent.destination = destinationTarget;
-        targetToLookAt = TargetToLookAt;
+        targetToLookAt = transmittedTargetToLookAt;
         needForRotation = true;
     }
 
-    public void SetCoffeRotationSpeed()
+    public void SetCoffeeNavAgentSetting()
     {
-        rotationSpeed = gameConfiguration.PlayerMovingCoffeRotation;
+        playerAgent.speed = playerControlSettings.PlayerNavAgentCoffeeSpeed;
+        playerAgent.angularSpeed = playerControlSettings.PlayerNavAgentCoffeeAngularSpeed;
+        playerAgent.acceleration = playerControlSettings.PlayerNavAgentCoffeeAcceleration;
+        rotationSpeed = playerControlSettings.PlayerMovingCoffeeRotation;
     }
 
-    public void SetOrdinaryRotationSpeed()
+    public void SetOrdinaryNavAgentSetting()
     {
-        rotationSpeed = gameConfiguration.PlayerMovingRotation;
+        playerAgent.speed = playerControlSettings.PlayerNavAgentSpeed;
+        playerAgent.angularSpeed = playerControlSettings.PlayerNavAgentAngularSpeed;
+        playerAgent.acceleration = playerControlSettings.PlayerNavAgentAcceleration;
+        rotationSpeed = playerControlSettings.PlayerMovingRotation;
     }
 }

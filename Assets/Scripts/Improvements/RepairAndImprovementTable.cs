@@ -19,13 +19,13 @@ public class RepairAndImprovementTable : FlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (playerDinamicObject.IsPlayerDynamicObjectNull())
+            if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull())
             {
                 SetPlayerDestination();
                 RepairAndImprovementTableEvent = null;
                 RepairAndImprovementTableEvent += TakeHammerInPlayerHands;
             }
-            else if (playerDinamicObject.GetCurrentPlayerDinamicObject() is Hammer)
+            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer)
             {
                 SetPlayerDestination();
                 RepairAndImprovementTableEvent = null;
@@ -52,7 +52,7 @@ public class RepairAndImprovementTable : FlowerTable
 
     private void PutHammerOnWeedingTable()
     {
-        playerDinamicObject.ClearPlayerDinamicObject();
+        PlayerPickableObjectHandler.ClearPlayerPickableObject();
         hammer.GiveHammer(hammerOnTableTransform);
 
         foreach (IImprovableTable improvableTable in improvableTables)

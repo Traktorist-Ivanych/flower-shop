@@ -6,8 +6,8 @@ public static class PlayerAnimatorParameters
     public const string IsPlayerWalkBool = "IsPlayerWalk";
 
     [Header("Trigger")]
-    public const string StatMakingCoffeTrigger = "StartMakingCoffe";
-    public const string DrinkCoffeTrigger = "DrinkCoffe";
+    public const string StatMakingCoffeeTrigger = "StartMakingCoffe";
+    public const string DrinkCoffeeTrigger = "DrinkCoffe";
     public const string TakeLittleObjectTrigger = "TakeLittleObject";
     public const string GiveLittleObjectTrigger = "GiveLittleObject";
     public const string TakeBigObjectTrigger = "Take";

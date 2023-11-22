@@ -3,14 +3,8 @@ using Zenject;
 
 public class PlayerMoney : MonoBehaviour
 {
-    [Inject] private readonly AllCanvasLiaisons allCanvasLiaisons;
-
-    private int currentPlayerMoney = 5000;
-
-    public int CurrentPlayerMoney
-    {
-        get => currentPlayerMoney;
-    }
+    [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
+    [field: SerializeField] public int CurrentPlayerMoney { get; private set; }
 
     private void Start()
     {
@@ -19,18 +13,18 @@ public class PlayerMoney : MonoBehaviour
 
     public void AddPlayerMoney(int moneyAmount)
     {
-        currentPlayerMoney += moneyAmount;
+        CurrentPlayerMoney += moneyAmount;
         UpdatePlayerMoneyOnCanvas();
     }
 
     public void TakePlayerMoney(int moneyAmount)
     {
-        currentPlayerMoney -= moneyAmount;
+        CurrentPlayerMoney -= moneyAmount;
         UpdatePlayerMoneyOnCanvas();
     }
 
     private void UpdatePlayerMoneyOnCanvas()
     {
-        allCanvasLiaisons.PlayerStatsCanvasLiaison.UpdatePlayerMoneyOnCanvas(currentPlayerMoney.ToString());
+        playerStatsCanvasLiaison.UpdatePlayerMoneyOnCanvas(CurrentPlayerMoney.ToString());
     }
 }

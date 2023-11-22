@@ -61,9 +61,9 @@ public class FlowerSaleTable : FlowerTable
     public override void ExecuteClickableAbility()
     {
         if (playerBusyness.IsPlayerFree && !isFlowerOnSaleTable && 
-            playerDinamicObject.GetCurrentPlayerDinamicObject() is Pot)
+            PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
         {
-            potForSale = playerDinamicObject.GetCurrentPlayerDinamicObject() as Pot;
+            potForSale = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
             if (potForSale.FlowerGrowingLvl >= 3 && !potForSale.IsWeedInPot)
             {
                 SetPlayerDestination();

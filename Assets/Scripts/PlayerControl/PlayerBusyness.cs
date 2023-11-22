@@ -3,29 +3,31 @@ using UnityEngine;
 [RequireComponent (typeof(PlayerMoving))]
 public class PlayerBusyness : MonoBehaviour
 {
-    // can be moved to IsPlayerFree property
-    [SerializeField] private bool isPlayerFree;
+    [SerializeField] private PlayerMoving playerMoving;
+    [field: SerializeField] public bool IsPlayerFree { get; private set; }
 
-    private PlayerMoving playerMoving;
-
-    public bool IsPlayerFree
-    {
-        get { return isPlayerFree; }
-    }
-
-    private void Start()
+    private void OnValidate()
     {
         playerMoving = GetComponent<PlayerMoving>();
+    }
+
+    private void OnEnable()
+    {
         playerMoving.PlayerHasArrivedEvent += SetPlayerBusy;
+    }
+
+    private void OnDisable()
+    {
+        playerMoving.PlayerHasArrivedEvent -= SetPlayerBusy;
     }
 
     public void SetPlayerBusy()
     {
-        isPlayerFree = false;
+        IsPlayerFree = false;
     }
 
     public void SetPlayerFree()
     {
-        isPlayerFree = true;
+        IsPlayerFree = true;
     }
 }

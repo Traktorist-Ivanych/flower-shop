@@ -30,7 +30,6 @@ public class ImprovementTableComponents : MonoBehaviour
 
     public void SetImprovementTableInfoToCanvas(int nextTableLvl)
     {
-        // good job, you can do it even almost always - easier to read
         allCanvasLiaisons.ImprovementCanvasLiaison.SetImprovementInfo(
             tableName: improvementTable.TableName,
             description: improvementTable.GetImprovementDescription(nextTableLvl),

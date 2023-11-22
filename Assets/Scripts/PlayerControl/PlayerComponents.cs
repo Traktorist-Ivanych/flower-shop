@@ -1,24 +1,11 @@
-
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerComponents : MonoBehaviour
 {
-    [SerializeField] private Animator playerAnimator;
-    [SerializeField] private Transform playerHandsTransform;
-    [SerializeField] private Transform playerHandsForLittleObjectTransform;
+    [field: SerializeField] public Animator PlayerAnimator { get; private set; }
 
-    public Animator PlayerAnimator 
-    {
-        get => playerAnimator;
-    }
+    [field: SerializeField] public Transform PlayerHandsTransform { get; private set; }
 
-    public Transform PlayerHandsTransform
-    {
-        get => playerHandsTransform;
-    }
-
-    public Transform PlayerHandsForLittleObjectTransform
-    {
-        get => playerHandsForLittleObjectTransform;
-    }
+    [field: SerializeField] public Transform PlayerHandsForLittleObjectTransform { get; private set; }
 }
