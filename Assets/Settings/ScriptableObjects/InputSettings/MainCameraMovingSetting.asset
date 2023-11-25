@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38faf9839b8c4acf86838031c83a164f, type: 3}
+  m_Name: MainCameraMovingSetting
+  m_EditorClassIdentifier: 
+  <InputScaleXZ>k__BackingField: 0.04
+  <InputScaleY>k__BackingField: 0.09
+  <MinPositionX>k__BackingField: -20
+  <MaxPositionX>k__BackingField: 20
+  <MinPositionY>k__BackingField: 12
+  <MaxPositionY>k__BackingField: 50
+  <MinPositionZ>k__BackingField: -20
+  <MaxPositionZ>k__BackingField: 20

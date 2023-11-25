@@ -1,4 +1,5 @@
 using System.Collections;
+using PlayerControl;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -84,9 +85,9 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
             {
                 if (isCrossingSeedReady)
                 {
-                    if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+                    if (playerPickableObjectHandler.CurrentPickableObject is Pot)
                     {
-                        potForPlanting = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                        potForPlanting = playerPickableObjectHandler.CurrentPickableObject as Pot;
                         if (potForPlanting.IsSoilInsidePot && potForPlanting.PlantedFlower.FlowerEnum == IFlower.Flower.Empty &&
                             potForPlanting.GetGroweringRoom() == flowerForPlanting.FlowerGrowingRoom)
                         {
@@ -96,14 +97,14 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
                         }
                     }
                 }
-                else if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull() && isFlowerReadyForCrossing)
+                else if (playerPickableObjectHandler.IsPickableObjectNull && isFlowerReadyForCrossing)
                 {
                     SetPlayerDestination();
                     CrossingTableProcessEvent = null;
                     CrossingTableProcessEvent += delegate { StartCoroutine(StartFlowerCrossingProcess()); };
                 }
             }
-            if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer && !isSeedCrossing)
+            if (playerPickableObjectHandler.CurrentPickableObject is Hammer && !isSeedCrossing)
             {
                 if (IsTableBroken)
                 {

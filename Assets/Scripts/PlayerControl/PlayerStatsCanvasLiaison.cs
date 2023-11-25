@@ -2,22 +2,25 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityWeld.Binding;
 
-[Binding]
-public class PlayerStatsCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
+namespace PlayerControl
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-
     [Binding]
-    public string PlayerMoney { get; private set; }
-
-    public void UpdatePlayerMoneyOnCanvas(string transmittedPlayerMoney)
+    public class PlayerStatsCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        PlayerMoney = transmittedPlayerMoney;
-        OnPropertyChanged("PlayerMoney");
-    }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        [Binding]
+        public string PlayerMoney { get; private set; }
+
+        public void UpdatePlayerMoneyOnCanvas(string transmittedPlayerMoney)
+        {
+            PlayerMoney = transmittedPlayerMoney;
+            OnPropertyChanged("PlayerMoney");
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

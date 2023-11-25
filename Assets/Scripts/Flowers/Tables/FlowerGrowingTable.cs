@@ -46,15 +46,15 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
             {
                 if (isPotOnTable)
                 {
-                    if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull())
+                    if (playerPickableObjectHandler.IsPickableObjectNull)
                     {
                         SetPlayerDestination();
                         FlowerGrowingTableEvent = null;
                         FlowerGrowingTableEvent += TakePotFromGrowingTable;
                     }
-                    if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is WateringCan)
+                    if (playerPickableObjectHandler.CurrentPickableObject is WateringCan)
                     {
-                        wateringCan = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as WateringCan;
+                        wateringCan = playerPickableObjectHandler.CurrentPickableObject as WateringCan;
                         if (wateringCan.GetGroweringRoom() == groweringRoom && wateringCan.CurrentWateringsNumber > 0 &&
                             potOnTable.IsFlowerNeedWater)
                         {
@@ -63,9 +63,9 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
                             FlowerGrowingTableEvent += PourPotOnGrowingTable;
                         }
                     }
-                    else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hoe)
+                    else if (playerPickableObjectHandler.CurrentPickableObject is Hoe)
                     {
-                        hoe = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Hoe;
+                        hoe = playerPickableObjectHandler.CurrentPickableObject as Hoe;
                         if (potOnTable.IsWeedInPot && hoe.GetGroweringRoom() == groweringRoom)
                         {
                             SetPlayerDestination();
@@ -75,9 +75,9 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
 
                     }
                 }
-                else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+                else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
                 {
-                    potOnTable = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                    potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
                     if (potOnTable.GetGroweringRoom() == groweringRoom &&
                         potOnTable.PlantedFlower.FlowerEnum != IFlower.Flower.Empty && potOnTable.FlowerGrowingLvl < 3)
                     {
@@ -88,7 +88,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
                 }
             }
 
-            if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer)
+            if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
             {
                 if (IsTableBroken)
                 {
@@ -143,7 +143,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
         potOnTable.GivePotOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
         isPotOnTable = true;
         growingLightMeshRenderer.enabled = true;
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
         weedPlanter.AddPotInPlantingWeedList(potOnTable);
     }
 

@@ -1,33 +1,36 @@
 using UnityEngine;
 
-[RequireComponent (typeof(PlayerMoving))]
-public class PlayerBusyness : MonoBehaviour
+namespace PlayerControl
 {
-    [SerializeField] private PlayerMoving playerMoving;
-    [field: SerializeField] public bool IsPlayerFree { get; private set; }
-
-    private void OnValidate()
+    [RequireComponent (typeof(PlayerMoving))]
+    public class PlayerBusyness : MonoBehaviour
     {
-        playerMoving = GetComponent<PlayerMoving>();
-    }
+        [SerializeField] private PlayerMoving playerMoving;
+        [field: SerializeField] public bool IsPlayerFree { get; private set; }
 
-    private void OnEnable()
-    {
-        playerMoving.PlayerHasArrivedEvent += SetPlayerBusy;
-    }
+        private void OnValidate()
+        {
+            playerMoving = GetComponent<PlayerMoving>();
+        }
 
-    private void OnDisable()
-    {
-        playerMoving.PlayerHasArrivedEvent -= SetPlayerBusy;
-    }
+        private void OnEnable()
+        {
+            playerMoving.PlayerHasArrivedEvent += SetPlayerBusy;
+        }
 
-    public void SetPlayerBusy()
-    {
-        IsPlayerFree = false;
-    }
+        private void OnDisable()
+        {
+            playerMoving.PlayerHasArrivedEvent -= SetPlayerBusy;
+        }
 
-    public void SetPlayerFree()
-    {
-        IsPlayerFree = true;
+        public void SetPlayerBusy()
+        {
+            IsPlayerFree = false;
+        }
+
+        public void SetPlayerFree()
+        {
+            IsPlayerFree = true;
+        }
     }
 }

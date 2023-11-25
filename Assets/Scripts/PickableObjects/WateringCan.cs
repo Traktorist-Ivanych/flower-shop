@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -37,7 +38,7 @@ public class WateringCan : MonoBehaviour, IPickableObject, IGrowingRoom
 
     public void TakeWateringCan()
     {
-        playerPickableObjectHandler.SetPlayerPickableObject(this);
+        playerPickableObjectHandler.CurrentPickableObject = this;
         wateringCanMoving.PutBigDinamicObjectInPlayerHands();
         wateringCanIndicatorMeshRenderer.enabled = true;
         UpdateWateringCanIndicator();

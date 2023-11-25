@@ -1,4 +1,7 @@
-public interface IPickableObject
+namespace PlayerControl
 {
+    public interface IPickableObject
+    {
     
+    }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +28,7 @@ public class CoffeTable : FlowerTable
 
     public override void ExecuteClickableAbility()
     {
-        if (playerBusyness.IsPlayerFree && PlayerPickableObjectHandler.IsPlayerPickableObjectNull() && 
+        if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull && 
             !playerCoffeeEffect.IsCoffeeEffectActive)
         {
             SetPlayerDestination();

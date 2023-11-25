@@ -1,26 +1,16 @@
 using UnityEngine;
 
-public class PlayerPickableObjectHandler : MonoBehaviour
+namespace PlayerControl
 {
-    private IPickableObject pickableObject;
-
-    public IPickableObject GetCurrentPlayerPickableObject()
+    public class PlayerPickableObjectHandler : MonoBehaviour
     {
-        return pickableObject;
-    }
+        public bool IsPickableObjectNull => CurrentPickableObject == null;
 
-    public bool IsPlayerPickableObjectNull()
-    {
-        return pickableObject == null;
-    }
+        public IPickableObject CurrentPickableObject { get; set; }
 
-    public void SetPlayerPickableObject(IPickableObject transmittedPickableObject)
-    {
-        pickableObject = transmittedPickableObject;
-    }
-
-    public void ClearPlayerPickableObject()
-    {
-        pickableObject = null;
+        public void ClearPickableObject()
+        {
+            CurrentPickableObject = null;
+        }
     }
 }

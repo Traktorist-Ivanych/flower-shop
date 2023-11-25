@@ -21,16 +21,16 @@ public class FlowerStorageTable : FlowerTable
         {
             if (isFlowerOnStorageTable)
             {
-                if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull())
+                if (playerPickableObjectHandler.IsPickableObjectNull)
                 {
                     FlowerStorageTableEvent = null;
                     FlowerStorageTableEvent += TakePot;
                     SetPlayerDestination();
                 }
                 // playerDinamicObject.GetCurrentPlayerDinamicObject() to some local variable (repeated method access)
-                else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is WateringCan)
+                else if (playerPickableObjectHandler.CurrentPickableObject is WateringCan)
                 {
-                    wateringCan = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as WateringCan;
+                    wateringCan = playerPickableObjectHandler.CurrentPickableObject as WateringCan;
                     if (wateringCan.GetGroweringRoom() == groweringRoom && wateringCan.CurrentWateringsNumber > 0 &&
                         potOnTable.IsFlowerNeedWater)
                     {
@@ -39,9 +39,9 @@ public class FlowerStorageTable : FlowerTable
                         SetPlayerDestination();
                     }
                 }
-                else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hoe)
+                else if (playerPickableObjectHandler.CurrentPickableObject is Hoe)
                 {
-                    hoe = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Hoe;
+                    hoe = playerPickableObjectHandler.CurrentPickableObject as Hoe;
                     if (potOnTable.IsWeedInPot && hoe.GetGroweringRoom() == groweringRoom)
                     {
                         SetPlayerDestination();
@@ -50,9 +50,9 @@ public class FlowerStorageTable : FlowerTable
                     }
                 }
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
             {
-                potOnTable = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
                 if (potOnTable.GetGroweringRoom() == groweringRoom || groweringRoom == IGrowingRoom.GroweringRoom.Any)
                 {
                     FlowerStorageTableEvent = null;
@@ -71,7 +71,7 @@ public class FlowerStorageTable : FlowerTable
     private void GivePot()
     {
         potOnTable.GivePotAndSetPlayerFree(tablePotTransform);
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
         isFlowerOnStorageTable = true;
         if (potOnTable.IsSoilInsidePot)
         {

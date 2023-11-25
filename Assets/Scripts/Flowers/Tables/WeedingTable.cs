@@ -14,19 +14,19 @@ public class WeedingTable : ImprovableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull())
+            if (playerPickableObjectHandler.IsPickableObjectNull)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += TakeHoeInPlayerHands;
             }
-            else if ((PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Hoe)?.Equals(hoe) == nullableTrue)
+            else if ((playerPickableObjectHandler.CurrentPickableObject as Hoe)?.Equals(hoe) == nullableTrue)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += PutHoeOnWeedingTable;
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer && tableLvl < 2)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer && tableLvl < 2)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
@@ -53,7 +53,7 @@ public class WeedingTable : ImprovableFlowerTable
 
     private void PutHoeOnWeedingTable()
     {
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
         hoe.GiveHoe(hoeOnTableTransform);
     }
 }

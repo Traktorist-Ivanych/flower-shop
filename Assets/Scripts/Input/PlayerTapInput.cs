@@ -1,24 +1,24 @@
 using UnityEngine;
+using Zenject;
 
-public class PlayerTapInput : MonoBehaviour
+namespace Input
 {
-    [SerializeField] private LayerMask inputLayerMask;
-    [SerializeField] private float maxRayDistance;
-    private Camera mainCamera;
-
-    private void Start()
+    public class PlayerTapInput : MonoBehaviour
     {
-        mainCamera = Camera.main;
-    }
+        [Inject] private CameraHandler cameraHandler;
+        [Inject] private PlayerTapSettings playerTapSettings;
 
-    public void PlayerTap(Vector2 inputPosition)
-    {
-        Ray ray = mainCamera.ScreenPointToRay(inputPosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, inputLayerMask))
+        public void PlayerTap(Vector2 inputPosition)
         {
-            if (hit.collider.gameObject.TryGetComponent(out IClickableAbility clickableAbility))
+            Ray ray = cameraHandler.MainCamera.ScreenPointToRay(inputPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 
+                    maxDistance: playerTapSettings.MaxInteractionRayDistance,
+                    layerMask: playerTapSettings.InteractionLayerMask))
             {
-                clickableAbility.ExecuteClickableAbility();
+                if (hit.collider.gameObject.TryGetComponent(out IClickableAbility clickableAbility))
+                {
+                    clickableAbility.ExecuteClickableAbility();
+                }
             }
         }
     }

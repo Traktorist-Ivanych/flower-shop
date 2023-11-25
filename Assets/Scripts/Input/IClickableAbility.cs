@@ -1,4 +1,7 @@
-public interface IClickableAbility
+namespace Input
 {
-    public void ExecuteClickableAbility();
+    public interface IClickableAbility
+    {
+        public void ExecuteClickableAbility();
+    }
 }

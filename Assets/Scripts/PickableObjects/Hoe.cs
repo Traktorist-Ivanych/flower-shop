@@ -1,4 +1,5 @@
 using System.Collections;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +28,7 @@ public class Hoe : MonoBehaviour, IPickableObject, IGrowingRoom
 
     public void TakeHoe()
     {
-        playerPickableObjectHandler.SetPlayerPickableObject(this);
+        playerPickableObjectHandler.CurrentPickableObject = this;
         hoeMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
     }
 

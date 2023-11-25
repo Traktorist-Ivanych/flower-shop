@@ -1,4 +1,7 @@
-public interface IPlayerAbility
+namespace PlayerControl
 {
-    public void ExecutePlayerAbility();
+    public interface IPlayerAbility
+    {
+        public void ExecutePlayerAbility();
+    }
 }

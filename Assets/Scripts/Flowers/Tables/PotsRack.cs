@@ -18,15 +18,15 @@ public class PotsRack : ImprovableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull() && currentFreePots > 0)
+            if (playerPickableObjectHandler.IsPickableObjectNull && currentFreePots > 0)
             {
                 SetPlayerDestination();
                 PotsRackEvent = null;
                 PotsRackEvent += GivePot;
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
             {
-                Pot currentPlayerPot = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                Pot currentPlayerPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
                 if (!currentPlayerPot.IsSoilInsidePot && currentPlayerPot.GetGroweringRoom() == groweringRoom)
                 {
                     SetPlayerDestination();
@@ -34,7 +34,7 @@ public class PotsRack : ImprovableFlowerTable
                     PotsRackEvent += TakePot;
                 }
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer && tableLvl < 2)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer && tableLvl < 2)
             {
                 SetPlayerDestination();
                 PotsRackEvent = null;
@@ -60,10 +60,10 @@ public class PotsRack : ImprovableFlowerTable
     {
         currentFreePots++;
         potsRenderers[currentFreePots - 1].enabled = true;
-        Pot takingPot = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+        Pot takingPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
         pots.Add(takingPot);
         takingPot.GivePotAndSetPlayerFree(PotObjectsTransform);
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
     }
 
     public override void ImproveTable()

@@ -1,14 +1,17 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerControlInstaller : MonoInstaller
+namespace PlayerControl
 {
-    [SerializeField] private PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
-    [SerializeField] private PlayerControlSettings playerControlSettings;
-
-    public override void InstallBindings()
+    public class PlayerControlInstaller : MonoInstaller
     {
-        Container.Bind<PlayerStatsCanvasLiaison>().FromInstance(playerStatsCanvasLiaison).AsSingle().NonLazy();
-        Container.Bind<PlayerControlSettings>().FromInstance(playerControlSettings).AsSingle().NonLazy();
+        [SerializeField] private PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
+        [SerializeField] private PlayerControlSettings playerControlSettings;
+
+        public override void InstallBindings()
+        {
+            Container.Bind<PlayerStatsCanvasLiaison>().FromInstance(playerStatsCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<PlayerControlSettings>().FromInstance(playerControlSettings).AsSingle().NonLazy();
+        }
     }
 }

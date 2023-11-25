@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 
 public class AllCanvasLiaisons : MonoBehaviour

@@ -1,4 +1,5 @@
 using System.Collections;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -25,7 +26,7 @@ public class Hammer : MonoBehaviour, IPickableObject
 
     public void TakeHammer()
     {
-        playerPickableObjectHandler.SetPlayerPickableObject(this);
+        playerPickableObjectHandler.CurrentPickableObject = this;
         hammerMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
     }
 

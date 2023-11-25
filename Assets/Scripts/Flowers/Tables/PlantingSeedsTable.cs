@@ -13,9 +13,9 @@ public class PlantingSeedsTable : FlowerTable
 
     public override void ExecuteClickableAbility()
     {
-        if (playerBusyness.IsPlayerFree && PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+        if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is Pot)
         {
-            plantingSeedPot = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+            plantingSeedPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
 
             if (plantingSeedPot.GetGroweringRoom() == groweringRoom &&
                 plantingSeedPot.IsSoilInsidePot && plantingSeedPot.PlantedFlower.FlowerEnum == IFlower.Flower.Empty)

@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -143,7 +144,7 @@ public class Pot : MonoBehaviour, IPickableObject, IGrowingRoom
 
     public void TakePotInPlayerHands()
     {
-        playerPickableObjectHandler.SetPlayerPickableObject(this);
+        playerPickableObjectHandler.CurrentPickableObject = this;
         potMoving.PutBigDinamicObjectInPlayerHands();
     }
 
@@ -181,7 +182,7 @@ public class Pot : MonoBehaviour, IPickableObject, IGrowingRoom
         ++flowerGrowingLvl;
         potObjects.SetFlowerLvlMesh(plantedFlower, flowerGrowingLvl);
 
-        ((WateringCan)playerPickableObjectHandler.GetCurrentPlayerPickableObject()).PourPotWithWateringCan();
+        ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
     }
 
     public void CrossFlower()

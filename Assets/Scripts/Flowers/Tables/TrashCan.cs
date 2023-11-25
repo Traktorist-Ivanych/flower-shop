@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -24,9 +25,9 @@ public class TrashCan : FlowerTable
 
     public override void ExecuteClickableAbility()
     {
-        if (playerBusyness.IsPlayerFree && PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+        if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is Pot)
         {
-            playerPot = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+            playerPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
 
             if (playerPot.IsSoilInsidePot)
             {

@@ -26,15 +26,16 @@ public class FlowersCrossingTable : FlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing && PlayerPickableObjectHandler.IsPlayerPickableObjectNull())
+            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing && 
+                playerPickableObjectHandler.IsPickableObjectNull)
             {
                 SetPlayerDestination();
                 CrossingTableEvent = null;
                 CrossingTableEvent += GetPotFromCrossingTable;
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
             {
-                potOnTable = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
                 if (potOnTable.GetGroweringRoom() == groweringRoom && potOnTable.FlowerGrowingLvl >= 3 &&
                     !potOnTable.IsWeedInPot && !crossingTableProcess.IsTableBroken)
                 {
@@ -55,7 +56,7 @@ public class FlowersCrossingTable : FlowerTable
     private void PutPotOnCrossingTable()
     {
         potOnTable.GivePotAndSetPlayerFree(tablePotTransform);
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
         isPotOnCrossingTable = true;
     }
 

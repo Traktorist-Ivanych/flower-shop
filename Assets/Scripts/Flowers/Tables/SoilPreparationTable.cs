@@ -56,9 +56,9 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot)
             {
-                potToSoilPreparation = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+                potToSoilPreparation = playerPickableObjectHandler.CurrentPickableObject as Pot;
                 if (potToSoilPreparation.GetGroweringRoom() == groweringRoom && !potToSoilPreparation.IsSoilInsidePot &&
                     !IsTableBroken)
                 {
@@ -67,7 +67,7 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
                     SoilPreparationTableEvent += delegate { StartCoroutine(SoilPreparation()); };
                 }
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
             {
                 if (IsTableBroken)
                 {

@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -61,9 +62,9 @@ public class FlowerSaleTable : FlowerTable
     public override void ExecuteClickableAbility()
     {
         if (playerBusyness.IsPlayerFree && !isFlowerOnSaleTable && 
-            PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            playerPickableObjectHandler.CurrentPickableObject is Pot)
         {
-            potForSale = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+            potForSale = playerPickableObjectHandler.CurrentPickableObject as Pot;
             if (potForSale.FlowerGrowingLvl >= 3 && !potForSale.IsWeedInPot)
             {
                 SetPlayerDestination();

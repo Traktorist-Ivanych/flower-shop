@@ -1,3 +1,5 @@
+using Input;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -5,7 +7,7 @@ public abstract class FlowerTable : MonoBehaviour, IClickableAbility, IPlayerAbi
 {
     [Inject] protected private readonly PlayerMoving playerMoving;
     [Inject] protected private readonly PlayerAbilityExecutor playerAbilityExecutor;
-    [Inject] protected private readonly PlayerPickableObjectHandler PlayerPickableObjectHandler;
+    [Inject] protected private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
     [Inject] protected private readonly PlayerBusyness playerBusyness;
 
     [SerializeField] protected private IGrowingRoom.GroweringRoom groweringRoom;

@@ -24,21 +24,21 @@ public class WateringTable : ImprovableBreakableFlowerTable
     {
         if (playerBusyness.IsPlayerFree)
         {
-            if (PlayerPickableObjectHandler.IsPlayerPickableObjectNull() && !wateringCan.IsWateringCanNeedForReplenish() && !IsTableBroken)
+            if (playerPickableObjectHandler.IsPickableObjectNull && !wateringCan.IsWateringCanNeedForReplenish() && !IsTableBroken)
             {
                 SetPlayerDestination();
                 WateringTableEvent = null;
                 WateringTableEvent += TakeWateringCanFromTable;
             }
             // try to do with one check/cast
-            else if ((PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is WateringCan) &&
-                     (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as WateringCan).Equals(wateringCan))
+            else if ((playerPickableObjectHandler.CurrentPickableObject is WateringCan) &&
+                     (playerPickableObjectHandler.CurrentPickableObject as WateringCan).Equals(wateringCan))
             {
                 SetPlayerDestination();
                 WateringTableEvent = null;
                 WateringTableEvent += PutWateringCanOnTable;
             }
-            else if (PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Hammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
             {
                 if (IsTableBroken)
                 {
@@ -75,7 +75,7 @@ public class WateringTable : ImprovableBreakableFlowerTable
     private void PutWateringCanOnTable()
     {
         wateringCan.GiveWateringCan(wateringCanTableTransform);
-        PlayerPickableObjectHandler.ClearPlayerPickableObject();
+        playerPickableObjectHandler.ClearPickableObject();
 
         if (wateringCan.IsWateringCanNeedForReplenish())
         {

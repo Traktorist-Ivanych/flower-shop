@@ -1,3 +1,4 @@
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -63,9 +64,9 @@ public class FlowerTableForCollection : FlowerTable
     public override void ExecuteClickableAbility()
     {
         if (playerBusyness.IsPlayerFree && flowerForCollection == null &&
-            PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() is Pot)
+            playerPickableObjectHandler.CurrentPickableObject is Pot)
         {
-            playerPot = PlayerPickableObjectHandler.GetCurrentPlayerPickableObject() as Pot;
+            playerPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
 
             if (playerPot.GetGroweringRoom() == groweringRoom && playerPot.FlowerGrowingLvl >= 3 && !playerPot.IsWeedInPot &&
                 flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlower))

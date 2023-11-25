@@ -1,30 +1,33 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerMoney : MonoBehaviour
+namespace PlayerControl
 {
-    [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
-    [field: SerializeField] public int CurrentPlayerMoney { get; private set; }
-
-    private void Start()
+    public class PlayerMoney : MonoBehaviour
     {
-        UpdatePlayerMoneyOnCanvas();
-    }
+        [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
+        [field: SerializeField] public int CurrentPlayerMoney { get; private set; }
 
-    public void AddPlayerMoney(int moneyAmount)
-    {
-        CurrentPlayerMoney += moneyAmount;
-        UpdatePlayerMoneyOnCanvas();
-    }
+        private void Start()
+        {
+            UpdatePlayerMoneyOnCanvas();
+        }
 
-    public void TakePlayerMoney(int moneyAmount)
-    {
-        CurrentPlayerMoney -= moneyAmount;
-        UpdatePlayerMoneyOnCanvas();
-    }
+        public void AddPlayerMoney(int moneyAmount)
+        {
+            CurrentPlayerMoney += moneyAmount;
+            UpdatePlayerMoneyOnCanvas();
+        }
 
-    private void UpdatePlayerMoneyOnCanvas()
-    {
-        playerStatsCanvasLiaison.UpdatePlayerMoneyOnCanvas(CurrentPlayerMoney.ToString());
+        public void TakePlayerMoney(int moneyAmount)
+        {
+            CurrentPlayerMoney -= moneyAmount;
+            UpdatePlayerMoneyOnCanvas();
+        }
+
+        private void UpdatePlayerMoneyOnCanvas()
+        {
+            playerStatsCanvasLiaison.UpdatePlayerMoneyOnCanvas(CurrentPlayerMoney.ToString());
+        }
     }
 }
