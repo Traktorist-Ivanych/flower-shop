@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: SunflowerInfo
+  m_EditorClassIdentifier: 
+  <FlowerNameRus>k__BackingField: "\u041F\u043E\u0434\u0441\u043E\u043B\u043D\u0443\u0445"
+  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 1e90c40e5fd253842a7a5624145d9327, type: 3}
+  <Flower>k__BackingField: {fileID: 11400000, guid: 52e2864233cfe654cbabcf6247504ecc, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <FlowerLvl>k__BackingField: 2
+  <FlowerSellingPrice>k__BackingField: 750
+  flowerLvlMeshes:
+  - {fileID: -2121138016917750333, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -1589738029682824140, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  - {fileID: 5826965307736900199, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  - {fileID: -6882468345585598540, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  <FirstCrossingFlower>k__BackingField: {fileID: 11400000, guid: c7f867777ebb21a4092727fe8db8c424, type: 2}
+  <SecondCrossingFlower>k__BackingField: {fileID: 11400000, guid: ec3ad2c68695f624a99fee4593e88966, type: 2}

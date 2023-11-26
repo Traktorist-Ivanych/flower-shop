@@ -26,8 +26,6 @@ namespace Input
 
         public void MoveCameraXZ(Vector2 touch0Delta)
         {
-            //new Bounds(new Vector3(0, 28, 0), new(20, 12, 20));
-            
             Vector3 cameraPosition = cameraForMoving.transform.position;
         
             float touch0DeltaX = touch0Delta.x * resolutionScaleX * 
