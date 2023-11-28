@@ -167,7 +167,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 1154457459812878811}
   targetToLookAt: {fileID: 5233601183431510226}
   hammerOnTableTransform: {fileID: 2519305501503858834}
-  hammer: {fileID: 108239957912968083}
+  upgradingAndRepairingHammer: {fileID: 108239957912968083}
 --- !u!1001 &5882623658775688371
 PrefabInstance:
   m_ObjectHideFlags: 0

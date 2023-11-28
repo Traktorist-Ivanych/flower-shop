@@ -4,8 +4,8 @@ using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(DinamicObjectMoving))]
-public class Hoe : MonoBehaviour, IPickableObject
+[RequireComponent(typeof(OldPickableObjectMoving))]
+public class WeedingHoe : MonoBehaviour, IPickableObject
 {
     [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
     [Inject] private readonly PlayerBusyness playerBusyness;
@@ -15,35 +15,34 @@ public class Hoe : MonoBehaviour, IPickableObject
     [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
     [SerializeField] private Mesh[] hoeLvlMeshes = new Mesh[2];
 
-    private DinamicObjectMoving hoeMoving;
+    private OldPickableObjectMoving hoeMoving;
     private MeshFilter hoeMeshFilter;
     private int hoeLvl;
 
     private void Start()
     {
-        hoeMoving = GetComponent<DinamicObjectMoving>();
+        hoeMoving = GetComponent<OldPickableObjectMoving>();
         hoeMeshFilter = GetComponent<MeshFilter>();
     }
 
-    public void TakeHoe()
+    public void TakeInPlayerHands()
     {
         playerPickableObjectHandler.CurrentPickableObject = this;
-        hoeMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
+        hoeMoving.TakeLittlePickableObjectInPlayerHands();
     }
 
-    public void GiveHoe(Transform targetTransfom)
+    public void PutOnTable(Transform targetTransform)
     {
-        hoeMoving.PutLittleDinamicObjectOnTableWithRotation(targetTransfom);
+        hoeMoving.PutLittlePickableObjectOnTable(targetTransform);
     }
 
-    // with hue is redundant
-    public IEnumerator DeleteWeedWithHoe(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotInList)
+    public IEnumerator DeleteWeed(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotIntoList)
     {
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartWeedingTrigger);
         yield return new WaitForSeconds(gameConfiguration.WeedingTime - gameConfiguration.WeedingTimeLvlDelta * hoeLvl);
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishWeedingTrigger);
         potForDeletingWeed.DeleteWeed();
-        weedPlanterToAddPotInList.AddPotInPlantingWeedList(potForDeletingWeed);
+        weedPlanterToAddPotIntoList.AddPotInPlantingWeedList(potForDeletingWeed);
         playerBusyness.SetPlayerFree();
     }
 

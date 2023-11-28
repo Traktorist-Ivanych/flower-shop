@@ -2045,9 +2045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5e2a4e35db2947a0445ecaf44fd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  improvementIndicatorRenderer: {fileID: 5225343413005090298}
+  upgradeIndicatorRenderer: {fileID: 5225343413005090298}
   tableMeshFilter: {fileID: 7833273373808266474}
-  improvementTable: {fileID: 11400000, guid: 5a4f2d3c51bbf174d9450a7c00322bae, type: 2}
+  upgradableTableInfo: {fileID: 11400000, guid: 5a4f2d3c51bbf174d9450a7c00322bae, type: 2}
 --- !u!1 &6340989026025125861
 GameObject:
   m_ObjectHideFlags: 0

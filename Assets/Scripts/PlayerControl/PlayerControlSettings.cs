@@ -2,7 +2,9 @@ using UnityEngine;
 
 namespace PlayerControl
 {
-    [CreateAssetMenu(fileName = "NewPlayerControlSettings", menuName = "Player Control Settings", order = 56)]
+    [CreateAssetMenu(fileName = "NewPlayerControlSettings", 
+                     menuName = "Settings/Player Control", 
+                     order = 3)]
     public class PlayerControlSettings : ScriptableObject
     {
         [field: Header("Ordinary Nav Agent Setting")]

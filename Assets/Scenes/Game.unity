@@ -7960,6 +7960,7 @@ Transform:
   - {fileID: 853641731}
   - {fileID: 580940313}
   - {fileID: 1708417598}
+  - {fileID: 2005750090}
   m_Father: {fileID: 660879570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &599384375
@@ -7979,6 +7980,7 @@ MonoBehaviour:
   - {fileID: 853641732}
   - {fileID: 580940314}
   - {fileID: 1708417599}
+  - {fileID: 2005750091}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -11519,10 +11521,10 @@ MonoBehaviour:
   flowerSaleTablesForByers: {fileID: 216454156}
   gameConfiguration: {fileID: 1796018427}
   buyersSpawner: {fileID: 1913165208}
-  improvementCanvasLiaison: {fileID: 536576003}
+  upgradeCanvasLiaison: {fileID: 536576003}
   coffeeCanvasLiaison: {fileID: 563717016}
-  repairAndImprovementTable: {fileID: 996543469402746873}
-  hammer: {fileID: 1552103848}
+  repairsAndUpgradesTable: {fileID: 996543469402746873}
+  upgradingAndRepairingHammer: {fileID: 1552103848}
 --- !u!1 &856215567
 GameObject:
   m_ObjectHideFlags: 0
@@ -26100,6 +26102,51 @@ Transform:
   - {fileID: 987030893}
   m_Father: {fileID: 566038713}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2005750089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005750090}
+  - component: {fileID: 2005750091}
+  m_Layer: 0
+  m_Name: SettingInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005750090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005750089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 599384374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2005750091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005750089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd96ff98268348f890e08fcde2643505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionsWithTransformSettings: {fileID: 11400000, guid: c8b3dc2ef68cf564baaf48468407ba88, type: 2}
 --- !u!1001 &2008704987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30776,10 +30823,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2049645726}
     m_Modifications:
     - target: {fileID: 5663853663476825642, guid: 4ed9ddaaf8e8ef749a3ebfc83f440832, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5663853663476825642, guid: 4ed9ddaaf8e8ef749a3ebfc83f440832, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9
       objectReference: {fileID: 0}
@@ -33900,7 +33943,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 1313570244048770255, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
       propertyPath: m_Name
-      value: ImprovementCanvas
+      value: UpgradeCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2905319113680936975, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
       propertyPath: m_Pivot.x
@@ -43862,23 +43905,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.66958076
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.22729202
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.22729202
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.66958076
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -37.5
       objectReference: {fileID: 0}
     - target: {fileID: 7925000717023424424, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

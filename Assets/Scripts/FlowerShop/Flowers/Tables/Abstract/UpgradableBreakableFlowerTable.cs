@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent (typeof(BreakableFlowerTableBase))]
-public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IBreakableTable
+public abstract class UpgradableBreakableFlowerTable : UpgradableFlowerTable, IBreakableTable
 {
     [Inject] private protected readonly GameConfiguration gameConfiguration;
 
@@ -20,7 +20,7 @@ public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IB
         breakableFlowerTablebase = GetComponent<BreakableFlowerTableBase>();
     }
 
-    public override void ShowImprovableIndicator()
+    public override void ShowUpgradeIndicator()
     {
         if (IsTableBroken)
         {
@@ -28,11 +28,11 @@ public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IB
         }
         else
         {
-            base.ShowImprovableIndicator();
+            base.ShowUpgradeIndicator();
         }
     }
 
-    public override void HideImprovableIndicator()
+    public override void HideUpgradeIndicator()
     {
         if (IsTableBroken) 
         {
@@ -40,7 +40,7 @@ public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IB
         }
         else
         {
-            base.HideImprovableIndicator();
+            base.HideUpgradeIndicator();
         }
     }
 
@@ -73,6 +73,6 @@ public abstract class ImprovableBreakableFlowerTable : ImprovableFlowerTable, IB
     private IEnumerator ShowImprovableIndicatorAfterRepair()
     {
         yield return new WaitForSeconds(gameConfiguration.TableRepairTime);
-        base.ShowImprovableIndicator();
+        base.ShowUpgradeIndicator();
     }
 }

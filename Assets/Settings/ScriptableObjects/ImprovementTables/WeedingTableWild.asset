@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8874dc0f43690c34d936decc3e150c7f, type: 3}
   m_Name: WeedingTableWild
   m_EditorClassIdentifier: 
-  improvementMeshes:
+  <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0441 \u0442\u044F\u043F\u043A\u043E\u0439"
+  upgradeMeshes:
   - {fileID: -1899056085756681887, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: -1145526407195241084, guid: 703790e61f24a3240890f0a292b64061, type: 3}
-  improvementSprites:
+  upgradeSprites:
   - {fileID: 21300000, guid: d733e0e2ccb6fc240897e68f959fad0f, type: 3}
   - {fileID: 21300000, guid: ba682c40478a3734ca070d115bc6c89d, type: 3}
-  tableName: "\u0421\u0442\u043E\u043B \u0441 \u0442\u044F\u043F\u043A\u043E\u0439"
-  improvementDescriptions:
+  upgradeDescriptions:
   - "\u0423\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442 \u0432\u0440\u0435\u043C\u044F
     \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F \u0441\u043E\u0440\u043D\u044F\u043A\u0430"
   - "\u0423\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442 \u0432\u0440\u0435\u043C\u044F
     \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F \u0441\u043E\u0440\u043D\u044F\u043A\u0430"
-  improvementPrices: 1c02000050050000
+  upgradePrices: 1c02000050050000

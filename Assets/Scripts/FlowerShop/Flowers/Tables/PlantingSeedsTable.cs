@@ -43,6 +43,6 @@ public class PlantingSeedsTable : FlowerTable
     {
         plantingSeedPot.PlantSeed(transmittedFlowerInfo);
         seedsCanvas.enabled = false;
-        plantingSeedPot.TakePotInPlayerHands();
+        plantingSeedPot.TakeInPlayerHands();
     }
 }

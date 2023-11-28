@@ -1,3 +1,5 @@
+using FlowerShop.PickableObjects;
+using FlowerShop.Upgrades;
 using PlayerControl;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,12 +26,15 @@ public class ZenjectInstaller : MonoInstaller
     [SerializeField] private GameConfiguration gameConfiguration;
     [Header("Buyers")]
     [SerializeField] private BuyersSpawner buyersSpawner;
+    [FormerlySerializedAs("improvementCanvasLiaison")]
     [Header("Canvas Liaisons")]
-    [SerializeField] private ImprovementCanvasLiaison improvementCanvasLiaison;
+    [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
     [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
+    [FormerlySerializedAs("repairAndUpgradesTable")]
+    [FormerlySerializedAs("repairAndImprovementTable")]
     [Header("Repair And Improvement")]
-    [SerializeField] private RepairAndImprovementTable repairAndImprovementTable;
-    [SerializeField] private Hammer hammer;
+    [SerializeField] private RepairsAndUpgradesTable repairsAndUpgradesTable;
+    [FormerlySerializedAs("hammer")] [SerializeField] private UpgradingAndRepairingHammer upgradingAndRepairingHammer;
 
     public override void InstallBindings()
     {
@@ -51,10 +56,10 @@ public class ZenjectInstaller : MonoInstaller
 
         Container.Bind<BuyersSpawner>().FromInstance(buyersSpawner).AsSingle().NonLazy();
 
-        Container.Bind<ImprovementCanvasLiaison>().FromInstance(improvementCanvasLiaison).AsSingle().NonLazy();
+        Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
         Container.Bind<CoffeeCanvasLiaison>().FromInstance(coffeeCanvasLiaison).AsSingle().NonLazy();
 
-        Container.Bind<RepairAndImprovementTable>().FromInstance(repairAndImprovementTable).AsSingle().NonLazy();
-        Container.Bind<Hammer>().FromInstance(hammer).AsSingle().NonLazy();
+        Container.Bind<RepairsAndUpgradesTable>().FromInstance(repairsAndUpgradesTable).AsSingle().NonLazy();
+        Container.Bind<UpgradingAndRepairingHammer>().FromInstance(upgradingAndRepairingHammer).AsSingle().NonLazy();
     }
 }

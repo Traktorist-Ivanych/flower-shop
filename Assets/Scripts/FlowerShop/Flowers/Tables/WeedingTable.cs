@@ -1,9 +1,11 @@
+using FlowerShop.PickableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class WeedingTable : ImprovableFlowerTable
+public class WeedingTable : UpgradableFlowerTable
 {
     [SerializeField] private Transform hoeOnTableTransform;
-    [SerializeField] private Hoe hoe;
+    [FormerlySerializedAs("hoe")] [SerializeField] private WeedingHoe weedingHoe;
 
     private delegate void WeedingTableAction();
     private event WeedingTableAction WeedingTableEvent;
@@ -20,17 +22,17 @@ public class WeedingTable : ImprovableFlowerTable
                 WeedingTableEvent = null;
                 WeedingTableEvent += TakeHoeInPlayerHands;
             }
-            else if ((playerPickableObjectHandler.CurrentPickableObject as Hoe)?.Equals(hoe) == nullableTrue)
+            else if ((playerPickableObjectHandler.CurrentPickableObject as WeedingHoe)?.Equals(weedingHoe) == nullableTrue)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += PutHoeOnWeedingTable;
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer && tableLvl < 2)
+            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer && tableLvl < 2)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
-                WeedingTableEvent += ShowImprovableCanvas;
+                WeedingTableEvent += ShowUpgradeCanvas;
             }
         }
     }
@@ -40,20 +42,20 @@ public class WeedingTable : ImprovableFlowerTable
         WeedingTableEvent?.Invoke();
     }
 
-    public override void ImproveTable()
+    public override void UpgradeTable()
     {
-        base.ImproveTable();
-        hoe.ImproveHoe();
+        base.UpgradeTable();
+        weedingHoe.ImproveHoe();
     }
 
     private void TakeHoeInPlayerHands()
     {
-        hoe.TakeHoe();
+        weedingHoe.TakeInPlayerHands();
     }
 
     private void PutHoeOnWeedingTable()
     {
         playerPickableObjectHandler.ClearPickableObject();
-        hoe.GiveHoe(hoeOnTableTransform);
+        weedingHoe.PutOnTable(hoeOnTableTransform);
     }
 }

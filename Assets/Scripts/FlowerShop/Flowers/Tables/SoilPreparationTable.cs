@@ -1,9 +1,11 @@
 using System.Collections;
+using FlowerShop.PickableObjects;
+using FlowerShop.Upgrades;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(ImprovementTableComponents))]
-public class SoilPreparationTable : ImprovableBreakableFlowerTable
+[RequireComponent(typeof(UpgradableTableComponents))]
+public class SoilPreparationTable : UpgradableBreakableFlowerTable
 {
     [SerializeField] private Transform potOnTableTransform;
     [SerializeField] private Transform[] gearsTransform;
@@ -46,7 +48,7 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
             {
                 currentSoilPreparationTime = soilPreparationTime;
                 isSoilBeingPrepared = false;
-                potToSoilPreparation.TakePotInPlayerHands();
+                potToSoilPreparation.TakeInPlayerHands();
                 UseBreakableFlowerTable();
             }
         }
@@ -67,7 +69,7 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
                     SoilPreparationTableEvent += delegate { StartCoroutine(SoilPreparation()); };
                 }
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -79,7 +81,7 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
                 {
                     SetPlayerDestination();
                     SoilPreparationTableEvent = null;
-                    SoilPreparationTableEvent += ShowImprovableCanvas;
+                    SoilPreparationTableEvent += ShowUpgradeCanvas;
                 }
             }
         }
@@ -90,9 +92,9 @@ public class SoilPreparationTable : ImprovableBreakableFlowerTable
         SoilPreparationTableEvent?.Invoke();
     }
 
-    public override void ImproveTable()
+    public override void UpgradeTable()
     {
-        base.ImproveTable();
+        base.UpgradeTable();
         SetSoilPreparationTime();
     }
 

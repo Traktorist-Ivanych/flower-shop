@@ -3,7 +3,7 @@ using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent (typeof(DinamicObjectMoving))]
+[RequireComponent (typeof(OldPickableObjectMoving))]
 [RequireComponent(typeof(PotObjects))]
 public class Pot : MonoBehaviour, IPickableObject
 {
@@ -14,7 +14,7 @@ public class Pot : MonoBehaviour, IPickableObject
     [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
     
     private FlowerInfo plantedFlowerInfo;
-    private DinamicObjectMoving potMoving;
+    private OldPickableObjectMoving potMoving;
     private PotObjects potObjects;
     private float upGrowingLvlTime;
     private float currentUpGrowingLvlTime;
@@ -58,7 +58,7 @@ public class Pot : MonoBehaviour, IPickableObject
     private void Start()
     {
         // move to awake because we don't need to recashing it on disable/enable
-        potMoving = GetComponent<DinamicObjectMoving>();
+        potMoving = GetComponent<OldPickableObjectMoving>();
         potObjects = GetComponent<PotObjects>();
         upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime;
         plantedFlowerInfo = flowersContainer.EmptyFlowerInfo;
@@ -136,16 +136,16 @@ public class Pot : MonoBehaviour, IPickableObject
     public void TakePotInPlayerHandsFromGrowingTable()
     {
         isPotOnGrowingTable = false;
-        TakePotInPlayerHands();
+        TakeInPlayerHands();
     }
 
-    public void TakePotInPlayerHands()
+    public void TakeInPlayerHands()
     {
         playerPickableObjectHandler.CurrentPickableObject = this;
-        potMoving.PutBigDinamicObjectInPlayerHands();
+        potMoving.PutBigPickableObjectInPlayerHands();
     }
 
-    public void GivePotOnGrowingTableAndSetPlayerFree(Transform targetTransfom, int growingTableLvl)
+    public void GivePotOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
     {
         isPotOnGrowingTable = true;
         if (currentUpGrowingLvlTime > 0)
@@ -158,18 +158,23 @@ public class Pot : MonoBehaviour, IPickableObject
         {
             upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime - gameConfiguration.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
         }
-        GivePotAndSetPlayerFree(targetTransfom);
+        GivePotAndSetPlayerFree(targetTransform);
     }
 
-    public void GivePotAndKeepPlayerBusy(Transform targetTransfom)
+    public void GivePotAndKeepPlayerBusy(Transform targetTransform)
     {
         potMoving.ShouldPlayerBecomeFree = false;
-        GivePotAndSetPlayerFree(targetTransfom);
+        GivePotAndSetPlayerFree(targetTransform);
     }
 
-    public void GivePotAndSetPlayerFree(Transform targetTransfom)
+    public void GivePotAndSetPlayerFree(Transform targetTransform)
     {
-        potMoving.PutBigDinamicObjectOnTable(targetTransfom);
+        potMoving.PutBigPickableObjectOnTable(targetTransform);
+    }
+    
+    public void PutOnTable(Transform targetTransform)
+    {
+        potMoving.PutBigPickableObjectOnTable(targetTransform);   
     }
 
     public void PourFlower()

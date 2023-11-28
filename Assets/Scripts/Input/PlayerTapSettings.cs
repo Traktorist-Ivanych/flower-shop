@@ -2,7 +2,9 @@
 
 namespace Input
 {
-    [CreateAssetMenu(fileName = "NewPlayerTapSettings", menuName = "Player Tap Settings", order = 55)]
+    [CreateAssetMenu(fileName = "NewPlayerTapSettings", 
+                     menuName = "Settings/Player Tap", 
+                     order = 4)]
     public class PlayerTapSettings : ScriptableObject
     {
         [field: SerializeField] public LayerMask InteractionLayerMask { get; private set; }

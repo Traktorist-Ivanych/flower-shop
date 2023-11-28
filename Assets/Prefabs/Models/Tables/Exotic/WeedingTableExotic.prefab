@@ -221,7 +221,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 3046929416513891316}
   targetToLookAt: {fileID: 141308150625293361}
   hoeOnTableTransform: {fileID: 3301348629241821399}
-  hoe: {fileID: 8629680478490926813}
+  weedingHoe: {fileID: 8629680478490926813}
 --- !u!65 &7210014546194297359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5e2a4e35db2947a0445ecaf44fd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  improvementIndicatorRenderer: {fileID: 2540893455064955541}
+  upgradeIndicatorRenderer: {fileID: 2540893455064955541}
   tableMeshFilter: {fileID: 2954661590164125281}
-  improvementTable: {fileID: 11400000, guid: da49a5fced407ba408a2f2cdd2b544c3, type: 2}
+  upgradableTableInfo: {fileID: 11400000, guid: da49a5fced407ba408a2f2cdd2b544c3, type: 2}
 --- !u!1 &6397380271232499825
 GameObject:
   m_ObjectHideFlags: 0

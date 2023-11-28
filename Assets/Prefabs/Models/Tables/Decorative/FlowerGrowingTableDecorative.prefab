@@ -5175,7 +5175,7 @@ MonoBehaviour:
   - {fileID: -4264453173195181260, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 8478554996525145336, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   weedPlanter: {fileID: 0}
-  flowerEmpty: {fileID: 0}
+  flowerEmpty: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
 --- !u!65 &8335684305933119249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5209,9 +5209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5e2a4e35db2947a0445ecaf44fd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  improvementIndicatorRenderer: {fileID: 4418523018972886230}
+  upgradeIndicatorRenderer: {fileID: 4418523018972886230}
   tableMeshFilter: {fileID: 1765961028599514855}
-  improvementTable: {fileID: 11400000, guid: 0437d4c8a6cd21d40a6ba37711461e54, type: 2}
+  upgradableTableInfo: {fileID: 11400000, guid: 0437d4c8a6cd21d40a6ba37711461e54, type: 2}
 --- !u!114 &199463924919401957
 MonoBehaviour:
   m_ObjectHideFlags: 0

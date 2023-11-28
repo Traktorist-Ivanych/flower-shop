@@ -1,10 +1,11 @@
 using System.Collections;
 using FlowerShop.Flowers;
+using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-public class CrossingTableProcess : ImprovableBreakableFlowerTable
+public class CrossingTableProcess : UpgradableBreakableFlowerTable
 {
     [Inject] private readonly FlowersContainer flowersContainer;
     [Inject] private readonly PlayerComponents playerComponents;
@@ -112,7 +113,7 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
                     CrossingTableProcessEvent += delegate { StartCoroutine(StartFlowerCrossingProcess()); };
                 }
             }
-            if (playerPickableObjectHandler.CurrentPickableObject is Hammer && !isSeedCrossing)
+            if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer && !isSeedCrossing)
             {
                 if (IsTableBroken)
                 {
@@ -124,7 +125,7 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
                 {
                     SetPlayerDestination();
                     CrossingTableProcessEvent = null;
-                    CrossingTableProcessEvent += ShowImprovableCanvas;
+                    CrossingTableProcessEvent += ShowUpgradeCanvas;
                 }
             }
         }
@@ -180,9 +181,9 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
         }
     }
 
-    public override void ImproveTable()
+    public override void UpgradeTable()
     {
-        base.ImproveTable();
+        base.UpgradeTable();
         SetCrossingFlowerTime();
         crossingTableBlenderMeshFilter.mesh = crossingTableBlenderLvlMeshes[tableLvl - 1];
     }
@@ -210,7 +211,7 @@ public class CrossingTableProcess : ImprovableBreakableFlowerTable
         CheckCrossingAbility();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        potForPlanting.TakePotInPlayerHands();
+        potForPlanting.TakeInPlayerHands();
     }
 
     private void FixCrossingTable()

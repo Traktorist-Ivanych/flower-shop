@@ -2,7 +2,9 @@
 
 namespace Input
 {
-    [CreateAssetMenu(fileName = "NewMainCameraMovingSetting", menuName = "Main Camera Moving Setting", order = 54)]
+    [CreateAssetMenu(fileName = "NewMainCameraMovingSetting", 
+                     menuName = "Settings/Main Camera Moving", 
+                     order = 2)]
     public class MainCameraMovingSetting : ScriptableObject
     {
         [field: SerializeField] public float InputScaleXZ { get; private set; }

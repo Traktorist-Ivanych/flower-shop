@@ -10,7 +10,7 @@ public class FlowerStorageTable : FlowerTable
     private delegate void FlowerStorageTableAction();
     private event FlowerStorageTableAction FlowerStorageTableEvent;
 
-    private Hoe hoe;
+    private WeedingHoe weedingHoe;
     private WateringCan wateringCan;
     private Pot potOnTable;
     private bool isFlowerOnStorageTable;
@@ -41,10 +41,10 @@ public class FlowerStorageTable : FlowerTable
                         SetPlayerDestination();
                     }
                 }
-                else if (playerPickableObjectHandler.CurrentPickableObject is Hoe)
+                else if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe)
                 {
-                    hoe = playerPickableObjectHandler.CurrentPickableObject as Hoe;
-                    if (potOnTable.IsWeedInPot && hoe.GrowingRoom == growingRoom)
+                    weedingHoe = playerPickableObjectHandler.CurrentPickableObject as WeedingHoe;
+                    if (potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom)
                     {
                         SetPlayerDestination();
                         FlowerStorageTableEvent = null;
@@ -88,12 +88,12 @@ public class FlowerStorageTable : FlowerTable
 
     private void DeleteWeed()
     {
-        StartCoroutine(hoe.DeleteWeedWithHoe(potOnTable, weedPlanter));
+        StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
     }
 
     private void TakePot()
     {
-        potOnTable.TakePotInPlayerHands();
+        potOnTable.TakeInPlayerHands();
         isFlowerOnStorageTable = false;
         weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
     }

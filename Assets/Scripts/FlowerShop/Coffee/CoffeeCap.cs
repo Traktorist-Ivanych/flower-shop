@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[RequireComponent (typeof(DinamicObjectMoving))]
+[RequireComponent (typeof(OldPickableObjectMoving))]
 public class CoffeeCap : MonoBehaviour
 {
     [SerializeField] private Transform coffeeLiquidTransform;
     [SerializeField] private Transform coffeeLiquidEmptyTransform;
     [SerializeField] private Transform coffeeLiquidFullTransform;
 
-    private DinamicObjectMoving dynamicObjectMoving;
+    private OldPickableObjectMoving dynamicObjectMoving;
     private MeshRenderer coffeeLiquidRenderer;
     private Transform startPosition;
     private Transform endPosition;
@@ -18,14 +18,14 @@ public class CoffeeCap : MonoBehaviour
     private const float CoffeeLiquidMovingTime = 0.5f;
     private float currentCoffeeLiquidMovingTime;
 
-    public DinamicObjectMoving DynamicObjectMoving
+    public OldPickableObjectMoving DynamicObjectMoving
     {
         get => dynamicObjectMoving;
     }
 
     private void Start()
     {
-        dynamicObjectMoving = GetComponent<DinamicObjectMoving>();
+        dynamicObjectMoving = GetComponent<OldPickableObjectMoving>();
         coffeeLiquidRenderer = coffeeLiquidTransform.GetComponent<MeshRenderer>();
     }
 
@@ -68,7 +68,7 @@ public class CoffeeCap : MonoBehaviour
 
     public void TakeCoffeCapInPlayerHands()
     {
-        dynamicObjectMoving.PutLittleDinamicObjectInPlayerHandsWithRotation();
+        dynamicObjectMoving.TakeLittlePickableObjectInPlayerHands();
     }
 
     public void EmptyCoffeCap()
@@ -81,6 +81,6 @@ public class CoffeeCap : MonoBehaviour
 
     public void PutCoffeCapOnTable(Transform coffeCapOnTableTransform)
     {
-        dynamicObjectMoving.PutLittleDinamicObjectOnTableWithRotation(coffeCapOnTableTransform);
+        dynamicObjectMoving.PutLittlePickableObjectOnTable(coffeCapOnTableTransform);
     }
 }

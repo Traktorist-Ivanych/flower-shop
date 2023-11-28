@@ -1,8 +1,9 @@
 using System.Collections;
+using FlowerShop.PickableObjects;
 using UnityEngine;
 using Zenject;
 
-public class WateringTable : ImprovableBreakableFlowerTable
+public class WateringTable : UpgradableBreakableFlowerTable
 {
     [SerializeField] private Transform wateringCanTableTransform;
     [SerializeField] private WateringCan wateringCan;
@@ -38,7 +39,7 @@ public class WateringTable : ImprovableBreakableFlowerTable
                 WateringTableEvent = null;
                 WateringTableEvent += PutWateringCanOnTable;
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -50,7 +51,7 @@ public class WateringTable : ImprovableBreakableFlowerTable
                 {
                     SetPlayerDestination();
                     WateringTableEvent = null;
-                    WateringTableEvent += ShowImprovableCanvas;
+                    WateringTableEvent += ShowUpgradeCanvas;
                 }
             }
         }
@@ -61,20 +62,20 @@ public class WateringTable : ImprovableBreakableFlowerTable
         WateringTableEvent?.Invoke();
     }
 
-    public override void ImproveTable()
+    public override void UpgradeTable()
     {
-        base.ImproveTable();
+        base.UpgradeTable();
         wateringCan.ImproveWateringCan();
     }
 
     private void TakeWateringCanFromTable()
     {
-        wateringCan.TakeWateringCan();
+        wateringCan.TakeInPlayerHands();
     }
 
     private void PutWateringCanOnTable()
     {
-        wateringCan.GiveWateringCan(wateringCanTableTransform);
+        wateringCan.PutOnTable(wateringCanTableTransform);
         playerPickableObjectHandler.ClearPickableObject();
 
         if (wateringCan.IsWateringCanNeedForReplenish())

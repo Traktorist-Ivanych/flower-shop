@@ -62,7 +62,7 @@ public class FlowersCrossingTable : FlowerTable
 
     private void GetPotFromCrossingTable()
     {
-        potOnTable.TakePotInPlayerHands();
+        potOnTable.TakeInPlayerHands();
         isPotOnCrossingTable = false;
     }
 }

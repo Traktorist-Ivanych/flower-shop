@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fe6c905fd16eb4ebc0ff8643495100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ImprovementCanvas>k__BackingField: {fileID: 400519873931438182}
+  <UpgradeCanvas>k__BackingField: {fileID: 400519873931438182}
 --- !u!1 &1843718793573689937
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: ImprovementCanvasLiaison.TableName
+  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.TableName
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &4317368594127560035
 GameObject:
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: ImprovementCanvasLiaison.Price
+  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.Price
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &6041442911958252902
 GameObject:
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: ImprovementCanvasLiaison.Description
+  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.Description
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &8843008071740825087
 GameObject:
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bb9053ea0f33348afcb43be7354219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  improvementButton: {fileID: 7335160533796767073}
+  upgradeButton: {fileID: 7335160533796767073}
 --- !u!1 &8895042869166920308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,5 +1293,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: ImprovementCanvasLiaison.TableSprite
+  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.TableSprite
   viewPropertyName: UnityEngine.UI.Image.sprite

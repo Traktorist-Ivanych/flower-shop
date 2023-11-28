@@ -3,7 +3,7 @@ using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(DinamicObjectMoving))]
+[RequireComponent(typeof(OldPickableObjectMoving))]
 public class WateringCan : MonoBehaviour, IPickableObject
 {
     [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
@@ -16,7 +16,7 @@ public class WateringCan : MonoBehaviour, IPickableObject
     [SerializeField] private Transform wateringCanIndicatorTransform;
     [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
 
-    private DinamicObjectMoving wateringCanMoving;
+    private OldPickableObjectMoving wateringCanMoving;
     private int currentWateringsNumber;
     private int maxWateringsNumber;
     private int wateringCanLvl;
@@ -32,20 +32,20 @@ public class WateringCan : MonoBehaviour, IPickableObject
     {
         maxWateringsNumber = gameConfiguration.WateringsNumber;
         currentWateringsNumber = maxWateringsNumber;
-        wateringCanMoving = GetComponent<DinamicObjectMoving>();
+        wateringCanMoving = GetComponent<OldPickableObjectMoving>();
     }
 
-    public void TakeWateringCan()
+    public void TakeInPlayerHands()
     {
         playerPickableObjectHandler.CurrentPickableObject = this;
-        wateringCanMoving.PutBigDinamicObjectInPlayerHands();
+        wateringCanMoving.PutBigPickableObjectInPlayerHands();
         wateringCanIndicatorMeshRenderer.enabled = true;
         UpdateWateringCanIndicator();
     }
 
-    public void GiveWateringCan(Transform targetTransfom) 
+    public void PutOnTable(Transform targetTransform) 
     {
-        wateringCanMoving.PutBigDinamicObjectOnTable(targetTransfom);
+        wateringCanMoving.PutBigPickableObjectOnTable(targetTransform);
         wateringCanIndicatorMeshRenderer.enabled = false;
     }
 

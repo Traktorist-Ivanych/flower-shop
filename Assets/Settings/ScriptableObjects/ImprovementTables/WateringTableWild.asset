@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8874dc0f43690c34d936decc3e150c7f, type: 3}
   m_Name: WateringTableWild
   m_EditorClassIdentifier: 
-  improvementMeshes:
+  <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0441 \u043B\u0435\u0439\u043A\u043E\u0439"
+  upgradeMeshes:
   - {fileID: -7062166459871505046, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 1329652679585990216, guid: 703790e61f24a3240890f0a292b64061, type: 3}
-  improvementSprites:
+  upgradeSprites:
   - {fileID: 21300000, guid: f782ae744c2bc1546b4f83d301896195, type: 3}
   - {fileID: 21300000, guid: bd0bd54183e9d9b418b58bd6dd34be07, type: 3}
-  tableName: "\u0421\u0442\u043E\u043B \u0441 \u043B\u0435\u0439\u043A\u043E\u0439"
-  improvementDescriptions:
+  upgradeDescriptions:
   - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0432\u043C\u0435\u0441\u0442\u0438\u043C\u043E\u0441\u0442\u044C
     \u043B\u0435\u0439\u043A\u0438 \u0434\u043E 6 \u043F\u043E\u043B\u0438\u0432\u043E\u0432"
   - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0432\u043C\u0435\u0441\u0442\u0438\u043C\u043E\u0441\u0442\u044C
     \u043B\u0435\u0439\u043A\u0438 \u0434\u043E 9 \u043F\u043E\u043B\u0438\u0432\u043E\u0432"
-  improvementPrices: 1c02000028050000
+  upgradePrices: 1c02000028050000

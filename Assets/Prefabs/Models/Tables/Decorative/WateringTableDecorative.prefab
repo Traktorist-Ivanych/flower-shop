@@ -5152,9 +5152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5e2a4e35db2947a0445ecaf44fd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  improvementIndicatorRenderer: {fileID: 6824546164961731343}
+  upgradeIndicatorRenderer: {fileID: 6824546164961731343}
   tableMeshFilter: {fileID: 8163452150826697715}
-  improvementTable: {fileID: 11400000, guid: da3c3f619af2e234ea51f35ed2fd6692, type: 2}
+  upgradableTableInfo: {fileID: 11400000, guid: da3c3f619af2e234ea51f35ed2fd6692, type: 2}
 --- !u!114 &4490451648949480863
 MonoBehaviour:
   m_ObjectHideFlags: 0

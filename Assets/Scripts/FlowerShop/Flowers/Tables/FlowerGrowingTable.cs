@@ -1,7 +1,8 @@
 using FlowerShop.Flowers;
+using FlowerShop.PickableObjects;
 using UnityEngine;
 
-public class FlowerGrowingTable : ImprovableBreakableFlowerTable
+public class FlowerGrowingTable : UpgradableBreakableFlowerTable
 {
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private MeshRenderer growingLightMeshRenderer;
@@ -14,7 +15,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
     private event FlowerGrowingTableAction FlowerGrowingTableEvent;
 
     private WateringCan wateringCan;
-    private Hoe hoe;
+    private WeedingHoe weedingHoe;
     private Pot potOnTable;
     private Transform growingTableFanTransform;
     private MeshFilter growingLightMeshFilter;
@@ -64,10 +65,10 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
                             FlowerGrowingTableEvent += PourPotOnGrowingTable;
                         }
                     }
-                    else if (playerPickableObjectHandler.CurrentPickableObject is Hoe)
+                    else if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe)
                     {
-                        hoe = playerPickableObjectHandler.CurrentPickableObject as Hoe;
-                        if (potOnTable.IsWeedInPot && hoe.GrowingRoom == growingRoom)
+                        weedingHoe = playerPickableObjectHandler.CurrentPickableObject as WeedingHoe;
+                        if (potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom)
                         {
                             SetPlayerDestination();
                             FlowerGrowingTableEvent = null;
@@ -89,7 +90,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
                 }
             }
 
-            if (playerPickableObjectHandler.CurrentPickableObject is Hammer)
+            if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -101,7 +102,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
                 {
                     SetPlayerDestination();
                     FlowerGrowingTableEvent = null;
-                    FlowerGrowingTableEvent += ShowImprovableCanvas;
+                    FlowerGrowingTableEvent += ShowUpgradeCanvas;
                 }
             }
         }
@@ -112,9 +113,9 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
         FlowerGrowingTableEvent?.Invoke();
     }
 
-    public override void ImproveTable()
+    public override void UpgradeTable()
     {
-        base.ImproveTable();
+        base.UpgradeTable();
         growingLightMeshFilter.mesh = growingLightLvlMeshes[tableLvl - 1];
         growingTableFanMeshRenderer.enabled = true;
     }
@@ -136,7 +137,7 @@ public class FlowerGrowingTable : ImprovableBreakableFlowerTable
 
     private void DeleteWeed()
     {
-        StartCoroutine(hoe.DeleteWeedWithHoe(potOnTable, weedPlanter));
+        StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
     }
 
     private void PutPotOnGrowingTable()
