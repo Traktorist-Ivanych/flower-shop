@@ -8,12 +8,13 @@ namespace FlowerShop.PickableObjects.Moving
     {
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerBusyness playerBusyness;
+
+        private bool setPlayerFree;
         
-        public void TakeLittlePickableObjectInPlayerHands()
+        public void TakeLittlePickableObjectInPlayerHandsAndKeepPlayerBusy()
         {
-            finishTransform = playerComponents.PlayerHandsForLittleObjectTransform;
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.TakeLittleObjectTrigger);
-            MovePickableObject();
+            setPlayerFree = false;
+            TakeLittlePickableObjectInPlayerHands();
         }
 
         public void PutLittlePickableObjectOnTable(Transform tableTransform)
@@ -22,11 +23,26 @@ namespace FlowerShop.PickableObjects.Moving
             finishTransform = tableTransform;
             MovePickableObject();
         }
-
+        
         private protected override void FinishMoving()
         {
             base.FinishMoving();
-            playerBusyness.SetPlayerFree();
+
+            if (setPlayerFree)
+            {
+                playerBusyness.SetPlayerFree();
+            }
+            else
+            {
+                setPlayerFree = true;
+            }
+        }
+        
+        private void TakeLittlePickableObjectInPlayerHands()
+        {
+            finishTransform = playerComponents.PlayerHandsForLittleObjectTransform;
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.TakeLittleObjectTrigger);
+            MovePickableObject();
         }
     }
 }

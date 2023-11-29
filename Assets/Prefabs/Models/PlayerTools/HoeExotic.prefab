@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2964679610099618411}
   - component: {fileID: 1855842841857524906}
   - component: {fileID: 6246852823482035714}
-  - component: {fileID: 3225769261807794398}
+  - component: {fileID: 5236120650793749143}
   m_Layer: 0
   m_Name: HoeExotic
   m_TagString: Untagged
@@ -97,11 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8408a49e23d6552408010f5bc97508fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
-  hoeLvlMeshes:
+  weedingHoeLvlMeshes:
   - {fileID: 7709115425128063159, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 2595506416841124131, guid: 703790e61f24a3240890f0a292b64061, type: 3}
---- !u!114 &3225769261807794398
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
+  littlePickableObjectMovingAndRotating: {fileID: 5236120650793749143}
+  weedingHoeMeshFilter: {fileID: 2964679610099618411}
+--- !u!114 &5236120650793749143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,6 +112,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 138526096454063105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f81214f77c7f9643927f7185c5668c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 433832803b8c47c88b2a8787a6c551b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

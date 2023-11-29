@@ -19,21 +19,6 @@ public class OldPickableObjectMoving : MonoBehaviour
         ShouldPlayerBecomeFree = true;
     }
 
-     // replace with settings (object size)
-     public void TakeLittlePickableObjectInPlayerHands()
-     {
-         finishTransform = playerComponents.PlayerHandsForLittleObjectTransform;
-         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.TakeLittleObjectTrigger);
-         MovePickableObject();
-     }
-
-     public void PutLittlePickableObjectOnTable(Transform tableTransform)
-     {
-         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.GiveLittleObjectTrigger);
-         finishTransform = tableTransform;
-         MovePickableObject();
-     }
-
      public void PutBigPickableObjectInPlayerHands()
      {
          finishTransform = playerComponents.PlayerHandsTransform;

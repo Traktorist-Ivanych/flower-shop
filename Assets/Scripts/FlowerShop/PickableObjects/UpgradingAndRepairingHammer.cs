@@ -14,7 +14,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly GameConfiguration gameConfiguration;
 
-        private LittlePickableObjectMoving hammerMoving;
+        private LittlePickableObjectMovingAndRotating hammerMovingAndRotating;
         private IUpgradableTable upgradableTable;
 
         public IUpgradableTable UpgradableTable
@@ -24,18 +24,18 @@ namespace FlowerShop.PickableObjects
 
         private void Start()
         {
-            hammerMoving = GetComponent<LittlePickableObjectMoving>();
+            hammerMovingAndRotating = GetComponent<LittlePickableObjectMovingAndRotating>();
         }
 
         public void TakeInPlayerHands()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
-            hammerMoving.TakeLittlePickableObjectInPlayerHands();
+            hammerMovingAndRotating.TakeLittlePickableObjectInPlayerHandsWithRotation();
         }
 
         public void PutOnTable(Transform targetTransform)
         {
-            hammerMoving.PutLittlePickableObjectOnTable(targetTransform);
+            hammerMovingAndRotating.PutLittlePickableObjectOnTableWithRotation(targetTransform);
         }
 
         public IEnumerator ImproveTable()

@@ -45,7 +45,7 @@ public class WeedingTable : UpgradableFlowerTable
     public override void UpgradeTable()
     {
         base.UpgradeTable();
-        weedingHoe.ImproveHoe();
+        weedingHoe.Improve();
     }
 
     private void TakeHoeInPlayerHands()

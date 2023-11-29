@@ -1,4 +1,5 @@
 using FlowerShop.Flowers;
+using FlowerShop.PickableObjects;
 using UnityEngine;
 
 public class FlowerStorageTable : FlowerTable

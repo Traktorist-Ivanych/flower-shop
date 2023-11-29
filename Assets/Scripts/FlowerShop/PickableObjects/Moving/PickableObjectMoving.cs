@@ -7,16 +7,12 @@ namespace FlowerShop.PickableObjects.Moving
 {
     public abstract class PickableObjectMoving : MonoBehaviour
     {
-        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private protected readonly ActionsWithTransformSettings actionsWithTransformSettings;
 
         private protected Transform finishTransform;
         
-        private protected void MovePickableObject()
+        private protected virtual void MovePickableObject()
         {
-            transform.DORotateQuaternion(
-                endValue: finishTransform.rotation, 
-                duration: actionsWithTransformSettings.MovingObjectsTime);
-
             transform.DOMove(
                     endValue: finishTransform.position, 
                     duration: actionsWithTransformSettings.MovingObjectsTime)
@@ -26,7 +22,7 @@ namespace FlowerShop.PickableObjects.Moving
         private protected virtual void FinishMoving()
         {
             transform.SetParent(finishTransform);
-            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
+            transform.localPosition = Vector3.zero;
         }
     }
 }

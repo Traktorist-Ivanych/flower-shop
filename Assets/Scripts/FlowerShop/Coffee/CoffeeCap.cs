@@ -1,15 +1,15 @@
+using FlowerShop.PickableObjects.Moving;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-[RequireComponent (typeof(OldPickableObjectMoving))]
+[RequireComponent (typeof(LittlePickableObjectMoving))]
 public class CoffeeCap : MonoBehaviour
 {
     [SerializeField] private Transform coffeeLiquidTransform;
     [SerializeField] private Transform coffeeLiquidEmptyTransform;
     [SerializeField] private Transform coffeeLiquidFullTransform;
-
-    private OldPickableObjectMoving dynamicObjectMoving;
-    private MeshRenderer coffeeLiquidRenderer;
+    [HideInInspector, SerializeField] private LittlePickableObjectMoving littlePickableObjectMoving;
+    [HideInInspector, SerializeField] private MeshRenderer coffeeLiquidRenderer;
+    
     private Transform startPosition;
     private Transform endPosition;
     private bool isCoffeeLiquidNeedForMoving;
@@ -18,14 +18,9 @@ public class CoffeeCap : MonoBehaviour
     private const float CoffeeLiquidMovingTime = 0.5f;
     private float currentCoffeeLiquidMovingTime;
 
-    public OldPickableObjectMoving DynamicObjectMoving
+    private void OnValidate()
     {
-        get => dynamicObjectMoving;
-    }
-
-    private void Start()
-    {
-        dynamicObjectMoving = GetComponent<OldPickableObjectMoving>();
+        littlePickableObjectMoving = GetComponent<LittlePickableObjectMoving>();
         coffeeLiquidRenderer = coffeeLiquidTransform.GetComponent<MeshRenderer>();
     }
 
@@ -52,7 +47,7 @@ public class CoffeeCap : MonoBehaviour
         }
     }
 
-    public void FillCoffeCap()
+    public void FillCoffeeCap()
     {
         coffeeLiquidRenderer.enabled = true;
         isCoffeeLiquidNeedForMoving = true;
@@ -60,18 +55,18 @@ public class CoffeeCap : MonoBehaviour
         endPosition = coffeeLiquidFullTransform;
     }
 
-    public void SetCoffeCapFull()
+    public void SetCoffeeCapFull()
     {
         coffeeLiquidRenderer.enabled = true;
         coffeeLiquidTransform.position = coffeeLiquidFullTransform.position;
     }
 
-    public void TakeCoffeCapInPlayerHands()
+    public void TakeCoffeeCapInPlayerHands()
     {
-        dynamicObjectMoving.TakeLittlePickableObjectInPlayerHands();
+        littlePickableObjectMoving.TakeLittlePickableObjectInPlayerHandsAndKeepPlayerBusy();
     }
 
-    public void EmptyCoffeCap()
+    public void EmptyCoffeeCap()
     {
         isCoffeeLiquidNeedForMoving = true;
         startPosition = coffeeLiquidFullTransform;
@@ -79,8 +74,8 @@ public class CoffeeCap : MonoBehaviour
         hideCoffeeLiquidAfterMoving = true;
     }
 
-    public void PutCoffeCapOnTable(Transform coffeCapOnTableTransform)
+    public void PutCoffeeCapOnTable(Transform coffeeCapOnTableTransform)
     {
-        dynamicObjectMoving.PutLittlePickableObjectOnTable(coffeCapOnTableTransform);
+        littlePickableObjectMoving.PutLittlePickableObjectOnTable(coffeeCapOnTableTransform);
     }
 }

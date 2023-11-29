@@ -56,22 +56,21 @@ public class CoffeeTable : FlowerTable
         // 4 - should be in settings
         yield return new WaitForSeconds(4);
         isCoffeeMaking = false;
-        coffeeCap.FillCoffeCap();
+        coffeeCap.FillCoffeeCap();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        coffeeCap.DynamicObjectMoving.ShouldPlayerBecomeFree = false;
-        coffeeCap.TakeCoffeCapInPlayerHands();
+        coffeeCap.TakeCoffeeCapInPlayerHands();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeeTrigger);
 
         // should be in settings
         yield return new WaitForSeconds(0.35f);
-        coffeeCap.EmptyCoffeCap();
+        coffeeCap.EmptyCoffeeCap();
         playerCoffeeEffect.StartCoffeeEffect();
 
         // either animation event either get time through animation clip
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay * 2);
-        coffeeCap.PutCoffeCapOnTable(coffeeCapOnTableTransform);
+        coffeeCap.PutCoffeeCapOnTable(coffeeCapOnTableTransform);
     }
 }
