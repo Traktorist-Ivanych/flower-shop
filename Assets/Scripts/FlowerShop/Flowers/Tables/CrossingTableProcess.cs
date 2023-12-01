@@ -203,7 +203,7 @@ public class CrossingTableProcess : UpgradableBreakableFlowerTable
 
     private IEnumerator PlantCrossesSeedProcess()
     {
-        potForPlanting.GivePotAndKeepPlayerBusy(tablePotTransform);
+        potForPlanting.PutOnTableAndKeepPlayerBusy(tablePotTransform);
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         potForPlanting.PlantSeed(flowerInfoForPlanting);
@@ -211,7 +211,7 @@ public class CrossingTableProcess : UpgradableBreakableFlowerTable
         CheckCrossingAbility();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        potForPlanting.TakeInPlayerHands();
+        potForPlanting.TakeInPlayerHandsAndSetPlayerFree();
     }
 
     private void FixCrossingTable()

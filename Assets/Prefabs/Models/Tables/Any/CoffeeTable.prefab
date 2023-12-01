@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 4171110336662612769}
   - component: {fileID: 4171110336662612766}
   - component: {fileID: 6042856543032275900}
-  - component: {fileID: 6782630707841718496}
+  - component: {fileID: 9000530218758725305}
   m_Layer: 0
   m_Name: CoffeeCap
   m_TagString: Untagged
@@ -331,9 +331,10 @@ MonoBehaviour:
   coffeeLiquidTransform: {fileID: 4171110335158996654}
   coffeeLiquidEmptyTransform: {fileID: 1186694490948110686}
   coffeeLiquidFullTransform: {fileID: 1737804688810753164}
-  littlePickableObjectMoving: {fileID: 6782630707841718496}
+  objectMoving: {fileID: 9000530218758725305}
+  littlePickableObjectMoving: {fileID: 0}
   coffeeLiquidRenderer: {fileID: 4171110335158996657}
---- !u!114 &6782630707841718496
+--- !u!114 &9000530218758725305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4171110336662612764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8be6426dce4e7791245fb2a64d20a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1143340d429246ce8ed0e1f03da71dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4171110336876549604

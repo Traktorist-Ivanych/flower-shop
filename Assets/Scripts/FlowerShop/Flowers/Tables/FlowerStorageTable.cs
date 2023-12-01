@@ -73,7 +73,7 @@ public class FlowerStorageTable : FlowerTable
 
     private void GivePot()
     {
-        potOnTable.GivePotAndSetPlayerFree(tablePotTransform);
+        potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
         playerPickableObjectHandler.ClearPickableObject();
         isFlowerOnStorageTable = true;
         if (potOnTable.IsSoilInsidePot)
@@ -94,7 +94,7 @@ public class FlowerStorageTable : FlowerTable
 
     private void TakePot()
     {
-        potOnTable.TakeInPlayerHands();
+        potOnTable.TakeInPlayerHandsAndSetPlayerFree();
         isFlowerOnStorageTable = false;
         weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
     }

@@ -7,6 +7,7 @@ using Zenject;
 
 namespace FlowerShop.PickableObjects
 {
+    [RequireComponent(typeof(ObjectMoving))]
     public class UpgradingAndRepairingHammer : MonoBehaviour, IPickableObject
     {
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
@@ -14,37 +15,37 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly GameConfiguration gameConfiguration;
 
-        private LittlePickableObjectMovingAndRotating hammerMovingAndRotating;
-        private IUpgradableTable upgradableTable;
+        [HideInInspector, SerializeField] private ObjectMoving objectMoving;
 
-        public IUpgradableTable UpgradableTable
+        public IUpgradableTable UpgradableTable { get; set; }
+
+        private void OnValidate()
         {
-            set => upgradableTable = value;
+            objectMoving = GetComponent<ObjectMoving>();
         }
 
-        private void Start()
-        {
-            hammerMovingAndRotating = GetComponent<LittlePickableObjectMovingAndRotating>();
-        }
-
-        public void TakeInPlayerHands()
+        public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
-            hammerMovingAndRotating.TakeLittlePickableObjectInPlayerHandsWithRotation();
+            objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForLittleObjectTransform, 
+                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
+                                    setPlayerFree: true);
         }
 
-        public void PutOnTable(Transform targetTransform)
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
         {
-            hammerMovingAndRotating.PutLittlePickableObjectOnTableWithRotation(targetTransform);
+            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
+                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
+                                    setPlayerFree: true);
         }
 
         public IEnumerator ImproveTable()
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
-            upgradableTable.HideUpgradeIndicator();
+            UpgradableTable.HideUpgradeIndicator();
             yield return new WaitForSeconds(gameConfiguration.TableImprovementTime);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
-            upgradableTable.UpgradeTable();
+            UpgradableTable.UpgradeTable();
             playerBusyness.SetPlayerFree();
         }
     }

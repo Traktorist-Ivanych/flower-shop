@@ -70,12 +70,12 @@ public class WateringTable : UpgradableBreakableFlowerTable
 
     private void TakeWateringCanFromTable()
     {
-        wateringCan.TakeInPlayerHands();
+        wateringCan.TakeInPlayerHandsAndSetPlayerFree();
     }
 
     private void PutWateringCanOnTable()
     {
-        wateringCan.PutOnTable(wateringCanTableTransform);
+        wateringCan.PutOnTableAndSetPlayerFree(wateringCanTableTransform);
         playerPickableObjectHandler.ClearPickableObject();
 
         if (wateringCan.IsWateringCanNeedForReplenish())

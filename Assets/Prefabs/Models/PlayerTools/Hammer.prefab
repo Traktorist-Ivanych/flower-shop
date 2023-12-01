@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4077079544647431229}
   - component: {fileID: 9191659059992603717}
   - component: {fileID: 5774684168227516192}
-  - component: {fileID: 955798958334398348}
+  - component: {fileID: 1653081696358890939}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9ba65c2d7db9d43a9bfed0e06168a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &955798958334398348
+  objectMoving: {fileID: 1653081696358890939}
+--- !u!114 &1653081696358890939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4154728712673730078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433832803b8c47c88b2a8787a6c551b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1143340d429246ce8ed0e1f03da71dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

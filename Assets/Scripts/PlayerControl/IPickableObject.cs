@@ -4,12 +4,12 @@ namespace PlayerControl
 {
     public interface IPickableObject
     {
-        public void TakeInPlayerHands()
+        public void TakeInPlayerHandsAndSetPlayerFree()
         {
             
         }
 
-        public void PutOnTable(Transform targetTransform)
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
         {
             
         }

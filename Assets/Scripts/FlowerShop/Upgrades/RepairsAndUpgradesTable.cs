@@ -50,14 +50,14 @@ namespace FlowerShop.Upgrades
 
         private void TakeHammerInPlayerHands()
         {
-            upgradingAndRepairingHammer.TakeInPlayerHands();
+            upgradingAndRepairingHammer.TakeInPlayerHandsAndSetPlayerFree();
             StartCoroutine(ShowAllUpgradeIndicators());
         }
 
         private void PutHammerOnTable()
         {
             playerPickableObjectHandler.ClearPickableObject();
-            upgradingAndRepairingHammer.PutOnTable(hammerOnTableTransform);
+            upgradingAndRepairingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
 
             foreach (IUpgradableTable upgradableTable in upgradableTables)
             {

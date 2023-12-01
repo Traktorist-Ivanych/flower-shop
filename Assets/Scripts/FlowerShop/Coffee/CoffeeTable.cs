@@ -59,7 +59,7 @@ public class CoffeeTable : FlowerTable
         coffeeCap.FillCoffeeCap();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        coffeeCap.TakeCoffeeCapInPlayerHands();
+        coffeeCap.TakeInPlayerHandsAndKeepPlayerBusy();
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeeTrigger);
@@ -71,6 +71,6 @@ public class CoffeeTable : FlowerTable
 
         // either animation event either get time through animation clip
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay * 2);
-        coffeeCap.PutCoffeeCapOnTable(coffeeCapOnTableTransform);
+        coffeeCap.PutOnTableAndSetPlayerFree(coffeeCapOnTableTransform);
     }
 }

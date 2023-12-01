@@ -123,7 +123,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
     private void TakePotFromGrowingTable()
     {
         weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
-        potOnTable.TakePotInPlayerHandsFromGrowingTable();
+        potOnTable.TakeInPlayerHandsFromGrowingTableAndSetPlayerFree();
         potOnTable = null;
         isPotOnTable = false;
         growingLightMeshRenderer.enabled = false;
@@ -142,7 +142,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
 
     private void PutPotOnGrowingTable()
     {
-        potOnTable.GivePotOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
+        potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
         isPotOnTable = true;
         growingLightMeshRenderer.enabled = true;
         playerPickableObjectHandler.ClearPickableObject();

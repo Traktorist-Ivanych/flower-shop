@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6104909702543691816}
   - component: {fileID: 8121136218997098137}
   - component: {fileID: 8112926802762695988}
-  - component: {fileID: 6897438795418380697}
   - component: {fileID: 8367511465315435791}
+  - component: {fileID: 950501658073540848}
   m_Layer: 0
   m_Name: FlowerPotDecorative
   m_TagString: Untagged
@@ -100,18 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
---- !u!114 &6897438795418380697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4563592128899170511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f81214f77c7f9643927f7185c5668c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  objectMoving: {fileID: 950501658073540848}
 --- !u!114 &8367511465315435791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +118,18 @@ MonoBehaviour:
   waterIndicator: {fileID: 888319420685874430}
   weedRenderer: {fileID: 922811025934738195}
   weed: {fileID: 11400000, guid: f400fe18b68f5ae4eb329ffe253fce3b, type: 2}
+--- !u!114 &950501658073540848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563592128899170511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1143340d429246ce8ed0e1f03da71dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6077466555839698942
 PrefabInstance:
   m_ObjectHideFlags: 0

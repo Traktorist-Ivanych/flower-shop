@@ -1,3 +1,4 @@
+using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
 using Zenject;

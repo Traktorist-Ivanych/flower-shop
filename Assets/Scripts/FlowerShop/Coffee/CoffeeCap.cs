@@ -1,13 +1,18 @@
 using FlowerShop.PickableObjects.Moving;
+using PlayerControl;
 using UnityEngine;
+using Zenject;
 
-[RequireComponent (typeof(LittlePickableObjectMoving))]
+[RequireComponent (typeof(ObjectMoving))]
 public class CoffeeCap : MonoBehaviour
 {
+    [Inject] private readonly PlayerComponents playerComponents;
+    
     [SerializeField] private Transform coffeeLiquidTransform;
     [SerializeField] private Transform coffeeLiquidEmptyTransform;
     [SerializeField] private Transform coffeeLiquidFullTransform;
-    [HideInInspector, SerializeField] private LittlePickableObjectMoving littlePickableObjectMoving;
+
+    [HideInInspector, SerializeField] private ObjectMoving objectMoving;
     [HideInInspector, SerializeField] private MeshRenderer coffeeLiquidRenderer;
     
     private Transform startPosition;
@@ -20,7 +25,7 @@ public class CoffeeCap : MonoBehaviour
 
     private void OnValidate()
     {
-        littlePickableObjectMoving = GetComponent<LittlePickableObjectMoving>();
+        objectMoving = GetComponent<ObjectMoving>();
         coffeeLiquidRenderer = coffeeLiquidTransform.GetComponent<MeshRenderer>();
     }
 
@@ -61,9 +66,11 @@ public class CoffeeCap : MonoBehaviour
         coffeeLiquidTransform.position = coffeeLiquidFullTransform.position;
     }
 
-    public void TakeCoffeeCapInPlayerHands()
+    public void TakeInPlayerHandsAndKeepPlayerBusy()
     {
-        littlePickableObjectMoving.TakeLittlePickableObjectInPlayerHandsAndKeepPlayerBusy();
+        objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForCoffeeTransform, 
+                                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
+                                setPlayerFree: false);
     }
 
     public void EmptyCoffeeCap()
@@ -74,8 +81,10 @@ public class CoffeeCap : MonoBehaviour
         hideCoffeeLiquidAfterMoving = true;
     }
 
-    public void PutCoffeeCapOnTable(Transform coffeeCapOnTableTransform)
+    public void PutOnTableAndSetPlayerFree(Transform targetTransform)
     {
-        littlePickableObjectMoving.PutLittlePickableObjectOnTable(coffeeCapOnTableTransform);
+        objectMoving.MoveObject(targetFinishTransform: targetTransform, 
+                                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
+                                setPlayerFree: true);
     }
 }

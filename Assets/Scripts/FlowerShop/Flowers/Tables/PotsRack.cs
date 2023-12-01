@@ -53,7 +53,7 @@ public class PotsRack : UpgradableFlowerTable
     {
         potsRenderers[currentFreePots - 1].enabled = false;
         currentFreePots--;
-        pots.Last().TakeInPlayerHands();
+        pots.Last().TakeInPlayerHandsAndSetPlayerFree();
         pots.Remove(pots.Last());
     }
 
@@ -63,7 +63,7 @@ public class PotsRack : UpgradableFlowerTable
         potsRenderers[currentFreePots - 1].enabled = true;
         Pot takingPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
         pots.Add(takingPot);
-        takingPot.GivePotAndSetPlayerFree(PotObjectsTransform);
+        takingPot.PutOnTableAndSetPlayerFree(PotObjectsTransform);
         playerPickableObjectHandler.ClearPickableObject();
     }
 

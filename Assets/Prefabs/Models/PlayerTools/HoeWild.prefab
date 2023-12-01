@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 534501636279360269}
   - component: {fileID: 4003419928303603148}
   - component: {fileID: 8718689080417052516}
-  - component: {fileID: 1714435833154815788}
+  - component: {fileID: 8727653367038786048}
   m_Layer: 0
   m_Name: HoeWild
   m_TagString: Untagged
@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8408a49e23d6552408010f5bc97508fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   weedingHoeLvlMeshes:
   - {fileID: 7709115425128063159, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 2595506416841124131, guid: 703790e61f24a3240890f0a292b64061, type: 3}
-  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
-  littlePickableObjectMovingAndRotating: {fileID: 1714435833154815788}
+  objectMoving: {fileID: 8727653367038786048}
   weedingHoeMeshFilter: {fileID: 534501636279360269}
---- !u!114 &1714435833154815788
+--- !u!114 &8727653367038786048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,6 +112,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3432414502541008231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433832803b8c47c88b2a8787a6c551b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1143340d429246ce8ed0e1f03da71dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

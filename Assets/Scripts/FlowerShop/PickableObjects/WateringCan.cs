@@ -1,87 +1,97 @@
 using FlowerShop.Flowers;
+using FlowerShop.PickableObjects.Moving;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(OldPickableObjectMoving))]
-public class WateringCan : MonoBehaviour, IPickableObject
+namespace FlowerShop.PickableObjects
 {
-    [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
-    [Inject] private readonly GameConfiguration gameConfiguration;
-    [Inject] private readonly PlayerComponents playerComponents;
-
-    [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
-    [SerializeField] private MeshFilter wateringCanMeshFilter;
-    [SerializeField] private MeshRenderer wateringCanIndicatorMeshRenderer;
-    [SerializeField] private Transform wateringCanIndicatorTransform;
-    [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
-
-    private OldPickableObjectMoving wateringCanMoving;
-    private int currentWateringsNumber;
-    private int maxWateringsNumber;
-    private int wateringCanLvl;
-
-    // can be just property
-    public int CurrentWateringsNumber
+    [RequireComponent(typeof(ObjectMoving))]
+    public class WateringCan : MonoBehaviour, IPickableObject
     {
-        get { return currentWateringsNumber; }
-        set { currentWateringsNumber = value; }
-    }
+        [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
+        [Inject] private readonly GameConfiguration gameConfiguration;
+        [Inject] private readonly PlayerComponents playerComponents;
+    
+        [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
+    
+        [SerializeField] private Transform wateringCanIndicatorTransform;
+        [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
 
-    private void Start()
-    {
-        maxWateringsNumber = gameConfiguration.WateringsNumber;
-        currentWateringsNumber = maxWateringsNumber;
-        wateringCanMoving = GetComponent<OldPickableObjectMoving>();
-    }
+        [HideInInspector, SerializeField] private ObjectMoving objectMoving;
+        [HideInInspector, SerializeField] private MeshFilter wateringCanMeshFilter;
+        [HideInInspector, SerializeField] private MeshRenderer wateringCanIndicatorMeshRenderer;
+    
+        private int maxWateringsNumber;
+        private int wateringCanLvl;
 
-    public void TakeInPlayerHands()
-    {
-        playerPickableObjectHandler.CurrentPickableObject = this;
-        wateringCanMoving.PutBigPickableObjectInPlayerHands();
-        wateringCanIndicatorMeshRenderer.enabled = true;
-        UpdateWateringCanIndicator();
-    }
+        public int CurrentWateringsNumber { get; private set; }
 
-    public void PutOnTable(Transform targetTransform) 
-    {
-        wateringCanMoving.PutBigPickableObjectOnTable(targetTransform);
-        wateringCanIndicatorMeshRenderer.enabled = false;
-    }
+        private void OnValidate()
+        {
+            objectMoving = GetComponent<ObjectMoving>();
+            wateringCanMeshFilter = GetComponent<MeshFilter>();
+            wateringCanIndicatorMeshRenderer = wateringCanIndicatorTransform.GetComponent<MeshRenderer>();
+        }
 
-    public void PourPotWithWateringCan()
-    {
-        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
-        currentWateringsNumber--;
-        UpdateWateringCanIndicator();
-    }
+        private void Start()
+        {
+            maxWateringsNumber = gameConfiguration.WateringsNumber;
+            CurrentWateringsNumber = maxWateringsNumber;
+        }
 
-    public bool IsWateringCanNeedForReplenish()
-    {
-        return currentWateringsNumber < maxWateringsNumber;
-    }
+        public void TakeInPlayerHandsAndSetPlayerFree()
+        {
+            playerPickableObjectHandler.CurrentPickableObject = this;
+            objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
+                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
+                                    setPlayerFree: true);
+            wateringCanIndicatorMeshRenderer.enabled = true;
+            UpdateWateringCanIndicator();
+        }
 
-    public float ReplenishWateringCanTime()
-    {
-        return gameConfiguration.ReplenishWateringCanTime * (maxWateringsNumber - currentWateringsNumber) / maxWateringsNumber;
-    }
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform) 
+        {
+            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
+                setPlayerFree: true);
+            wateringCanIndicatorMeshRenderer.enabled = false;
+        }
 
-    public void ReplenishWateringCan()
-    {
-        currentWateringsNumber = maxWateringsNumber;
-    }
+        public void PourPotWithWateringCan()
+        {
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
+            CurrentWateringsNumber--;
+            UpdateWateringCanIndicator();
+        }
 
-    public void ImproveWateringCan()
-    {
-        wateringCanLvl++;
-        maxWateringsNumber = gameConfiguration.WateringsNumber + gameConfiguration.WateringsNumberLvlDelta * wateringCanLvl;
-        currentWateringsNumber = maxWateringsNumber;
-        wateringCanMeshFilter.mesh = wateringCanLvlMeshes[wateringCanLvl - 1];
-    }
+        public bool IsWateringCanNeedForReplenish()
+        {
+            return CurrentWateringsNumber < maxWateringsNumber;
+        }
 
-    private void UpdateWateringCanIndicator()
-    {
-        float indicatorScaleZ = 0.9f * currentWateringsNumber / maxWateringsNumber + 0.1f;
-        wateringCanIndicatorTransform.localScale = new Vector3(1, 1, indicatorScaleZ);
+        public float ReplenishWateringCanTime()
+        {
+            return gameConfiguration.ReplenishWateringCanTime * (maxWateringsNumber - CurrentWateringsNumber) / maxWateringsNumber;
+        }
+
+        public void ReplenishWateringCan()
+        {
+            CurrentWateringsNumber = maxWateringsNumber;
+        }
+
+        public void ImproveWateringCan()
+        {
+            wateringCanLvl++;
+            maxWateringsNumber = gameConfiguration.WateringsNumber + gameConfiguration.WateringsNumberLvlDelta * wateringCanLvl;
+            CurrentWateringsNumber = maxWateringsNumber;
+            wateringCanMeshFilter.mesh = wateringCanLvlMeshes[wateringCanLvl - 1];
+        }
+
+        private void UpdateWateringCanIndicator()
+        {
+            float indicatorScaleZ = 0.9f * CurrentWateringsNumber / maxWateringsNumber + 0.1f;
+            wateringCanIndicatorTransform.localScale = new Vector3(1, 1, indicatorScaleZ);
+        }
     }
 }

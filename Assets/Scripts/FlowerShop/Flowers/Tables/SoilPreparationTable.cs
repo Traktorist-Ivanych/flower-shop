@@ -48,7 +48,7 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
             {
                 currentSoilPreparationTime = soilPreparationTime;
                 isSoilBeingPrepared = false;
-                potToSoilPreparation.TakeInPlayerHands();
+                potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
                 UseBreakableFlowerTable();
             }
         }
@@ -106,7 +106,7 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
 
     private IEnumerator SoilPreparation()
     {
-        potToSoilPreparation.GivePotAndKeepPlayerBusy(potOnTableTransform);
+        potToSoilPreparation.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
 
         yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
         potToSoilPreparation.FillPotWithSoil();

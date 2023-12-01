@@ -1,3 +1,4 @@
+using FlowerShop.PickableObjects;
 using UnityEngine;
 
 // rename to FlowersCrossingTable
@@ -55,14 +56,14 @@ public class FlowersCrossingTable : FlowerTable
 
     private void PutPotOnCrossingTable()
     {
-        potOnTable.GivePotAndSetPlayerFree(tablePotTransform);
+        potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
         playerPickableObjectHandler.ClearPickableObject();
         isPotOnCrossingTable = true;
     }
 
     private void GetPotFromCrossingTable()
     {
-        potOnTable.TakeInPlayerHands();
+        potOnTable.TakeInPlayerHandsAndSetPlayerFree();
         isPotOnCrossingTable = false;
     }
 }

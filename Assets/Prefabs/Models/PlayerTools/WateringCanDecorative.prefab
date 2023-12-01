@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7543296944761107936}
   - component: {fileID: 5903549215381649210}
   - component: {fileID: 4292227620484289498}
-  - component: {fileID: 4149465994557054323}
+  - component: {fileID: 9032467859439586219}
   m_Layer: 0
   m_Name: WateringCanDecorative
   m_TagString: Untagged
@@ -182,13 +182,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
-  wateringCanMeshFilter: {fileID: 7543296944761107936}
-  wateringCanIndicatorMeshRenderer: {fileID: 5581965110928400370}
   wateringCanIndicatorTransform: {fileID: 6718301287602791581}
   wateringCanLvlMeshes:
   - {fileID: -3076382647288971543, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 9115767003606509803, guid: 703790e61f24a3240890f0a292b64061, type: 3}
---- !u!114 &4149465994557054323
+  objectMoving: {fileID: 9032467859439586219}
+  wateringCanMeshFilter: {fileID: 7543296944761107936}
+  wateringCanIndicatorMeshRenderer: {fileID: 5581965110928400370}
+--- !u!114 &9032467859439586219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,6 +198,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8365451697329285736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f81214f77c7f9643927f7185c5668c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1143340d429246ce8ed0e1f03da71dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5e2a4e35db2947a0445ecaf44fd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeIndicatorRenderer: {fileID: 5045527496117922033}
+  upgradeIndicatorRenderer: {fileID: 728057076554121779}
   tableMeshFilter: {fileID: 5010519865756227079}
   upgradableTableInfo: {fileID: 11400000, guid: c331885c0469d32439c8096334a499be, type: 2}
 --- !u!114 &1628552287439916099

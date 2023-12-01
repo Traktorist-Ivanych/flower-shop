@@ -50,12 +50,12 @@ public class WeedingTable : UpgradableFlowerTable
 
     private void TakeHoeInPlayerHands()
     {
-        weedingHoe.TakeInPlayerHands();
+        weedingHoe.TakeInPlayerHandsAndSetPlayerFree();
     }
 
     private void PutHoeOnWeedingTable()
     {
         playerPickableObjectHandler.ClearPickableObject();
-        weedingHoe.PutOnTable(hoeOnTableTransform);
+        weedingHoe.PutOnTableAndSetPlayerFree(hoeOnTableTransform);
     }
 }

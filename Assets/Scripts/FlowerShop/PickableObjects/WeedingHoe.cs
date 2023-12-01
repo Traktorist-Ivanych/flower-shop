@@ -3,12 +3,11 @@ using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
 using PlayerControl;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace FlowerShop.PickableObjects
 {
-    [RequireComponent(typeof(LittlePickableObjectMovingAndRotating))]
+    [RequireComponent(typeof(ObjectMoving))]
     public class WeedingHoe : MonoBehaviour, IPickableObject
     {
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
@@ -16,29 +15,34 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly GameConfiguration gameConfiguration;
         
-        [SerializeField] private Mesh[] weedingHoeLvlMeshes = new Mesh[2];
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
         
-        [HideInInspector, SerializeField] private LittlePickableObjectMovingAndRotating littlePickableObjectMovingAndRotating;
+        [SerializeField] private Mesh[] weedingHoeLvlMeshes = new Mesh[2];
+
+        [HideInInspector, SerializeField] private ObjectMoving objectMoving; 
         [HideInInspector, SerializeField] private MeshFilter weedingHoeMeshFilter;
     
         private int weedingHoeLvl;
 
         private void OnValidate()
         {
-            littlePickableObjectMovingAndRotating = GetComponent<LittlePickableObjectMovingAndRotating>();
+            objectMoving = GetComponent<ObjectMoving>();
             weedingHoeMeshFilter = GetComponent<MeshFilter>();
         }
 
-        public void TakeInPlayerHands()
+        public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
-            littlePickableObjectMovingAndRotating.TakeLittlePickableObjectInPlayerHandsWithRotation();
+            objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForLittleObjectTransform, 
+                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger,
+                                    setPlayerFree: true);
         }
 
-        public void PutOnTable(Transform targetTransform)
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
         {
-            littlePickableObjectMovingAndRotating.PutLittlePickableObjectOnTableWithRotation(targetTransform);
+            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
+                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
+                                    setPlayerFree: true);
         }
 
         public IEnumerator DeleteWeed(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotIntoList)

@@ -1,5 +1,6 @@
 using System.Collections;
 using FlowerShop.Flowers;
+using FlowerShop.PickableObjects;
 using UnityEngine;
 using Zenject;
 
@@ -29,7 +30,7 @@ public class PlantingSeedsTable : FlowerTable
 
     public override void ExecutePlayerAbility()
     {
-        plantingSeedPot.GivePotAndKeepPlayerBusy(potOnTableTransform);
+        plantingSeedPot.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
         StartCoroutine(OpenSeedsCanvas());
     }
 
@@ -43,6 +44,6 @@ public class PlantingSeedsTable : FlowerTable
     {
         plantingSeedPot.PlantSeed(transmittedFlowerInfo);
         seedsCanvas.enabled = false;
-        plantingSeedPot.TakeInPlayerHands();
+        plantingSeedPot.TakeInPlayerHandsAndSetPlayerFree();
     }
 }
