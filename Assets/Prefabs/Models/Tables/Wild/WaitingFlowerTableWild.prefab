@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 268215953731605713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74,7 +74,7 @@ MonoBehaviour:
   targetToLookAt: {fileID: 2546873008974105818}
   tablePotTransform: {fileID: 2743832758157823263}
   weedPlanter: {fileID: 0}
-  growingRoomAny: {fileID: 0}
+  growingRoomAny: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
 --- !u!1 &5821090190316369527
 GameObject:
   m_ObjectHideFlags: 0
