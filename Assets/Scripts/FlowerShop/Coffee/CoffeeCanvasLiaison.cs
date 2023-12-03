@@ -3,26 +3,29 @@ using UnityEngine;
 using UnityWeld.Binding;
 using Zenject;
 
-[Binding]
-public class CoffeeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
+namespace FlowerShop.Coffee
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
-
-    [field: SerializeField] public Canvas CoffeeCanvas { get; private set; }
-    
-    public event PropertyChangedEventHandler PropertyChanged;
-    
-    [Binding] 
-    public string CoffeePrice { get; private set; }
-
-    private void Start()
+    [Binding]
+    public class CoffeeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        CoffeePrice = gameConfiguration.CoffePrice.ToString();
-        OnPropertyChanged(nameof(CoffeePrice));
-    }
+        [Inject] private readonly CoffeeSettings coffeeSettings;
 
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        [field: SerializeField] public Canvas CoffeeCanvas { get; private set; }
+    
+        public event PropertyChangedEventHandler PropertyChanged;
+    
+        [Binding] 
+        public string CoffeePrice { get; private set; }
+
+        private void Start()
+        {
+            CoffeePrice = coffeeSettings.CoffeePrice.ToString();
+            OnPropertyChanged(nameof(CoffeePrice));
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

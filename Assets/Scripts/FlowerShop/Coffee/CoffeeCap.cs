@@ -1,90 +1,85 @@
+using DG.Tweening;
 using FlowerShop.PickableObjects.Moving;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent (typeof(ObjectMoving))]
-public class CoffeeCap : MonoBehaviour
+namespace FlowerShop.Coffee
 {
-    [Inject] private readonly PlayerComponents playerComponents;
-    
-    [SerializeField] private Transform coffeeLiquidTransform;
-    [SerializeField] private Transform coffeeLiquidEmptyTransform;
-    [SerializeField] private Transform coffeeLiquidFullTransform;
-
-    [HideInInspector, SerializeField] private ObjectMoving objectMoving;
-    [HideInInspector, SerializeField] private MeshRenderer coffeeLiquidRenderer;
-    
-    private Transform startPosition;
-    private Transform endPosition;
-    private bool isCoffeeLiquidNeedForMoving;
-    private bool hideCoffeeLiquidAfterMoving;
-    // shouldn't be constant - setting
-    private const float CoffeeLiquidMovingTime = 0.5f;
-    private float currentCoffeeLiquidMovingTime;
-
-    private void OnValidate()
+    [RequireComponent (typeof(ObjectMoving))]
+    public class CoffeeCap : MonoBehaviour
     {
-        objectMoving = GetComponent<ObjectMoving>();
-        coffeeLiquidRenderer = coffeeLiquidTransform.GetComponent<MeshRenderer>();
-    }
+        [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly CoffeeSettings coffeeSettings;
+    
+        [SerializeField] private Transform coffeeLiquidTransform;
+        [SerializeField] private Transform coffeeLiquidEmptyTransform;
+        [SerializeField] private Transform coffeeLiquidFullTransform;
 
-    private void Update()
-    {
-        if (isCoffeeLiquidNeedForMoving)
+        [HideInInspector, SerializeField] private ObjectMoving objectMoving;
+        [HideInInspector, SerializeField] private MeshRenderer coffeeLiquidRenderer;
+    
+        private Transform finishTransform;
+
+        private void OnValidate()
         {
-            currentCoffeeLiquidMovingTime += Time.deltaTime;
-            float lerpT = currentCoffeeLiquidMovingTime / CoffeeLiquidMovingTime;
+            objectMoving = GetComponent<ObjectMoving>();
+            coffeeLiquidRenderer = coffeeLiquidTransform.GetComponent<MeshRenderer>();
+        }
 
-            coffeeLiquidTransform.position = Vector3.Lerp(startPosition.position, endPosition.position, lerpT);
-            coffeeLiquidTransform.localScale = Vector3.Lerp(startPosition.localScale, endPosition.localScale, lerpT);
+        public void FillCoffeeCap()
+        {
+            coffeeLiquidRenderer.enabled = true;
+            finishTransform = coffeeLiquidFullTransform;
+            MoveAndScaleCoffeeLiquid();
+        }
 
-            if (currentCoffeeLiquidMovingTime >= CoffeeLiquidMovingTime)
+        public void SetCoffeeCapFull()
+        {
+            coffeeLiquidRenderer.enabled = true;
+            coffeeLiquidTransform.position = coffeeLiquidFullTransform.position;
+        }
+
+        public void TakeInPlayerHandsAndKeepPlayerBusy()
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: playerComponents.PlayerHandsForCoffeeTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
+                setPlayerFree: false);
+        }
+
+        public void EmptyCoffeeCap()
+        {
+            finishTransform = coffeeLiquidEmptyTransform;
+            MoveAndScaleCoffeeLiquid();
+        }
+
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
+                setPlayerFree: true);
+        }
+
+        private void MoveAndScaleCoffeeLiquid()
+        {
+            coffeeLiquidTransform.DOMove(
+                endValue: finishTransform.position,
+                duration: coffeeSettings.CoffeeLiquidMovingTime)
+                .OnComplete(FinishMovingCoffeeLiquid);
+            
+            coffeeLiquidTransform.DOScale(
+                endValue: finishTransform.localScale,
+                duration: coffeeSettings.CoffeeLiquidMovingTime);
+        }
+
+        private void FinishMovingCoffeeLiquid()
+        {
+            if (finishTransform.Equals(coffeeLiquidEmptyTransform))
             {
-                currentCoffeeLiquidMovingTime = 0;
-                isCoffeeLiquidNeedForMoving = false;
-                if (hideCoffeeLiquidAfterMoving)
-                {
-                    coffeeLiquidRenderer.enabled = false;
-                    hideCoffeeLiquidAfterMoving = false;
-                }
+                coffeeLiquidRenderer.enabled = false;
             }
         }
-    }
-
-    public void FillCoffeeCap()
-    {
-        coffeeLiquidRenderer.enabled = true;
-        isCoffeeLiquidNeedForMoving = true;
-        startPosition = coffeeLiquidEmptyTransform;
-        endPosition = coffeeLiquidFullTransform;
-    }
-
-    public void SetCoffeeCapFull()
-    {
-        coffeeLiquidRenderer.enabled = true;
-        coffeeLiquidTransform.position = coffeeLiquidFullTransform.position;
-    }
-
-    public void TakeInPlayerHandsAndKeepPlayerBusy()
-    {
-        objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForCoffeeTransform, 
-                                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
-                                setPlayerFree: false);
-    }
-
-    public void EmptyCoffeeCap()
-    {
-        isCoffeeLiquidNeedForMoving = true;
-        startPosition = coffeeLiquidFullTransform;
-        endPosition = coffeeLiquidEmptyTransform;
-        hideCoffeeLiquidAfterMoving = true;
-    }
-
-    public void PutOnTableAndSetPlayerFree(Transform targetTransform)
-    {
-        objectMoving.MoveObject(targetFinishTransform: targetTransform, 
-                                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
-                                setPlayerFree: true);
     }
 }

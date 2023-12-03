@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 2537847770684859578}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000029802322, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.00049999956, y: 0, z: 0}
-  m_LocalScale: {x: 0.6999998, y: 0.6999998, z: 0.6999997}
+  m_LocalPosition: {x: 0.0005, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4171110336662612767}
@@ -141,8 +141,8 @@ Transform:
   m_GameObject: {fileID: 4171110335158996655}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000029802322, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.002000002, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0005, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4171110336662612767}
@@ -332,7 +332,6 @@ MonoBehaviour:
   coffeeLiquidEmptyTransform: {fileID: 1186694490948110686}
   coffeeLiquidFullTransform: {fileID: 1737804688810753164}
   objectMoving: {fileID: 9000530218758725305}
-  littlePickableObjectMoving: {fileID: 0}
   coffeeLiquidRenderer: {fileID: 4171110335158996657}
 --- !u!114 &9000530218758725305
 MonoBehaviour:
@@ -419,9 +418,11 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 4171110336932855115}
   targetToLookAt: {fileID: 4171110335659404785}
-  coffeeCap: {fileID: 6042856543032275900}
   coffeeGrinderTransform: {fileID: 4171110334866398836}
+  coffeeCap: {fileID: 6042856543032275900}
   coffeeCapOnTableTransform: {fileID: 7443874837936163414}
+  statMakingCoffeeAnimationClip: {fileID: 7400000, guid: 34a88e7370fb77c429c9f745088694b0, type: 2}
+  drinkCoffeeAnimationClip: {fileID: 7400000, guid: 1395d7af51df36e418805844e02b60d6, type: 2}
 --- !u!1 &4171110336932855112
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ Transform:
   m_GameObject: {fileID: 5134730349303518122}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000029802322, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.002000002, y: 0, z: 0}
+  m_LocalPosition: {x: 0.002, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

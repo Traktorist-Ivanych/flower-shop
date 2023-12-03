@@ -1,3 +1,4 @@
+using FlowerShop.Coffee;
 using FlowerShop.PickableObjects;
 using FlowerShop.Upgrades;
 using PlayerControl;
@@ -26,15 +27,12 @@ public class ZenjectInstaller : MonoInstaller
     [SerializeField] private GameConfiguration gameConfiguration;
     [Header("Buyers")]
     [SerializeField] private BuyersSpawner buyersSpawner;
-    [FormerlySerializedAs("improvementCanvasLiaison")]
     [Header("Canvas Liaisons")]
     [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
     [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
-    [FormerlySerializedAs("repairAndUpgradesTable")]
-    [FormerlySerializedAs("repairAndImprovementTable")]
     [Header("Repair And Improvement")]
     [SerializeField] private RepairsAndUpgradesTable repairsAndUpgradesTable;
-    [FormerlySerializedAs("hammer")] [SerializeField] private UpgradingAndRepairingHammer upgradingAndRepairingHammer;
+    [SerializeField] private UpgradingAndRepairingHammer upgradingAndRepairingHammer;
 
     public override void InstallBindings()
     {

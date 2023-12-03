@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe774ca49b2f4068864a463dd3ca1b32, type: 3}
   m_Name: ActionsWithTransformSettings
   m_EditorClassIdentifier: 
-  <MovingObjectsTime>k__BackingField: 0.5
+  <MovingPickableObjectTime>k__BackingField: 0.5
+  <MovingPickableObjectTimeDelay>k__BackingField: 0.6
+  <RotationObject360DegreesTime>k__BackingField: 1

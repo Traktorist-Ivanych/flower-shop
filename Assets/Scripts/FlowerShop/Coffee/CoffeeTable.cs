@@ -1,76 +1,79 @@
 using System.Collections;
+using DG.Tweening;
+using FlowerShop.Settings;
 using PlayerControl;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-public class CoffeeTable : FlowerTable
+namespace FlowerShop.Coffee
 {
-    [Inject] private readonly PlayerComponents playerComponents;
-    [Inject] private readonly GameConfiguration gameConfiguration;
-    [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
-    [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
-    [Inject] private readonly PlayerMoney playerMoney;
-
-    [SerializeField] private CoffeeCap coffeeCap;
-    [SerializeField] private Transform coffeeGrinderTransform;
-    [SerializeField] private Transform coffeeCapOnTableTransform;
-
-    private bool isCoffeeMaking;
-
-    private void Update()
+    public class CoffeeTable : FlowerTable
     {
-        // Replace with dotween StartAnimation
-        if (isCoffeeMaking)
+        [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly CoffeeSettings coffeeSettings;
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
+        [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
+        [Inject] private readonly PlayerMoney playerMoney;
+        
+        [SerializeField] private Transform coffeeGrinderTransform;
+        [SerializeField] private CoffeeCap coffeeCap;
+        [SerializeField] private Transform coffeeCapOnTableTransform;
+        [SerializeField] private AnimationClip statMakingCoffeeAnimationClip;
+        [SerializeField] private AnimationClip drinkCoffeeAnimationClip;
+
+        private Tween coffeeGrinderRotation;
+
+        private void Awake()
         {
-            coffeeGrinderTransform.Rotate(Vector3.forward, gameConfiguration.ObjectsRotateDegreesPerSecond * Time.deltaTime);
+            coffeeGrinderRotation = coffeeGrinderTransform.DORotate(
+                endValue: new Vector3(0,360,0),
+                duration: actionsWithTransformSettings.RotationObject360DegreesTime,
+                RotateMode.WorldAxisAdd)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1);
+            
+            coffeeGrinderRotation.Pause();
         }
-    }
 
-    public override void ExecuteClickableAbility()
-    {
-        if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull && 
-            !playerCoffeeEffect.IsCoffeeEffectActive)
+        public override void ExecuteClickableAbility()
         {
-            SetPlayerDestination();
+            if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull && 
+                !playerCoffeeEffect.IsCoffeeEffectActive)
+            {
+                SetPlayerDestination();
+            }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        coffeeCanvasLiaison.CoffeeCanvas.enabled = true;
-    }
+        public override void ExecutePlayerAbility()
+        {
+            coffeeCanvasLiaison.CoffeeCanvas.enabled = true;
+        }
 
-    public void MakeCoffe()
-    {
-        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeeTrigger);
-        playerMoney.TakePlayerMoney(gameConfiguration.CoffePrice);
-        StartCoroutine(MakeCoffeeProcess());
-    }
+        public IEnumerator MakeCoffeeProcess()
+        {
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeeTrigger);
+            
+            yield return new WaitForSeconds(statMakingCoffeeAnimationClip.length);
+            coffeeGrinderRotation.Play();
 
-    private IEnumerator MakeCoffeeProcess()
-    {
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        isCoffeeMaking = true;
+            yield return new WaitForSeconds(coffeeSettings.CoffeeGrinderRotationDuration);
+            coffeeGrinderRotation.Pause();
+            coffeeCap.FillCoffeeCap();
 
-        // 4 - should be in settings
-        yield return new WaitForSeconds(4);
-        isCoffeeMaking = false;
-        coffeeCap.FillCoffeeCap();
+            yield return new WaitForSeconds(coffeeSettings.CoffeeLiquidMovingTime);
+            coffeeCap.TakeInPlayerHandsAndKeepPlayerBusy();
 
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        coffeeCap.TakeInPlayerHandsAndKeepPlayerBusy();
+            yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeeTrigger);
 
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeeTrigger);
+            yield return new WaitForSeconds(coffeeSettings.StartDrinkingCoffeeTimeDelay);
+            coffeeCap.EmptyCoffeeCap();
+            playerMoney.TakePlayerMoney(coffeeSettings.CoffeePrice);
+            playerCoffeeEffect.StartCoffeeEffect();
 
-        // should be in settings
-        yield return new WaitForSeconds(0.35f);
-        coffeeCap.EmptyCoffeeCap();
-        playerCoffeeEffect.StartCoffeeEffect();
-
-        // either animation event either get time through animation clip
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay * 2);
-        coffeeCap.PutOnTableAndSetPlayerFree(coffeeCapOnTableTransform);
+            yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);
+            coffeeCap.PutOnTableAndSetPlayerFree(coffeeCapOnTableTransform);
+        }
     }
 }

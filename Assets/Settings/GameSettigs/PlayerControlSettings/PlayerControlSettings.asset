@@ -20,3 +20,4 @@ MonoBehaviour:
   <PlayerNavAgentCoffeeAngularSpeed>k__BackingField: 1000
   <PlayerNavAgentCoffeeAcceleration>k__BackingField: 100
   <PlayerMovingCoffeeRotation>k__BackingField: 10
+  <CoffeeEffectDurationTime>k__BackingField: 600

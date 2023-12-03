@@ -28,12 +28,12 @@ namespace FlowerShop.PickableObjects.Moving
         {
             transform.DOMove(
                     endValue: finishTransform.position, 
-                    duration: actionsWithTransformSettings.MovingObjectsTime)
+                    duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(FinishMoving);
             
             transform.DORotateQuaternion(
                     endValue: finishTransform.rotation, 
-                    duration: actionsWithTransformSettings.MovingObjectsTime);
+                    duration: actionsWithTransformSettings.MovingPickableObjectTime);
         }
 
         private void FinishMoving()

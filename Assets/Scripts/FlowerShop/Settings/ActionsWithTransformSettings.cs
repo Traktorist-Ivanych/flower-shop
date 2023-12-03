@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FlowerShop.Settings
 {
@@ -7,7 +8,23 @@ namespace FlowerShop.Settings
                      order = 1)]
     public class ActionsWithTransformSettings : ScriptableObject
     {
-        [field: Tooltip("Moving time into player's hands and back to table for all pickable objects.")]
-        [field: SerializeField] public float MovingObjectsTime { get; private set; }
+        [field: Tooltip("Time, it takes for moving pickable object into player's hands and back to table " +
+                        "Important: depends on PlayerAnimation!")]
+        [field: SerializeField] public float MovingPickableObjectTime { get; private set; }
+        
+        [field: Tooltip("Time delay for successfully moving pickable object into player's hands and back to table")]
+        [field: SerializeField] public float MovingPickableObjectTimeDelay { get; private set; }
+        
+        [field: Tooltip("Time, it takes for rotation object 360 degrees around it's axis")]
+        [field: SerializeField] public float RotationObject360DegreesTime { get; private set; }
+
+        private void OnValidate()
+        {
+            if (MovingPickableObjectTimeDelay < MovingPickableObjectTime + 0.1f)
+            {
+                Debug.LogWarning("MovingPickableObjectTimeDelay can't be less then MovingPickableObjectTime + 0.1f");
+                MovingPickableObjectTimeDelay = MovingPickableObjectTime + 0.1f;
+            }
+        }
     }
 }

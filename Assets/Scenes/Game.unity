@@ -47463,6 +47463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionsWithTransformSettings: {fileID: 11400000, guid: c8b3dc2ef68cf564baaf48468407ba88, type: 2}
+  coffeeSettings: {fileID: 11400000, guid: 266fd4f9b53dac540b9381ce2a838a3d, type: 2}
 --- !u!1001 &2008704987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65062,6 +65063,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 919132147897302646}
+    - target: {fileID: 8819392132603883600, guid: 1f506f5bba4c1d0479874786697f8469, type: 3}
+      propertyPath: viewModelPropertyName
+      value: FlowerShop.Coffee.CoffeeCanvasLiaison.CoffeePrice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

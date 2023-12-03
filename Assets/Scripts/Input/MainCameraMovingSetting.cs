@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Input
 {
@@ -15,5 +16,24 @@ namespace Input
         [field: SerializeField] public float MaxPositionY { get; private set; }
         [field: SerializeField] public float MinPositionZ { get; private set; }
         [field: SerializeField] public float MaxPositionZ { get; private set; }
+
+        private void OnValidate()
+        {
+            if (MinPositionX > MaxPositionX)
+            {
+                Debug.LogWarning("MinPositionX can't be more then MaxPositionX");
+                MinPositionX = MaxPositionX;
+            }
+            if (MinPositionY > MaxPositionY)
+            {
+                Debug.LogWarning("MinPositionY can't be more then MaxPositionY");
+                MinPositionY = MaxPositionY;
+            }
+            if (MinPositionZ > MaxPositionZ)
+            {
+                Debug.LogWarning("MinPositionZ can't be more then MaxPositionZ");
+                MinPositionX = MaxPositionX;
+            }
+        }
     }
 }
