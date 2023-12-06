@@ -1,18 +1,19 @@
 using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 [RequireComponent(typeof(Animator))]
 public class FlowerSaleTable : FlowerTable
 {
-    [Inject] private readonly FlowerSaleTablesForByers flowerSaleTablesForByers;
-    [Inject] private readonly FlowersForSaleCoefCalculator flowersForSaleCoefCalculator;
+    [Inject] private readonly FlowerSaleTablesForCustomers flowerSaleTablesForCustomers;
+    [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
     [Inject] private readonly PlayerComponents playerComponents;
     [Inject] private readonly PlayerMoney playerMoney;
 
     [SerializeField] private Transform tablePotTransform;
-    [SerializeField] private Transform buyerDestinationTarget;
+    [FormerlySerializedAs("buyerDestinationTarget")] [SerializeField] private Transform customerDestinationTarget;
     [SerializeField] private MeshRenderer salableSoilRenderer;
     [SerializeField] private MeshRenderer salableFlowerRenderer;
 
@@ -23,9 +24,9 @@ public class FlowerSaleTable : FlowerTable
     private MeshFilter salableFlowerMeshFilter;
     private bool isFlowerOnSaleTable;
 
-    public Transform BuyerDestinationTarget
+    public Transform CustomerDestinationTarget
     {
-        get => buyerDestinationTarget;
+        get => customerDestinationTarget;
     }
 
     public Transform TargetToLookAt
@@ -87,20 +88,20 @@ public class FlowerSaleTable : FlowerTable
 
         isFlowerOnSaleTable = true;
 
-        flowersForSaleCoefCalculator.AddFlowerSaleTableWithFLowerInList(this);
+        flowersForSaleCoeffCalculator.AddFlowerSaleTableWithFLowerInList(this);
     }
 
     public void SetPlayerFree()
     {
         playerBusyness.SetPlayerFree();
-        flowerSaleTablesForByers.AddSaleTableWithFlower(this);
+        flowerSaleTablesForCustomers.AddSaleTableWithFlower(this);
     }
 
     public void SaleFlower()
     {
         salableSoilRenderer.enabled = false;
         salableFlowerRenderer.enabled = false;
-        flowersForSaleCoefCalculator.RemoveFlowerSaleTableWithoutFLowerFromList(this);
+        flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFLowerFromList(this);
         isFlowerOnSaleTable = false;
         playerMoney.AddPlayerMoney(flowerInfoForSale.FlowerSellingPrice);
     }

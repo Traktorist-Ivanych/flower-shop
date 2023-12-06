@@ -1,4 +1,5 @@
 using FlowerShop.Coffee;
+using FlowerShop.Customers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Upgrades;
 using PlayerControl;
@@ -20,13 +21,15 @@ public class ZenjectInstaller : MonoInstaller
     [SerializeField] private PlayerCoffeeEffect playerCoffeeEffect;
     [Header("Crossing")]
     [SerializeField] private FlowersContainer flowersContainer;
+    [FormerlySerializedAs("flowersForSaleCoefCalculator")]
     [Header("Sale")]
-    [SerializeField] private FlowersForSaleCoefCalculator flowersForSaleCoefCalculator;
-    [SerializeField] private FlowerSaleTablesForByers flowerSaleTablesForByers;
+    [SerializeField] private FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
+    [FormerlySerializedAs("flowerSaleTablesForByers")] [SerializeField] private FlowerSaleTablesForCustomers flowerSaleTablesForCustomers;
     [Header("Configuration")]
     [SerializeField] private GameConfiguration gameConfiguration;
+    [FormerlySerializedAs("buyersSpawner")]
     [Header("Buyers")]
-    [SerializeField] private BuyersSpawner buyersSpawner;
+    [SerializeField] private CustomersSpawner customersSpawner;
     [Header("Canvas Liaisons")]
     [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
     [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
@@ -47,12 +50,12 @@ public class ZenjectInstaller : MonoInstaller
 
         Container.Bind<FlowersContainer>().FromInstance(flowersContainer).AsSingle().NonLazy();
 
-        Container.Bind<FlowersForSaleCoefCalculator>().FromInstance(flowersForSaleCoefCalculator).AsSingle().NonLazy();
-        Container.Bind<FlowerSaleTablesForByers>().FromInstance(flowerSaleTablesForByers).AsSingle().NonLazy();
+        Container.Bind<FlowersForSaleCoeffCalculator>().FromInstance(flowersForSaleCoeffCalculator).AsSingle().NonLazy();
+        Container.Bind<FlowerSaleTablesForCustomers>().FromInstance(flowerSaleTablesForCustomers).AsSingle().NonLazy();
 
         Container.Bind<GameConfiguration>().FromInstance(gameConfiguration).AsSingle().NonLazy();
 
-        Container.Bind<BuyersSpawner>().FromInstance(buyersSpawner).AsSingle().NonLazy();
+        Container.Bind<CustomersSpawner>().FromInstance(customersSpawner).AsSingle().NonLazy();
 
         Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
         Container.Bind<CoffeeCanvasLiaison>().FromInstance(coffeeCanvasLiaison).AsSingle().NonLazy();

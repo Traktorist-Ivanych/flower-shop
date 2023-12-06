@@ -1,3 +1,4 @@
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +12,9 @@ namespace PlayerControl
         [HideInInspector, SerializeField] private PlayerMoving playerMoving;
 
         private float currentCoffeeEffectDuration;
-
+        
+        private readonly CompositeDisposable coffeeTimerCompositeDisposable = new();
+        
         public bool IsCoffeeEffectActive { get; private set; }
 
         private void OnValidate()
@@ -19,24 +22,23 @@ namespace PlayerControl
             playerMoving = GetComponent<PlayerMoving>();
         }
 
-        private void Update()
-        {
-            if (IsCoffeeEffectActive)
-            {
-                currentCoffeeEffectDuration += Time.deltaTime;
-
-                if (currentCoffeeEffectDuration >= playerControlSettings.CoffeeEffectDurationTime)
-                {
-                    currentCoffeeEffectDuration = 0;
-                    FinishCoffeeEffect();
-                }
-            }
-        }
-
         public void StartCoffeeEffect()
         {
             IsCoffeeEffectActive = true;
             playerMoving.SetCoffeeNavAgentSetting();
+
+            Observable.EveryUpdate().Subscribe( updateCoffeeEffectTimer =>
+            {
+                currentCoffeeEffectDuration += Time.deltaTime;
+                
+                if (currentCoffeeEffectDuration >= playerControlSettings.CoffeeEffectDurationTime)
+                {
+                    currentCoffeeEffectDuration = 0;
+                    FinishCoffeeEffect();
+                    coffeeTimerCompositeDisposable.Clear();
+                }
+                
+            }).AddTo(coffeeTimerCompositeDisposable);
         }
 
         private void FinishCoffeeEffect()
