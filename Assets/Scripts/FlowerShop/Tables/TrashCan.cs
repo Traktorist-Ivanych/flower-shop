@@ -2,6 +2,7 @@ using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class TrashCan : FlowerTable
@@ -12,7 +13,7 @@ public class TrashCan : FlowerTable
     [SerializeField] private MeshRenderer flowerRenderer;
     [SerializeField] private MeshRenderer soilRenderer;
     [SerializeField] private MeshRenderer weedRenderer;
-    [SerializeField] private Flower flowerEmpty;
+    [FormerlySerializedAs("flowerEmpty")] [SerializeField] private FlowerName flowerNameEmpty;
 
     private Pot playerPot;
     private MeshFilter flowerMeshFilter;
@@ -43,7 +44,7 @@ public class TrashCan : FlowerTable
         playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
         trashCanAnimator.SetTrigger(Throw);
 
-        if (playerPot.PlantedFlowerInfo.Flower != flowerEmpty)
+        if (playerPot.PlantedFlowerInfo.FlowerName != flowerNameEmpty)
         {
             flowerRenderer.enabled = true;
             flowerMeshFilter.mesh = playerPot.PotObjects.FlowerMeshFilter.mesh;

@@ -1,6 +1,7 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FlowerGrowingTable : UpgradableBreakableFlowerTable
 {
@@ -9,7 +10,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
     [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
     [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
     [SerializeField] private WeedPlanter weedPlanter;
-    [SerializeField] private Flower flowerEmpty;
+    [FormerlySerializedAs("flowerEmpty")] [SerializeField] private FlowerName flowerNameEmpty;
 
     private delegate void FlowerGrowingTableAction();
     private event FlowerGrowingTableAction FlowerGrowingTableEvent;
@@ -81,7 +82,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
                 {
                     potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
                     if (potOnTable.GrowingRoom == growingRoom &&
-                        potOnTable.PlantedFlowerInfo.Flower != flowerEmpty && potOnTable.FlowerGrowingLvl < 3)
+                        potOnTable.PlantedFlowerInfo.FlowerName != flowerNameEmpty && potOnTable.FlowerGrowingLvl < 3)
                     {
                         SetPlayerDestination();
                         FlowerGrowingTableEvent = null;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <FlowerNameRus>k__BackingField: "\u041E\u0434\u0443\u0432\u0430\u043D\u0447\u0438\u043A"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 4ce011b637e49ed4ab92c491538d9c46, type: 3}
-  <Flower>k__BackingField: {fileID: 11400000, guid: c7f867777ebb21a4092727fe8db8c424, type: 2}
+  <FlowerName>k__BackingField: {fileID: 11400000, guid: c7f867777ebb21a4092727fe8db8c424, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <FlowerLvl>k__BackingField: 1
   <FlowerSellingPrice>k__BackingField: 250
@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 4834800637232329843, guid: 71711bbe91779ae4eace2b93530ba67e, type: 3}
   - {fileID: 8942987182951105009, guid: 71711bbe91779ae4eace2b93530ba67e, type: 3}
   - {fileID: 3897647037091232383, guid: 71711bbe91779ae4eace2b93530ba67e, type: 3}
-  <FirstCrossingFlower>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
-  <SecondCrossingFlower>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  <FirstCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  <SecondCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}

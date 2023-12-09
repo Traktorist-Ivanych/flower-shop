@@ -134,8 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6963275d40b0d6a43a5a977a6ab3d427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantingFlower: {fileID: 11400000, guid: ef4433b348803be40ac5c66cb4ee7a70, type: 2}
+  plantingFlowerInfo: {fileID: 11400000, guid: ef4433b348803be40ac5c66cb4ee7a70, type: 2}
   plantingSeedsTable: {fileID: 0}
+  seedButton: {fileID: 3854134507422227796}
 --- !u!1 &237552590679689260
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,8 +858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6963275d40b0d6a43a5a977a6ab3d427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantingFlower: {fileID: 11400000, guid: 5fde77ac81bfafa4186460b8afe4d085, type: 2}
+  plantingFlowerInfo: {fileID: 11400000, guid: 5fde77ac81bfafa4186460b8afe4d085, type: 2}
   plantingSeedsTable: {fileID: 0}
+  seedButton: {fileID: 4755760045223712808}
 --- !u!114 &6894541174241314862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,8 +1142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6963275d40b0d6a43a5a977a6ab3d427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantingFlower: {fileID: 11400000, guid: a87e93ce45366a94f94c55cc3c51b1bc, type: 2}
+  plantingFlowerInfo: {fileID: 11400000, guid: a87e93ce45366a94f94c55cc3c51b1bc, type: 2}
   plantingSeedsTable: {fileID: 0}
+  seedButton: {fileID: 5604781666158312190}
 --- !u!1 &7522814445776496210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,5 +1413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6963275d40b0d6a43a5a977a6ab3d427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantingFlower: {fileID: 11400000, guid: dab2506e4ef7d974291dc0fce71098d4, type: 2}
+  plantingFlowerInfo: {fileID: 11400000, guid: dab2506e4ef7d974291dc0fce71098d4, type: 2}
   plantingSeedsTable: {fileID: 0}
+  seedButton: {fileID: 5186039764673345761}

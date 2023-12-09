@@ -31,10 +31,6 @@ public class GameConfiguration : MonoBehaviour
     public readonly float CrossingFlowerTime = 3;
     public readonly float CrossingFlowerLvlTimeDelta = 10;
 
-    [Header("Flowers For Sale Coef")]
-    public readonly float AllFlowersForSale = 10;
-    public readonly float UniqueFlowersForSale = 5;
-
     [Header("Improvements")]
     public readonly float TableImprovementTime = 10;
 

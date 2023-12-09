@@ -9,8 +9,8 @@ public class PlantingSeedsTable : FlowerTable
     [Inject] private readonly GameConfiguration gameConfiguration;
 
     [SerializeField] private Transform potOnTableTransform;
-    [SerializeField] private Canvas seedsCanvas;
-    [SerializeField] private Flower flowerEmpty;
+    [SerializeField] private Canvas seedsCanvas; 
+    [SerializeField] private FlowerName flowerNameEmpty;
 
     private Pot plantingSeedPot;
 
@@ -21,7 +21,7 @@ public class PlantingSeedsTable : FlowerTable
             plantingSeedPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
 
             if (plantingSeedPot.GrowingRoom == growingRoom &&
-                plantingSeedPot.IsSoilInsidePot && plantingSeedPot.PlantedFlowerInfo.Flower == flowerEmpty)
+                plantingSeedPot.IsSoilInsidePot && plantingSeedPot.PlantedFlowerInfo.FlowerName == flowerNameEmpty)
             {
                 SetPlayerDestination();
             }

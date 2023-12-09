@@ -3,6 +3,7 @@ using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class CrossingTableProcess : UpgradableBreakableFlowerTable
@@ -12,7 +13,7 @@ public class CrossingTableProcess : UpgradableBreakableFlowerTable
 
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private Transform crossingTableBlender;
-    [SerializeField] private Flower flowerEmpty;
+    [FormerlySerializedAs("flowerEmpty")] [SerializeField] private FlowerName flowerNameEmpty;
     
     [Header("Indicators")]
     [SerializeField] private MeshRenderer crossingAbilityRedIndicator;
@@ -97,7 +98,7 @@ public class CrossingTableProcess : UpgradableBreakableFlowerTable
                     if (playerPickableObjectHandler.CurrentPickableObject is Pot)
                     {
                         potForPlanting = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                        if (potForPlanting.IsSoilInsidePot && potForPlanting.PlantedFlowerInfo.Flower == flowerEmpty &&
+                        if (potForPlanting.IsSoilInsidePot && potForPlanting.PlantedFlowerInfo.FlowerName == flowerNameEmpty &&
                             potForPlanting.GrowingRoom == flowerInfoForPlanting.GrowingRoom)
                         {
                             SetPlayerDestination();
@@ -150,10 +151,10 @@ public class CrossingTableProcess : UpgradableBreakableFlowerTable
             secondFlowersCrossingTable.IsPotOnCrossingTable && secondFlowersCrossingTable.GetPotOnTable().FlowerGrowingLvl >= 3)
         {
             flowerInfoForPlanting = flowersContainer.GetFlowerFromCrossingRecipe(
-                firstFlowersCrossingTable.GetPotOnTable().PlantedFlowerInfo.Flower,
-                secondFlowersCrossingTable.GetPotOnTable().PlantedFlowerInfo.Flower);
+                firstFlowersCrossingTable.GetPotOnTable().PlantedFlowerInfo.FlowerName,
+                secondFlowersCrossingTable.GetPotOnTable().PlantedFlowerInfo.FlowerName);
 
-            if (flowerInfoForPlanting.Flower == flowerEmpty)
+            if (flowerInfoForPlanting.FlowerName == flowerNameEmpty)
             {
                 isFlowerReadyForCrossing = false;
             }

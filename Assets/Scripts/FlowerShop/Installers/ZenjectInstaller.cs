@@ -1,5 +1,7 @@
 using FlowerShop.Coffee;
 using FlowerShop.Customers;
+using FlowerShop.Flowers;
+using FlowerShop.FlowerSales;
 using FlowerShop.PickableObjects;
 using FlowerShop.Upgrades;
 using PlayerControl;

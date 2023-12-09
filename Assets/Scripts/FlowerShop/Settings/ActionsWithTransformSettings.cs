@@ -17,6 +17,9 @@ namespace FlowerShop.Settings
         
         [field: Tooltip("Time, it takes for rotation object 360 degrees around it's axis")]
         [field: SerializeField] public float RotationObject360DegreesTime { get; private set; }
+        
+        [field: Tooltip("Height, to which PickableObject jumps, when PlayerAnimator playing Throw animation")]
+        [field: SerializeField] public float PickableObjectDoTweenJumpPower { get; private set; }
 
         private void OnValidate()
         {

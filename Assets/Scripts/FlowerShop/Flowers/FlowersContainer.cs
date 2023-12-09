@@ -1,56 +1,57 @@
 using System.Collections.Generic;
-using FlowerShop.Flowers;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Zenject;
 
-public class FlowersContainer : MonoBehaviour
+namespace FlowerShop.Flowers
 {
-    [FormerlySerializedAs("emptyFlower")] [SerializeField] private FlowerInfo emptyFlowerInfo;
-    [SerializeField] private List<FlowerInfo> playableFlowers;
-
-    private readonly Dictionary<string, FlowerInfo> crossingRecipes = new();
-
-    public FlowerInfo EmptyFlowerInfo
+    public class FlowersContainer : MonoBehaviour
     {
-        get => emptyFlowerInfo;
-    }
+        [Inject] private readonly FlowersSettings flowersSettings;
+        
+        [field: SerializeField] public FlowerInfo EmptyFlowerInfo { get; private set; }
+        
+        [SerializeField] private List<FlowerInfo> allFlowersInfo;
 
-    private void Start()
-    {
-        foreach (FlowerInfo flower in playableFlowers)
+        private Dictionary<string, FlowerInfo> crossingRecipes;
+
+        public void Awake()
         {
-            if (flower.FlowerLvl > 1)
+            crossingRecipes = new Dictionary<string, FlowerInfo>();
+            
+            foreach (FlowerInfo flowerInfo in allFlowersInfo)
             {
-                string crossingRecipe = GetCrossingRecipe(flower.FirstCrossingFlower, flower.SecondCrossingFlower);
+                if (flowerInfo.FlowerLvl >= flowersSettings.CrossingFlowerMinLvl)
+                {
+                    string crossingRecipe = GetCrossingRecipe(
+                        firstFlowerName: flowerInfo.FirstCrossingFlowerName, 
+                        secondFlowerName: flowerInfo.SecondCrossingFlowerName);
 
-                crossingRecipes.Add(crossingRecipe, flower);
+                    crossingRecipes.Add(crossingRecipe, flowerInfo);
+                }
             }
         }
-    }
 
-    public FlowerInfo GetFlowerFromCrossingRecipe(Flower firstFlower, Flower secondFlower)
-    {
-        string crossingRecipe = GetCrossingRecipe(firstFlower, secondFlower);
-
-        if (crossingRecipes.TryGetValue(crossingRecipe, out FlowerInfo recipe))
+        public FlowerInfo GetFlowerFromCrossingRecipe(FlowerName firstFlowerName, FlowerName secondFlowerName)
         {
-            return recipe;
+            string crossingRecipe = GetCrossingRecipe(firstFlowerName, secondFlowerName);
+
+            crossingRecipes.TryGetValue(crossingRecipe, out FlowerInfo flowerInfoFromRecipe);
+
+            return flowerInfoFromRecipe == null 
+                ? EmptyFlowerInfo
+                : flowerInfoFromRecipe;
         }
-        else
+
+        private string GetCrossingRecipe(FlowerName firstFlowerName, FlowerName secondFlowerName)
         {
-            return emptyFlowerInfo;
+            List<string> flowersForCrossingRecipe = new()
+            {
+                firstFlowerName.FlowerNameString,
+                secondFlowerName.FlowerNameString
+            };
+            flowersForCrossingRecipe.Sort();
+
+            return flowersForCrossingRecipe[0] + flowersForCrossingRecipe[1];
         }
-    }
-
-    private string GetCrossingRecipe(Flower firstFlower, Flower secondFlower)
-    {
-        List<string> crossableFlowers = new()
-        {
-            firstFlower.FlowerName,
-            secondFlower.FlowerName
-        };
-        crossableFlowers.Sort();
-
-        return crossableFlowers[0] + crossableFlowers[1];
     }
 }

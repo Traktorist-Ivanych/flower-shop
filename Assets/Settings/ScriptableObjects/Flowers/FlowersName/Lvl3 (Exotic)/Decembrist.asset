@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f54dded61f42d3b7ba5795187d7151, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ac10a50adb37124d8acfa8f34ca0f68, type: 3}
   m_Name: Decembrist
   m_EditorClassIdentifier: 
-  <FlowerName>k__BackingField: Decembrist
+  <FlowerNameString>k__BackingField: Decembrist

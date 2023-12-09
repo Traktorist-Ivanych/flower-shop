@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac10a50adb37124d8acfa8f34ca0f68, type: 3}
-  m_Name: Orchid
+  m_Script: {fileID: 11500000, guid: 193023b51b96419d9057f9ff38315445, type: 3}
+  m_Name: FlowersSettings
   m_EditorClassIdentifier: 
-  <FlowerNameString>k__BackingField: Orchid
+  <CrossingFlowerMinLvl>k__BackingField: 2
+  <MaxFlowerGrowingLvl>k__BackingField: 3

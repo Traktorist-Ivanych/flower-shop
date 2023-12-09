@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FlowerShop.FlowerSales;
 using ModestTree;
 using UnityEngine;
 using Zenject;
@@ -24,10 +25,10 @@ namespace FlowerShop.Customers
             if (currentSpawnTime <= 0)
             {
                 minSpawnTime = customersSettings.MinSpawnTime -
-                               customersSettings.MinSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoef;
+                               customersSettings.MinSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
 
                 maxSpawnTime = customersSettings.MaxSpawnTime -
-                               customersSettings.MaxSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoef;
+                               customersSettings.MaxSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
 
                 currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
                 

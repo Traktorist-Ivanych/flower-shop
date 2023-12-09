@@ -111,8 +111,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3000667596827309929}
+  m_Children: []
   m_Father: {fileID: 2216170378978974682}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!1 &2216170378978974681
@@ -126,7 +125,6 @@ GameObject:
   - component: {fileID: 2216170378978974682}
   - component: {fileID: 2216170378978974684}
   - component: {fileID: 2216170378978974683}
-  - component: {fileID: 2216170378978974685}
   m_Layer: 3
   m_Name: FlowerSaleTable
   m_TagString: Untagged
@@ -149,6 +147,7 @@ Transform:
   m_Children:
   - {fileID: 2216170379441180577}
   - {fileID: 2216170379212808044}
+  - {fileID: 3000667596827309929}
   - {fileID: 2216170378255706664}
   - {fileID: 2020611340397132982}
   m_Father: {fileID: 0}
@@ -189,32 +188,14 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 2216170379441180577}
   targetToLookAt: {fileID: 2216170379212808044}
-  tablePotTransform: {fileID: 2216170378255706664}
-  buyerDestinationTarget: {fileID: 2020611340397132982}
+  <TargetToLookAt>k__BackingField: {fileID: 2216170379212808044}
+  <TablePotTransform>k__BackingField: {fileID: 2216170378255706664}
+  <CustomerDestinationTarget>k__BackingField: {fileID: 2020611340397132982}
+  <SalableSoilMeshFilter>k__BackingField: {fileID: 6920019480624781674}
+  <SalableFlowerMeshFilter>k__BackingField: {fileID: 3619778791047180250}
   salableSoilRenderer: {fileID: 5988138220798341882}
   salableFlowerRenderer: {fileID: 1371709945709243080}
---- !u!95 &2216170378978974685
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2216170378978974681}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 553f69dc8805e514fb5c89cd104f25ac, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  salableSoilTransform: {fileID: 3000667596827309929}
 --- !u!1 &2216170379212808043
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020611340397132982}
   m_Layer: 0
-  m_Name: BuyerDestinationTarget
+  m_Name: CustomerDestinationTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,13 +315,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3985994178049820737}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 100.000015, y: 100.000015, z: 100.000015}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7107598948610057611}
-  m_Father: {fileID: 2216170378255706664}
+  m_Father: {fileID: 2216170378978974682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6920019480624781674
 MeshFilter:
