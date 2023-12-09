@@ -15,11 +15,14 @@ namespace FlowerShop.Settings
         [field: Tooltip("Time delay for successfully moving pickable object into player's hands and back to table")]
         [field: SerializeField] public float MovingPickableObjectTimeDelay { get; private set; }
         
-        [field: Tooltip("Time, it takes for rotation object 360 degrees around it's axis")]
+        [field: Tooltip("Time, it takes for rotate object on 360 degrees around it's axis")]
         [field: SerializeField] public float RotationObject360DegreesTime { get; private set; }
         
         [field: Tooltip("Height, to which PickableObject jumps, when PlayerAnimator playing Throw animation")]
         [field: SerializeField] public float PickableObjectDoTweenJumpPower { get; private set; }
+        
+        [field: Tooltip("Default number of jumps, when DOTween.Jump is used")]
+        [field: SerializeField] public int DefaultDoTweenJumpsNumber { get; private set; }
 
         private void OnValidate()
         {

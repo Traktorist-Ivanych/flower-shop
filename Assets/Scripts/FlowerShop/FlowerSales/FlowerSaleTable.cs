@@ -42,11 +42,11 @@ namespace FlowerShop.FlowerSales
 
         public override void ExecuteClickableAbility()
         {
-            if (playerBusyness.IsPlayerFree && !isFlowerOnSaleTable && 
-                playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 potForSale = currentPot;
-                if (potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && !potForSale.IsWeedInPot)
+                
+                if (CanFlowerBePuttedOnFlowerSaleTable())
                 {
                     SetPlayerDestination();
                 }
@@ -69,7 +69,7 @@ namespace FlowerShop.FlowerSales
             salableSoilTransform.DOJump(
                 endValue: TablePotTransform.position, 
                 jumpPower: actionsWithTransformSettings.PickableObjectDoTweenJumpPower, 
-                numJumps: 1, 
+                numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber, 
                 duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(() => playerBusyness.SetPlayerFree());
 
@@ -88,6 +88,14 @@ namespace FlowerShop.FlowerSales
             flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
             isFlowerOnSaleTable = false;
             playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
+        }
+
+        private bool CanFlowerBePuttedOnFlowerSaleTable()
+        {
+           return playerBusyness.IsPlayerFree && 
+                  !isFlowerOnSaleTable && 
+                  potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && 
+                  !potForSale.IsWeedInPot;
         }
     }
 }

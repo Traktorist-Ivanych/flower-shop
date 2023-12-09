@@ -1,94 +1,84 @@
+using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Settings;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-/// <summary>
-/// better to add description comment (how it is used in gameplay) or rename CollectablesFlowerTables
-/// </summary>
-public class FlowerTableForCollection : FlowerTable
+namespace FlowerShop.FlowersForCollection
 {
-    [Inject] private readonly PlayerComponents playerComponents;
-
-    [SerializeField] private Transform soilTransitionalPosition;
-    [SerializeField] private Transform soilTablePosition;
-    [SerializeField] private MeshRenderer soilMeshRenderer;
-    [SerializeField] private MeshRenderer flowerMeshRenderer;
-    [SerializeField] private FlowersForCollection flowersForCollection;
-    [SerializeField] private float soilMovingToTransitionalPositionTime;
-    [SerializeField] private float soilMovingToTablePositionTime;
-
-    private Pot playerPot;
-    private FlowerInfo flowerInfoForCollection;
-    private Transform soilTransform;
-    private MeshFilter flowerMeshFilter;
-    private bool isSoilNeedForMovingToTransitionalPosition;
-    private bool isSoilNeedForMovingToTablePosition;
-    private float currentMovingTime;
-
-    private void Start()
+    /// <summary>
+    /// Table, on which player can put flower for his own flower collection
+    /// </summary>
+    public class FlowerTableForCollection : FlowerTable
     {
-        soilTransform = soilMeshRenderer.GetComponent<Transform>();
-        flowerMeshFilter = flowerMeshRenderer.GetComponent<MeshFilter>();
-    }
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly PlayerComponents playerComponents;
 
-    private void Update()
-    {
-        // dotween and move all 'moving' logic to separate class
-        if (isSoilNeedForMovingToTransitionalPosition)
+        [SerializeField] private Transform soilTablePosition;
+        [SerializeField] private MeshRenderer soilMeshRenderer;
+        [SerializeField] private MeshRenderer flowerMeshRenderer;
+        [SerializeField] private FlowersForCollection flowersForCollection;
+
+        [HideInInspector, SerializeField] private Transform soilTransform;
+        [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;
+        
+        private Pot playerPot;
+        private FlowerInfo flowerInfoForCollection;
+
+        private void OnValidate()
         {
-            currentMovingTime += Time.deltaTime;
-            float lerpT = currentMovingTime / soilMovingToTransitionalPositionTime;
-            soilTransform.position = Vector3.Lerp(playerPot.transform.position, soilTransitionalPosition.position, lerpT);
+            soilTransform = soilMeshRenderer.GetComponent<Transform>();
+            flowerMeshFilter = flowerMeshRenderer.GetComponent<MeshFilter>();
+        }
 
-            if (currentMovingTime >= soilMovingToTransitionalPositionTime)
+        public override void ExecuteClickableAbility()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
-                isSoilNeedForMovingToTransitionalPosition = false;
-                currentMovingTime = 0;
-                isSoilNeedForMovingToTablePosition = true;
+                playerPot = currentPot;
+
+                if (CanFlowerBePuttedOnFlowerTableForCollection())
+                {
+                    SetPlayerDestination();
+                }
             }
         }
-        else if (isSoilNeedForMovingToTablePosition)
+
+        public override void ExecutePlayerAbility()
         {
-            currentMovingTime += Time.deltaTime;
-            float lerpT = currentMovingTime / soilMovingToTablePositionTime;
-            soilTransform.position = Vector3.Lerp(soilTransitionalPosition.position, soilTablePosition.position, lerpT);
+            soilMeshRenderer.enabled = true;
+            flowerMeshRenderer.enabled = true;
+            flowerInfoForCollection = playerPot.PlantedFlowerInfo;
+            playerPot.CleanPot();
+            flowerMeshFilter.mesh = flowerInfoForCollection.GetFlowerLvlMesh(flowersSettings.MaxFlowerGrowingLvl);
+            
+            soilTransform.SetPositionAndRotation(
+                position: playerPot.transform.position, 
+                rotation: playerPot.transform.rotation);
 
-            if (currentMovingTime >= soilMovingToTablePositionTime)
-            {
-                isSoilNeedForMovingToTablePosition = false;
-                playerBusyness.SetPlayerFree();
-            }
+            soilTransform.DOJump(
+                    endValue: soilTablePosition.position,
+                    jumpPower: actionsWithTransformSettings.PickableObjectDoTweenJumpPower,
+                    numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber,
+                    duration: actionsWithTransformSettings.MovingPickableObjectTime)
+                .OnComplete(() => playerBusyness.SetPlayerFree());
+            
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
+            
+            flowersForCollection.AddFlowerToCollectionList(flowerInfoForCollection);
         }
-    }
 
-    public override void ExecuteClickableAbility()
-    {
-        if (playerBusyness.IsPlayerFree && flowerInfoForCollection == null &&
-            playerPickableObjectHandler.CurrentPickableObject is Pot)
+        private bool CanFlowerBePuttedOnFlowerTableForCollection()
         {
-            playerPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
-
-            if (playerPot.GrowingRoom == growingRoom && playerPot.FlowerGrowingLvl >= 3 && !playerPot.IsWeedInPot &&
-                flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo))
-            {
-                SetPlayerDestination();
-            }
+            return playerBusyness.IsPlayerFree && 
+                   playerPot.GrowingRoom == growingRoom &&
+                   playerPot.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
+                   !playerPot.IsWeedInPot &&
+                   flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo) && 
+                   flowerInfoForCollection == null;
         }
-    }
-
-    public override void ExecutePlayerAbility()
-    {
-        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
-        flowerInfoForCollection = playerPot.PlantedFlowerInfo;
-        flowersForCollection.AddFlowerToCollectionList(flowerInfoForCollection);
-        playerPot.CleanPot();
-
-        soilMeshRenderer.enabled = true;
-        flowerMeshRenderer.enabled = true;
-        flowerMeshFilter.mesh = flowerInfoForCollection.GetFlowerLvlMesh(3);
-        soilTransform.SetPositionAndRotation(playerPot.transform.position, playerPot.transform.rotation);
-        isSoilNeedForMovingToTransitionalPosition = true;
     }
 }

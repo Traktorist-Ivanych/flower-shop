@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff74b018bb3400086c2227b6c145cb0, type: 3}
   m_Name: FlowersForSaleCoeffCalculatorSettings
   m_EditorClassIdentifier: 
-  <AllFlowersForSale>k__BackingField: 0
-  <UniqueFlowersForSale>k__BackingField: 0
+  <AllFlowersForSale>k__BackingField: 10
+  <UniqueFlowersForSale>k__BackingField: 5

@@ -16,3 +16,4 @@ MonoBehaviour:
   <MovingPickableObjectTimeDelay>k__BackingField: 0.6
   <RotationObject360DegreesTime>k__BackingField: 1
   <PickableObjectDoTweenJumpPower>k__BackingField: 0.3
+  <DefaultDoTweenJumpsNumber>k__BackingField: 1
