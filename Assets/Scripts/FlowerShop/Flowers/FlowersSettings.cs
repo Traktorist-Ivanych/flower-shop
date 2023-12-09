@@ -12,5 +12,8 @@ namespace FlowerShop.Flowers
         [field: SerializeField] public int CrossingFlowerMinLvl { get; private set; }
         
         [field: SerializeField] public int MaxFlowerGrowingLvl { get; private set; }
+        
+        [field: Tooltip("Determines what level will be set when flower is planted")]
+        [field: SerializeField] public int PrimaryFlowerGrowingLvl { get; private set; }
     }
 }

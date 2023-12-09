@@ -45844,6 +45844,8 @@ MonoBehaviour:
   coffeeSettings: {fileID: 11400000, guid: 266fd4f9b53dac540b9381ce2a838a3d, type: 2}
   customersSettings: {fileID: 11400000, guid: 1e8f1e42dc0b3894399a9ef11631d068, type: 2}
   flowersSettings: {fileID: 11400000, guid: 815c3a818e89feb4aa11a4947a279968, type: 2}
+  tablesSettings: {fileID: 11400000, guid: 1d588145db965794aa1c37632e85848d, type: 2}
+  weedSettings: {fileID: 11400000, guid: 2751d0c3ff4739f4bb50b5d94f01ff8a, type: 2}
   flowersForSaleCoeffCalculatorSettings: {fileID: 11400000, guid: d0a23ff482ec40d4f8a5d26530b4f781, type: 2}
 --- !u!1001 &2008704987
 PrefabInstance:

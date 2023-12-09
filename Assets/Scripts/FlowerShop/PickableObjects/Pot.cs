@@ -1,6 +1,8 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Helpers;
 using FlowerShop.PickableObjects.Moving;
+using FlowerShop.Tables;
+using FlowerShop.Weeds;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
@@ -13,85 +15,173 @@ namespace FlowerShop.PickableObjects
     {
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerComponents playerComponents;
-        [Inject] private readonly GameConfiguration gameConfiguration;
+        [Inject] private readonly WeedSettings weedSettings;
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly FlowersContainer flowersContainer;
-
-        [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
-    
+        
         [HideInInspector, SerializeField] private ObjectMoving objectMoving;
     
-        private FlowerInfo plantedFlowerInfo;
-        private PotObjects potObjects;
         private float upGrowingLvlTime;
         private float currentUpGrowingLvlTime;
-        private int flowerGrowingLvl;
+        private float growingLvlTimeProgress;
         private int weedGrowingLvl;
-        private bool isSoilInsidePot;
         private bool isPotOnGrowingTable;
-        private bool isFlowerNeedWater;
-        private bool isWeedInPot;
 
-        public PotObjects PotObjects 
-        { 
-            get => potObjects; 
-        }
+        [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
+        [field: SerializeField] public PotObjects PotObjects { get; private set; }
 
-        public FlowerInfo PlantedFlowerInfo
-        {
-            get => plantedFlowerInfo;
-        }
-
-        public int FlowerGrowingLvl
-        {
-            get => flowerGrowingLvl;
-        }
-
-        public bool IsSoilInsidePot
-        { 
-            get => isSoilInsidePot;
-        }
-
-        public bool IsFlowerNeedWater
-        {
-            get => isFlowerNeedWater;
-        }
-
-        public bool IsWeedInPot
-        {
-            get => isWeedInPot;
-        }
+        public FlowerInfo PlantedFlowerInfo { get; private set; }
+        public int FlowerGrowingLvl { get; private set; }
+        public bool IsSoilInsidePot { get; private set; }
+        public bool IsFlowerNeedWater { get; private set; }
+        public bool IsWeedInPot { get; private set; }
 
         private void OnValidate()
         {
             objectMoving = GetComponent<ObjectMoving>();
+            PotObjects = GetComponent<PotObjects>();
         }
 
         private void Start()
         {
-            // move to awake because we don't need to recashing it on disable/enable
-            potObjects = GetComponent<PotObjects>();
-            upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime;
-            plantedFlowerInfo = flowersContainer.EmptyFlowerInfo;
+            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime;
+            ResetPlantedFlowerInfo();
+            CalculateGrowingLvlTimeProgress();
         }
 
         private void Update()
         {
-            if (isWeedInPot)
+            if (IsWeedInPot)
             {
-                // 3 should be in settings
-                if (weedGrowingLvl < 3 && ShouldGrowingLvlIncrease())
+                if (ShouldWeedGrowingLvlIncrease())
                 {
-                    currentUpGrowingLvlTime = 0; 
+                    ResetGrowingLvlTime();
                     weedGrowingLvl++;
-                    potObjects.SetWeedLvlMesh(weedGrowingLvl);
+                    PotObjects.SetWeedLvlMesh(weedGrowingLvl);
                 }
             }
-            else if (isPotOnGrowingTable && !isFlowerNeedWater && flowerGrowingLvl < 3 && ShouldGrowingLvlIncrease())
+            else if (ShouldWaterIndicatorBeDisplayed())
             {
-                currentUpGrowingLvlTime = 0;
-                isFlowerNeedWater = true;
-                potObjects.ShowWaterIndicator();
+                ResetGrowingLvlTime();
+                IsFlowerNeedWater = true;
+                PotObjects.ShowWaterIndicator();
             }
+        }
+
+        public void FillPotWithSoil()
+        {
+            IsSoilInsidePot = true;
+            PotObjects.ShowSoil();
+        }
+
+        public void PlantSeed(FlowerInfo flowerInfoForPlanting)
+        {
+            PlantedFlowerInfo = flowerInfoForPlanting;
+            ResetFlowerGrowingLvl();
+            ResetGrowingLvlTime();
+            PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+            PotObjects.ShowFlower();
+        }
+
+        public void PlantWeed()
+        {
+            IsWeedInPot = true;
+            ResetWeedGrowingLvl();
+            ResetGrowingLvlTime();
+            PotObjects.ShowWeed();
+            PotObjects.SetWeedLvlMesh(weedGrowingLvl);
+        }
+
+        public void DeleteWeed()
+        {
+            IsWeedInPot = false;
+            ResetWeedGrowingLvl();
+            ResetGrowingLvlTime();
+            PotObjects.HideWeed();
+        }
+
+        public void CleanPot()
+        {
+            IsSoilInsidePot = false;
+            IsFlowerNeedWater = false;
+            IsWeedInPot = false;
+            ResetPlantedFlowerInfo();
+            ResetWeedGrowingLvl();
+            ResetFlowerGrowingLvl();
+            ResetGrowingLvlTime();
+            PotObjects.HideAllPotObjects();
+        }
+
+        public void TakeInPlayerHandsFromGrowingTableAndSetPlayerFree()
+        {
+            isPotOnGrowingTable = false;
+            CalculateGrowingLvlTimeProgress();
+            TakeInPlayerHandsAndSetPlayerFree();
+        }
+
+        public void TakeInPlayerHandsAndSetPlayerFree()
+        {
+            playerPickableObjectHandler.CurrentPickableObject = this;
+            
+            objectMoving.MoveObject(
+                targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
+                setPlayerFree: true);
+        }
+
+        public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
+        {
+            isPotOnGrowingTable = true;
+            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
+            currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
+            PutOnTableAndSetPlayerFree(targetTransform);
+        }
+
+        public void PutOnTableAndKeepPlayerBusy(Transform targetTransform)
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
+                setPlayerFree: false);
+        }
+    
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
+                setPlayerFree: true); 
+        }
+
+        public void PourFlower()
+        {
+            IsFlowerNeedWater = false;
+            PotObjects.HideWaterIndicator();
+            ++FlowerGrowingLvl;
+            PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+
+            ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
+        }
+
+        public void CrossFlower()
+        {
+            --FlowerGrowingLvl;
+            PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+        }
+
+        private bool ShouldWeedGrowingLvlIncrease()
+        {
+            return weedGrowingLvl < weedSettings.MaxWeedGrowingLvl && 
+                   ShouldGrowingLvlIncrease();
+        }
+
+        private bool ShouldWaterIndicatorBeDisplayed()
+        {
+            return isPotOnGrowingTable && 
+                   !IsFlowerNeedWater && 
+                   FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl && 
+                   ShouldGrowingLvlIncrease();
         }
 
         private bool ShouldGrowingLvlIncrease()
@@ -100,107 +190,29 @@ namespace FlowerShop.PickableObjects
             return currentUpGrowingLvlTime >= upGrowingLvlTime;
         }
 
-        public void FillPotWithSoil()
+        private void CalculateGrowingLvlTimeProgress()
         {
-            isSoilInsidePot = true;
-            potObjects.ShowSoil();
+            growingLvlTimeProgress = currentUpGrowingLvlTime / upGrowingLvlTime;
         }
 
-        public void PlantSeed(FlowerInfo flowerInfoForPlanting)
+        private void ResetGrowingLvlTime()
         {
-            plantedFlowerInfo = flowerInfoForPlanting;
-            flowerGrowingLvl = 0;
-            potObjects.SetFlowerLvlMesh(plantedFlowerInfo, flowerGrowingLvl);
-            potObjects.ShowFlower();
+            currentUpGrowingLvlTime = tablesSettings.PrimaryGrowingLvlTime;
         }
 
-        public void PlantWeed()
+        private void ResetWeedGrowingLvl()
         {
-            isWeedInPot = true;
-            weedGrowingLvl = 1;
-            currentUpGrowingLvlTime = 0;
-            potObjects.SetWeedLvlMesh(weedGrowingLvl);
-            potObjects.ShowWeed();
+            weedGrowingLvl = weedSettings.PrimaryWeedGrowingLvl;
         }
 
-        public void DeleteWeed()
+        private void ResetFlowerGrowingLvl()
         {
-            isWeedInPot = false;
-            weedGrowingLvl = 0;
-            currentUpGrowingLvlTime = 0;
-            potObjects.HideWeed();
+            FlowerGrowingLvl = flowersSettings.PrimaryFlowerGrowingLvl;
         }
 
-        public void CleanPot()
+        private void ResetPlantedFlowerInfo()
         {
-            isSoilInsidePot = false;
-            isFlowerNeedWater = false;
-            isWeedInPot = false;
-            plantedFlowerInfo = flowersContainer.EmptyFlowerInfo;
-            weedGrowingLvl = 0;
-            flowerGrowingLvl = 0;
-            currentUpGrowingLvlTime = 0;
-            potObjects.HideAllPotObjects();
-        }
-
-        public void TakeInPlayerHandsFromGrowingTableAndSetPlayerFree()
-        {
-            isPotOnGrowingTable = false;
-            TakeInPlayerHandsAndSetPlayerFree();
-        }
-
-        public void TakeInPlayerHandsAndSetPlayerFree()
-        {
-            playerPickableObjectHandler.CurrentPickableObject = this;
-            objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
-                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
-                setPlayerFree: true);
-        }
-
-        public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
-        {
-            isPotOnGrowingTable = true;
-            if (currentUpGrowingLvlTime > 0)
-            {
-                float currentGrowingLvlTimeCoeff = currentUpGrowingLvlTime / upGrowingLvlTime;
-                upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime - gameConfiguration.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
-                currentUpGrowingLvlTime *= currentGrowingLvlTimeCoeff;
-            }
-            else
-            {
-                upGrowingLvlTime = gameConfiguration.UpGrowingLvlTime - gameConfiguration.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
-            }
-            PutOnTableAndSetPlayerFree(targetTransform);
-        }
-
-        public void PutOnTableAndKeepPlayerBusy(Transform targetTransform)
-        {
-            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
-                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
-                setPlayerFree: false);
-        }
-    
-        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
-        {
-            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
-                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
-                setPlayerFree: true); 
-        }
-
-        public void PourFlower()
-        {
-            isFlowerNeedWater = false;
-            potObjects.HideWaterIndicator();
-            ++flowerGrowingLvl;
-            potObjects.SetFlowerLvlMesh(plantedFlowerInfo, flowerGrowingLvl);
-
-            ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
-        }
-
-        public void CrossFlower()
-        {
-            --flowerGrowingLvl;
-            potObjects.SetFlowerLvlMesh(plantedFlowerInfo, flowerGrowingLvl);
+            PlantedFlowerInfo = flowersContainer.EmptyFlowerInfo;
         }
     }
 }

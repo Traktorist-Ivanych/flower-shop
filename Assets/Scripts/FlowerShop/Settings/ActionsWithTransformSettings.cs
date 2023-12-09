@@ -23,6 +23,9 @@ namespace FlowerShop.Settings
         
         [field: Tooltip("Default number of jumps, when DOTween.Jump is used")]
         [field: SerializeField] public int DefaultDoTweenJumpsNumber { get; private set; }
+        
+        [field: Tooltip("Defines Transform.Rotation (Euler) of indicators, which cannot be rotated")]
+        [field: SerializeField] public Vector3 ConstantIndicatorRotation { get; private set; }
 
         private void OnValidate()
         {

@@ -1,47 +1,39 @@
 using FlowerShop.Flowers;
+using FlowerShop.Settings;
 using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.PickableObjects.Helpers
 {
     public class PotObjects : MonoBehaviour
     {
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        
         [SerializeField] private MeshRenderer flowerRenderer;
         [SerializeField] private MeshRenderer soilRenderer;
         [SerializeField] private MeshRenderer waterIndicator;
         [SerializeField] private MeshRenderer weedRenderer;
         [SerializeField] private Weed weed;
 
-        private MeshFilter flowerMeshFilter;
-        private MeshFilter soilMeshFilter;
-        private MeshFilter weedMeshFilter;
-        private Transform waterIndicatorTransform;
+        [HideInInspector, SerializeField] private Transform waterIndicatorTransform;
 
-        public MeshFilter FlowerMeshFilter
-        {
-            get => flowerMeshFilter;
-        }
+        [field: HideInInspector, SerializeField] public MeshFilter FlowerMeshFilter { get; private set; }
 
-        public MeshFilter SoilMeshFilter
-        {
-            get => soilMeshFilter;
-        }
+        [field: HideInInspector, SerializeField] public MeshFilter SoilMeshFilter { get; private set; }
 
-        public MeshFilter WeedMeshFilter
-        {
-            get => weedMeshFilter;
-        }
+        [field: HideInInspector, SerializeField] public MeshFilter WeedMeshFilter { get; private set; }
 
-        private void Start()
+        private void OnValidate()
         {
-            flowerMeshFilter = flowerRenderer.GetComponent<MeshFilter>();
-            soilMeshFilter = soilRenderer.GetComponent<MeshFilter>();
-            weedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
+            FlowerMeshFilter = flowerRenderer.GetComponent<MeshFilter>();
+            SoilMeshFilter = soilRenderer.GetComponent<MeshFilter>();
+            WeedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
             waterIndicatorTransform = waterIndicator.transform;
         }
 
         private void Update()
         {
-            waterIndicatorTransform.rotation = Quaternion.Euler(-90,180,0);
+            waterIndicatorTransform.rotation = Quaternion.Euler(actionsWithTransformSettings.ConstantIndicatorRotation);
         }
 
         public void ShowSoil()
@@ -84,12 +76,12 @@ namespace FlowerShop.PickableObjects.Helpers
 
         public void SetFlowerLvlMesh(FlowerInfo currentFlowerInfo, int currentGrowingLvl)
         {
-            flowerMeshFilter.mesh = currentFlowerInfo.GetFlowerLvlMesh(currentGrowingLvl);
+            FlowerMeshFilter.mesh = currentFlowerInfo.GetFlowerLvlMesh(currentGrowingLvl);
         }
 
         public void SetWeedLvlMesh(int currentWeedGrowingLvl)
         {
-            weedMeshFilter.mesh = weed.GetWeedLvlMesh(currentWeedGrowingLvl);
+            WeedMeshFilter.mesh = weed.GetWeedLvlMesh(currentWeedGrowingLvl);
         }
     }
 }

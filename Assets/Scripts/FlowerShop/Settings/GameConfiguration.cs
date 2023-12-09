@@ -23,10 +23,6 @@ public class GameConfiguration : MonoBehaviour
     public readonly int WateringsNumberLvlDelta = 3;
     public readonly float ReplenishWateringCanTime = 5;
 
-    [Header("FlowerGrowingTable")]
-    public readonly float UpGrowingLvlTime = 3;
-    public readonly float UpGrowingLvlTableLvlTimeDelta = 10f;
-
     [Header("FlowersCrossingTable")]
     public readonly float CrossingFlowerTime = 3;
     public readonly float CrossingFlowerLvlTimeDelta = 10;

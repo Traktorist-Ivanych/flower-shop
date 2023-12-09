@@ -2,6 +2,8 @@
 using FlowerShop.Customers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowerSales;
+using FlowerShop.Tables;
+using FlowerShop.Weeds;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +15,8 @@ namespace FlowerShop.Settings
         [SerializeField] private CoffeeSettings coffeeSettings;
         [SerializeField] private CustomersSettings customersSettings;
         [SerializeField] private FlowersSettings flowersSettings;
+        [SerializeField] private TablesSettings tablesSettings;
+        [SerializeField] private WeedSettings weedSettings;
         [SerializeField] private FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         
         public override void InstallBindings()
@@ -21,6 +25,8 @@ namespace FlowerShop.Settings
             Container.Bind<CoffeeSettings>().FromInstance(coffeeSettings).AsSingle().NonLazy();
             Container.Bind<CustomersSettings>().FromInstance(customersSettings).AsSingle().NonLazy();
             Container.Bind<FlowersSettings>().FromInstance(flowersSettings).AsSingle().NonLazy();
+            Container.Bind<TablesSettings>().FromInstance(tablesSettings).AsSingle().NonLazy();
+            Container.Bind<WeedSettings>().FromInstance(weedSettings).AsSingle().NonLazy();
             Container.Bind<FlowersForSaleCoeffCalculatorSettings>()
                 .FromInstance(flowersForSaleCoeffCalculatorSettings).AsSingle().NonLazy();
         }
