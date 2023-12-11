@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
 
 // it is not exactly flowerTable, but just table for pots (maybe rename flowerTable to just table)
-public class PotsRack : UpgradableFlowerTable
+public class PotsRack : UpgradableTable
 {
     [SerializeField] private Transform PotObjectsTransform;
     [SerializeField] private List<Pot> pots;
@@ -35,7 +36,7 @@ public class PotsRack : UpgradableFlowerTable
                     PotsRackEvent += TakePot;
                 }
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer && tableLvl < 2)
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && tableLvl < 2)
             {
                 SetPlayerDestination();
                 PotsRackEvent = null;
@@ -64,7 +65,7 @@ public class PotsRack : UpgradableFlowerTable
         Pot takingPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
         pots.Add(takingPot);
         takingPot.PutOnTableAndSetPlayerFree(PotObjectsTransform);
-        playerPickableObjectHandler.ClearPickableObject();
+        playerPickableObjectHandler.ResetPickableObject();
     }
 
     public override void UpgradeTable()

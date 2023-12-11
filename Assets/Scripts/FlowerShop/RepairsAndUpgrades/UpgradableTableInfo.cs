@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FlowerShop.Upgrades
+namespace FlowerShop.RepairsAndUpgrades
 {
     [CreateAssetMenu(fileName = "NewUpgradableTable", menuName = "Upgradable Table Info", order = 51)]
     public class UpgradableTableInfo : ScriptableObject

@@ -15,3 +15,12 @@ MonoBehaviour:
   <PrimaryGrowingLvlTime>k__BackingField: 0
   <UpGrowingLvlTime>k__BackingField: 3
   <UpGrowingLvlTableLvlTimeDelta>k__BackingField: 0.75
+  <WateringsNumber>k__BackingField: 9
+  <WateringsNumberLvlDelta>k__BackingField: 3
+  <ReplenishWateringCanTime>k__BackingField: 2
+  <WateringIndicatorChangeablePart>k__BackingField: 0.95
+  <WateringIndicatorUnchangeablePart>k__BackingField: 0.05
+  <SoilPreparationTime>k__BackingField: 1
+  <SoilPreparationLvlTimeDelta>k__BackingField: 0.25
+  <CrossingFlowerTime>k__BackingField: 3
+  <CrossingFlowerLvlTimeDelta>k__BackingField: 1

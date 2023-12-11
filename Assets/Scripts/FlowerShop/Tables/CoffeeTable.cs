@@ -1,13 +1,15 @@
 using System.Collections;
 using DG.Tweening;
+using FlowerShop.Coffee;
 using FlowerShop.Settings;
+using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-namespace FlowerShop.Coffee
+namespace FlowerShop.Tables
 {
-    public class CoffeeTable : FlowerTable
+    public class CoffeeTable : Table
     {
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly CoffeeSettings coffeeSettings;
@@ -24,12 +26,12 @@ namespace FlowerShop.Coffee
 
         private Tween coffeeGrinderRotation;
 
-        private void Awake()
+        private void Start()
         {
             coffeeGrinderRotation = coffeeGrinderTransform.DORotate(
                 endValue: new Vector3(0,360,0),
-                duration: actionsWithTransformSettings.RotationObject360DegreesTime,
-                RotateMode.WorldAxisAdd)
+                duration: actionsWithTransformSettings.RotationObject360DegreesTime, 
+                mode: RotateMode.WorldAxisAdd)
                 .SetEase(Ease.Linear)
                 .SetLoops(-1);
             

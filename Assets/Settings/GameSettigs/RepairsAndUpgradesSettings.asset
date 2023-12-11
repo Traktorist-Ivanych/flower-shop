@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95984190f88640b8a66654f019e9b9a8, type: 3}
+  m_Name: RepairsAndUpgradesSettings
+  m_EditorClassIdentifier: 
+  <TableUpgradeTime>k__BackingField: 9
+  <MaxUpgradableTableLvl>k__BackingField: 2
+  <TableRepairTime>k__BackingField: 8
+  <SoilPreparationMinQuantity>k__BackingField: 8
+  <SoilPreparationMaxQuantity>k__BackingField: 16
+  <WateringTableMinQuantity>k__BackingField: 9
+  <WateringTableMaxQuantity>k__BackingField: 16
+  <FlowerGrowingTableMinQuantity>k__BackingField: 8
+  <FlowerGrowingTableMaxQuantity>k__BackingField: 16
+  <CrossingTableMinQuantity>k__BackingField: 5
+  <CrossingTableMaxQuantity>k__BackingField: 10

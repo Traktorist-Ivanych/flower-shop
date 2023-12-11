@@ -1,8 +1,9 @@
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class WeedingTable : UpgradableFlowerTable
+public class WeedingTable : UpgradableTable
 {
     [SerializeField] private Transform hoeOnTableTransform;
     [FormerlySerializedAs("hoe")] [SerializeField] private WeedingHoe weedingHoe;
@@ -28,7 +29,7 @@ public class WeedingTable : UpgradableFlowerTable
                 WeedingTableEvent = null;
                 WeedingTableEvent += PutHoeOnWeedingTable;
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer && tableLvl < 2)
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && tableLvl < 2)
             {
                 SetPlayerDestination();
                 WeedingTableEvent = null;
@@ -55,7 +56,7 @@ public class WeedingTable : UpgradableFlowerTable
 
     private void PutHoeOnWeedingTable()
     {
-        playerPickableObjectHandler.ClearPickableObject();
+        playerPickableObjectHandler.ResetPickableObject();
         weedingHoe.PutOnTableAndSetPlayerFree(hoeOnTableTransform);
     }
 }

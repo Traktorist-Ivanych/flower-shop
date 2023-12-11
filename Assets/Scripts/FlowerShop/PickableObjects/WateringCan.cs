@@ -1,5 +1,6 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
+using FlowerShop.Tables;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
@@ -10,10 +11,8 @@ namespace FlowerShop.PickableObjects
     public class WateringCan : MonoBehaviour, IPickableObject
     {
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
-        [Inject] private readonly GameConfiguration gameConfiguration;
+        [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
-    
-        [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
     
         [SerializeField] private Transform wateringCanIndicatorTransform;
         [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
@@ -25,6 +24,8 @@ namespace FlowerShop.PickableObjects
         private int maxWateringsNumber;
         private int wateringCanLvl;
 
+        [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
+        
         public int CurrentWateringsNumber { get; private set; }
 
         private void OnValidate()
@@ -36,23 +37,25 @@ namespace FlowerShop.PickableObjects
 
         private void Start()
         {
-            maxWateringsNumber = gameConfiguration.WateringsNumber;
+            maxWateringsNumber = tablesSettings.WateringsNumber;
             CurrentWateringsNumber = maxWateringsNumber;
         }
 
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
-            objectMoving.MoveObject(targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
-                                    movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
-                                    setPlayerFree: true);
+            objectMoving.MoveObject(
+                targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
+                setPlayerFree: true);
             wateringCanIndicatorMeshRenderer.enabled = true;
             UpdateWateringCanIndicator();
         }
 
         public void PutOnTableAndSetPlayerFree(Transform targetTransform) 
         {
-            objectMoving.MoveObject(targetFinishTransform: targetTransform, 
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
                 setPlayerFree: true);
             wateringCanIndicatorMeshRenderer.enabled = false;
@@ -72,7 +75,7 @@ namespace FlowerShop.PickableObjects
 
         public float ReplenishWateringCanTime()
         {
-            return gameConfiguration.ReplenishWateringCanTime * (maxWateringsNumber - CurrentWateringsNumber) / maxWateringsNumber;
+            return tablesSettings.ReplenishWateringCanTime * (maxWateringsNumber - CurrentWateringsNumber) / maxWateringsNumber;
         }
 
         public void ReplenishWateringCan()
@@ -83,14 +86,16 @@ namespace FlowerShop.PickableObjects
         public void ImproveWateringCan()
         {
             wateringCanLvl++;
-            maxWateringsNumber = gameConfiguration.WateringsNumber + gameConfiguration.WateringsNumberLvlDelta * wateringCanLvl;
+            maxWateringsNumber = tablesSettings.WateringsNumber + tablesSettings.WateringsNumberLvlDelta * wateringCanLvl;
             CurrentWateringsNumber = maxWateringsNumber;
             wateringCanMeshFilter.mesh = wateringCanLvlMeshes[wateringCanLvl - 1];
         }
 
         private void UpdateWateringCanIndicator()
         {
-            float indicatorScaleZ = 0.9f * CurrentWateringsNumber / maxWateringsNumber + 0.1f;
+            float indicatorScaleZ = tablesSettings.WateringIndicatorChangeablePart *
+                CurrentWateringsNumber / maxWateringsNumber +
+                tablesSettings.WateringIndicatorUnchangeablePart;
             wateringCanIndicatorTransform.localScale = new Vector3(1, 1, indicatorScaleZ);
         }
     }

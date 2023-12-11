@@ -2,16 +2,17 @@ using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
+using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-namespace FlowerShop.FlowersForCollection
+namespace FlowerShop.Tables
 {
     /// <summary>
     /// Table, on which player can put flower for his own flower collection
     /// </summary>
-    public class FlowerTableForCollection : FlowerTable
+    public class FlowersForCollectionTable : Table
     {
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
@@ -20,7 +21,7 @@ namespace FlowerShop.FlowersForCollection
         [SerializeField] private Transform soilTablePosition;
         [SerializeField] private MeshRenderer soilMeshRenderer;
         [SerializeField] private MeshRenderer flowerMeshRenderer;
-        [SerializeField] private FlowersForCollection flowersForCollection;
+        [SerializeField] private FlowersForCollection.FlowersForCollection flowersForCollection;
 
         [HideInInspector, SerializeField] private Transform soilTransform;
         [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;

@@ -1,10 +1,11 @@
 using System.Collections;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
 
-public class PlantingSeedsTable : FlowerTable
+public class PlantingSeedsTable : Table
 {
     [Inject] private readonly GameConfiguration gameConfiguration;
 

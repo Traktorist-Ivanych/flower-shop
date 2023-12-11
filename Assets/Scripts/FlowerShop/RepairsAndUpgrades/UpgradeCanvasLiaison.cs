@@ -2,7 +2,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityWeld.Binding;
 
-namespace FlowerShop.Upgrades
+namespace FlowerShop.RepairsAndUpgrades
 {
     [Binding]
     public class UpgradeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged

@@ -1,19 +1,20 @@
-using System.Collections;
-
-public interface IBreakableTable
+namespace FlowerShop.Tables.Interfaces
 {
-    public bool IsTableBroken
+    public interface IBreakableTable
     {
-        get;
+        public bool IsTableBroken
+        {
+            get;
+        }
+
+        public void ShowBreakdownIndicator();
+
+        public void HideBreakdownIndicator();
+
+        public void UseBreakableTable();
+
+        public void FixBreakableFlowerTable(int minQuantity, int maxQuantity);
+
+        public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity);
     }
-
-    public void ShowBreakdownIndicator();
-
-    public void HideBreakdownIndicator();
-
-    public void UseBreakableFlowerTable();
-
-    public void FixBreakableFlowerTable(int minQuantity, int maxQuantity);
-
-    public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity);
 }

@@ -1,10 +1,15 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
+using FlowerShop.Weeds;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
-public class FlowerGrowingTable : UpgradableBreakableFlowerTable
+public class FlowersGrowingTable : UpgradableBreakableTable
 {
+    [Inject] private readonly GameConfiguration gameConfiguration;
+    
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private MeshRenderer growingLightMeshRenderer;
     [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
@@ -29,8 +34,8 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
         growingTableFanTransform = growingTableFanMeshRenderer.GetComponent<Transform>();
 
         SetActionsBeforeBrokenQuantity(
-            gameConfiguration.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-            gameConfiguration.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
     }
 
     private void Update()
@@ -91,7 +96,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
                 }
             }
 
-            if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
+            if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -128,7 +133,7 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
         potOnTable = null;
         isPotOnTable = false;
         growingLightMeshRenderer.enabled = false;
-        UseBreakableFlowerTable();
+        UseBreakableTable();
     }
 
     private void PourPotOnGrowingTable()
@@ -146,14 +151,14 @@ public class FlowerGrowingTable : UpgradableBreakableFlowerTable
         potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
         isPotOnTable = true;
         growingLightMeshRenderer.enabled = true;
-        playerPickableObjectHandler.ClearPickableObject();
+        playerPickableObjectHandler.ResetPickableObject();
         weedPlanter.AddPotInPlantingWeedList(potOnTable);
     }
 
     private void FixFlowerGrowingTable()
     {
         FixBreakableFlowerTable(
-            gameConfiguration.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-            gameConfiguration.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FlowerShop.Tables
 {
@@ -8,11 +9,27 @@ namespace FlowerShop.Tables
         order = 9)]
     public class TablesSettings : ScriptableObject
     {
-        [field: Header("FlowerGrowingTable")]
+        [field: Header("Flowers Growing Table")]
         [field: Tooltip("Determines what GrowingLvlTime will be set when flower or weed " +
                         "will be planted or increased there growing lvl")]
         [field: SerializeField] public float PrimaryGrowingLvlTime { get; private set; }
         [field: SerializeField] public float UpGrowingLvlTime { get; private set; }
         [field: SerializeField] public float UpGrowingLvlTableLvlTimeDelta { get; private set; }
+        
+        
+        [field: Header("Watering Table")]
+        [field: SerializeField] public int WateringsNumber { get; private set; }
+        [field: SerializeField] public int WateringsNumberLvlDelta { get; private set; }
+        [field: SerializeField] public float ReplenishWateringCanTime { get; private set; }
+        [field: SerializeField] public float WateringIndicatorChangeablePart { get; private set; }
+        [field: SerializeField] public float WateringIndicatorUnchangeablePart { get; private set; }
+        
+        [field: Header("Soil Preparation Table")]
+        [field: SerializeField] public float SoilPreparationTime { get; private set; }
+        [field: SerializeField] public float SoilPreparationLvlTimeDelta { get; private set; }
+
+        [field: Header("Flowers Crossing Table")]
+        [field: SerializeField] public float CrossingFlowerTime { get; private set; }
+        [field: SerializeField] public float CrossingFlowerLvlTimeDelta { get; private set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace FlowerShop.Upgrades
+namespace FlowerShop.RepairsAndUpgrades
 {
     public interface IUpgradableTable
     {

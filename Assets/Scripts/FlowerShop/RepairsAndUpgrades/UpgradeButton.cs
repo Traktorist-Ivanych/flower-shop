@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace FlowerShop.Upgrades
+namespace FlowerShop.RepairsAndUpgrades
 {
     public class UpgradeButton : MonoBehaviour
     {
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
-        [Inject] private readonly UpgradingAndRepairingHammer upgradingAndRepairingHammer;
+        [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
 
         [SerializeField] private Button upgradeButton;
 
@@ -34,7 +34,7 @@ namespace FlowerShop.Upgrades
             if (upgradeCanvasLiaison.PriceInt <= playerMoney.CurrentPlayerMoney)
             {
                 playerMoney.TakePlayerMoney(upgradeCanvasLiaison.PriceInt);
-                StartCoroutine(upgradingAndRepairingHammer.ImproveTable());
+                StartCoroutine(repairingAndUpgradingHammer.ImproveTable());
                 upgradeCanvasLiaison.UpgradeCanvas.enabled = false;
             }
         }

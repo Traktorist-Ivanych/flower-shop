@@ -1,28 +1,24 @@
 using DG.Tweening;
 using FlowerShop.Flowers;
+using FlowerShop.FlowerSales;
 using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
+using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-namespace FlowerShop.FlowerSales
+namespace FlowerShop.Tables
 {
-    public class FlowerSaleTable : FlowerTable
+    public class FlowersSaleTable : Table
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
-        [Inject] private readonly FlowerSaleTablesForCustomers flowerSaleTablesForCustomers;
+        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
-        
-        [field: SerializeField] public Transform TargetToLookAt { get; private set; }
-        [field: SerializeField] public Transform TablePotTransform { get; private set; }
-        [field: SerializeField] public Transform CustomerDestinationTarget { get; private set; }
-        [field: HideInInspector, SerializeField] public MeshFilter SalableSoilMeshFilter { get; private set; }
-        [field: HideInInspector, SerializeField] public MeshFilter SalableFlowerMeshFilter { get; private set; }
-        
+
         [SerializeField] private MeshRenderer salableSoilRenderer;
         [SerializeField] private MeshRenderer salableFlowerRenderer;
         
@@ -30,8 +26,15 @@ namespace FlowerShop.FlowerSales
         
         private Pot potForSale;
         private bool isFlowerOnSaleTable;
-
+        
+        [field: SerializeField] public Transform TablePotTransform { get; private set; }
+        [field: SerializeField] public Transform CustomerDestinationTarget { get; private set; }
+        [field: HideInInspector, SerializeField] public MeshFilter SalableSoilMeshFilter { get; private set; }
+        [field: HideInInspector, SerializeField] public MeshFilter SalableFlowerMeshFilter { get; private set; }
+        
         public FlowerInfo FlowerInfoForSale { get; private set; }
+        
+        public Transform TargetToLookAt => targetToLookAt;
         
         private void OnValidate()
         {
@@ -77,7 +80,7 @@ namespace FlowerShop.FlowerSales
 
             isFlowerOnSaleTable = true;
             
-            flowerSaleTablesForCustomers.AddSaleTableWithFlower(this);
+            flowersSaleTablesForCustomers.AddSaleTableWithFlower(this);
             flowersForSaleCoeffCalculator.AddFlowerSaleTableWithFLowerInList(this);
         }
 

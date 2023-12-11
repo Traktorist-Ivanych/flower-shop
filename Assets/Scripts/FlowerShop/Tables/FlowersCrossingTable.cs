@@ -1,69 +1,82 @@
+using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
+using Zenject;
 
-// rename to FlowersCrossingTable
-public class FlowersCrossingTable : FlowerTable
+namespace FlowerShop.Tables
 {
-    [SerializeField] private Transform tablePotTransform;
-    [SerializeField] private CrossingTableProcess crossingTableProcess;
-
-    private delegate void CrossingTableAction();
-    // MAYBE rename to ExecutePlayerAbility or etc ('CrossingTable'Event and we already in class with such name)
-    private event CrossingTableAction CrossingTableEvent;
-
-    private Pot potOnTable;
-    private bool isPotOnCrossingTable;
-
-    public Pot GetPotOnTable() 
+    public class FlowersCrossingTable : Table
     {
-        return potOnTable;
-    }
-    public bool IsPotOnCrossingTable
-    {
-        get => isPotOnCrossingTable;
-    }
+        [Inject] private readonly FlowersSettings flowersSettings;
+        
+        [SerializeField] private Transform tablePotTransform;
+        [SerializeField] private FlowersCrossingTableProcess flowersCrossingTableProcess;
 
-    public override void ExecuteClickableAbility()
-    {
-        if (playerBusyness.IsPlayerFree)
+        public Pot PotOnTable { get; private set; }
+        public bool IsPotOnCrossingTable { get; private set; }
+
+        public override void ExecuteClickableAbility()
         {
-            if (isPotOnCrossingTable && !crossingTableProcess.IsSeedCrossing && 
-                playerPickableObjectHandler.IsPickableObjectNull)
+            if (playerBusyness.IsPlayerFree)
             {
-                SetPlayerDestination();
-                CrossingTableEvent = null;
-                CrossingTableEvent += GetPotFromCrossingTable;
-            }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
-            {
-                potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                if (potOnTable.GrowingRoom == growingRoom && potOnTable.FlowerGrowingLvl >= 3 &&
-                    !potOnTable.IsWeedInPot && !crossingTableProcess.IsTableBroken)
+                if (CanPlayerTakePotInHands())
                 {
                     SetPlayerDestination();
-                    CrossingTableEvent = null;
-                    CrossingTableEvent += PutPotOnCrossingTable;
+                    
+                    ResetOnPlayerArriveEvent();
+                    OnPlayerArriveEvent += TakePotInPlayerHands;
+                }
+                else if (CanPlayerPutPotOnTable())
+                {
+                    SetPlayerDestination();
+                    
+                    ResetOnPlayerArriveEvent();
+                    OnPlayerArriveEvent += PutPotOnTable;
                 }
             }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        CrossingTableEvent?.Invoke();
-        crossingTableProcess.CheckCrossingAbility();
-    }
+        public override void ExecutePlayerAbility()
+        {
+            base.ExecutePlayerAbility();
+            
+            flowersCrossingTableProcess.CheckCrossingAbility();
+        }
 
-    private void PutPotOnCrossingTable()
-    {
-        potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
-        playerPickableObjectHandler.ClearPickableObject();
-        isPotOnCrossingTable = true;
-    }
+        private bool CanPlayerTakePotInHands()
+        {
+            return IsPotOnCrossingTable &&
+                   !flowersCrossingTableProcess.IsSeedCrossing &&
+                   playerPickableObjectHandler.IsPickableObjectNull;
+        }
 
-    private void GetPotFromCrossingTable()
-    {
-        potOnTable.TakeInPlayerHandsAndSetPlayerFree();
-        isPotOnCrossingTable = false;
+        private bool CanPlayerPutPotOnTable()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                PotOnTable = currentPot;
+
+                return PotOnTable.GrowingRoom == growingRoom && 
+                       PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
+                       !PotOnTable.IsWeedInPot && 
+                       !flowersCrossingTableProcess.IsTableBroken;
+            }
+            
+            return false;
+        }
+
+        private void PutPotOnTable()
+        {
+            PotOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
+            playerPickableObjectHandler.ResetPickableObject();
+            IsPotOnCrossingTable = true;
+        }
+
+        private void TakePotInPlayerHands()
+        {
+            PotOnTable.TakeInPlayerHandsAndSetPlayerFree();
+            IsPotOnCrossingTable = false;
+        }
     }
 }

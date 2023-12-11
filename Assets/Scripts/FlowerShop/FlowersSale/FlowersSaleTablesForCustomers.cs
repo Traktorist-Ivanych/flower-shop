@@ -1,26 +1,27 @@
 using System.Collections.Generic;
+using FlowerShop.Tables;
 using NUnit.Framework;
 using UnityEngine;
 
 namespace FlowerShop.FlowerSales
 {
-    public class FlowerSaleTablesForCustomers : MonoBehaviour
+    public class FlowersSaleTablesForCustomers : MonoBehaviour
     {
-        private readonly List<FlowerSaleTable> saleTables = new();
+        private readonly List<FlowersSaleTable> saleTables = new();
 
-        public void AddSaleTableWithFlower(FlowerSaleTable table)
+        public void AddSaleTableWithFlower(FlowersSaleTable table)
         {
             saleTables.Add(table);
         }
 
-        public FlowerSaleTable GetSaleTableWithFlower()
+        public FlowersSaleTable GetSaleTableWithFlower()
         {
             if (saleTables.Count > 0)
             {
                 int flowerSaleTablesIndex = Random.Range(0, saleTables.Count);
-                FlowerSaleTable flowerSaleTable = saleTables[flowerSaleTablesIndex];
-                RemoveSaleTable(flowerSaleTable);
-                return flowerSaleTable;
+                FlowersSaleTable flowersSaleTable = saleTables[flowerSaleTablesIndex];
+                RemoveSaleTable(flowersSaleTable);
+                return flowersSaleTable;
             }
             else 
             { 
@@ -28,7 +29,7 @@ namespace FlowerShop.FlowerSales
             }
         }
 
-        private void RemoveSaleTable(FlowerSaleTable table)
+        private void RemoveSaleTable(FlowersSaleTable table)
         {
             Assert.That(saleTables.Contains(table));
         

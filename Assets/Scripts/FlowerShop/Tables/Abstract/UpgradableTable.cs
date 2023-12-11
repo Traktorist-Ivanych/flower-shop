@@ -1,0 +1,62 @@
+using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Tables.BaseComponents;
+using UnityEngine;
+using Zenject;
+
+namespace FlowerShop.Tables.Abstract
+{
+    [RequireComponent(typeof(UpgradableTableBaseComponent))]
+    public abstract class UpgradableTable : Table, IUpgradableTable
+    {
+        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
+        [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
+
+        [HideInInspector, SerializeField] private UpgradableTableBaseComponent upgradableTableBaseComponent;
+        
+        private protected int tableLvl;
+
+        private void OnValidate()
+        {
+            upgradableTableBaseComponent = GetComponent<UpgradableTableBaseComponent>();
+        }
+
+        private protected virtual void Start()
+        {
+            AddUpgradableTableToList();
+        }
+
+        public void AddUpgradableTableToList()
+        {
+            repairsAndUpgradesTable.AddUpgradableTableToList(this);
+        }
+
+        public virtual void HideUpgradeIndicator()
+        {
+            upgradableTableBaseComponent.HideUpgradeIndicator();
+        }
+
+        public virtual void UpgradeTable()
+        {
+            upgradableTableBaseComponent.SetNextLvlMesh(tableLvl);
+            tableLvl++;
+            ShowUpgradeIndicator();
+        }
+
+        public void ShowUpgradeCanvas()
+        {
+            upgradableTableBaseComponent.SetUpgradableTableInfoToCanvas(tableLvl);
+        }
+
+        public virtual void ShowUpgradeIndicator()
+        {
+            if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+            {
+                upgradableTableBaseComponent.ShowUpgradeIndicator();
+            }
+            else
+            {
+                upgradableTableBaseComponent.HideUpgradeIndicator();
+            }
+        }
+    }
+}

@@ -1,12 +1,16 @@
 using System.Collections;
 using FlowerShop.PickableObjects;
-using FlowerShop.Upgrades;
+using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Tables.Abstract;
+using FlowerShop.Tables.BaseComponents;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(UpgradableTableComponents))]
-public class SoilPreparationTable : UpgradableBreakableFlowerTable
+[RequireComponent(typeof(UpgradableTableBaseComponent))]
+public class SoilPreparationTable : UpgradableBreakableTable
 {
+    [Inject] private readonly GameConfiguration gameConfiguration;
+    
     [SerializeField] private Transform potOnTableTransform;
     [SerializeField] private Transform[] gearsTransform;
 
@@ -29,8 +33,8 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
         SetSoilPreparationTime();
 
         SetActionsBeforeBrokenQuantity(
-            gameConfiguration.SoilPreparationMinQuantity * (tableLvl + 1),
-            gameConfiguration.SoilPreparationMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
     }
 
     private void Update()
@@ -49,7 +53,7 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
                 currentSoilPreparationTime = soilPreparationTime;
                 isSoilBeingPrepared = false;
                 potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
-                UseBreakableFlowerTable();
+                UseBreakableTable();
             }
         }
     }
@@ -69,7 +73,7 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
                     SoilPreparationTableEvent += delegate { StartCoroutine(SoilPreparation()); };
                 }
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -116,7 +120,7 @@ public class SoilPreparationTable : UpgradableBreakableFlowerTable
     private void FixSoilPreparationTable()
     {
         FixBreakableFlowerTable(
-            gameConfiguration.SoilPreparationMinQuantity * (tableLvl + 1),
-            gameConfiguration.SoilPreparationMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
     }
 }

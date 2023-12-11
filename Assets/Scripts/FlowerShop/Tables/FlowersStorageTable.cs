@@ -1,8 +1,10 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
+using FlowerShop.Weeds;
 using UnityEngine;
 
-public class FlowerStorageTable : FlowerTable
+public class FlowersStorageTable : Table
 {
     [SerializeField] private Transform tablePotTransform;
     [SerializeField] private WeedPlanter weedPlanter;
@@ -74,7 +76,7 @@ public class FlowerStorageTable : FlowerTable
     private void GivePot()
     {
         potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
-        playerPickableObjectHandler.ClearPickableObject();
+        playerPickableObjectHandler.ResetPickableObject();
         isFlowerOnStorageTable = true;
         if (potOnTable.IsSoilInsidePot)
         {

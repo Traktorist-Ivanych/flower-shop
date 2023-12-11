@@ -1,6 +1,7 @@
 using System.Collections;
 using FlowerShop.FlowerSales;
 using FlowerShop.Settings;
+using FlowerShop.Tables;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -12,7 +13,7 @@ namespace FlowerShop.Customers
     [RequireComponent(typeof(Animator))]
     public class CustomerMoving : MonoBehaviour
     {
-        [Inject] private readonly FlowerSaleTablesForCustomers flowerSaleTablesForCustomers;
+        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly CustomersSpawner customersSpawner;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CustomersSettings customersSettings;
@@ -23,7 +24,7 @@ namespace FlowerShop.Customers
         [HideInInspector, SerializeField] private NavMeshAgent buyerAgent;
         [HideInInspector, SerializeField] private Animator buyerAnimator;
         
-        private FlowerSaleTable customerFlowerSaleTable;
+        private FlowersSaleTable customerFlowersSaleTable;
         private Vector3 targetToLookAt;
         private bool needForRotation;
         private bool isCustomerBusy;
@@ -64,9 +65,9 @@ namespace FlowerShop.Customers
             }
         }
 
-        public void SetBuyerStartDestination(Transform startTransform, FlowerSaleTable targetFlowerSaleTable)
+        public void SetBuyerStartDestination(Transform startTransform, FlowersSaleTable targetFlowersSaleTable)
         {
-            customerFlowerSaleTable = targetFlowerSaleTable;
+            customerFlowersSaleTable = targetFlowersSaleTable;
             transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
             SetBuyerDestination();
             isCustomerBusy = true;
@@ -83,12 +84,12 @@ namespace FlowerShop.Customers
 
         public void CustomerThinkNo()
         {
-            FlowerSaleTable nextSaleTable = flowerSaleTablesForCustomers.GetSaleTableWithFlower();
-            flowerSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowerSaleTable);
+            FlowersSaleTable nextFlowersSaleTable = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
+            flowersSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowersSaleTable);
 
-            customerFlowerSaleTable = nextSaleTable;
+            customerFlowersSaleTable = nextFlowersSaleTable;
             
-            if (customerFlowerSaleTable == null)
+            if (customerFlowersSaleTable == null)
             {
                 SetBuyerEndTransform();
             }
@@ -100,7 +101,7 @@ namespace FlowerShop.Customers
 
         public void CustomerThinkYes()
         {
-            customerActions.BuyFlower(customerFlowerSaleTable);
+            customerActions.BuyFlower(customerFlowersSaleTable);
             StartCoroutine(SetBuyerEndTransformWithFlower());
         }
 
@@ -140,8 +141,8 @@ namespace FlowerShop.Customers
 
         private void SetBuyerDestination()
         {
-            buyerAgent.destination = customerFlowerSaleTable.CustomerDestinationTarget.position;
-            targetToLookAt = customerFlowerSaleTable.TargetToLookAt.position;
+            buyerAgent.destination = customerFlowersSaleTable.CustomerDestinationTarget.position;
+            targetToLookAt = customerFlowersSaleTable.TargetToLookAt.position;
             needForRotation = true;
         }
 

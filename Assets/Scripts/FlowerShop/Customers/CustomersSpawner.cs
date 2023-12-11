@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FlowerShop.FlowerSales;
+using FlowerShop.Tables;
 using ModestTree;
 using UnityEngine;
 using Zenject;
@@ -9,7 +10,7 @@ namespace FlowerShop.Customers
     public class CustomersSpawner : MonoBehaviour
     {
         [Inject] private readonly CustomersSettings customersSettings;
-        [Inject] private readonly FlowerSaleTablesForCustomers flowerSaleTablesForCustomers;
+        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
 
         [SerializeField] private Transform[] startTransforms;
@@ -61,15 +62,15 @@ namespace FlowerShop.Customers
         {
             if (customersMoving.Count > 0)
             {
-                FlowerSaleTable flowerSaleTableForBuyer = flowerSaleTablesForCustomers.GetSaleTableWithFlower();
+                FlowersSaleTable flowersSaleTableForBuyer = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
                     
-                if (flowerSaleTableForBuyer != null)
+                if (flowersSaleTableForBuyer != null)
                 {
                     CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
 
                     Transform startCustomerTransform = startTransforms[Random.Range(0, startTransforms.Length)];
 
-                    customerMoving.SetBuyerStartDestination(startCustomerTransform, flowerSaleTableForBuyer);
+                    customerMoving.SetBuyerStartDestination(startCustomerTransform, flowersSaleTableForBuyer);
                 }
             }
         }

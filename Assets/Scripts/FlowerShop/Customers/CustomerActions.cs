@@ -1,6 +1,7 @@
 using DG.Tweening;
 using FlowerShop.FlowerSales;
 using FlowerShop.Settings;
+using FlowerShop.Tables;
 using UnityEngine;
 using Zenject;
 
@@ -25,11 +26,11 @@ namespace FlowerShop.Customers
             customerFlowerMeshFilter = customerFlowerRenderer.GetComponent<MeshFilter>();
         }
 
-        public void BuyFlower(FlowerSaleTable customerFlowerSaleTable)
+        public void BuyFlower(FlowersSaleTable customerFlowersSaleTable)
         {
             customerSoilTransform.SetPositionAndRotation(
-                position: customerFlowerSaleTable.TablePotTransform.position, 
-                rotation: customerFlowerSaleTable.TablePotTransform.rotation);
+                position: customerFlowersSaleTable.TablePotTransform.position, 
+                rotation: customerFlowersSaleTable.TablePotTransform.rotation);
 
             customerSoilTransform.DOMove(
                 endValue: customerHandsTransform.position,
@@ -41,9 +42,9 @@ namespace FlowerShop.Customers
             
             customerSoilRenderer.enabled = true;
             customerFlowerRenderer.enabled = true;
-            customerSoilMeshFilter.mesh = customerFlowerSaleTable.SalableSoilMeshFilter.mesh;
-            customerFlowerMeshFilter.mesh = customerFlowerSaleTable.SalableFlowerMeshFilter.mesh;
-            customerFlowerSaleTable.SaleFlower();
+            customerSoilMeshFilter.mesh = customerFlowersSaleTable.SalableSoilMeshFilter.mesh;
+            customerFlowerMeshFilter.mesh = customerFlowersSaleTable.SalableFlowerMeshFilter.mesh;
+            customerFlowersSaleTable.SaleFlower();
         }
 
         public void ClearFlowerInHands()

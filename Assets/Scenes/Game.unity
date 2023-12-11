@@ -30742,7 +30742,7 @@ MonoBehaviour:
   upgradeCanvasLiaison: {fileID: 536576003}
   coffeeCanvasLiaison: {fileID: 563717016}
   repairsAndUpgradesTable: {fileID: 996543469402746873}
-  upgradingAndRepairingHammer: {fileID: 1552103848}
+  repairingAndUpgradingHammer: {fileID: 1552103848}
 --- !u!1 &856215567
 GameObject:
   m_ObjectHideFlags: 0
@@ -45846,6 +45846,7 @@ MonoBehaviour:
   flowersSettings: {fileID: 11400000, guid: 815c3a818e89feb4aa11a4947a279968, type: 2}
   tablesSettings: {fileID: 11400000, guid: 1d588145db965794aa1c37632e85848d, type: 2}
   weedSettings: {fileID: 11400000, guid: 2751d0c3ff4739f4bb50b5d94f01ff8a, type: 2}
+  repairsAndUpgradesSettings: {fileID: 11400000, guid: 2761dca7acce926478bd41fc70dfc309, type: 2}
   flowersForSaleCoeffCalculatorSettings: {fileID: 11400000, guid: d0a23ff482ec40d4f8a5d26530b4f781, type: 2}
 --- !u!1001 &2008704987
 PrefabInstance:
@@ -53235,10 +53236,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2952507856168032477, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
+      propertyPath: viewModelPropertyName
+      value: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.TableName
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772739135633144057, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
+      propertyPath: viewModelPropertyName
+      value: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.Description
+      objectReference: {fileID: 0}
     - target: {fileID: 5568953513640906923, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 919132147897302646}
+    - target: {fileID: 8819661010517370929, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
+      propertyPath: viewModelPropertyName
+      value: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.Price
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026886076226070377, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
+      propertyPath: viewModelPropertyName
+      value: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.TableSprite
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

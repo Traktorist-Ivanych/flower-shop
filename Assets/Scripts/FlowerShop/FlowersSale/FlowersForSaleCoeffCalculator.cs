@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FlowerShop.Flowers;
+using FlowerShop.Tables;
 using UnityEngine;
 using Zenject;
 
@@ -12,27 +13,27 @@ namespace FlowerShop.FlowerSales
     {
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
 
-        private readonly List<FlowerSaleTable> saleTablesWithFlowers = new();
+        private readonly List<FlowersSaleTable> saleTablesWithFlowers = new();
         private readonly HashSet<FlowerInfo> uniqueFlowersForSale = new();
 
         public float CurrentFlowersForSaleCoeff { get; private set; }
 
-        public void AddFlowerSaleTableWithFLowerInList(FlowerSaleTable saleTableWithFlower)
+        public void AddFlowerSaleTableWithFLowerInList(FlowersSaleTable flowersSaleTableWith)
         {
-            saleTablesWithFlowers.Add(saleTableWithFlower);
-            uniqueFlowersForSale.Add(saleTableWithFlower.FlowerInfoForSale);
+            saleTablesWithFlowers.Add(flowersSaleTableWith);
+            uniqueFlowersForSale.Add(flowersSaleTableWith.FlowerInfoForSale);
 
             CalculateFlowersForSaleCoeff();
         }
 
-        public void RemoveFlowerSaleTableWithoutFlowerFromList(FlowerSaleTable saleTableWithoutFlower)
+        public void RemoveFlowerSaleTableWithoutFlowerFromList(FlowersSaleTable flowersSaleTableWithout)
         {
-            if (saleTablesWithFlowers.Contains(saleTableWithoutFlower))
+            if (saleTablesWithFlowers.Contains(flowersSaleTableWithout))
             {
-                saleTablesWithFlowers.Remove(saleTableWithoutFlower);
+                saleTablesWithFlowers.Remove(flowersSaleTableWithout);
 
                 uniqueFlowersForSale.Clear();
-                foreach(FlowerSaleTable flowerSaleTable in saleTablesWithFlowers)
+                foreach(FlowersSaleTable flowerSaleTable in saleTablesWithFlowers)
                 {
                     uniqueFlowersForSale.Add(flowerSaleTable.FlowerInfoForSale);
                 }

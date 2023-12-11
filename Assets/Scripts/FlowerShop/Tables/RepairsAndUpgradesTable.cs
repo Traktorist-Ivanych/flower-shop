@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
+using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-namespace FlowerShop.Upgrades
+namespace FlowerShop.Tables
 {
-    public class RepairsAndUpgradesTable : FlowerTable
+    public class RepairsAndUpgradesTable : Table
     {
         [Inject] private readonly GameConfiguration gameConfiguration;
 
         [SerializeField] private Transform hammerOnTableTransform;
-        [SerializeField] private UpgradingAndRepairingHammer upgradingAndRepairingHammer;
-
-        private delegate void OnPlayerArriveAction();
-        private event OnPlayerArriveAction OnPlayerArriveEvent;
+        [SerializeField] private RepairingAndUpgradingHammer repairingAndUpgradingHammer;
 
         private readonly List<IUpgradableTable> upgradableTables = new();
 
@@ -26,21 +24,18 @@ namespace FlowerShop.Upgrades
                 if (playerPickableObjectHandler.IsPickableObjectNull)
                 {
                     SetPlayerDestination();
-                    OnPlayerArriveEvent = null;
+                    
+                    ResetOnPlayerArriveEvent();
                     OnPlayerArriveEvent += TakeHammerInPlayerHands;
                 }
-                else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
+                else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
                 {
                     SetPlayerDestination();
-                    OnPlayerArriveEvent = null;
+                    
+                    ResetOnPlayerArriveEvent();
                     OnPlayerArriveEvent += PutHammerOnTable;
                 }
             }
-        }
-
-        public override void ExecutePlayerAbility()
-        {
-            OnPlayerArriveEvent?.Invoke();
         }
 
         public void AddUpgradableTableToList(IUpgradableTable upgradableTable)
@@ -50,14 +45,14 @@ namespace FlowerShop.Upgrades
 
         private void TakeHammerInPlayerHands()
         {
-            upgradingAndRepairingHammer.TakeInPlayerHandsAndSetPlayerFree();
+            repairingAndUpgradingHammer.TakeInPlayerHandsAndSetPlayerFree();
             StartCoroutine(ShowAllUpgradeIndicators());
         }
 
         private void PutHammerOnTable()
         {
-            playerPickableObjectHandler.ClearPickableObject();
-            upgradingAndRepairingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
+            playerPickableObjectHandler.ResetPickableObject();
+            repairingAndUpgradingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
 
             foreach (IUpgradableTable upgradableTable in upgradableTables)
             {

@@ -1,11 +1,12 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 
-public class TrashCan : FlowerTable
+public class TrashCan : Table
 {
     [Inject] private readonly PlayerComponents playerComponents;
 

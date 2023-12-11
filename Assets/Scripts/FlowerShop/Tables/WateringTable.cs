@@ -1,10 +1,13 @@
 using System.Collections;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
 
-public class WateringTable : UpgradableBreakableFlowerTable
+public class WateringTable : UpgradableBreakableTable
 {
+    [Inject] private readonly GameConfiguration gameConfiguration;
+    
     [SerializeField] private Transform wateringCanTableTransform;
     [SerializeField] private WateringCan wateringCan;
     [SerializeField] private ParticleSystem waterPS;
@@ -17,8 +20,8 @@ public class WateringTable : UpgradableBreakableFlowerTable
         base.Start();
 
         SetActionsBeforeBrokenQuantity(
-            gameConfiguration.WateringTableMinQuantity * (tableLvl + 1),
-            gameConfiguration.WateringTableMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.WateringTableMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
     }
 
     public override void ExecuteClickableAbility()
@@ -39,7 +42,7 @@ public class WateringTable : UpgradableBreakableFlowerTable
                 WateringTableEvent = null;
                 WateringTableEvent += PutWateringCanOnTable;
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is UpgradingAndRepairingHammer)
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
             {
                 if (IsTableBroken)
                 {
@@ -76,7 +79,7 @@ public class WateringTable : UpgradableBreakableFlowerTable
     private void PutWateringCanOnTable()
     {
         wateringCan.PutOnTableAndSetPlayerFree(wateringCanTableTransform);
-        playerPickableObjectHandler.ClearPickableObject();
+        playerPickableObjectHandler.ResetPickableObject();
 
         if (wateringCan.IsWateringCanNeedForReplenish())
         {
@@ -91,13 +94,13 @@ public class WateringTable : UpgradableBreakableFlowerTable
         yield return new WaitForSeconds(wateringCan.ReplenishWateringCanTime());
         waterPS.Stop();
         wateringCan.ReplenishWateringCan();
-        UseBreakableFlowerTable();
+        UseBreakableTable();
     }
 
     private void FixWateringTable()
     {
         FixBreakableFlowerTable(
-            gameConfiguration.WateringTableMinQuantity * (tableLvl + 1),
-            gameConfiguration.WateringTableMaxQuantity * (tableLvl + 1));
+            repairsAndUpgradesSettings.WateringTableMinQuantity * (tableLvl + 1),
+            repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
     }
 }

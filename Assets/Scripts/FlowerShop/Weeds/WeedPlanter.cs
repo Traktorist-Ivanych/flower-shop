@@ -1,57 +1,65 @@
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
+using ModestTree;
 using UnityEngine;
 using Zenject;
 
-public class WeedPlanter : MonoBehaviour
+namespace FlowerShop.Weeds
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
-
-    [SerializeField] private SoilPreparationTable soilPreparationTable;
-
-    private readonly List<Pot> potsForPlantingWeed = new();
-    private float currentWeedPlantTime;
-
-    private void Start()
+    public class WeedPlanter : MonoBehaviour
     {
-        SetCurrentWeedPlantTime();
-    }
+        [Inject] private readonly WeedSettings weedSettings;
 
-    private void Update()
-    {
-        if (currentWeedPlantTime >= 0)
-        {
-            currentWeedPlantTime -= Time.deltaTime;
-        }
-        else
+        [SerializeField] private SoilPreparationTable soilPreparationTable;
+
+        private readonly List<Pot> potsForPlantingWeed = new();
+        private float currentWeedPlantTime;
+
+        private void Start()
         {
             SetCurrentWeedPlantTime();
-            
-            if (potsForPlantingWeed.Count > 0 && gameConfiguration.IsWeedPlanting())
+        }
+
+        private void Update()
+        {
+            if (currentWeedPlantTime >= 0)
             {
-                Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
-                potForPlantingWeed.PlantWeed();
-                RemovePotFormPlantingWeedList(potForPlantingWeed);
+                currentWeedPlantTime -= Time.deltaTime;
+            }
+            else
+            {
+                SetCurrentWeedPlantTime();
+            
+                if (potsForPlantingWeed.Count > 0 && weedSettings.ShouldWeedBePlanting())
+                {
+                    Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
+                    potForPlantingWeed.PlantWeed();
+                    RemovePotFormPlantingWeedList(potForPlantingWeed);
+                }
             }
         }
-    }
 
-    public void AddPotInPlantingWeedList(Pot potForPlantingWeed)
-    {
-        potsForPlantingWeed.Add(potForPlantingWeed);
-    }
-
-    public void RemovePotFormPlantingWeedList(Pot potForRemoving)
-    {
-        if (potsForPlantingWeed.Contains(potForRemoving))
+        public void AddPotInPlantingWeedList(Pot potForPlantingWeed)
         {
+            potsForPlantingWeed.Add(potForPlantingWeed);
+        }
+
+        public void RemovePotFormPlantingWeedList(Pot potForRemoving)
+        {
+            Assert.That(potsForPlantingWeed.Contains(potForRemoving));
+            
             potsForPlantingWeed.Remove(potForRemoving);
         }
-    }
 
-    private void SetCurrentWeedPlantTime()
-    {
-        currentWeedPlantTime = Random.Range(gameConfiguration.MinWeedPlantTime * (soilPreparationTable.TableLvl + 1), 
-                                            gameConfiguration.MaxWeedPlantTime * (soilPreparationTable.TableLvl + 1));
+        private void SetCurrentWeedPlantTime()
+        {
+            float minWeedPlantTime = weedSettings.MinWeedPlantTime +
+                                     weedSettings.MinWeedPlantTimeLvlDelta * soilPreparationTable.TableLvl;
+            
+            float maxWeedPlantTime = weedSettings.MaxWeedPlantTime +
+                                     weedSettings.MaxWeedPlantTimeLvlDelta * soilPreparationTable.TableLvl;
+            
+            currentWeedPlantTime = Random.Range(minWeedPlantTime, maxWeedPlantTime);
+        }
     }
 }

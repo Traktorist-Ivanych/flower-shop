@@ -8,7 +8,7 @@ namespace PlayerControl
 
         public IPickableObject CurrentPickableObject { get; set; }
 
-        public void ClearPickableObject()
+        public void ResetPickableObject()
         {
             CurrentPickableObject = null;
         }
