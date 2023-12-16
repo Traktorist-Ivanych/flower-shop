@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
+using FlowerShop.Tables;
 using ModestTree;
 using UnityEngine;
 using Zenject;

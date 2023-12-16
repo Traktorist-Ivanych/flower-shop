@@ -35,7 +35,7 @@ public class TrashCan : Table
 
             if (playerPot.IsSoilInsidePot)
             {
-                SetPlayerDestination();
+                
             }
         }
     }

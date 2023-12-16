@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 553887409}
   - component: {fileID: 1347176982656080445}
   - component: {fileID: 4930097974311756762}
+  - component: {fileID: 6964058272529394985}
   m_Layer: 3
   m_Name: SoilPreparationTableWild
   m_TagString: Untagged
@@ -330,11 +331,11 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 6505507747950842616}
   targetToLookAt: {fileID: 589898925821568170}
+  upgradableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 0}
   potOnTableTransform: {fileID: 8842498139184533921}
-  gearsTransform:
-  - {fileID: 1855615483161057621}
-  - {fileID: 7327615491554201645}
-  - {fileID: 4646122857373012491}
+  gearsMeshRenderers: []
+  tableObjectsRotation: {fileID: 6964058272529394985}
 --- !u!114 &1347176982656080445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,9 +364,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 2706293239451386753}
-  brokenParticleSystems:
+  brokenEffects:
   - {fileID: 3486573838955390575}
   - {fileID: 1669170543815973764}
+--- !u!114 &6964058272529394985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022124901925100039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16315a62739e42c9a29e129294b513f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingObjectsTransform:
+  - {fileID: 1855615483161057621}
+  - {fileID: 7327615491554201645}
+  - {fileID: 4646122857373012491}
+  rotatingEndValue: {x: 0, y: 360, z: 0}
 --- !u!1 &4979730972612024665
 GameObject:
   m_ObjectHideFlags: 0

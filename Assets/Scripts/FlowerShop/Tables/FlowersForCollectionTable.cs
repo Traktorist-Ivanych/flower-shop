@@ -37,18 +37,30 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            if (CanPlayerPutFlowerOnTable())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);
+            }
+        }
+
+        private bool CanPlayerPutFlowerOnTable()
+        {
             if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 playerPot = currentPot;
 
-                if (CanFlowerBePuttedOnFlowerTableForCollection())
-                {
-                    SetPlayerDestination();
-                }
+                return playerBusyness.IsPlayerFree &&
+                       playerPot.GrowingRoom == growingRoom &&
+                       playerPot.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
+                       !playerPot.IsWeedInPot &&
+                       flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo) &&
+                       flowerInfoForCollection == null;
             }
+
+            return false;
         }
 
-        public override void ExecutePlayerAbility()
+        private void PutFlowerOnTable()
         {
             soilMeshRenderer.enabled = true;
             flowerMeshRenderer.enabled = true;
@@ -70,16 +82,6 @@ namespace FlowerShop.Tables
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
             
             flowersForCollection.AddFlowerToCollectionList(flowerInfoForCollection);
-        }
-
-        private bool CanFlowerBePuttedOnFlowerTableForCollection()
-        {
-            return playerBusyness.IsPlayerFree && 
-                   playerPot.GrowingRoom == growingRoom &&
-                   playerPot.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
-                   !playerPot.IsWeedInPot &&
-                   flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo) && 
-                   flowerInfoForCollection == null;
         }
     }
 }

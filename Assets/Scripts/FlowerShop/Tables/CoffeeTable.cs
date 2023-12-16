@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
-using DG.Tweening;
 using FlowerShop.Coffee;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
+using FlowerShop.Tables.Helpers;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
+    [RequireComponent(typeof(TableObjectsRotation))]
     public class CoffeeTable : Table
     {
         [Inject] private readonly PlayerComponents playerComponents;
@@ -18,24 +20,16 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
         [Inject] private readonly PlayerMoney playerMoney;
         
-        [SerializeField] private Transform coffeeGrinderTransform;
         [SerializeField] private CoffeeCap coffeeCap;
         [SerializeField] private Transform coffeeCapOnTableTransform;
         [SerializeField] private AnimationClip statMakingCoffeeAnimationClip;
         [SerializeField] private AnimationClip drinkCoffeeAnimationClip;
 
-        private Tween coffeeGrinderRotation;
+        [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
 
-        private void Start()
+        private void OnValidate()
         {
-            coffeeGrinderRotation = coffeeGrinderTransform.DORotate(
-                endValue: new Vector3(0,360,0),
-                duration: actionsWithTransformSettings.RotationObject360DegreesTime, 
-                mode: RotateMode.WorldAxisAdd)
-                .SetEase(Ease.Linear)
-                .SetLoops(-1);
-            
-            coffeeGrinderRotation.Pause();
+            tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
 
         public override void ExecuteClickableAbility()
@@ -43,11 +37,11 @@ namespace FlowerShop.Tables
             if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull && 
                 !playerCoffeeEffect.IsCoffeeEffectActive)
             {
-                SetPlayerDestination();
+                SetPlayerDestinationAndOnPlayerArriveAction(OpenCoffeeCanvas);
             }
         }
 
-        public override void ExecutePlayerAbility()
+        private void OpenCoffeeCanvas()
         {
             coffeeCanvasLiaison.CoffeeCanvas.enabled = true;
         }
@@ -57,10 +51,10 @@ namespace FlowerShop.Tables
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeeTrigger);
             
             yield return new WaitForSeconds(statMakingCoffeeAnimationClip.length);
-            coffeeGrinderRotation.Play();
+            tableObjectsRotation.StartObjectsRotation();
 
             yield return new WaitForSeconds(coffeeSettings.CoffeeGrinderRotationDuration);
-            coffeeGrinderRotation.Pause();
+            tableObjectsRotation.PauseObjectsRotation();
             coffeeCap.FillCoffeeCap();
 
             yield return new WaitForSeconds(coffeeSettings.CoffeeLiquidMovingTime);

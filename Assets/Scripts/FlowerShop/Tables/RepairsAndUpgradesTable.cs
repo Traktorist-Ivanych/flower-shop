@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
@@ -10,7 +11,7 @@ namespace FlowerShop.Tables
 {
     public class RepairsAndUpgradesTable : Table
     {
-        [Inject] private readonly GameConfiguration gameConfiguration;
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
 
         [SerializeField] private Transform hammerOnTableTransform;
         [SerializeField] private RepairingAndUpgradingHammer repairingAndUpgradingHammer;
@@ -23,17 +24,11 @@ namespace FlowerShop.Tables
             {
                 if (playerPickableObjectHandler.IsPickableObjectNull)
                 {
-                    SetPlayerDestination();
-                    
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += TakeHammerInPlayerHands;
+                    SetPlayerDestinationAndOnPlayerArriveAction(TakeHammerInPlayerHands);
                 }
                 else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
                 {
-                    SetPlayerDestination();
-                    
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += PutHammerOnTable;
+                    SetPlayerDestinationAndOnPlayerArriveAction(PutHammerOnTable);
                 }
             }
         }
@@ -62,7 +57,8 @@ namespace FlowerShop.Tables
 
         private IEnumerator ShowAllUpgradeIndicators()
         {
-            yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
+            yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
+            
             foreach (IUpgradableTable upgradableTable in upgradableTables)
             {
                 upgradableTable.ShowUpgradeIndicator();

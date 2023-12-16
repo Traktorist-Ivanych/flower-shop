@@ -30,7 +30,6 @@ public class WateringTable : UpgradableBreakableTable
         {
             if (playerPickableObjectHandler.IsPickableObjectNull && !wateringCan.IsWateringCanNeedForReplenish() && !IsTableBroken)
             {
-                SetPlayerDestination();
                 WateringTableEvent = null;
                 WateringTableEvent += TakeWateringCanFromTable;
             }
@@ -38,7 +37,6 @@ public class WateringTable : UpgradableBreakableTable
             else if ((playerPickableObjectHandler.CurrentPickableObject is WateringCan) &&
                      (playerPickableObjectHandler.CurrentPickableObject as WateringCan).Equals(wateringCan))
             {
-                SetPlayerDestination();
                 WateringTableEvent = null;
                 WateringTableEvent += PutWateringCanOnTable;
             }
@@ -46,13 +44,11 @@ public class WateringTable : UpgradableBreakableTable
             {
                 if (IsTableBroken)
                 {
-                    SetPlayerDestination();
                     WateringTableEvent = null;
                     WateringTableEvent += FixWateringTable;
                 }
                 else if (tableLvl < 2)
                 {
-                    SetPlayerDestination();
                     WateringTableEvent = null;
                     WateringTableEvent += ShowUpgradeCanvas;
                 }

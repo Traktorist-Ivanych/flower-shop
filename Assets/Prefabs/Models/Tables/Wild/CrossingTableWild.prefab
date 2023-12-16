@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 648142770}
   - component: {fileID: 3112579602681618265}
   - component: {fileID: 8741059930623832006}
+  - component: {fileID: 2824108745389745930}
   m_Layer: 3
   m_Name: CrossingTableProcess
   m_TagString: Untagged
@@ -171,9 +172,10 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 2101627782}
   targetToLookAt: {fileID: 628734997}
+  upgradableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 0}
   tablePotTransform: {fileID: 1957789158}
-  crossingTableBlender: {fileID: 6522587998114633412}
-  flowerEmpty: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  flowerNameEmpty: {fileID: 0}
   crossingAbilityRedIndicator: {fileID: 8969553558629869457}
   crossingAbilityGreenIndicator: {fileID: 473131725362847072}
   crossedFlowerRoomRedIndicator: {fileID: 7753449654943622239}
@@ -189,6 +191,7 @@ MonoBehaviour:
   growingRoomWild: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   growingRoomExotic: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   growingRoomDecorative: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
+  tableObjectsRotation: {fileID: 2824108745389745930}
 --- !u!114 &3112579602681618265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,10 +220,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 1943995985529193747}
-  brokenParticleSystems:
+  brokenEffects:
   - {fileID: 7930635512730724501}
   - {fileID: 31444053950290061}
   - {fileID: 1387623574687630661}
+--- !u!114 &2824108745389745930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648142768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16315a62739e42c9a29e129294b513f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingObjectsTransform:
+  - {fileID: 6522587998114633412}
+  rotatingEndValue: {x: 0, y: 360, z: 0}
 --- !u!1 &715862161
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +312,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 2111225956}
   targetToLookAt: {fileID: 581331089}
   tablePotTransform: {fileID: 429605746}
-  crossingTableProcess: {fileID: 648142770}
+  flowersCrossingTableProcess: {fileID: 0}
 --- !u!1 &837902060
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +417,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 1857434421}
   targetToLookAt: {fileID: 837902061}
   tablePotTransform: {fileID: 1501614293}
-  crossingTableProcess: {fileID: 648142770}
+  flowersCrossingTableProcess: {fileID: 0}
 --- !u!1 &1501614292
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,18 +45,37 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            if (CanPlayerPutFlowerOnTable())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);
+            }
+        }
+
+        public void SaleFlower()
+        {
+            salableSoilRenderer.enabled = false;
+            salableFlowerRenderer.enabled = false;
+            flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
+            isFlowerOnSaleTable = false;
+            playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
+        }
+
+        private bool CanPlayerPutFlowerOnTable()
+        {
             if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 potForSale = currentPot;
                 
-                if (CanFlowerBePuttedOnFlowerSaleTable())
-                {
-                    SetPlayerDestination();
-                }
+                return playerBusyness.IsPlayerFree && 
+                       !isFlowerOnSaleTable && 
+                       potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && 
+                       !potForSale.IsWeedInPot;
             }
+
+            return false;
         }
 
-        public override void ExecutePlayerAbility()
+        private void PutFlowerOnTable()
         {
             FlowerInfoForSale = potForSale.PlantedFlowerInfo;
             salableSoilRenderer.enabled = true;
@@ -70,10 +89,10 @@ namespace FlowerShop.Tables
                 rotation: playerComponents.PlayerHandsForBigObjectTransform.rotation);
 
             salableSoilTransform.DOJump(
-                endValue: TablePotTransform.position, 
-                jumpPower: actionsWithTransformSettings.PickableObjectDoTweenJumpPower, 
-                numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber, 
-                duration: actionsWithTransformSettings.MovingPickableObjectTime)
+                    endValue: TablePotTransform.position, 
+                    jumpPower: actionsWithTransformSettings.PickableObjectDoTweenJumpPower, 
+                    numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber, 
+                    duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(() => playerBusyness.SetPlayerFree());
 
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
@@ -82,23 +101,6 @@ namespace FlowerShop.Tables
             
             flowersSaleTablesForCustomers.AddSaleTableWithFlower(this);
             flowersForSaleCoeffCalculator.AddFlowerSaleTableWithFLowerInList(this);
-        }
-
-        public void SaleFlower()
-        {
-            salableSoilRenderer.enabled = false;
-            salableFlowerRenderer.enabled = false;
-            flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
-            isFlowerOnSaleTable = false;
-            playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
-        }
-
-        private bool CanFlowerBePuttedOnFlowerSaleTable()
-        {
-           return playerBusyness.IsPlayerFree && 
-                  !isFlowerOnSaleTable && 
-                  potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && 
-                  !potForSale.IsWeedInPot;
         }
     }
 }

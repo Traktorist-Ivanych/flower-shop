@@ -4,100 +4,112 @@ using FlowerShop.Tables.Abstract;
 using FlowerShop.Weeds;
 using UnityEngine;
 
-public class FlowersStorageTable : Table
+namespace FlowerShop.Tables
 {
-    [SerializeField] private Transform tablePotTransform;
-    [SerializeField] private WeedPlanter weedPlanter;
-    [SerializeField] private GrowingRoom growingRoomAny;
-    
-    private delegate void FlowerStorageTableAction();
-    private event FlowerStorageTableAction FlowerStorageTableEvent;
-
-    private WeedingHoe weedingHoe;
-    private WateringCan wateringCan;
-    private Pot potOnTable;
-    private bool isFlowerOnStorageTable;
-
-    public override void ExecuteClickableAbility()
+    public class FlowersStorageTable : Table
     {
-        // kill me (please)
-        // if branches should be separate methods
-        if (playerBusyness.IsPlayerFree)
+        [SerializeField] private Transform tablePotTransform;
+        [SerializeField] private WeedPlanter weedPlanter;
+        [SerializeField] private GrowingRoom growingRoomAny;
+
+        private WeedingHoe weedingHoe;
+        private WateringCan wateringCan;
+        private Pot potOnTable;
+        private bool isFlowerOnStorageTable;
+
+        public override void ExecuteClickableAbility()
         {
-            if (isFlowerOnStorageTable)
+            if (playerBusyness.IsPlayerFree)
             {
-                if (playerPickableObjectHandler.IsPickableObjectNull)
-                {
-                    FlowerStorageTableEvent = null;
-                    FlowerStorageTableEvent += TakePot;
-                    SetPlayerDestination();
+                if (CanPlayerPutPotOnTable())
+                {  
+                    SetPlayerDestinationAndOnPlayerArriveAction(PutPotOnTable);
                 }
-                // playerDinamicObject.GetCurrentPlayerDinamicObject() to some local variable (repeated method access)
-                else if (playerPickableObjectHandler.CurrentPickableObject is WateringCan)
-                {
-                    wateringCan = playerPickableObjectHandler.CurrentPickableObject as WateringCan;
-                    if (wateringCan.GrowingRoom == growingRoom && wateringCan.CurrentWateringsNumber > 0 &&
-                        potOnTable.IsFlowerNeedWater)
-                    {
-                        FlowerStorageTableEvent = null;
-                        FlowerStorageTableEvent += PourPotOnStorageTable;
-                        SetPlayerDestination();
-                    }
+                else if (CanPlayerPourPotOnTable())
+                {      
+                    SetPlayerDestinationAndOnPlayerArriveAction(PourPotOnTable);
                 }
-                else if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe)
-                {
-                    weedingHoe = playerPickableObjectHandler.CurrentPickableObject as WeedingHoe;
-                    if (potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom)
-                    {
-                        SetPlayerDestination();
-                        FlowerStorageTableEvent = null;
-                        FlowerStorageTableEvent += DeleteWeed;
-                    }
+                else if (CanPlayerDeleteWeedInPot())
+                {     
+                    SetPlayerDestinationAndOnPlayerArriveAction(DeleteWeedInPot);
                 }
-            }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
-            {
-                potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                if (potOnTable.GrowingRoom == growingRoom || growingRoom == growingRoomAny)
+                else if (CanPlayerTakePotInHands())
                 {
-                    FlowerStorageTableEvent = null;
-                    FlowerStorageTableEvent += GivePot;
-                    SetPlayerDestination();
+                    SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
             }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        FlowerStorageTableEvent?.Invoke();
-    }
-
-    private void GivePot()
-    {
-        potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
-        playerPickableObjectHandler.ResetPickableObject();
-        isFlowerOnStorageTable = true;
-        if (potOnTable.IsSoilInsidePot)
+        private bool CanPlayerPutPotOnTable()
         {
-            weedPlanter.AddPotInPlantingWeedList(potOnTable);
+            if (!isFlowerOnStorageTable && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                potOnTable = currentPot;
+
+                return potOnTable.GrowingRoom == growingRoom || growingRoom == growingRoomAny;
+            }
+
+            return false;
         }
-    }
 
-    private void PourPotOnStorageTable()
-    {
-        potOnTable.PourFlower();
-    }
+        private void PutPotOnTable()
+        {
+            potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
+            playerPickableObjectHandler.ResetPickableObject();
+            isFlowerOnStorageTable = true;
+            if (potOnTable.IsSoilInsidePot)
+            {
+                weedPlanter.AddPotInPlantingWeedList(potOnTable);
+            }
+        }
 
-    private void DeleteWeed()
-    {
-        StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
-    }
+        private bool CanPlayerPourPotOnTable()
+        {
+            if (isFlowerOnStorageTable &&
+                playerPickableObjectHandler.CurrentPickableObject is WateringCan currentWateringCan)
+            {
+                wateringCan = currentWateringCan;
 
-    private void TakePot()
-    {
-        potOnTable.TakeInPlayerHandsAndSetPlayerFree();
-        isFlowerOnStorageTable = false;
-        weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
+                return wateringCan.GrowingRoom == growingRoom && wateringCan.CurrentWateringsNumber > 0 &&
+                       potOnTable.IsFlowerNeedWater;
+            }
+
+            return false;
+        }
+
+        private void PourPotOnTable()
+        {
+            potOnTable.PourFlower();
+        }
+
+        private bool CanPlayerDeleteWeedInPot()
+        {
+            if (isFlowerOnStorageTable &&
+                playerPickableObjectHandler.CurrentPickableObject is WeedingHoe currentWeedingHoe)
+            {
+                weedingHoe = currentWeedingHoe;
+
+                return potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom;
+            }
+
+            return false;
+        }
+
+        private void DeleteWeedInPot()
+        {
+            StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
+        }
+
+        private bool CanPlayerTakePotInHands()
+        {
+            return isFlowerOnStorageTable && playerPickableObjectHandler.IsPickableObjectNull;
+        }
+
+        private void TakePotInPlayerHands()
+        {
+            potOnTable.TakeInPlayerHandsAndSetPlayerFree();
+            isFlowerOnStorageTable = false;
+            weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
+        }
     }
 }

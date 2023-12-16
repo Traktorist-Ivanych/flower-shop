@@ -1,164 +1,171 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
+using FlowerShop.Tables.Helpers;
 using FlowerShop.Weeds;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-public class FlowersGrowingTable : UpgradableBreakableTable
+namespace FlowerShop.Tables
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
+    [RequireComponent(typeof(TableObjectsRotation))]
+    public class FlowersGrowingTable : UpgradableBreakableTable
+    {
+        [Inject] private readonly FlowersSettings flowersSettings;
     
-    [SerializeField] private Transform tablePotTransform;
-    [SerializeField] private MeshRenderer growingLightMeshRenderer;
-    [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
-    [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
-    [SerializeField] private WeedPlanter weedPlanter;
-    [FormerlySerializedAs("flowerEmpty")] [SerializeField] private FlowerName flowerNameEmpty;
+        [SerializeField] private Transform tablePotTransform;
+        [SerializeField] private MeshRenderer growingLightMeshRenderer;
+        [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
+        [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
+        [SerializeField] private WeedPlanter weedPlanter;
+        [SerializeField] private FlowerName flowerNameEmpty;
 
-    private delegate void FlowerGrowingTableAction();
-    private event FlowerGrowingTableAction FlowerGrowingTableEvent;
+        [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
+        [HideInInspector, SerializeField] private MeshFilter growingLightMeshFilter;
 
-    private WateringCan wateringCan;
-    private WeedingHoe weedingHoe;
-    private Pot potOnTable;
-    private Transform growingTableFanTransform;
-    private MeshFilter growingLightMeshFilter;
-    private bool isPotOnTable;
+        private WateringCan wateringCan;
+        private WeedingHoe weedingHoe;
+        private Pot potOnTable;
+        private bool isPotOnTable;
 
-    private protected override void Start()
-    {
-        base.Start();
-        growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
-        growingTableFanTransform = growingTableFanMeshRenderer.GetComponent<Transform>();
-
-        SetActionsBeforeBrokenQuantity(
-            repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-            repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
-    }
-
-    private void Update()
-    {
-        if (isPotOnTable)
+        private void OnValidate()
         {
-            growingTableFanTransform.Rotate(Vector3.up, gameConfiguration.ObjectsRotateDegreesPerSecond * Time.deltaTime);
+            tableObjectsRotation = GetComponent<TableObjectsRotation>();
+            growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
         }
-    }
-
-    public override void ExecuteClickableAbility()
-    {
-        if (playerBusyness.IsPlayerFree)
+        
+        private protected override void Start()
         {
-            if (!IsTableBroken)
-            {
-                if (isPotOnTable)
-                {
-                    if (playerPickableObjectHandler.IsPickableObjectNull)
-                    {
-                        SetPlayerDestination();
-                        FlowerGrowingTableEvent = null;
-                        FlowerGrowingTableEvent += TakePotFromGrowingTable;
-                    }
-                    if (playerPickableObjectHandler.CurrentPickableObject is WateringCan)
-                    {
-                        wateringCan = playerPickableObjectHandler.CurrentPickableObject as WateringCan;
-                        if (wateringCan.GrowingRoom == growingRoom && wateringCan.CurrentWateringsNumber > 0 &&
-                            potOnTable.IsFlowerNeedWater)
-                        {
-                            SetPlayerDestination();
-                            FlowerGrowingTableEvent = null;
-                            FlowerGrowingTableEvent += PourPotOnGrowingTable;
-                        }
-                    }
-                    else if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe)
-                    {
-                        weedingHoe = playerPickableObjectHandler.CurrentPickableObject as WeedingHoe;
-                        if (potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom)
-                        {
-                            SetPlayerDestination();
-                            FlowerGrowingTableEvent = null;
-                            FlowerGrowingTableEvent += DeleteWeed;
-                        }
+            base.Start();
+            
+            SetActionsBeforeBrokenQuantity(
+                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+        }
 
-                    }
-                }
-                else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
+        public override void ExecuteClickableAbility()
+        {
+            if (playerBusyness.IsPlayerFree)
+            {
+                if (CanPlayerPutPotOnTable())
                 {
-                    potOnTable = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                    if (potOnTable.GrowingRoom == growingRoom &&
-                        potOnTable.PlantedFlowerInfo.FlowerName != flowerNameEmpty && potOnTable.FlowerGrowingLvl < 3)
+                    SetPlayerDestinationAndOnPlayerArriveAction(PutPotOnTable);
+                }
+                else if (CanPlayerPourPotOnTable())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(PourPotOnTable);
+                }
+                else if (CanPlayerDeleteWeedInPot())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(DeleteWeedInPot);
+                }
+                else if (CanPlayerTakePotInHands())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
+                }
+                else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+                {
+                    if (IsTableBroken)
                     {
-                        SetPlayerDestination();
-                        FlowerGrowingTableEvent = null;
-                        FlowerGrowingTableEvent += PutPotOnGrowingTable;
+                        SetPlayerDestinationAndOnPlayerArriveAction(FixFlowerGrowingTable);
+                    }
+                    else if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                    {
+                        SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                     }
                 }
             }
-
-            if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
-            {
-                if (IsTableBroken)
-                {
-                    SetPlayerDestination();
-                    FlowerGrowingTableEvent = null;
-                    FlowerGrowingTableEvent += FixFlowerGrowingTable;
-                }
-                else if (tableLvl < 2)
-                {
-                    SetPlayerDestination();
-                    FlowerGrowingTableEvent = null;
-                    FlowerGrowingTableEvent += ShowUpgradeCanvas;
-                }
-            }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        FlowerGrowingTableEvent?.Invoke();
-    }
+        public override void UpgradeTable()
+        {
+            base.UpgradeTable();
+            growingLightMeshFilter.mesh = growingLightLvlMeshes[tableLvl - 1];
+            growingTableFanMeshRenderer.enabled = true;
+        }
 
-    public override void UpgradeTable()
-    {
-        base.UpgradeTable();
-        growingLightMeshFilter.mesh = growingLightLvlMeshes[tableLvl - 1];
-        growingTableFanMeshRenderer.enabled = true;
-    }
+        private bool CanPlayerPutPotOnTable()
+        {
+            if (!IsTableBroken && !isPotOnTable &&
+                playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                potOnTable = currentPot;
 
-    private void TakePotFromGrowingTable()
-    {
-        weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
-        potOnTable.TakeInPlayerHandsFromGrowingTableAndSetPlayerFree();
-        potOnTable = null;
-        isPotOnTable = false;
-        growingLightMeshRenderer.enabled = false;
-        UseBreakableTable();
-    }
+                return potOnTable.GrowingRoom == growingRoom &&
+                       potOnTable.PlantedFlowerInfo.FlowerName != flowerNameEmpty &&
+                       potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
+            }
 
-    private void PourPotOnGrowingTable()
-    {
-        potOnTable.PourFlower();
-    }
+            return false;
+        }
 
-    private void DeleteWeed()
-    {
-        StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
-    }
+        private void PutPotOnTable()
+        {
+            potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
+            isPotOnTable = true;
+            growingLightMeshRenderer.enabled = true;
+            playerPickableObjectHandler.ResetPickableObject();
+            weedPlanter.AddPotInPlantingWeedList(potOnTable);
+            tableObjectsRotation.StartObjectsRotation();
+        }
 
-    private void PutPotOnGrowingTable()
-    {
-        potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
-        isPotOnTable = true;
-        growingLightMeshRenderer.enabled = true;
-        playerPickableObjectHandler.ResetPickableObject();
-        weedPlanter.AddPotInPlantingWeedList(potOnTable);
-    }
+        private bool CanPlayerPourPotOnTable()
+        {
+            if (!IsTableBroken && isPotOnTable && potOnTable.IsFlowerNeedWater &&
+                playerPickableObjectHandler.CurrentPickableObject is WateringCan currentWateringCan)
+            {
+                wateringCan = currentWateringCan;
 
-    private void FixFlowerGrowingTable()
-    {
-        FixBreakableFlowerTable(
-            repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-            repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+                return wateringCan.GrowingRoom == growingRoom && wateringCan.CurrentWateringsNumber > 0;
+            }
+
+            return false;
+        }
+
+        private void PourPotOnTable()
+        {
+            potOnTable.PourFlower();
+        }
+
+        private bool CanPlayerDeleteWeedInPot()
+        {
+            if (isPotOnTable && potOnTable.IsWeedInPot &&
+                playerPickableObjectHandler.CurrentPickableObject is WeedingHoe currentWeedingHoe)
+            {
+                weedingHoe = currentWeedingHoe;
+
+                return weedingHoe.GrowingRoom == growingRoom;
+            }
+
+            return false;
+        }
+
+        private void DeleteWeedInPot()
+        {
+            StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
+        }
+
+        private bool CanPlayerTakePotInHands()
+        {
+            return !IsTableBroken && isPotOnTable && playerPickableObjectHandler.IsPickableObjectNull;
+        }
+
+        private void TakePotInPlayerHands()
+        {
+            weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
+            potOnTable.TakeInPlayerHandsFromGrowingTableAndSetPlayerFree();
+            potOnTable = null;
+            isPotOnTable = false;
+            growingLightMeshRenderer.enabled = false;
+            UseBreakableTable();
+            tableObjectsRotation.PauseObjectsRotation();
+        }
+
+        private void FixFlowerGrowingTable()
+        {
+            FixBreakableFlowerTable(
+                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+        }
     }
 }

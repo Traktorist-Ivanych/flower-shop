@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FlowerShop.Tables
 {
@@ -31,5 +30,11 @@ namespace FlowerShop.Tables
         [field: Header("Flowers Crossing Table")]
         [field: SerializeField] public float CrossingFlowerTime { get; private set; }
         [field: SerializeField] public float CrossingFlowerLvlTimeDelta { get; private set; }
+        
+        [field: Header("Pots Rack")]
+        [field: SerializeField] public int PotsCountAvailableOnStart { get; private set; }
+        [field: Tooltip("Determines number, by which count of available pots will increase, " +
+                        "when table will be upgrade by 1 lvl")]
+        [field: SerializeField] public int PotsCountAvailableOnUpgradeDelta { get; private set; }
     }
 }

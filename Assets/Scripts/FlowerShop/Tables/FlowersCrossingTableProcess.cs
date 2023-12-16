@@ -1,9 +1,9 @@
 using System.Collections;
-using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
+using FlowerShop.Tables.Helpers;
 using PlayerControl;
 using UniRx;
 using UnityEngine;
@@ -11,15 +11,16 @@ using Zenject;
 
 namespace FlowerShop.Tables
 {
+    [RequireComponent(typeof(TableObjectsRotation))]
     public class FlowersCrossingTableProcess : UpgradableBreakableTable
     {
+        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly PlayerComponents playerComponents;
 
         [SerializeField] private Transform tablePotTransform;
-        [SerializeField] private Transform crossingTableBlender;
         [SerializeField] private FlowerName flowerNameEmpty;
     
         [Header("Indicators")]
@@ -43,7 +44,8 @@ namespace FlowerShop.Tables
         [SerializeField] private GrowingRoom growingRoomExotic;
         [SerializeField] private GrowingRoom growingRoomDecorative;
 
-        private Tween crossingTableBlenderRotation;
+        [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
+        
         private Pot potForPlanting;
         private FlowerInfo flowerInfoForPlanting;
         private float crossingFlowerTime;
@@ -55,6 +57,11 @@ namespace FlowerShop.Tables
 
         public bool IsSeedCrossing { get; private set; }
 
+        private void OnValidate()
+        {
+            tableObjectsRotation = GetComponent<TableObjectsRotation>();
+        }
+        
         private protected override void Start()
         {
             base.Start();
@@ -64,15 +71,6 @@ namespace FlowerShop.Tables
             SetActionsBeforeBrokenQuantity(
                 repairsAndUpgradesSettings.CrossingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.CrossingTableMaxQuantity * (tableLvl + 1));
-            
-            crossingTableBlenderRotation = crossingTableBlender.DORotate(
-                    endValue: new Vector3(0,360,0),
-                    duration: actionsWithTransformSettings.RotationObject360DegreesTime, 
-                    mode: RotateMode.WorldAxisAdd)
-                .SetEase(Ease.Linear)
-                .SetLoops(-1);
-            
-            crossingTableBlenderRotation.Pause();
         }
 
         public override void ExecuteClickableAbility()
@@ -81,30 +79,21 @@ namespace FlowerShop.Tables
             
             if (CanPlayerStartFlowersCrossing())
             {
-                SetPlayerDestination();
-                ResetOnPlayerArriveEvent();
-                OnPlayerArriveEvent += () => StartCoroutine(StartFlowersCrossing());
+                SetPlayerDestinationAndOnPlayerArriveAction(() => StartCoroutine(StartFlowersCrossing()));
             }
             else if (CanPlayerPlantCrossedSeed())
             {
-                SetPlayerDestination();
-                    
-                ResetOnPlayerArriveEvent();
-                OnPlayerArriveEvent += () => StartCoroutine(PlantCrossedSeed());
+                SetPlayerDestinationAndOnPlayerArriveAction( () => StartCoroutine(PlantCrossedSeed()));
             }
             else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
             {
                 if (IsTableBroken)
                 {
-                    SetPlayerDestination();
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += FixCrossingTable;
+                    SetPlayerDestinationAndOnPlayerArriveAction(FixCrossingTable);
                 }
                 else if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
                 {
-                    SetPlayerDestination();
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += ShowUpgradeCanvas;
+                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
         }
@@ -119,8 +108,10 @@ namespace FlowerShop.Tables
             crossedFlowerRoomYellowIndicator.enabled = false;
             crossedFlowerRoomGreenIndicator.enabled = false;
 
-            if (firstFlowersCrossingTable.IsPotOnCrossingTable && firstFlowersCrossingTable.PotOnTable.FlowerGrowingLvl >= 3 &&
-                secondFlowersCrossingTable.IsPotOnCrossingTable && secondFlowersCrossingTable.PotOnTable.FlowerGrowingLvl >= 3)
+            if (firstFlowersCrossingTable.IsPotOnCrossingTable && 
+                firstFlowersCrossingTable.PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
+                secondFlowersCrossingTable.IsPotOnCrossingTable &&
+                secondFlowersCrossingTable.PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
             {
                 flowerInfoForPlanting = flowersContainer.GetFlowerFromCrossingRecipe(
                     firstFlowersCrossingTable.PotOnTable.PlantedFlowerInfo.FlowerName,
@@ -180,7 +171,7 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
             IsSeedCrossing = true;
-            crossingTableBlenderRotation.Play();
+            tableObjectsRotation.StartObjectsRotation();
             
             Observable.EveryUpdate().Subscribe( updateCrossingFlowersTimer =>
             {
@@ -191,7 +182,7 @@ namespace FlowerShop.Tables
                     currentCrossingFlowerTime = 0;
                     IsSeedCrossing = false;
                     isCrossingSeedReady = true;
-                    crossingTableBlenderRotation.Pause();
+                    tableObjectsRotation.PauseObjectsRotation();
                     crossingAbilityGreenIndicator.enabled = false;
                     crossingAbilityRedIndicator.enabled = true;
                     firstFlowersCrossingTable.PotOnTable.CrossFlower();

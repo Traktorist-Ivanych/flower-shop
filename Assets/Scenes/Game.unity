@@ -30736,7 +30736,7 @@ MonoBehaviour:
   playerCoffeeEffect: {fileID: 919132147897302653}
   flowersContainer: {fileID: 3313673682462013313}
   flowersForSaleCoeffCalculator: {fileID: 216454155}
-  flowerSaleTablesForCustomers: {fileID: 216454156}
+  flowersSaleTablesForCustomers: {fileID: 216454156}
   gameConfiguration: {fileID: 1796018427}
   customersSpawner: {fileID: 1913165208}
   upgradeCanvasLiaison: {fileID: 536576003}
@@ -45856,14 +45856,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585345290}
     m_Modifications:
-    - target: {fileID: 951367575, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
-      propertyPath: weedPlanter
-      value: 
-      objectReference: {fileID: 1015451439}
-    - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -53532,9 +53524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 1741490706}
-  brokenParticleSystems:
-  - {fileID: 305256019}
-  - {fileID: 718554168}
+  brokenEffects: []
 --- !u!114 &3392452134737347578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53565,6 +53555,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   destinationTarget: {fileID: 16191458}
   targetToLookAt: {fileID: 266672520}
+  upgradableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 3392452134737347577}
   potOnTableTransform: {fileID: 335208191}
   gearsTransform:
   - {fileID: 1194452236}
@@ -55249,9 +55241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 1595223917}
-  brokenParticleSystems:
-  - {fileID: 593794127}
-  - {fileID: 339153860}
+  brokenEffects: []
 --- !u!114 &4287650224362876322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55282,6 +55272,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
   destinationTarget: {fileID: 1322189767}
   targetToLookAt: {fileID: 945229265}
+  upgradableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 4287650224362876321}
   potOnTableTransform: {fileID: 1058420875}
   gearsTransform:
   - {fileID: 1341611986}

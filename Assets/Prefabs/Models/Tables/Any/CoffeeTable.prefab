@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 4171110336876549607}
   - component: {fileID: 4171110336876549609}
   - component: {fileID: 4171110336876549606}
+  - component: {fileID: 9091167165818549593}
   m_Layer: 3
   m_Name: CoffeeTable
   m_TagString: Untagged
@@ -418,11 +419,26 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 4171110336932855115}
   targetToLookAt: {fileID: 4171110335659404785}
-  coffeeGrinderTransform: {fileID: 4171110334866398836}
   coffeeCap: {fileID: 6042856543032275900}
   coffeeCapOnTableTransform: {fileID: 7443874837936163414}
   statMakingCoffeeAnimationClip: {fileID: 7400000, guid: 34a88e7370fb77c429c9f745088694b0, type: 2}
   drinkCoffeeAnimationClip: {fileID: 7400000, guid: 1395d7af51df36e418805844e02b60d6, type: 2}
+  tableObjectsRotation: {fileID: 9091167165818549593}
+--- !u!114 &9091167165818549593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171110336876549604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16315a62739e42c9a29e129294b513f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingObjectsTransform:
+  - {fileID: 4171110334866398836}
+  rotatingEndValue: {x: 0, y: 360, z: 0}
 --- !u!1 &4171110336932855112
 GameObject:
   m_ObjectHideFlags: 0

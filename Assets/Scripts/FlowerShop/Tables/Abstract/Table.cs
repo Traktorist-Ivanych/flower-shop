@@ -16,10 +16,11 @@ namespace FlowerShop.Tables.Abstract
         [SerializeField] private protected GrowingRoom growingRoom;
         [SerializeField] private protected Transform destinationTarget;
         [SerializeField] private protected Transform targetToLookAt;
-        
-        private protected delegate void OnPlayerArriveAction();
-        private protected event OnPlayerArriveAction OnPlayerArriveEvent;
-    
+
+        private protected delegate void OnPlayerArrive();
+
+        private event OnPlayerArrive OnPlayerArriveEvent;
+
         public virtual void ExecuteClickableAbility()
         {
             throw new System.NotImplementedException();
@@ -30,12 +31,15 @@ namespace FlowerShop.Tables.Abstract
             OnPlayerArriveEvent?.Invoke();
         }
 
-        private protected void ResetOnPlayerArriveEvent()
+        private protected void SetPlayerDestinationAndOnPlayerArriveAction(OnPlayerArrive targetOnPlayerArriveAction)
         {
+            SetPlayerDestination();
+            
             OnPlayerArriveEvent = null;
+            OnPlayerArriveEvent += targetOnPlayerArriveAction;
         }
 
-        private protected void SetPlayerDestination()
+        private void SetPlayerDestination()
         {
             playerMoving.SetPlayerDestination(
                 destinationTarget: destinationTarget.position, 

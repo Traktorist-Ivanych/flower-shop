@@ -1,81 +1,100 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowerShop.PickableObjects;
+using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
+using Zenject;
 
-// it is not exactly flowerTable, but just table for pots (maybe rename flowerTable to just table)
-public class PotsRack : UpgradableTable
+namespace FlowerShop.Tables
 {
-    [SerializeField] private Transform PotObjectsTransform;
-    [SerializeField] private List<Pot> pots;
-    [SerializeField] private List<MeshRenderer> potsRenderers;
-
-    private delegate void PotsRackAction();
-    private event PotsRackAction PotsRackEvent;
-
-    private int currentFreePots = 8;
-
-    public override void ExecuteClickableAbility()
+    public class PotsRack : UpgradableTable
     {
-        if (playerBusyness.IsPlayerFree)
+        [Inject] private readonly TablesSettings tablesSettings;
+        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
+        
+        [SerializeField] private Transform potObjectsTransform;
+        [SerializeField] private List<Pot> pots;
+        [SerializeField] private List<MeshRenderer> potsRenderers;
+
+        private Pot currentPlayerPot;
+        private int currentFreePots;
+
+        private protected override void Start()
         {
-            if (playerPickableObjectHandler.IsPickableObjectNull && currentFreePots > 0)
+            base.Start();
+
+            currentFreePots = tablesSettings.PotsCountAvailableOnStart;
+        }
+        
+        public override void ExecuteClickableAbility()
+        {
+            if (playerBusyness.IsPlayerFree)
             {
-                SetPlayerDestination();
-                PotsRackEvent = null;
-                PotsRackEvent += GivePot;
-            }
-            else if (playerPickableObjectHandler.CurrentPickableObject is Pot)
-            {
-                Pot currentPlayerPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                if (!currentPlayerPot.IsSoilInsidePot && currentPlayerPot.GrowingRoom == growingRoom)
+                if (CanPlayerTakePotInHands())
                 {
-                    SetPlayerDestination();
-                    PotsRackEvent = null;
-                    PotsRackEvent += TakePot;
+                    SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
+                }
+                else if (CanPlayerPutPotOnTable())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(PutPotOnTable);
+                }
+                else if (CanPlayerUpgradeTable())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
-            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && tableLvl < 2)
+        }
+
+        public override void UpgradeTable()
+        {
+            base.UpgradeTable();
+
+            currentFreePots += tablesSettings.PotsCountAvailableOnUpgradeDelta;
+            for (int i = 0; i < currentFreePots; i++)
             {
-                SetPlayerDestination();
-                PotsRackEvent = null;
-                PotsRackEvent += ShowUpgradeCanvas;
+                potsRenderers[i].enabled = true;
             }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        PotsRackEvent?.Invoke();
-    }
-
-    private void GivePot()
-    {
-        potsRenderers[currentFreePots - 1].enabled = false;
-        currentFreePots--;
-        pots.Last().TakeInPlayerHandsAndSetPlayerFree();
-        pots.Remove(pots.Last());
-    }
-
-    private void TakePot()
-    {
-        currentFreePots++;
-        potsRenderers[currentFreePots - 1].enabled = true;
-        Pot takingPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
-        pots.Add(takingPot);
-        takingPot.PutOnTableAndSetPlayerFree(PotObjectsTransform);
-        playerPickableObjectHandler.ResetPickableObject();
-    }
-
-    public override void UpgradeTable()
-    {
-        base.UpgradeTable();
-
-        currentFreePots += 8;
-        for (int i = 0; i < currentFreePots; i++)
+        private bool CanPlayerTakePotInHands()
         {
-            potsRenderers[i].enabled = true;
+            return playerPickableObjectHandler.IsPickableObjectNull && currentFreePots > 0;
+        }
+
+        private void TakePotInPlayerHands()
+        {
+            potsRenderers[currentFreePots - 1].enabled = false;
+            currentFreePots--;
+            pots.Last().TakeInPlayerHandsAndSetPlayerFree();
+            pots.Remove(pots.Last());
+        }
+
+        private bool CanPlayerPutPotOnTable()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                currentPlayerPot = currentPot;
+                
+                return !currentPlayerPot.IsSoilInsidePot && currentPlayerPot.GrowingRoom == growingRoom;
+            }
+
+            return false;
+        }
+
+        private void PutPotOnTable()
+        {
+            currentFreePots++;
+            potsRenderers[currentFreePots - 1].enabled = true;
+            pots.Add(currentPlayerPot);
+            currentPlayerPot.PutOnTableAndSetPlayerFree(potObjectsTransform);
+            playerPickableObjectHandler.ResetPickableObject();
+        }
+
+        private bool CanPlayerUpgradeTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
+                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

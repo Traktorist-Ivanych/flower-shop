@@ -19,19 +19,16 @@ public class WeedingTable : UpgradableTable
         {
             if (playerPickableObjectHandler.IsPickableObjectNull)
             {
-                SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += TakeHoeInPlayerHands;
             }
             else if ((playerPickableObjectHandler.CurrentPickableObject as WeedingHoe)?.Equals(weedingHoe) == nullableTrue)
             {
-                SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += PutHoeOnWeedingTable;
             }
             else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && tableLvl < 2)
             {
-                SetPlayerDestination();
                 WeedingTableEvent = null;
                 WeedingTableEvent += ShowUpgradeCanvas;
             }

@@ -1,50 +1,60 @@
 using System.Collections;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
 
-public class PlantingSeedsTable : Table
+namespace FlowerShop.Tables
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
-
-    [SerializeField] private Transform potOnTableTransform;
-    [SerializeField] private Canvas seedsCanvas; 
-    [SerializeField] private FlowerName flowerNameEmpty;
-
-    private Pot plantingSeedPot;
-
-    public override void ExecuteClickableAbility()
+    public class PlantingSeedsTable : Table
     {
-        if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is Pot)
-        {
-            plantingSeedPot = playerPickableObjectHandler.CurrentPickableObject as Pot;
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
 
-            if (plantingSeedPot.GrowingRoom == growingRoom &&
-                plantingSeedPot.IsSoilInsidePot && plantingSeedPot.PlantedFlowerInfo.FlowerName == flowerNameEmpty)
+        [SerializeField] private Transform potOnTableTransform;
+        [SerializeField] private Canvas seedsCanvas; 
+        [SerializeField] private FlowerName flowerNameEmpty;
+
+        private Pot plantingSeedPot;
+
+        public override void ExecuteClickableAbility()
+        {
+            if (CanPlayerPlantSeed())
             {
-                SetPlayerDestination();
+                SetPlayerDestinationAndOnPlayerArriveAction(() => StartCoroutine(StartPlantingSeed()));
             }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        plantingSeedPot.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
-        StartCoroutine(OpenSeedsCanvas());
-    }
+        public void PlantSeed(FlowerInfo transmittedFlowerInfo)
+        {
+            plantingSeedPot.PlantSeed(transmittedFlowerInfo);
+            seedsCanvas.enabled = false;
+            plantingSeedPot.TakeInPlayerHandsAndSetPlayerFree();
+        }
 
-    private IEnumerator OpenSeedsCanvas()
-    {
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        seedsCanvas.enabled = true;
-    }
+        private bool CanPlayerPlantSeed()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                plantingSeedPot = currentPot;
 
-    public void PlantSeed(FlowerInfo transmittedFlowerInfo)
-    {
-        plantingSeedPot.PlantSeed(transmittedFlowerInfo);
-        seedsCanvas.enabled = false;
-        plantingSeedPot.TakeInPlayerHandsAndSetPlayerFree();
+                return playerBusyness.IsPlayerFree &&
+                       plantingSeedPot.GrowingRoom == growingRoom &&
+                       plantingSeedPot.IsSoilInsidePot &&
+                       plantingSeedPot.PlantedFlowerInfo.FlowerName == flowerNameEmpty;
+            }
+
+            return false;
+        }
+        
+        private IEnumerator StartPlantingSeed()
+        {
+            plantingSeedPot.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
+            
+            yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
+            
+            seedsCanvas.enabled = true;
+        }
     }
 }

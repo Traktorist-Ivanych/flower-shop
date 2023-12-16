@@ -24,3 +24,5 @@ MonoBehaviour:
   <SoilPreparationLvlTimeDelta>k__BackingField: 0.25
   <CrossingFlowerTime>k__BackingField: 3
   <CrossingFlowerLvlTimeDelta>k__BackingField: 1
+  <PotsCountAvailableOnStart>k__BackingField: 8
+  <PotsCountAvailableOnUpgradeDelta>k__BackingField: 8

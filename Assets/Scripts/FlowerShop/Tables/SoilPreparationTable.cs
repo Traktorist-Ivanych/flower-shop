@@ -1,126 +1,120 @@
 using System.Collections;
 using FlowerShop.PickableObjects;
-using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
-using FlowerShop.Tables.BaseComponents;
+using FlowerShop.Tables.Helpers;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(UpgradableTableBaseComponent))]
-public class SoilPreparationTable : UpgradableBreakableTable
+namespace FlowerShop.Tables
 {
-    [Inject] private readonly GameConfiguration gameConfiguration;
+    [RequireComponent(typeof(TableObjectsRotation))]
+    public class SoilPreparationTable : UpgradableBreakableTable
+    {
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly TablesSettings tablesSettings;
     
-    [SerializeField] private Transform potOnTableTransform;
-    [SerializeField] private Transform[] gearsTransform;
+        [SerializeField] private Transform potOnTableTransform;
+        [SerializeField] private MeshRenderer[] gearsMeshRenderers;
 
-    private delegate void SoilPreparationTableAction();
-    private event SoilPreparationTableAction SoilPreparationTableEvent;
+        [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
 
-    private Pot potToSoilPreparation;
-    private float soilPreparationTime;
-    private float currentSoilPreparationTime;
-    private bool isSoilBeingPrepared;
+        private Pot potToSoilPreparation;
+        private float soilPreparationTime;
+        
+        public int TableLvl => tableLvl;
 
-    public int TableLvl
-    {
-        get => tableLvl;
-    }
-
-    private protected override void Start()
-    {
-        base.Start();
-        SetSoilPreparationTime();
-
-        SetActionsBeforeBrokenQuantity(
-            repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
-            repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
-    }
-
-    private void Update()
-    {
-        if (isSoilBeingPrepared)
+        private void OnValidate()
         {
-            currentSoilPreparationTime -= Time.deltaTime;
-
-            foreach (Transform geatTransform in gearsTransform)
-            {
-                geatTransform.Rotate(Vector3.forward, gameConfiguration.ObjectsRotateDegreesPerSecond * Time.deltaTime);
-            }
-
-            if (currentSoilPreparationTime <= 0)
-            {
-                currentSoilPreparationTime = soilPreparationTime;
-                isSoilBeingPrepared = false;
-                potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
-                UseBreakableTable();
-            }
+            tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
-    }
-
-    public override void ExecuteClickableAbility()
-    {
-        if (playerBusyness.IsPlayerFree)
+        
+        private protected override void Start()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot)
+            base.Start();
+            SetSoilPreparationTime();
+
+            SetActionsBeforeBrokenQuantity(
+                repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+        }
+
+        public override void ExecuteClickableAbility()
+        {
+            if (playerBusyness.IsPlayerFree)
             {
-                potToSoilPreparation = playerPickableObjectHandler.CurrentPickableObject as Pot;
-                if (potToSoilPreparation.GrowingRoom == growingRoom && !potToSoilPreparation.IsSoilInsidePot &&
-                    !IsTableBroken)
+                if (CanPlayerStartSoilPreparation())
                 {
-                    SetPlayerDestination();
-                    SoilPreparationTableEvent = null;
-                    SoilPreparationTableEvent += delegate { StartCoroutine(SoilPreparation()); };
+                    SetPlayerDestinationAndOnPlayerArriveAction(() => StartCoroutine(SoilPreparation()));
                 }
-            }
-            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
-            {
-                if (IsTableBroken)
+                else if (CanPlayerFixTable())
                 {
-                    SetPlayerDestination();
-                    SoilPreparationTableEvent = null;
-                    SoilPreparationTableEvent += FixSoilPreparationTable;
+                    SetPlayerDestinationAndOnPlayerArriveAction(FixSoilPreparationTable); 
                 }
-                else if (tableLvl < 2)
+                else if (CanPlayerUpgradeTable())
                 {
-                    SetPlayerDestination();
-                    SoilPreparationTableEvent = null;
-                    SoilPreparationTableEvent += ShowUpgradeCanvas;
+                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
         }
-    }
 
-    public override void ExecutePlayerAbility()
-    {
-        SoilPreparationTableEvent?.Invoke();
-    }
+        public override void UpgradeTable()
+        {
+            base.UpgradeTable();
+            SetSoilPreparationTime();
+            gearsMeshRenderers[tableLvl].enabled = true;
+        }
 
-    public override void UpgradeTable()
-    {
-        base.UpgradeTable();
-        SetSoilPreparationTime();
-    }
+        private void SetSoilPreparationTime()
+        {
+            soilPreparationTime = tablesSettings.SoilPreparationTime - tableLvl * tablesSettings.SoilPreparationLvlTimeDelta;
+        }
 
-    private void SetSoilPreparationTime()
-    {
-        soilPreparationTime = gameConfiguration.SoilPreparationTime - tableLvl * gameConfiguration.SoilPreparationLvlTimeDelta;
-        currentSoilPreparationTime = soilPreparationTime;
-    }
+        private bool CanPlayerStartSoilPreparation()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                potToSoilPreparation = currentPot;
 
-    private IEnumerator SoilPreparation()
-    {
-        potToSoilPreparation.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
+                return potToSoilPreparation.GrowingRoom == growingRoom && 
+                       !potToSoilPreparation.IsSoilInsidePot &&
+                       !IsTableBroken;
+            }
 
-        yield return new WaitForSeconds(gameConfiguration.PotMovingActionDelay);
-        potToSoilPreparation.FillPotWithSoil();
-        isSoilBeingPrepared = true;
-    }
+            return false;
+        }
 
-    private void FixSoilPreparationTable()
-    {
-        FixBreakableFlowerTable(
-            repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
-            repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+        private IEnumerator SoilPreparation()
+        {
+            potToSoilPreparation.PutOnTableAndKeepPlayerBusy(potOnTableTransform);
+
+            yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
+            tableObjectsRotation.StartObjectsRotation();
+            
+            yield return new WaitForSeconds(soilPreparationTime);
+            tableObjectsRotation.PauseObjectsRotation();
+            
+            potToSoilPreparation.FillPotWithSoil();
+            potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
+            UseBreakableTable();
+        }
+
+        private bool CanPlayerFixTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && IsTableBroken;
+        }
+
+        private void FixSoilPreparationTable()
+        {
+            FixBreakableFlowerTable(
+                repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+        }
+
+        private bool CanPlayerUpgradeTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && 
+                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
+        }
     }
 }

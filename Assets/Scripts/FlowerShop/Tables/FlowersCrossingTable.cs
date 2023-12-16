@@ -22,17 +22,11 @@ namespace FlowerShop.Tables
             {
                 if (CanPlayerTakePotInHands())
                 {
-                    SetPlayerDestination();
-                    
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += TakePotInPlayerHands;
+                    SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
                 else if (CanPlayerPutPotOnTable())
                 {
-                    SetPlayerDestination();
-                    
-                    ResetOnPlayerArriveEvent();
-                    OnPlayerArriveEvent += PutPotOnTable;
+                    SetPlayerDestinationAndOnPlayerArriveAction(PutPotOnTable);
                 }
             }
         }
