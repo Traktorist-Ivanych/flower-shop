@@ -192,14 +192,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4099719665760389682}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7860886161012303864}
   - {fileID: 7603118498644550200}
-  m_Father: {fileID: 4662308225993360917}
+  m_Father: {fileID: 4662308226838123942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8051557397427641113
 MeshFilter:
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4662308225993360917}
   m_Layer: 0
-  m_Name: SoilTransform
+  m_Name: SoilEndTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,11 +276,10 @@ Transform:
   m_GameObject: {fileID: 4662308225993360916}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 1.2, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2742897238208492826}
+  m_Children: []
   m_Father: {fileID: 4662308226838123942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4662308226334462237
@@ -455,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4662308226838123937}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -463,6 +462,7 @@ Transform:
   - {fileID: 4662308226334462226}
   - {fileID: 4662308226524801751}
   - {fileID: 4662308226473490479}
+  - {fileID: 2742897238208492826}
   - {fileID: 4662308225993360917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -524,8 +524,11 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 4662308226334462226}
   targetToLookAt: {fileID: 4662308226524801751}
-  trashCanAnimator: {fileID: 4662308226838123943}
   flowerRenderer: {fileID: 2070938032581978299}
   soilRenderer: {fileID: 6678304136995565705}
   weedRenderer: {fileID: 8461053377542186624}
-  flowerEmpty: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  flowerNameEmpty: {fileID: 0}
+  soilEndTransform: {fileID: 4662308225993360917}
+  soilTransform: {fileID: 2742897238208492826}
+  flowerMeshFilter: {fileID: 4433847053342715305}
+  weedMeshFilter: {fileID: 6736892959570261169}

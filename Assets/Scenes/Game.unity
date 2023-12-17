@@ -16943,8 +16943,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdf8b1a660cd544a99df18079dd50b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatsCanvasLiaison: {fileID: 2026734337}
+  playerAbilityExecutor: {fileID: 919132147897302642}
+  playerBusyness: {fileID: 919132147897302646}
+  playerCoffeeEffect: {fileID: 919132147897302653}
+  playerComponents: {fileID: 919132147897302647}
   playerControlSettings: {fileID: 11400000, guid: febf73da90e52294b857a38406841a50, type: 2}
+  playerMoney: {fileID: 919132147897302648}
+  playerMoving: {fileID: 919132147897302643}
+  playerPickableObjectHandler: {fileID: 919132147897302641}
+  playerStatsCanvasLiaison: {fileID: 2026734337}
 --- !u!1 &593794124
 GameObject:
   m_ObjectHideFlags: 0
@@ -30693,7 +30700,7 @@ GameObject:
   - component: {fileID: 853641731}
   - component: {fileID: 853641732}
   m_Layer: 0
-  m_Name: ZenjectInstaller
+  m_Name: FlowerShopInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30726,21 +30733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e88af33b4bc604cb30d32bb351de11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgent: {fileID: 919132147897302644}
-  playerMoving: {fileID: 919132147897302643}
-  playerAbilityExecutor: {fileID: 919132147897302642}
-  playerPickableObjectHandler: {fileID: 919132147897302641}
-  playerBusyness: {fileID: 919132147897302646}
-  playerComponents: {fileID: 919132147897302647}
-  playerMoney: {fileID: 919132147897302648}
-  playerCoffeeEffect: {fileID: 919132147897302653}
   flowersContainer: {fileID: 3313673682462013313}
   flowersForSaleCoeffCalculator: {fileID: 216454155}
   flowersSaleTablesForCustomers: {fileID: 216454156}
-  gameConfiguration: {fileID: 1796018427}
   customersSpawner: {fileID: 1913165208}
-  upgradeCanvasLiaison: {fileID: 536576003}
   coffeeCanvasLiaison: {fileID: 563717016}
+  upgradeCanvasLiaison: {fileID: 536576003}
   repairsAndUpgradesTable: {fileID: 996543469402746873}
   repairingAndUpgradingHammer: {fileID: 1552103848}
 --- !u!1 &856215567
@@ -43049,17 +43047,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1796018427 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3965549638841364250, guid: e2a76498d28068245a189f7a26a34dc9, type: 3}
-  m_PrefabInstance: {fileID: 5032340909602835506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2474d8a933fd804a8c76c22c9d20b2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1804315460
 GameObject:
   m_ObjectHideFlags: 0
@@ -45843,11 +45830,11 @@ MonoBehaviour:
   actionsWithTransformSettings: {fileID: 11400000, guid: c8b3dc2ef68cf564baaf48468407ba88, type: 2}
   coffeeSettings: {fileID: 11400000, guid: 266fd4f9b53dac540b9381ce2a838a3d, type: 2}
   customersSettings: {fileID: 11400000, guid: 1e8f1e42dc0b3894399a9ef11631d068, type: 2}
+  flowersForSaleCoeffCalculatorSettings: {fileID: 11400000, guid: d0a23ff482ec40d4f8a5d26530b4f781, type: 2}
   flowersSettings: {fileID: 11400000, guid: 815c3a818e89feb4aa11a4947a279968, type: 2}
+  repairsAndUpgradesSettings: {fileID: 11400000, guid: 2761dca7acce926478bd41fc70dfc309, type: 2}
   tablesSettings: {fileID: 11400000, guid: 1d588145db965794aa1c37632e85848d, type: 2}
   weedSettings: {fileID: 11400000, guid: 2751d0c3ff4739f4bb50b5d94f01ff8a, type: 2}
-  repairsAndUpgradesSettings: {fileID: 11400000, guid: 2761dca7acce926478bd41fc70dfc309, type: 2}
-  flowersForSaleCoeffCalculatorSettings: {fileID: 11400000, guid: d0a23ff482ec40d4f8a5d26530b4f781, type: 2}
 --- !u!1001 &2008704987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45856,6 +45843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585345290}
     m_Modifications:
+    - target: {fileID: 951367575, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: weedPlanter
+      value: 
+      objectReference: {fileID: 1015451439}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -46199,6 +46190,7 @@ GameObject:
   - component: {fileID: 4287650224362876323}
   - component: {fileID: 4287650224362876322}
   - component: {fileID: 4287650224362876321}
+  - component: {fileID: 4287650224362876327}
   m_Layer: 3
   m_Name: DecorativeSoilPreparationTable1
   m_TagString: Untagged
@@ -47854,6 +47846,7 @@ GameObject:
   - component: {fileID: 3392452134737347579}
   - component: {fileID: 3392452134737347578}
   - component: {fileID: 3392452134737347577}
+  - component: {fileID: 3392452134737347583}
   m_Layer: 3
   m_Name: SoilPreparationTableExotic
   m_TagString: Untagged
@@ -49931,11 +49924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede10c205d9d6214a842f71d369883a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &919132147897302644 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 7005960515872514112, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
-  m_PrefabInstance: {fileID: 7925000716571188788}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &919132147897302646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7005960515872514114, guid: 1abd120f48bec994da598ac4621c29ea, type: 3}
@@ -53558,10 +53546,8 @@ MonoBehaviour:
   upgradableTableBaseComponent: {fileID: 0}
   breakableTableBaseComponent: {fileID: 3392452134737347577}
   potOnTableTransform: {fileID: 335208191}
-  gearsTransform:
-  - {fileID: 1194452236}
-  - {fileID: 1614803371}
-  - {fileID: 628606677}
+  gearsMeshRenderers: []
+  tableObjectsRotation: {fileID: 3392452134737347583}
 --- !u!65 &3392452134737347580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53633,6 +53619,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139189771}
   m_Mesh: {fileID: 6949586091703896827, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+--- !u!114 &3392452134737347583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139189771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16315a62739e42c9a29e129294b513f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingObjectsTransform: []
+  rotatingEndValue: {x: 0, y: 0, z: 0}
 --- !u!1001 &3399860348541810185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55275,10 +55275,8 @@ MonoBehaviour:
   upgradableTableBaseComponent: {fileID: 0}
   breakableTableBaseComponent: {fileID: 4287650224362876321}
   potOnTableTransform: {fileID: 1058420875}
-  gearsTransform:
-  - {fileID: 1341611986}
-  - {fileID: 1338958454}
-  - {fileID: 1100103846}
+  gearsMeshRenderers: []
+  tableObjectsRotation: {fileID: 4287650224362876327}
 --- !u!65 &4287650224362876324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55350,6 +55348,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031138010}
   m_Mesh: {fileID: 109778002284704200, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+--- !u!114 &4287650224362876327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031138010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16315a62739e42c9a29e129294b513f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingObjectsTransform: []
+  rotatingEndValue: {x: 0, y: 0, z: 0}
 --- !u!1001 &4301095594307463853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56056,17 +56068,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1998136429}
     m_Modifications:
-    - target: {fileID: 4662308225993360917, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 4662308226838123937, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
       propertyPath: m_Name
       value: TrashCanWild
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56911,10 +56915,6 @@ PrefabInstance:
     - target: {fileID: 3678784540717800387, guid: e2a76498d28068245a189f7a26a34dc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3965549638841364250, guid: e2a76498d28068245a189f7a26a34dc9, type: 3}
-      propertyPath: <MinBuyerSpawnTime>k__BackingField
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7667569114844926356, guid: e2a76498d28068245a189f7a26a34dc9, type: 3}
       propertyPath: m_Name

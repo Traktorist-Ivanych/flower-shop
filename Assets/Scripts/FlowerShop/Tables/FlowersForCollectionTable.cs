@@ -1,5 +1,6 @@
 using DG.Tweening;
 using FlowerShop.Flowers;
+using FlowerShop.FlowersForCollection;
 using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
@@ -21,7 +22,7 @@ namespace FlowerShop.Tables
         [SerializeField] private Transform soilTablePosition;
         [SerializeField] private MeshRenderer soilMeshRenderer;
         [SerializeField] private MeshRenderer flowerMeshRenderer;
-        [SerializeField] private FlowersForCollection.FlowersForCollection flowersForCollection;
+        [SerializeField] private FlowersForPlayerCollection flowersForCollection;
 
         [HideInInspector, SerializeField] private Transform soilTransform;
         [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;

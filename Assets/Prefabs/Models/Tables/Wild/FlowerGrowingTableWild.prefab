@@ -5375,7 +5375,7 @@ MonoBehaviour:
   - {fileID: -4264453173195181260, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 8478554996525145336, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   weedPlanter: {fileID: 0}
-  flowerNameEmpty: {fileID: 0}
+  flowerNameEmpty: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
   tableObjectsRotation: {fileID: 8762687238540105408}
   growingLightMeshFilter: {fileID: 117389503623190509}
 --- !u!65 &6756072784890184190
@@ -5427,7 +5427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 1242825150}
-  brokenEffects: []
+  brokenEffects:
+  - {fileID: 1448070973}
 --- !u!114 &8762687238540105408
 MonoBehaviour:
   m_ObjectHideFlags: 0

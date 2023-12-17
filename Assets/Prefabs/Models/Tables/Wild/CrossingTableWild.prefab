@@ -173,7 +173,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 2101627782}
   targetToLookAt: {fileID: 628734997}
   upgradableTableBaseComponent: {fileID: 0}
-  breakableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 8741059930623832006}
   tablePotTransform: {fileID: 1957789158}
   flowerNameEmpty: {fileID: 0}
   crossingAbilityRedIndicator: {fileID: 8969553558629869457}
@@ -312,7 +312,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 2111225956}
   targetToLookAt: {fileID: 581331089}
   tablePotTransform: {fileID: 429605746}
-  flowersCrossingTableProcess: {fileID: 0}
+  flowersCrossingTableProcess: {fileID: 648142770}
 --- !u!1 &837902060
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   destinationTarget: {fileID: 1857434421}
   targetToLookAt: {fileID: 837902061}
   tablePotTransform: {fileID: 1501614293}
-  flowersCrossingTableProcess: {fileID: 0}
+  flowersCrossingTableProcess: {fileID: 648142770}
 --- !u!1 &1501614292
 GameObject:
   m_ObjectHideFlags: 0

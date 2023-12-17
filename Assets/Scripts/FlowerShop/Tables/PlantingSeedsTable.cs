@@ -10,11 +10,11 @@ namespace FlowerShop.Tables
 {
     public class PlantingSeedsTable : Table
     {
+        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
 
         [SerializeField] private Transform potOnTableTransform;
-        [SerializeField] private Canvas seedsCanvas; 
-        [SerializeField] private FlowerName flowerNameEmpty;
+        [SerializeField] private Canvas seedsCanvas;
 
         private Pot plantingSeedPot;
 
@@ -42,7 +42,7 @@ namespace FlowerShop.Tables
                 return playerBusyness.IsPlayerFree &&
                        plantingSeedPot.GrowingRoom == growingRoom &&
                        plantingSeedPot.IsSoilInsidePot &&
-                       plantingSeedPot.PlantedFlowerInfo.FlowerName == flowerNameEmpty;
+                       plantingSeedPot.PlantedFlowerInfo.FlowerName == flowersSettings.FlowerNameEmpty;
             }
 
             return false;

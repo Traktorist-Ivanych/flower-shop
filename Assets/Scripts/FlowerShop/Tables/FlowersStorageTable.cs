@@ -3,14 +3,16 @@ using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Weeds;
 using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.Tables
 {
     public class FlowersStorageTable : Table
     {
+        [Inject] private readonly FlowersSettings flowersSettings;
+        
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private WeedPlanter weedPlanter;
-        [SerializeField] private GrowingRoom growingRoomAny;
 
         private WeedingHoe weedingHoe;
         private WateringCan wateringCan;
@@ -46,7 +48,7 @@ namespace FlowerShop.Tables
             {
                 potOnTable = currentPot;
 
-                return potOnTable.GrowingRoom == growingRoom || growingRoom == growingRoomAny;
+                return potOnTable.GrowingRoom == growingRoom || growingRoom == flowersSettings.GrowingRoomAny;
             }
 
             return false;
@@ -57,7 +59,8 @@ namespace FlowerShop.Tables
             potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
             playerPickableObjectHandler.ResetPickableObject();
             isFlowerOnStorageTable = true;
-            if (potOnTable.IsSoilInsidePot)
+            
+            if (potOnTable.IsSoilInsidePot && !potOnTable.IsWeedInPot)
             {
                 weedPlanter.AddPotInPlantingWeedList(potOnTable);
             }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables;
-using ModestTree;
 using UnityEngine;
 using Zenject;
 
@@ -42,14 +41,18 @@ namespace FlowerShop.Weeds
 
         public void AddPotInPlantingWeedList(Pot potForPlantingWeed)
         {
-            potsForPlantingWeed.Add(potForPlantingWeed);
+            if (!potsForPlantingWeed.Contains(potForPlantingWeed))
+            {
+                potsForPlantingWeed.Add(potForPlantingWeed);
+            }
         }
 
         public void RemovePotFormPlantingWeedList(Pot potForRemoving)
         {
-            Assert.That(potsForPlantingWeed.Contains(potForRemoving));
-            
-            potsForPlantingWeed.Remove(potForRemoving);
+            if (potsForPlantingWeed.Contains(potForRemoving))
+            {
+                potsForPlantingWeed.Remove(potForRemoving);
+            }
         }
 
         private void SetCurrentWeedPlantTime()

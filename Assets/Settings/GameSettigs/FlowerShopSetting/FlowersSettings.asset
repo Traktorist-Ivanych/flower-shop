@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CrossingFlowerMinLvl>k__BackingField: 2
   <MaxFlowerGrowingLvl>k__BackingField: 3
+  <PrimaryFlowerGrowingLvl>k__BackingField: 0
+  <FlowerNameEmpty>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}

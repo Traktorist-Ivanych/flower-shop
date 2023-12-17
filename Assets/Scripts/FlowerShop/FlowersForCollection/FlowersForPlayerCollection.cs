@@ -7,7 +7,7 @@ namespace FlowerShop.FlowersForCollection
     /// <summary>
     /// Contains list of flowers, that player has added to his collection
     /// </summary>
-    public class FlowersForCollection : MonoBehaviour
+    public class FlowersForPlayerCollection : MonoBehaviour
     {
         private readonly List<FlowerInfo> flowerCollection = new();
 

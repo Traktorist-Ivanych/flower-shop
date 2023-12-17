@@ -18,7 +18,6 @@ namespace FlowerShop.Tables
         [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
         [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
         [SerializeField] private WeedPlanter weedPlanter;
-        [SerializeField] private FlowerName flowerNameEmpty;
 
         [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
         [HideInInspector, SerializeField] private MeshFilter growingLightMeshFilter;
@@ -28,8 +27,10 @@ namespace FlowerShop.Tables
         private Pot potOnTable;
         private bool isPotOnTable;
 
-        private void OnValidate()
+        private protected override void OnValidate()
         {
+            base.OnValidate();
+            
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
             growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
         }
@@ -63,16 +64,13 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
-                else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+                else if (CanPlayerFixTable())
                 {
-                    if (IsTableBroken)
-                    {
-                        SetPlayerDestinationAndOnPlayerArriveAction(FixFlowerGrowingTable);
-                    }
-                    else if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
-                    {
-                        SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
-                    }
+                    SetPlayerDestinationAndOnPlayerArriveAction(FixFlowerGrowingTable);
+                }
+                else if (CanPlayerUpgradeTable())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
         }
@@ -92,7 +90,7 @@ namespace FlowerShop.Tables
                 potOnTable = currentPot;
 
                 return potOnTable.GrowingRoom == growingRoom &&
-                       potOnTable.PlantedFlowerInfo.FlowerName != flowerNameEmpty &&
+                       potOnTable.PlantedFlowerInfo.FlowerName != flowersSettings.FlowerNameEmpty &&
                        potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
             }
 
@@ -105,8 +103,12 @@ namespace FlowerShop.Tables
             isPotOnTable = true;
             growingLightMeshRenderer.enabled = true;
             playerPickableObjectHandler.ResetPickableObject();
-            weedPlanter.AddPotInPlantingWeedList(potOnTable);
             tableObjectsRotation.StartObjectsRotation();
+
+            if (!potOnTable.IsWeedInPot)
+            {
+                weedPlanter.AddPotInPlantingWeedList(potOnTable);
+            }
         }
 
         private bool CanPlayerPourPotOnTable()
@@ -161,11 +163,23 @@ namespace FlowerShop.Tables
             tableObjectsRotation.PauseObjectsRotation();
         }
 
+        private bool CanPlayerFixTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
+                   IsTableBroken;
+        }
+
         private void FixFlowerGrowingTable()
         {
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+        }
+
+        private bool CanPlayerUpgradeTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
+                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

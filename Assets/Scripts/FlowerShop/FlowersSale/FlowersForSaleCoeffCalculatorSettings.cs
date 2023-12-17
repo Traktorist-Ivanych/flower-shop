@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FlowerShop.FlowerSales
+namespace FlowerShop.FlowersSale
 {
     [CreateAssetMenu(
         fileName = "FlowersForSaleCoeffCalculatorSettings", 

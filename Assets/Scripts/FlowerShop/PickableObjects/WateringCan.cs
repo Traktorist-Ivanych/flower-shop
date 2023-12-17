@@ -83,7 +83,7 @@ namespace FlowerShop.PickableObjects
             CurrentWateringsNumber = maxWateringsNumber;
         }
 
-        public void ImproveWateringCan()
+        public void UpgradeWateringCan()
         {
             wateringCanLvl++;
             maxWateringsNumber = tablesSettings.WateringsNumber + tablesSettings.WateringsNumberLvlDelta * wateringCanLvl;

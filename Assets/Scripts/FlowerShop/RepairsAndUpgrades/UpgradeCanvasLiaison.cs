@@ -7,9 +7,9 @@ namespace FlowerShop.RepairsAndUpgrades
     [Binding]
     public class UpgradeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        [field: SerializeField] public Canvas UpgradeCanvas { get; private set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
+        
+        [field: SerializeField] public Canvas UpgradeCanvas { get; private set; }
     
         [Binding]
         public string TableName { get; private set; }

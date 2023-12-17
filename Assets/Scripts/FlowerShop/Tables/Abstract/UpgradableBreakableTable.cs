@@ -1,23 +1,21 @@
 using System.Collections;
-using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
 using UnityEngine;
-using Zenject;
 
 namespace FlowerShop.Tables.Abstract
 {
     [RequireComponent (typeof(BreakableTableBaseComponent))]
     public abstract class UpgradableBreakableTable : UpgradableTable, IBreakableTable
     {
-        [Inject] private protected readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
-
         [HideInInspector, SerializeField] private BreakableTableBaseComponent breakableTableBaseComponent;
 
         public bool IsTableBroken => breakableTableBaseComponent.IsTableBroken;
 
-        private void OnValidate()
+        private protected override void OnValidate()
         {
+            base.OnValidate();
+            
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
         }
 

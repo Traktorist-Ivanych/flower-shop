@@ -22,11 +22,11 @@ namespace FlowerShop.Tables
         {
             if (playerBusyness.IsPlayerFree)
             {
-                if (playerPickableObjectHandler.IsPickableObjectNull)
+                if (CanPlayerTakeHammerInHands())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(TakeHammerInPlayerHands);
                 }
-                else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+                else if (CanPlayerPutHammerOnTable())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(PutHammerOnTable);
                 }
@@ -38,10 +38,20 @@ namespace FlowerShop.Tables
             upgradableTables.Add(upgradableTable);
         }
 
+        private bool CanPlayerTakeHammerInHands()
+        {
+            return playerPickableObjectHandler.IsPickableObjectNull;
+        }
+
         private void TakeHammerInPlayerHands()
         {
             repairingAndUpgradingHammer.TakeInPlayerHandsAndSetPlayerFree();
             StartCoroutine(ShowAllUpgradeIndicators());
+        }
+
+        private bool CanPlayerPutHammerOnTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer;
         }
 
         private void PutHammerOnTable()

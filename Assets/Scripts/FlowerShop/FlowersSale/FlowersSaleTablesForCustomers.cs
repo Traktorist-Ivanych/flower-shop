@@ -3,7 +3,7 @@ using FlowerShop.Tables;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace FlowerShop.FlowerSales
+namespace FlowerShop.FlowersSale
 {
     public class FlowersSaleTablesForCustomers : MonoBehaviour
     {
@@ -23,10 +23,8 @@ namespace FlowerShop.FlowerSales
                 RemoveSaleTable(flowersSaleTable);
                 return flowersSaleTable;
             }
-            else 
-            { 
-                return null; 
-            }
+
+            return null;
         }
 
         private void RemoveSaleTable(FlowersSaleTable table)

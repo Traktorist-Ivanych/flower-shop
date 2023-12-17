@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using FlowerShop.Coffee;
 using FlowerShop.Settings;
@@ -34,11 +33,16 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
-            if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull && 
-                !playerCoffeeEffect.IsCoffeeEffectActive)
+            if (CanPlayerStartMakingCoffee())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(OpenCoffeeCanvas);
             }
+        }
+
+        private bool CanPlayerStartMakingCoffee()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.IsPickableObjectNull &&
+                   !playerCoffeeEffect.IsCoffeeEffectActive;
         }
 
         private void OpenCoffeeCanvas()

@@ -24,8 +24,10 @@ namespace FlowerShop.Tables
         
         public int TableLvl => tableLvl;
 
-        private void OnValidate()
+        private protected override void OnValidate()
         {
+            base.OnValidate();
+            
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
         

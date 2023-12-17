@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowerShop.PickableObjects;
-using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
@@ -11,7 +10,6 @@ namespace FlowerShop.Tables
     public class PotsRack : UpgradableTable
     {
         [Inject] private readonly TablesSettings tablesSettings;
-        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         
         [SerializeField] private Transform potObjectsTransform;
         [SerializeField] private List<Pot> pots;

@@ -334,7 +334,10 @@ MonoBehaviour:
   upgradableTableBaseComponent: {fileID: 0}
   breakableTableBaseComponent: {fileID: 0}
   potOnTableTransform: {fileID: 8842498139184533921}
-  gearsMeshRenderers: []
+  gearsMeshRenderers:
+  - {fileID: 8175502420347784534}
+  - {fileID: 8182405363932604887}
+  - {fileID: 1964951565916349693}
   tableObjectsRotation: {fileID: 6964058272529394985}
 --- !u!114 &1347176982656080445
 MonoBehaviour:

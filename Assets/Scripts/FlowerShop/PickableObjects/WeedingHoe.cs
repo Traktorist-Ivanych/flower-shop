@@ -58,7 +58,7 @@ namespace FlowerShop.PickableObjects
             playerBusyness.SetPlayerFree();
         }
 
-        public void Improve()
+        public void Upgrade()
         {
             weedingHoeLvl++;
             weedingHoeMeshFilter.mesh = weedingHoeLvlMeshes[weedingHoeLvl - 1];

@@ -4,7 +4,7 @@ using FlowerShop.Tables;
 using UnityEngine;
 using Zenject;
 
-namespace FlowerShop.FlowerSales
+namespace FlowerShop.FlowersSale
 {
     /// <summary>
     /// Calculates coefficient, depending on number of unique flowers and total number of flowers, offered for sale

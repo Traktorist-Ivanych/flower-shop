@@ -1,6 +1,6 @@
 using DG.Tweening;
 using FlowerShop.Flowers;
-using FlowerShop.FlowerSales;
+using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;

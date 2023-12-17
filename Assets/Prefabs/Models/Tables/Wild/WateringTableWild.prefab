@@ -10050,6 +10050,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 3856757249535992845}
   targetToLookAt: {fileID: 6533461794339660607}
+  upgradableTableBaseComponent: {fileID: 0}
+  breakableTableBaseComponent: {fileID: 1215390401860419770}
   wateringCanTableTransform: {fileID: 41142112872942199}
   wateringCan: {fileID: 2868614973335969324}
   waterPS: {fileID: 5213790005337568639}
@@ -10081,7 +10083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakdownIndicatorRenderer: {fileID: 575502552802528526}
-  brokenParticleSystems:
+  brokenEffects:
   - {fileID: 1659243451217563857}
 --- !u!1001 &1452001892451685435
 PrefabInstance:

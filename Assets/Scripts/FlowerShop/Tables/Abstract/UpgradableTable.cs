@@ -8,14 +8,14 @@ namespace FlowerShop.Tables.Abstract
     [RequireComponent(typeof(UpgradableTableBaseComponent))]
     public abstract class UpgradableTable : Table, IUpgradableTable
     {
-        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
+        [Inject] private protected readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
 
         [HideInInspector, SerializeField] private UpgradableTableBaseComponent upgradableTableBaseComponent;
         
         private protected int tableLvl;
 
-        private void OnValidate()
+        private protected virtual void OnValidate()
         {
             upgradableTableBaseComponent = GetComponent<UpgradableTableBaseComponent>();
         }

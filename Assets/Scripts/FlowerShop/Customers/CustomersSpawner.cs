@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FlowerShop.FlowerSales;
+using FlowerShop.FlowersSale;
 using FlowerShop.Tables;
 using ModestTree;
 using UnityEngine;
@@ -25,14 +25,7 @@ namespace FlowerShop.Customers
         {
             if (currentSpawnTime <= 0)
             {
-                minSpawnTime = customersSettings.MinSpawnTime -
-                               customersSettings.MinSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
-
-                maxSpawnTime = customersSettings.MaxSpawnTime -
-                               customersSettings.MaxSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
-
-                currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-                
+                CalculateCurrentSpawnTime();
                 TryToSpawnCustomer();
             }
             else
@@ -56,6 +49,17 @@ namespace FlowerShop.Customers
             Assert.That(customersMoving.Contains(customerMoving));
             
             customersMoving.Remove(customerMoving);
+        }
+
+        private void CalculateCurrentSpawnTime()
+        {
+            minSpawnTime = customersSettings.MinSpawnTime -
+                           customersSettings.MinSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
+
+            maxSpawnTime = customersSettings.MaxSpawnTime -
+                           customersSettings.MaxSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
+
+            currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         }
 
         private void TryToSpawnCustomer()

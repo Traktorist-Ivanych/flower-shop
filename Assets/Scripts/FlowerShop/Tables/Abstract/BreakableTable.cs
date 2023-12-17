@@ -11,7 +11,7 @@ namespace FlowerShop.Tables.Abstract
 
         public bool IsTableBroken => breakableTableBaseComponent.IsTableBroken;
 
-        private void OnValidate()
+        private protected virtual void OnValidate()
         {
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
         }
