@@ -1,3 +1,4 @@
+using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
@@ -22,6 +23,7 @@ namespace FlowerShop.Tables
         [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
         [HideInInspector, SerializeField] private MeshFilter growingLightMeshFilter;
 
+        private Fertilizer fertilizer;
         private WateringCan wateringCan;
         private WeedingHoe weedingHoe;
         private Pot potOnTable;
@@ -59,6 +61,10 @@ namespace FlowerShop.Tables
                 else if (CanPlayerDeleteWeedInPot())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(DeleteWeedInPot);
+                }
+                else if (CanPlayerUseFertilizer())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseFertilizer);
                 }
                 else if (CanPlayerTakePotInHands())
                 {
@@ -145,6 +151,25 @@ namespace FlowerShop.Tables
         private void DeleteWeedInPot()
         {
             StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
+        }
+
+        private bool CanPlayerUseFertilizer()
+        {
+            if (!IsTableBroken && isPotOnTable &&
+                playerPickableObjectHandler.CurrentPickableObject is Fertilizer currentFertilizer)
+            {
+                fertilizer = currentFertilizer;
+                return fertilizer.AvailableUsesNumber > 0 &&
+                       !potOnTable.IsPotTreatedByGrothAccelerator &&
+                       potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
+            }
+
+            return false;
+        }
+
+        private void UseFertilizer()
+        {
+            fertilizer.TreatPot(potOnTable);
         }
 
         private bool CanPlayerTakePotInHands()

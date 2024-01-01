@@ -26,7 +26,7 @@ namespace FlowerShop.Tables.Abstract
             throw new System.NotImplementedException();
         }
 
-        public virtual void ExecutePlayerAbility()
+        public void ExecutePlayerAbility()
         {
             OnPlayerArriveEvent?.Invoke();
         }

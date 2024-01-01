@@ -1,11 +1,13 @@
 using FlowerShop.Coffee;
 using FlowerShop.Customers;
+using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace FlowerShop.Installers
@@ -25,6 +27,9 @@ namespace FlowerShop.Installers
         [Header("Repair And Upgrades")]
         [SerializeField] private RepairsAndUpgradesTable repairsAndUpgradesTable;
         [SerializeField] private RepairingAndUpgradingHammer repairingAndUpgradingHammer;
+        [Header("Fertilizers")] 
+        [SerializeField] private FertilizersTable fertilizersTable;
+        [SerializeField] private FertilizersCanvasLiaison fertilizersCanvasLiaison;
 
         public override void InstallBindings()
         {
@@ -40,6 +45,9 @@ namespace FlowerShop.Installers
 
             Container.Bind<RepairsAndUpgradesTable>().FromInstance(repairsAndUpgradesTable).AsSingle().NonLazy();
             Container.Bind<RepairingAndUpgradingHammer>().FromInstance(repairingAndUpgradingHammer).AsSingle().NonLazy();
+            
+            Container.Bind<FertilizersTable>().FromInstance(fertilizersTable).AsSingle().NonLazy();
+            Container.Bind<FertilizersCanvasLiaison>().FromInstance(fertilizersCanvasLiaison).AsSingle().NonLazy();
         }
     }
 }

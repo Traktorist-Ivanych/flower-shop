@@ -16,3 +16,4 @@ MonoBehaviour:
   <MaxFlowerGrowingLvl>k__BackingField: 3
   <PrimaryFlowerGrowingLvl>k__BackingField: 0
   <FlowerNameEmpty>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  <GrowingRoomAny>k__BackingField: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}

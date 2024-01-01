@@ -7,6 +7,9 @@ namespace PlayerControl
                      order = 3)]
     public class PlayerControlSettings : ScriptableObject
     {
+        [field: Header("Moving Setting")]
+        [field: SerializeField] public float RemainingDistance { get; private set; }
+        
         [field: Header("Ordinary Nav Agent Setting")]
         [field: SerializeField] public float PlayerNavAgentSpeed { get; private set; }
         [field: SerializeField] public float PlayerNavAgentAngularSpeed { get; private set; }

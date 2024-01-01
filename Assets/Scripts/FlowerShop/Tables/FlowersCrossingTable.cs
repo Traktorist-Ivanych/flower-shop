@@ -31,13 +31,6 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void ExecutePlayerAbility()
-        {
-            base.ExecutePlayerAbility();
-            
-            flowersCrossingTableProcess.CheckCrossingAbility();
-        }
-
         private bool CanPlayerTakePotInHands()
         {
             return IsPotOnCrossingTable &&
@@ -62,6 +55,7 @@ namespace FlowerShop.Tables
 
         private void PutPotOnTable()
         {
+            flowersCrossingTableProcess.CheckCrossingAbility();
             PotOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
             playerPickableObjectHandler.ResetPickableObject();
             IsPotOnCrossingTable = true;
@@ -69,6 +63,7 @@ namespace FlowerShop.Tables
 
         private void TakePotInPlayerHands()
         {
+            flowersCrossingTableProcess.CheckCrossingAbility();
             PotOnTable.TakeInPlayerHandsAndSetPlayerFree();
             IsPotOnCrossingTable = false;
         }

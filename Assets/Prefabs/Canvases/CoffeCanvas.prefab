@@ -803,6 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffeeTable: {fileID: 0}
+  buyButton: {fileID: 3468790843586274511}
 --- !u!1 &6790820440886685892
 GameObject:
   m_ObjectHideFlags: 0

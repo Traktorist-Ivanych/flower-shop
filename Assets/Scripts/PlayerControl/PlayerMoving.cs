@@ -37,12 +37,14 @@ namespace PlayerControl
             {
                 playerAnimator.SetBool(PlayerAnimatorParameters.IsPlayerWalkBool, false);
 
-                if (playerAgent.remainingDistance < 0.1f && needForRotation)
+                if (playerAgent.remainingDistance < playerControlSettings.RemainingDistance && needForRotation)
                 {
                     Vector3 relativeTargetDirection = new(targetToLookAt.x - transform.position.x, 0,
                         targetToLookAt.z - transform.position.z);
 
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativeTargetDirection),
+                    transform.rotation = Quaternion.Slerp(
+                        transform.rotation, 
+                        Quaternion.LookRotation(relativeTargetDirection),
                         Time.deltaTime * rotationSpeed);
 
                     if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDirection)) < 2.5f)

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using FlowerShop.Tables;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace FlowerShop.FlowersSale
@@ -29,9 +28,10 @@ namespace FlowerShop.FlowersSale
 
         private void RemoveSaleTable(FlowersSaleTable table)
         {
-            Assert.That(saleTables.Contains(table));
-        
-            saleTables.Remove(table);
+            if (saleTables.Contains(table))
+            {
+                saleTables.Remove(table);
+            }
         }
     }
 }

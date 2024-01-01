@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633b5c5c45cbc4d43ba4742dd845f28e, type: 3}
   m_Name: PlayerControlSettings
   m_EditorClassIdentifier: 
+  <RemainingDistance>k__BackingField: 0.1
   <PlayerNavAgentSpeed>k__BackingField: 8
   <PlayerNavAgentAngularSpeed>k__BackingField: 750
   <PlayerNavAgentAcceleration>k__BackingField: 75
   <PlayerMovingRotation>k__BackingField: 8
-  <PlayerNavAgentCoffeeSpeed>k__BackingField: 10
-  <PlayerNavAgentCoffeeAngularSpeed>k__BackingField: 1000
-  <PlayerNavAgentCoffeeAcceleration>k__BackingField: 100
-  <PlayerMovingCoffeeRotation>k__BackingField: 10
-  <CoffeeEffectDurationTime>k__BackingField: 10
+  <PlayerNavAgentCoffeeSpeed>k__BackingField: 12
+  <PlayerNavAgentCoffeeAngularSpeed>k__BackingField: 1200
+  <PlayerNavAgentCoffeeAcceleration>k__BackingField: 120
+  <PlayerMovingCoffeeRotation>k__BackingField: 12
+  <CoffeeEffectDurationTime>k__BackingField: 600

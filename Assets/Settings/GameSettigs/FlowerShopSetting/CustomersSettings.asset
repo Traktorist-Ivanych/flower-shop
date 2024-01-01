@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RemainingDistanceToStartRotation>k__BackingField: 0.1
   <AngelToStopRotation>k__BackingField: 2.5
-  <RotationSpeed>k__BackingField: 8
-  <NavAgentSpeed>k__BackingField: 8
-  <MinSpawnTime>k__BackingField: 15
-  <MinSpawnTimeDelta>k__BackingField: 10
-  <MaxSpawnTime>k__BackingField: 30
-  <MaxSpawnTimeDelta>k__BackingField: 20
+  <RotationSpeed>k__BackingField: 7
+  <NavAgentSpeed>k__BackingField: 7
+  <MinSpawnTime>k__BackingField: 20
+  <MinSpawnTimeDelta>k__BackingField: 15
+  <MaxSpawnTime>k__BackingField: 60
+  <MaxSpawnTimeDelta>k__BackingField: 40
   buyingFlowerCurve:
     serializedVersion: 2
     m_Curve:

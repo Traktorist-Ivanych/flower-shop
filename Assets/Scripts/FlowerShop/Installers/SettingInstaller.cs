@@ -1,5 +1,6 @@
 ﻿using FlowerShop.Coffee;
 using FlowerShop.Customers;
+using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.RepairsAndUpgrades;
@@ -16,6 +17,7 @@ namespace FlowerShop.Installers
         [SerializeField] private ActionsWithTransformSettings actionsWithTransformSettings;
         [SerializeField] private CoffeeSettings coffeeSettings;
         [SerializeField] private CustomersSettings customersSettings;
+        [SerializeField] private FertilizersSetting fertilizersSetting;
         [SerializeField] private FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [SerializeField] private FlowersSettings flowersSettings;
         [SerializeField] private RepairsAndUpgradesSettings repairsAndUpgradesSettings;
@@ -27,6 +29,7 @@ namespace FlowerShop.Installers
             Container.Bind<ActionsWithTransformSettings>().FromInstance(actionsWithTransformSettings).AsSingle().NonLazy();
             Container.Bind<CoffeeSettings>().FromInstance(coffeeSettings).AsSingle().NonLazy();
             Container.Bind<CustomersSettings>().FromInstance(customersSettings).AsSingle().NonLazy();
+            Container.Bind<FertilizersSetting>().FromInstance(fertilizersSetting).AsSingle().NonLazy();
             Container.Bind<FlowersForSaleCoeffCalculatorSettings>()
                 .FromInstance(flowersForSaleCoeffCalculatorSettings).AsSingle().NonLazy();
             Container.Bind<FlowersSettings>().FromInstance(flowersSettings).AsSingle().NonLazy();

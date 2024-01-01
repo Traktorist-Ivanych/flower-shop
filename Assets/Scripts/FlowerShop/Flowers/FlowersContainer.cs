@@ -8,11 +8,11 @@ namespace FlowerShop.Flowers
     {
         [Inject] private readonly FlowersSettings flowersSettings;
         
-        [field: SerializeField] public FlowerInfo EmptyFlowerInfo { get; private set; }
-        
         [SerializeField] private List<FlowerInfo> allFlowersInfo;
 
         private Dictionary<string, FlowerInfo> crossingRecipes;
+        
+        [field: SerializeField] public FlowerInfo EmptyFlowerInfo { get; private set; }
 
         public void Awake()
         {

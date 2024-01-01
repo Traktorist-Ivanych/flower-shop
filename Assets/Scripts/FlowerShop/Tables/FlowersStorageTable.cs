@@ -1,3 +1,4 @@
+using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
@@ -16,8 +17,9 @@ namespace FlowerShop.Tables
 
         private WeedingHoe weedingHoe;
         private WateringCan wateringCan;
+        private Fertilizer fertilizer;
         private Pot potOnTable;
-        private bool isFlowerOnStorageTable;
+        private bool isPotOnTable;
 
         public override void ExecuteClickableAbility()
         {
@@ -35,6 +37,10 @@ namespace FlowerShop.Tables
                 {     
                     SetPlayerDestinationAndOnPlayerArriveAction(DeleteWeedInPot);
                 }
+                else if (CanPlayerUseFertilizer())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseFertilizer);
+                }
                 else if (CanPlayerTakePotInHands())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
@@ -44,7 +50,7 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerPutPotOnTable()
         {
-            if (!isFlowerOnStorageTable && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (!isPotOnTable && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 potOnTable = currentPot;
 
@@ -58,7 +64,7 @@ namespace FlowerShop.Tables
         {
             potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
             playerPickableObjectHandler.ResetPickableObject();
-            isFlowerOnStorageTable = true;
+            isPotOnTable = true;
             
             if (potOnTable.IsSoilInsidePot && !potOnTable.IsWeedInPot)
             {
@@ -68,7 +74,7 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerPourPotOnTable()
         {
-            if (isFlowerOnStorageTable &&
+            if (isPotOnTable &&
                 playerPickableObjectHandler.CurrentPickableObject is WateringCan currentWateringCan)
             {
                 wateringCan = currentWateringCan;
@@ -87,7 +93,7 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerDeleteWeedInPot()
         {
-            if (isFlowerOnStorageTable &&
+            if (isPotOnTable &&
                 playerPickableObjectHandler.CurrentPickableObject is WeedingHoe currentWeedingHoe)
             {
                 weedingHoe = currentWeedingHoe;
@@ -103,15 +109,34 @@ namespace FlowerShop.Tables
             StartCoroutine(weedingHoe.DeleteWeed(potOnTable, weedPlanter));
         }
 
+        private bool CanPlayerUseFertilizer()
+        {
+            if (isPotOnTable &&
+                playerPickableObjectHandler.CurrentPickableObject is Fertilizer currentFertilizer)
+            {
+                fertilizer = currentFertilizer;
+                return fertilizer.AvailableUsesNumber > 0 &&
+                       !potOnTable.IsPotTreatedByGrothAccelerator &&
+                       potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
+            }
+
+            return false;
+        }
+
+        private void UseFertilizer()
+        {
+            fertilizer.TreatPot(potOnTable);
+        }
+
         private bool CanPlayerTakePotInHands()
         {
-            return isFlowerOnStorageTable && playerPickableObjectHandler.IsPickableObjectNull;
+            return isPotOnTable && playerPickableObjectHandler.IsPickableObjectNull;
         }
 
         private void TakePotInPlayerHands()
         {
             potOnTable.TakeInPlayerHandsAndSetPlayerFree();
-            isFlowerOnStorageTable = false;
+            isPotOnTable = false;
             weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
         }
     }
