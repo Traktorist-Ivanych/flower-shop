@@ -20,3 +20,4 @@ MonoBehaviour:
   <MaxPositionY>k__BackingField: 50
   <MinPositionZ>k__BackingField: -20
   <MaxPositionZ>k__BackingField: 20
+  <DefaultCameraPositionY>k__BackingField: 28

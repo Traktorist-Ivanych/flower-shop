@@ -9,7 +9,6 @@ namespace Input
         [Inject] private MainCameraMovingSetting mainCameraMovingSetting;
         
         private Camera cameraForMoving;
-        private float cameraStartYPosition;
         private float scaleXZWithCameraZPosition;
         private float resolutionScaleX;
         private float resolutionScaleY;
@@ -18,10 +17,11 @@ namespace Input
         private void Start()
         {
             cameraForMoving = cameraHandler.MainCamera;
-            scaleXZWithCameraZPosition = 1;
-            cameraStartYPosition = cameraForMoving.transform.position.y;
+            
             resolutionScaleX = 360f / Screen.width;
             resolutionScaleY = 740f / Screen.height;
+            
+            CalculateScaleXZWithCameraZPosition();
         }
 
         public void MoveCameraXZ(Vector2 touch0Delta)
@@ -67,7 +67,12 @@ namespace Input
             }
             pastTouchesDistance = currentTouchesDistance;
 
-            scaleXZWithCameraZPosition = cameraForMoving.transform.position.y / cameraStartYPosition;
+            CalculateScaleXZWithCameraZPosition();
+        }
+
+        public void ResetTouchesDistance()
+        {
+            pastTouchesDistance = 0;
         }
 
         private void UpdateCameraPosition(Vector3 targetCameraPosition)
@@ -75,9 +80,9 @@ namespace Input
             cameraForMoving.transform.position = targetCameraPosition;
         }
 
-        public void ResetTouchesDistance()
+        private void CalculateScaleXZWithCameraZPosition()
         {
-            pastTouchesDistance = 0;
+            scaleXZWithCameraZPosition = cameraForMoving.transform.position.y / mainCameraMovingSetting.DefaultCameraPositionY;
         }
     }
 }

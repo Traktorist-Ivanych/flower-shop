@@ -15,6 +15,7 @@ namespace Input
         [field: SerializeField] public float MaxPositionY { get; private set; }
         [field: SerializeField] public float MinPositionZ { get; private set; }
         [field: SerializeField] public float MaxPositionZ { get; private set; }
+        [field: SerializeField] public float DefaultCameraPositionY { get; private set; }
 
         private void OnValidate()
         {

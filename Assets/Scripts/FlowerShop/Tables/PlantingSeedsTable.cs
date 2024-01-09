@@ -42,7 +42,7 @@ namespace FlowerShop.Tables
                 return playerBusyness.IsPlayerFree &&
                        plantingSeedPot.GrowingRoom == growingRoom &&
                        plantingSeedPot.IsSoilInsidePot &&
-                       plantingSeedPot.PlantedFlowerInfo.FlowerName == flowersSettings.FlowerNameEmpty;
+                       plantingSeedPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty;
             }
 
             return false;

@@ -2,9 +2,11 @@ using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Helpers;
 using FlowerShop.PickableObjects.Moving;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables;
 using FlowerShop.Weeds;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +14,9 @@ namespace FlowerShop.PickableObjects
 {
     [RequireComponent(typeof(PotObjects))]
     [RequireComponent(typeof(ObjectMoving))]
-    public class Pot : MonoBehaviour, IPickableObject
+    public class Pot : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly WeedSettings weedSettings;
@@ -31,8 +34,9 @@ namespace FlowerShop.PickableObjects
         private int weedGrowingLvl;
         private bool isPotOnGrowingTable;
 
+        [field: SerializeField] public string PlayerPrefsKey { get; set; }
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
-        [field: SerializeField] public PotObjects PotObjects { get; private set; }
+        [field: HideInInspector, SerializeField] public PotObjects PotObjects { get; private set; }
 
         public FlowerInfo PlantedFlowerInfo { get; private set; }
         public int FlowerGrowingLvl { get; private set; }
@@ -46,13 +50,24 @@ namespace FlowerShop.PickableObjects
             objectMoving = GetComponent<ObjectMoving>();
             PotObjects = GetComponent<PotObjects>();
         }
+        
+        private void Awake()
+        {
+            Load();
+        }
+
+        private void OnDisable()
+        {
+            cyclicalSaver.CyclicalSaverEvent -= Save;
+        }
 
         private void Start()
         {
-            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime;
-            ResetPlantedFlowerInfo();
+            if (upGrowingLvlTime == 0)
+            {
+                upGrowingLvlTime = tablesSettings.UpGrowingLvlTime;
+            }
             CalculateGrowingLvlTimeProgress();
-            ResetGrothAcceleratorParameters();
         }
 
         private void Update()
@@ -66,24 +81,26 @@ namespace FlowerShop.PickableObjects
             else if (ShouldWaterIndicatorBeDisplayed())
             {
                 ResetGrowingLvlTime();
-                IsFlowerNeedWater = true;
-                PotObjects.ShowWaterIndicator();
+                
+                ShowWaterIndicator();
             }
         }
 
         public void FillPotWithSoil()
         {
-            IsSoilInsidePot = true;
-            PotObjects.ShowSoil();
+            ShowSoil();
+            
+            Save();
         }
 
         public void PlantSeed(FlowerInfo flowerInfoForPlanting)
         {
-            PlantedFlowerInfo = flowerInfoForPlanting;
             ResetFlowerGrowingLvl();
             ResetGrowingLvlTime();
-            PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
-            PotObjects.ShowFlower();
+            
+            ShowSeed(flowerInfoForPlanting);
+            
+            Save();
         }
 
         public void PourFlower()
@@ -92,15 +109,18 @@ namespace FlowerShop.PickableObjects
             UpFlowerGrowingLvl();
 
             ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
+            
+            Save();
         }
 
         public void PlantWeed()
         {
-            IsWeedInPot = true;
             ResetWeedGrowingLvl();
             ResetGrowingLvlTime();
-            PotObjects.ShowWeed();
-            PotObjects.SetWeedLvlMesh(weedGrowingLvl);
+            
+            ShowWeed();
+            
+            Save();
         }
 
         public void DeleteWeed()
@@ -109,12 +129,15 @@ namespace FlowerShop.PickableObjects
             ResetWeedGrowingLvl();
             ResetGrowingLvlTime();
             PotObjects.HideWeed();
+            
+            Save();
         }
 
         public void TreatPotByGrothAccelerator()
         {
-            IsPotTreatedByGrothAccelerator = true;
-            currentGrothAcceleratorCoeff = fertilizersSetting.GrothAcceleratorCoeff;
+            SetTreatedGrothAcceleratorCoeff();
+            
+            Save();
         }
 
         public void TreatPotByGrowingLvlIncreaser()
@@ -124,6 +147,8 @@ namespace FlowerShop.PickableObjects
             {
                 HideWaterIndicator();
             }
+            
+            Save();
         }
 
         public void TreatPotByGrowerToMaxLvl()
@@ -132,6 +157,8 @@ namespace FlowerShop.PickableObjects
             
             FlowerGrowingLvl = flowersSettings.MaxFlowerGrowingLvl;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+            
+            Save();
         }
 
         public void CleanPot()
@@ -145,13 +172,45 @@ namespace FlowerShop.PickableObjects
             ResetGrowingLvlTime();
             ResetGrothAcceleratorParameters();
             PotObjects.HideAllPotObjects();
+            
+            SavesHandler.DeletePlayerPrefsKey(PlayerPrefsKey);
+        }
+
+        public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
+        {
+            cyclicalSaver.CyclicalSaverEvent += Save;
+            isPotOnGrowingTable = true;
+            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
+            currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
+            PutOnTableAndSetPlayerFree(targetTransform);
+            
+            Save();
+        }
+    
+        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
+                setPlayerFree: true); 
+        }
+
+        public void PutOnTableAndKeepPlayerBusy(Transform targetTransform)
+        {
+            objectMoving.MoveObject(
+                targetFinishTransform: targetTransform, 
+                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
+                setPlayerFree: false);
         }
 
         public void TakeInPlayerHandsFromGrowingTableAndSetPlayerFree()
         {
+            cyclicalSaver.CyclicalSaverEvent -= Save;
             isPotOnGrowingTable = false;
             CalculateGrowingLvlTimeProgress();
             TakeInPlayerHandsAndSetPlayerFree();
+            
+            Save();
         }
 
         public void TakeInPlayerHandsAndSetPlayerFree()
@@ -164,34 +223,76 @@ namespace FlowerShop.PickableObjects
                 setPlayerFree: true);
         }
 
-        public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
-        {
-            isPotOnGrowingTable = true;
-            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
-            currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
-            PutOnTableAndSetPlayerFree(targetTransform);
-        }
-
-        public void PutOnTableAndKeepPlayerBusy(Transform targetTransform)
-        {
-            objectMoving.MoveObject(
-                targetFinishTransform: targetTransform, 
-                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
-                setPlayerFree: false);
-        }
-    
-        public void PutOnTableAndSetPlayerFree(Transform targetTransform)
-        {
-            objectMoving.MoveObject(
-                targetFinishTransform: targetTransform, 
-                movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
-                setPlayerFree: true); 
-        }
-
         public void CrossFlower()
         {
             --FlowerGrowingLvl;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+            
+            Save();
+        }
+
+        public void Save()
+        {
+            PotForSaving potForSaving = new PotForSaving(IsSoilInsidePot, PlantedFlowerInfo, FlowerGrowingLvl,
+                currentUpGrowingLvlTime, IsFlowerNeedWater, IsPotTreatedByGrothAccelerator, IsWeedInPot, weedGrowingLvl);
+            
+            SavesHandler.Save(PlayerPrefsKey ,potForSaving);
+        }
+
+        public void Load()
+        {
+            PotForSaving potForLoading = SavesHandler.Load<PotForSaving>(PlayerPrefsKey);
+
+            if (potForLoading.IsValuesSaved)
+            {
+                FlowerGrowingLvl = potForLoading.FlowerGrowingLvl;
+                currentUpGrowingLvlTime = potForLoading.CurrentUpGrowingLvlTime;
+                IsPotTreatedByGrothAccelerator = potForLoading.IsPotTreatedByGrothAccelerator;
+                weedGrowingLvl = potForLoading.WeedGrowingLvl;
+                
+                if (potForLoading.IsSoilInsidePot)
+                {
+                    ShowSoil();
+                }
+
+                if (potForLoading.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    ResetPlantedFlowerInfo();
+                }
+                else
+                {
+                    ShowSeed(potForLoading.PlantedFlowerInfo);
+                }
+
+                if (potForLoading.IsFlowerNeedWater)
+                {
+                    ShowWaterIndicator();
+                }
+                
+                if (potForLoading.IsWeedInPot)
+                {
+                    ShowWeed();
+                }
+
+                if (potForLoading.IsPotTreatedByGrothAccelerator)
+                {
+                    SetTreatedGrothAcceleratorCoeff();
+                }
+                else
+                {
+                    ResetGrothAcceleratorParameters();
+                }
+            }
+            else
+            {
+                ResetPlantedFlowerInfo();
+                ResetGrothAcceleratorParameters(); 
+            }
+        }
+
+        private void CalculateGrowingLvlTimeProgress()
+        {
+            growingLvlTimeProgress = currentUpGrowingLvlTime / upGrowingLvlTime;
         }
 
         private bool ShouldWeedGrowingLvlIncrease()
@@ -214,11 +315,6 @@ namespace FlowerShop.PickableObjects
             return currentUpGrowingLvlTime >= upGrowingLvlTime;
         }
 
-        private void CalculateGrowingLvlTimeProgress()
-        {
-            growingLvlTimeProgress = currentUpGrowingLvlTime / upGrowingLvlTime;
-        }
-
         private void HideWaterIndicator()
         {
             IsFlowerNeedWater = false;
@@ -229,6 +325,38 @@ namespace FlowerShop.PickableObjects
         {
             ++FlowerGrowingLvl;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+        }
+
+        private void ShowSoil()
+        {
+            IsSoilInsidePot = true;
+            PotObjects.ShowSoil();
+        }
+
+        private void ShowSeed(FlowerInfo flowerInfoForPlanting)
+        {
+            PlantedFlowerInfo = flowerInfoForPlanting;
+            PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
+            PotObjects.ShowFlower();
+        }
+
+        private void ShowWaterIndicator()
+        {
+            IsFlowerNeedWater = true;
+            PotObjects.ShowWaterIndicator();
+        }
+
+        private void ShowWeed()
+        {
+            IsWeedInPot = true;
+            PotObjects.ShowWeed();
+            PotObjects.SetWeedLvlMesh(weedGrowingLvl);
+        }
+
+        private void SetTreatedGrothAcceleratorCoeff()
+        {
+            IsPotTreatedByGrothAccelerator = true;
+            currentGrothAcceleratorCoeff = fertilizersSetting.GrothAcceleratorCoeff;
         }
 
         private void ResetGrowingLvlTime()

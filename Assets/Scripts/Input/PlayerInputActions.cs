@@ -16,6 +16,18 @@ namespace Input
             inputControls = new InputActions();
         }
 
+        private void OnEnable()
+        {
+            inputControls.Player.Enable();
+            inputControls.Player.Tap.started += TapInput;
+        }
+
+        private void OnDisable()
+        {
+            inputControls.Player.Tap.started -= TapInput;
+            inputControls.Player.Disable();
+        }
+
         private void Update()
         {
             if (inputControls.Player.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
@@ -28,18 +40,6 @@ namespace Input
                 mainCameraMover.MoveCameraY(inputControls.Player.Touch0Position.ReadValue<Vector2>(),
                                             inputControls.Player.Touch1Position.ReadValue<Vector2>());
             }
-        }
-
-        private void OnEnable()
-        {
-            inputControls.Player.Enable();
-            inputControls.Player.Tap.started += TapInput;
-        }
-
-        private void OnDisable()
-        {
-            inputControls.Player.Tap.started -= TapInput;
-            inputControls.Player.Disable();
         }
 
         private void TapInput(InputAction.CallbackContext context)
