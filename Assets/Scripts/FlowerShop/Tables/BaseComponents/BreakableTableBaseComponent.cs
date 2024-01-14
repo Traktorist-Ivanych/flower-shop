@@ -16,7 +16,7 @@ namespace FlowerShop.Tables.BaseComponents
         [SerializeField] private MeshRenderer breakdownIndicatorRenderer;
         [SerializeField] private ParticleSystem[] brokenEffects;
 
-        private int actionsBeforeBrokenQuantity;
+        public int ActionsBeforeBrokenQuantity { get; private set; }
 
         public bool IsTableBroken { get; private set; }
 
@@ -32,9 +32,13 @@ namespace FlowerShop.Tables.BaseComponents
 
         public void UseBreakableTable()
         {
-            actionsBeforeBrokenQuantity--;
+            ActionsBeforeBrokenQuantity--;
+            CheckIfTableBroken();
+        }
 
-            if (actionsBeforeBrokenQuantity <= 0)
+        public void CheckIfTableBroken()
+        {
+            if (ActionsBeforeBrokenQuantity <= 0)
             {
                 IsTableBroken = true;
 
@@ -56,7 +60,12 @@ namespace FlowerShop.Tables.BaseComponents
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
         {
-            actionsBeforeBrokenQuantity = Random.Range(minQuantity, maxQuantity);
+            ActionsBeforeBrokenQuantity = Random.Range(minQuantity, maxQuantity);
+        }
+
+        public void LoadActionsBeforeBrokenQuantity(int loadedActionsBeforeBrokenQuantity)
+        {
+            ActionsBeforeBrokenQuantity = loadedActionsBeforeBrokenQuantity;
         }
 
         private IEnumerator FixBreakableFlowerTableProcess()

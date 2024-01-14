@@ -16,7 +16,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
 
         [HideInInspector, SerializeField] private ObjectMoving objectMoving;
-
+        
         public IUpgradableTable UpgradableTable { get; set; }
 
         private void OnValidate()
@@ -49,6 +49,12 @@ namespace FlowerShop.PickableObjects
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
             UpgradableTable.UpgradeTable();
             playerBusyness.SetPlayerFree();
+        }
+
+        public void LoadInPlayerHands()
+        {
+            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForLittleObjectTransform);
+            playerPickableObjectHandler.CurrentPickableObject = this;
         }
     }
 }

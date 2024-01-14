@@ -1,15 +1,17 @@
 using System.Collections;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
     [RequireComponent(typeof(TableObjectsRotation))]
-    public class SoilPreparationTable : UpgradableBreakableTable
+    public class SoilPreparationTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly TablesSettings tablesSettings;
@@ -22,6 +24,8 @@ namespace FlowerShop.Tables
         private Pot potToSoilPreparation;
         private float soilPreparationTime;
         
+        [field: SerializeField] public string UniqueKey { get; private set; }
+        
         public int TableLvl => tableLvl;
 
         private protected override void OnValidate()
@@ -30,15 +34,18 @@ namespace FlowerShop.Tables
             
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
-        
+
+        private void Awake()
+        {
+            Load();
+        }
+
         private protected override void Start()
         {
             base.Start();
             SetSoilPreparationTime();
-
-            SetActionsBeforeBrokenQuantity(
-                repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
-                repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+            
+            breakableTableBaseComponent.CheckIfTableBroken();
         }
 
         public override void ExecuteClickableAbility()
@@ -65,6 +72,48 @@ namespace FlowerShop.Tables
             base.UpgradeTable();
             SetSoilPreparationTime();
             gearsMeshRenderers[tableLvl].enabled = true;
+            
+            SetActionsBeforeBrokenQuantity(
+                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            
+            Save();
+        }
+
+        public void Save()
+        {
+            SoilPreparationTableForSaving soilPreparationTableForSaving =
+                new(TableLvl, breakableTableBaseComponent.ActionsBeforeBrokenQuantity);
+            
+            SavesHandler.Save(UniqueKey, soilPreparationTableForSaving);
+        }
+
+        public void Load()
+        {
+            SoilPreparationTableForSaving soilPreparationTableForLoading =
+                SavesHandler.Load<SoilPreparationTableForSaving>(UniqueKey);
+
+            if (soilPreparationTableForLoading.IsValuesSaved)
+            {
+                tableLvl = soilPreparationTableForLoading.TableLvl;
+                if (tableLvl > 0)
+                {
+                    for (int i = 0; i <= tableLvl; i++)
+                    {
+                        gearsMeshRenderers[i].enabled = true;
+                    }
+                    LoadLvlMesh();
+                }
+                
+                breakableTableBaseComponent.LoadActionsBeforeBrokenQuantity(
+                    soilPreparationTableForLoading.ActionsBeforeBrokenQuantity);
+            }
+            else
+            {
+                SetActionsBeforeBrokenQuantity(
+                    repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            }
         }
 
         private void SetSoilPreparationTime()
@@ -99,6 +148,8 @@ namespace FlowerShop.Tables
             potToSoilPreparation.FillPotWithSoil();
             potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
             UseBreakableTable();
+            
+            Save();
         }
 
         private bool CanPlayerFixTable()
@@ -111,6 +162,8 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+            
+            Save();
         }
 
         private bool CanPlayerUpgradeTable()

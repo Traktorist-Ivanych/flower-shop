@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
-    public class PotsRack : UpgradableTable
+    public class PotsRack : UpgradableTable, ISavableObject
     {
         [Inject] private readonly TablesSettings tablesSettings;
         
@@ -18,12 +20,22 @@ namespace FlowerShop.Tables
         private Pot currentPlayerPot;
         private int currentFreePots;
 
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
+        {
+            Load();
+        }
+
         private protected override void Start()
         {
             base.Start();
 
-            currentFreePots = tablesSettings.PotsCountAvailableOnStart;
-        }
+            for (int i = 0; i < currentFreePots; i++)
+            {
+                potsRenderers[i].enabled = true;
+            }
+        } 
         
         public override void ExecuteClickableAbility()
         {
@@ -53,6 +65,38 @@ namespace FlowerShop.Tables
             {
                 potsRenderers[i].enabled = true;
             }
+            
+            Save();
+        }
+
+        public void RemovePotFromListOnLoad(Pot potForRemoving)
+        {
+            currentFreePots--;
+            
+            if (pots.Contains(potForRemoving))
+            {
+                pots.Remove(potForRemoving);
+            }
+        }
+
+        public void Save()
+        {
+            PotsRackForSaving potsRackForSaving = new(tableLvl);
+            
+            SavesHandler.Save(UniqueKey, potsRackForSaving);
+        }
+
+        public void Load()
+        {
+            PotsRackForSaving potsRackForLoading = SavesHandler.Load<PotsRackForSaving>(UniqueKey);
+
+            if (potsRackForLoading.IsValuesSaved)
+            {
+                tableLvl = potsRackForLoading.TableLvl;
+                LoadLvlMesh();
+            }
+            
+            currentFreePots += (tableLvl + 1) * tablesSettings.PotsCountAvailableOnUpgradeDelta;
         }
 
         private bool CanPlayerTakePotInHands()

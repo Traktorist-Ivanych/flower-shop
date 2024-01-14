@@ -14,7 +14,7 @@ namespace FlowerShop.Tables.Helpers
 
         private Tween[] objectsRotators;
         
-        private void Start()
+        private void Awake()
         {
             objectsRotators = new Tween[rotatingObjectsTransform.Length];
 

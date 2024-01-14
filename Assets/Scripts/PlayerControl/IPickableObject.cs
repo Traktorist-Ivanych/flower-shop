@@ -13,5 +13,10 @@ namespace PlayerControl
         {
             
         }
+
+        public void LoadInPlayerHands()
+        {
+            
+        }
     }
 }

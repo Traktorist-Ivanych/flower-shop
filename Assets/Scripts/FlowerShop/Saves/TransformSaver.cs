@@ -9,7 +9,7 @@ namespace FlowerShop.Saves
     {
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         
-        [field: SerializeField] public string PlayerPrefsKey { get; set; }
+        [field: SerializeField] public string UniqueKey { get; set; }
         
         private void Awake()
         {
@@ -29,12 +29,12 @@ namespace FlowerShop.Saves
         public void Save()
         {
             TransformForSaving transformSaving = new TransformForSaving(transform);
-            SavesHandler.Save(PlayerPrefsKey, transformSaving);
+            SavesHandler.Save(UniqueKey, transformSaving);
         }
 
         public void Load()
         {
-            TransformForSaving loadedTransform = SavesHandler.Load<TransformForSaving>(PlayerPrefsKey);
+            TransformForSaving loadedTransform = SavesHandler.Load<TransformForSaving>(UniqueKey);
 
             if (loadedTransform.IsValuesSaved)
             {

@@ -24,6 +24,12 @@ namespace FlowerShop.PickableObjects.Moving
             MoveAndRotateObjectWithDoTween();
         }
 
+        public void SetParentAndParentPositionAndRotationOnLoad(Transform targetFinishTransform)
+        {
+            transform.SetParent(targetFinishTransform);
+            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
+        }
+
         private void MoveAndRotateObjectWithDoTween()
         {
             transform.DOMove(

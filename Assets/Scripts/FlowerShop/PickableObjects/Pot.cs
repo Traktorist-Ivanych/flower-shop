@@ -24,6 +24,8 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly FlowersContainer flowersContainer;
+
+        [SerializeField] private PotsRack potsRack;
         
         [HideInInspector, SerializeField] private ObjectMoving objectMoving;
 
@@ -34,7 +36,7 @@ namespace FlowerShop.PickableObjects
         private int weedGrowingLvl;
         private bool isPotOnGrowingTable;
 
-        [field: SerializeField] public string PlayerPrefsKey { get; set; }
+        [field: SerializeField] public string UniqueKey { get; private set; }
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
         [field: HideInInspector, SerializeField] public PotObjects PotObjects { get; private set; }
 
@@ -56,18 +58,12 @@ namespace FlowerShop.PickableObjects
             Load();
         }
 
-        private void OnDisable()
-        {
-            cyclicalSaver.CyclicalSaverEvent -= Save;
-        }
-
         private void Start()
         {
             if (upGrowingLvlTime == 0)
             {
                 upGrowingLvlTime = tablesSettings.UpGrowingLvlTime;
             }
-            CalculateGrowingLvlTimeProgress();
         }
 
         private void Update()
@@ -173,14 +169,13 @@ namespace FlowerShop.PickableObjects
             ResetGrothAcceleratorParameters();
             PotObjects.HideAllPotObjects();
             
-            SavesHandler.DeletePlayerPrefsKey(PlayerPrefsKey);
+            SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
 
         public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
         {
-            cyclicalSaver.CyclicalSaverEvent += Save;
-            isPotOnGrowingTable = true;
-            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
+            PutOnGrowingTableBaseActions(growingTableLvl);
+            
             currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
             PutOnTableAndSetPlayerFree(targetTransform);
             
@@ -236,12 +231,12 @@ namespace FlowerShop.PickableObjects
             PotForSaving potForSaving = new PotForSaving(IsSoilInsidePot, PlantedFlowerInfo, FlowerGrowingLvl,
                 currentUpGrowingLvlTime, IsFlowerNeedWater, IsPotTreatedByGrothAccelerator, IsWeedInPot, weedGrowingLvl);
             
-            SavesHandler.Save(PlayerPrefsKey ,potForSaving);
+            SavesHandler.Save(UniqueKey ,potForSaving);
         }
 
         public void Load()
         {
-            PotForSaving potForLoading = SavesHandler.Load<PotForSaving>(PlayerPrefsKey);
+            PotForSaving potForLoading = SavesHandler.Load<PotForSaving>(UniqueKey);
 
             if (potForLoading.IsValuesSaved)
             {
@@ -288,6 +283,31 @@ namespace FlowerShop.PickableObjects
                 ResetPlantedFlowerInfo();
                 ResetGrothAcceleratorParameters(); 
             }
+        }
+
+        public void LoadInPlayerHands()
+        {
+            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
+            potsRack.RemovePotFromListOnLoad(this);
+        }
+
+        public void LoadOnGrowingTable(Transform transformOnTable, int growingTableLvl)
+        {
+            PutOnGrowingTableBaseActions(growingTableLvl);
+            LoadOnTable(transformOnTable);
+        }
+
+        public void LoadOnTable(Transform transformOnTable)
+        {
+            objectMoving.SetParentAndParentPositionAndRotationOnLoad(transformOnTable);
+            potsRack.RemovePotFromListOnLoad(this);
+        }
+
+        private void PutOnGrowingTableBaseActions(int growingTableLvl)
+        {
+            cyclicalSaver.CyclicalSaverEvent += Save;
+            isPotOnGrowingTable = true;
+            upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
         }
 
         private void CalculateGrowingLvlTimeProgress()

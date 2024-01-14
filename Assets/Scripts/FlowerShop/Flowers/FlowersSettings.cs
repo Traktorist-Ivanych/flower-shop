@@ -15,7 +15,6 @@ namespace FlowerShop.Flowers
         
         [field: Tooltip("Determines what level will be set when flower is planted")]
         [field: SerializeField] public int PrimaryFlowerGrowingLvl { get; private set; }
-        
         [field: SerializeField] public FlowerName FlowerNameEmpty { get; private set; }
         [field: SerializeField] public FlowerInfo FlowerInfoEmpty { get; private set; }
         [field: SerializeField] public GrowingRoom GrowingRoomAny { get; private set; }

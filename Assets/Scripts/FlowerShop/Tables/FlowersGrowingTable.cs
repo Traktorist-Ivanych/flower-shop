@@ -1,19 +1,21 @@
-using System;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using FlowerShop.Weeds;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
     [RequireComponent(typeof(TableObjectsRotation))]
-    public class FlowersGrowingTable : UpgradableBreakableTable
+    public class FlowersGrowingTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
     
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private MeshRenderer growingLightMeshRenderer;
@@ -30,6 +32,8 @@ namespace FlowerShop.Tables
         private Pot potOnTable;
         private bool isPotOnTable;
 
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
         private protected override void OnValidate()
         {
             base.OnValidate();
@@ -38,13 +42,21 @@ namespace FlowerShop.Tables
             growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
         }
 
+        private void Awake()
+        {
+            Load();
+        }
+
         private protected override void Start()
         {
             base.Start();
+
+            if (potOnTable)
+            {
+                tableObjectsRotation.StartObjectsRotation();
+            }
             
-            SetActionsBeforeBrokenQuantity(
-                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            breakableTableBaseComponent.CheckIfTableBroken();
         }
 
         public override void ExecuteClickableAbility()
@@ -87,8 +99,62 @@ namespace FlowerShop.Tables
             base.UpgradeTable();
             growingLightMeshFilter.mesh = growingLightLvlMeshes[tableLvl - 1];
             growingTableFanMeshRenderer.enabled = true;
+            
+            SetActionsBeforeBrokenQuantity(
+                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            
+            Save();
         }
 
+        public void Load()
+        {
+            FlowersGrowingTableForSaving flowersGrowingTableForLoading =
+                SavesHandler.Load<FlowersGrowingTableForSaving>(UniqueKey);
+
+            if (flowersGrowingTableForLoading.IsValuesSaved)
+            {
+                tableLvl = flowersGrowingTableForLoading.TableLvl;
+                if (tableLvl > 0)
+                {
+                    growingTableFanMeshRenderer.enabled = true;
+                    LoadLvlMesh();
+                }
+                
+                potOnTable = referencesForLoad.GetReference<Pot>(flowersGrowingTableForLoading.PotUniqueKey);
+
+                if (potOnTable != null)
+                {
+                    potOnTable.LoadOnGrowingTable(tablePotTransform, tableLvl);
+                    PutPotOnTableBase();
+                }
+                
+                breakableTableBaseComponent.LoadActionsBeforeBrokenQuantity(
+                    flowersGrowingTableForLoading.ActionsBeforeBrokenQuantity);
+            }
+            else
+            {
+                SetActionsBeforeBrokenQuantity(
+                    repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            }
+        }
+
+        public void Save()
+        {
+            string potOnTableUniqueKey = "Empty";
+
+            if (potOnTable)
+            {
+                potOnTableUniqueKey = potOnTable.UniqueKey;
+            }
+            
+            FlowersGrowingTableForSaving flowersGrowingTableForSaving =
+                new(potOnTableUniqueKey, tableLvl, breakableTableBaseComponent.ActionsBeforeBrokenQuantity);
+            
+            SavesHandler.Save(UniqueKey, flowersGrowingTableForSaving);
+        }
+        
         private bool CanPlayerPutPotOnTable()
         {
             if (!IsTableBroken && !isPotOnTable &&
@@ -107,10 +173,17 @@ namespace FlowerShop.Tables
         private void PutPotOnTable()
         {
             potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
-            isPotOnTable = true;
-            growingLightMeshRenderer.enabled = true;
             playerPickableObjectHandler.ResetPickableObject();
             tableObjectsRotation.StartObjectsRotation();
+            PutPotOnTableBase();
+            
+            Save();
+        }
+
+        private void PutPotOnTableBase()
+        {
+            isPotOnTable = true;
+            growingLightMeshRenderer.enabled = true;
 
             if (!potOnTable.IsWeedInPot)
             {
@@ -187,6 +260,8 @@ namespace FlowerShop.Tables
             growingLightMeshRenderer.enabled = false;
             UseBreakableTable();
             tableObjectsRotation.PauseObjectsRotation();
+            
+            Save();
         }
 
         private bool CanPlayerFixTable()
@@ -200,6 +275,8 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            
+            Save();
         }
 
         private bool CanPlayerUpgradeTable()

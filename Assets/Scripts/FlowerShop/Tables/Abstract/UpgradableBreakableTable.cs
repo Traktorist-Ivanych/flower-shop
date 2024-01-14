@@ -8,7 +8,7 @@ namespace FlowerShop.Tables.Abstract
     [RequireComponent (typeof(BreakableTableBaseComponent))]
     public abstract class UpgradableBreakableTable : UpgradableTable, IBreakableTable
     {
-        [HideInInspector, SerializeField] private BreakableTableBaseComponent breakableTableBaseComponent;
+        [HideInInspector, SerializeField] private protected BreakableTableBaseComponent breakableTableBaseComponent;
 
         public bool IsTableBroken => breakableTableBaseComponent.IsTableBroken;
 

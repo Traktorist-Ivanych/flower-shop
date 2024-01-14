@@ -1,9 +1,7 @@
 ﻿namespace Saves
 {
-    public interface ISavableObject
+    public interface ISavableObject : IUniqueKey
     {
-        public string PlayerPrefsKey { get; set; }
-        
         public void Save()
         {
             

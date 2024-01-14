@@ -45,7 +45,10 @@ namespace FlowerShop.Tables.BaseComponents
 
         public void SetNextLvlMesh(int nextTableLvl)
         {
-            tableMeshFilter.mesh = upgradableTableInfo.GetUpgradableTableMesh(nextTableLvl);
+            if (nextTableLvl > 0)
+            {
+                tableMeshFilter.mesh = upgradableTableInfo.GetUpgradableTableMesh(nextTableLvl - 1);
+            }
         }
     }
 }

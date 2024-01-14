@@ -37,9 +37,14 @@ namespace FlowerShop.Tables.Abstract
 
         public virtual void UpgradeTable()
         {
-            upgradableTableBaseComponent.SetNextLvlMesh(tableLvl);
             tableLvl++;
+            LoadLvlMesh();
             ShowUpgradeIndicator();
+        }
+
+        private protected void LoadLvlMesh()
+        {
+            upgradableTableBaseComponent.SetNextLvlMesh(tableLvl);
         }
 
         public void ShowUpgradeCanvas()

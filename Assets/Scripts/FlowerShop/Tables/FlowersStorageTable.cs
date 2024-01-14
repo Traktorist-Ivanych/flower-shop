@@ -1,15 +1,18 @@
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Weeds;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
-    public class FlowersStorageTable : Table
+    public class FlowersStorageTable : Table, ISavableObject
     {
+        [Inject] private ReferencesForLoad referencesForLoad;
         [Inject] private readonly FlowersSettings flowersSettings;
         
         [SerializeField] private Transform tablePotTransform;
@@ -20,6 +23,21 @@ namespace FlowerShop.Tables
         private Fertilizer fertilizer;
         private Pot potOnTable;
         private bool isPotOnTable;
+        
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
+        {
+            Load();
+        }
+
+        private void Start()
+        {
+            if (potOnTable != null)
+            {
+                TryAddPotOnTableInPlantingWeedList();
+            }
+        }
 
         public override void ExecuteClickableAbility()
         {
@@ -48,6 +66,30 @@ namespace FlowerShop.Tables
             }
         }
 
+        public void Load()
+        {
+            FlowersStorageTableForSaving flowersStorageTableForLoading =
+                SavesHandler.Load<FlowersStorageTableForSaving>(UniqueKey);
+
+            if (flowersStorageTableForLoading.IsValuesSaved)
+            {
+                potOnTable = referencesForLoad.GetReference<Pot>(flowersStorageTableForLoading.PotUniqueKey);
+                
+                if (potOnTable != null)
+                {
+                    potOnTable.LoadOnTable(tablePotTransform);
+                    isPotOnTable = true;
+                }
+            }
+        }
+
+        public void Save()
+        {
+            FlowersStorageTableForSaving flowersStorageTableForSaving = new(potOnTable.UniqueKey);
+            
+            SavesHandler.Save(UniqueKey, flowersStorageTableForSaving);
+        }
+
         private bool CanPlayerPutPotOnTable()
         {
             if (!isPotOnTable && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
@@ -64,12 +106,11 @@ namespace FlowerShop.Tables
         {
             potOnTable.PutOnTableAndSetPlayerFree(tablePotTransform);
             playerPickableObjectHandler.ResetPickableObject();
-            isPotOnTable = true;
             
-            if (potOnTable.IsSoilInsidePot && !potOnTable.IsWeedInPot)
-            {
-                weedPlanter.AddPotInPlantingWeedList(potOnTable);
-            }
+            isPotOnTable = true;
+            TryAddPotOnTableInPlantingWeedList();
+            
+            Save();
         }
 
         private bool CanPlayerPourPotOnTable()
@@ -138,6 +179,16 @@ namespace FlowerShop.Tables
             potOnTable.TakeInPlayerHandsAndSetPlayerFree();
             isPotOnTable = false;
             weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
+
+            SavesHandler.DeletePlayerPrefsKey(UniqueKey);
+        }
+
+        private void TryAddPotOnTableInPlantingWeedList()
+        {
+            if (potOnTable.IsSoilInsidePot && !potOnTable.IsWeedInPot)
+            {
+                weedPlanter.AddPotInPlantingWeedList(potOnTable);
+            }
         }
     }
 }
