@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: CornflowerInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: CornflowerInfo 6
   <FlowerNameRus>k__BackingField: "\u0412\u0430\u0441\u0438\u043B\u0435\u043A"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 531df6c69ceac484c8ac16d2a7cc3c4b, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 9bb5dcebecdfe7846a7b464f2dc1c231, type: 2}

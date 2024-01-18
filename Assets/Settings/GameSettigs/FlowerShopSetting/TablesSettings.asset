@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TablesSettings
   m_EditorClassIdentifier: 
   <PrimaryGrowingLvlTime>k__BackingField: 0
-  <UpGrowingLvlTime>k__BackingField: 25
-  <UpGrowingLvlTableLvlTimeDelta>k__BackingField: 7.5
+  <UpGrowingLvlTime>k__BackingField: 5
+  <UpGrowingLvlTableLvlTimeDelta>k__BackingField: 2
   <WateringsNumber>k__BackingField: 3
   <WateringsNumberLvlDelta>k__BackingField: 3
   <ReplenishWateringCanTime>k__BackingField: 2

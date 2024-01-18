@@ -1,4 +1,5 @@
-﻿using FlowerShop.Fertilizers;
+﻿using System;
+using FlowerShop.Fertilizers;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
@@ -25,7 +26,30 @@ namespace FlowerShop.Tables
                 fertilizersMeshRenderers[i] = fertilizers[i].GetComponent<MeshRenderer>();
             }
         }
-        
+
+        private void Start()
+        {
+            bool isAllFertilizersOnTable = true;
+
+            for (int i = 0; i < fertilizers.Length; i++)
+            {
+                if (fertilizers[i].IsFertilizerInPlayerHands)
+                {
+                    isAllFertilizersOnTable = false;
+                    fertilizersMeshRenderers[i].enabled = true;
+                }
+                else
+                {
+                    fertilizersMeshRenderers[i].enabled = false;
+                }
+            }
+
+            if (isAllFertilizersOnTable)
+            {
+                fertilizersMeshRenderers[1].enabled = true;
+            }
+        }
+
         public override void ExecuteClickableAbility()
         {
             if (playerBusyness.IsPlayerFree)
@@ -57,7 +81,7 @@ namespace FlowerShop.Tables
             }
         }
 
-        public void AddFertilizers()
+        public void IncreaseAvailableFertilizersUsesNumber()
         {
             foreach (Fertilizer fertilizer in fertilizers)
             {

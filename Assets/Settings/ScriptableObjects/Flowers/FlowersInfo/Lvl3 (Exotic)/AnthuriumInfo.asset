@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: AnthuriumInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: AnthuriumInfo 16
   <FlowerNameRus>k__BackingField: "\u0410\u043D\u0442\u0443\u0440\u0438\u0443\u043C"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 316cd44e77ba6e64cbe2b24250dd52d2, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 53efd9f93eb928041aedb72bb8dceae8, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: RoseInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: RoseInfo 3
   <FlowerNameRus>k__BackingField: "\u0420\u043E\u0437\u0430"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 3bea2a91ea250a842834cc5f77538e03, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: ec3ad2c68695f624a99fee4593e88966, type: 2}

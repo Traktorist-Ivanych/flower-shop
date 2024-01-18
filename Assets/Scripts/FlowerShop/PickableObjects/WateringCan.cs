@@ -1,14 +1,16 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.PickableObjects
 {
     [RequireComponent(typeof(ObjectMoving))]
-    public class WateringCan : MonoBehaviour, IPickableObject
+    public class WateringCan : MonoBehaviour, IPickableObject, ISavableObject
     {
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly TablesSettings tablesSettings;
@@ -25,6 +27,7 @@ namespace FlowerShop.PickableObjects
         private int wateringCanLvl;
 
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
+        [field: SerializeField] public string UniqueKey { get; private set; }
         
         public int CurrentWateringsNumber { get; private set; }
 
@@ -35,10 +38,9 @@ namespace FlowerShop.PickableObjects
             wateringCanIndicatorMeshRenderer = wateringCanIndicatorTransform.GetComponent<MeshRenderer>();
         }
 
-        private void Start()
+        private void Awake()
         {
-            maxWateringsNumber = tablesSettings.WateringsNumber;
-            CurrentWateringsNumber = maxWateringsNumber;
+            Load();
         }
 
         public void TakeInPlayerHandsAndSetPlayerFree()
@@ -66,6 +68,8 @@ namespace FlowerShop.PickableObjects
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
             CurrentWateringsNumber--;
             UpdateWateringCanIndicator();
+            
+            Save();
         }
 
         public bool IsWateringCanNeedForReplenish()
@@ -80,15 +84,68 @@ namespace FlowerShop.PickableObjects
 
         public void ReplenishWateringCan()
         {
+            SetCurrentToMaxWateringsNumber();
+            
+            Save();
+        }
+
+        public void UpgradeWateringCan(int tableLvl)
+        {
+            SetWateringCanLvl(tableLvl);
+            SetCurrentToMaxWateringsNumber();
+            
+            Save();
+        }
+
+        private void SetWateringCanLvl(int nextWateringCanLvl)
+        {
+            wateringCanLvl = nextWateringCanLvl;
+            CalculateMaxWateringsNumber();
+            if (wateringCanLvl > 0)
+            {
+                wateringCanMeshFilter.mesh = wateringCanLvlMeshes[wateringCanLvl - 1];
+            }
+        }
+
+        public void LoadInPlayerHands()
+        {
+            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
+            playerPickableObjectHandler.CurrentPickableObject = this;
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
+            wateringCanIndicatorMeshRenderer.enabled = true;
+            UpdateWateringCanIndicator();
+        }
+
+        public void Load()
+        {
+            WateringCanForSaving wateringCanForLoading = SavesHandler.Load<WateringCanForSaving>(UniqueKey);
+            
+            if (wateringCanForLoading.IsValuesSaved)
+            {
+                CurrentWateringsNumber = wateringCanForLoading.CurrentWateringsNumber;
+                SetWateringCanLvl(wateringCanForLoading.WateringCanLvl);
+            }
+            else
+            {
+                CalculateMaxWateringsNumber();
+                SetCurrentToMaxWateringsNumber();
+            }
+        }
+
+        public void Save()
+        {
+            WateringCanForSaving wateringCanForSaving = new(CurrentWateringsNumber, wateringCanLvl);
+            
+            SavesHandler.Save(UniqueKey, wateringCanForSaving);
+        }
+        private void SetCurrentToMaxWateringsNumber()
+        {
             CurrentWateringsNumber = maxWateringsNumber;
         }
 
-        public void UpgradeWateringCan()
+        private void CalculateMaxWateringsNumber()
         {
-            wateringCanLvl++;
             maxWateringsNumber = tablesSettings.WateringsNumber + tablesSettings.WateringsNumberLvlDelta * wateringCanLvl;
-            CurrentWateringsNumber = maxWateringsNumber;
-            wateringCanMeshFilter.mesh = wateringCanLvlMeshes[wateringCanLvl - 1];
         }
 
         private void UpdateWateringCanIndicator()

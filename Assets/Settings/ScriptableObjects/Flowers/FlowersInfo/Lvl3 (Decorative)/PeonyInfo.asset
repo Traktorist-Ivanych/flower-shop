@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: PeonyInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: PeonyInfo 15
   <FlowerNameRus>k__BackingField: "\u041F\u0438\u043E\u043D"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: e2826345ace0e654380b590476ab45e1, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: f3f707c219af8c24d94fa90f1f1c202f, type: 2}

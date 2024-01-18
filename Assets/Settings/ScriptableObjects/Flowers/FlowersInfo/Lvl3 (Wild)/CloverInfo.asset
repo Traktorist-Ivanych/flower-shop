@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: CloverInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: CloverInfo 23
   <FlowerNameRus>k__BackingField: "\u041A\u043B\u0435\u0432\u0435\u0440"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 274b41dce8956574fb029e43171db157, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 86da004d687b7134f8fd282bf036ab00, type: 2}

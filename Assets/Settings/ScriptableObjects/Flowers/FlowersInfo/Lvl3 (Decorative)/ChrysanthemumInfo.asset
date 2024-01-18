@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: ChrysanthemumInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: ChrysanthemumInfo 11
   <FlowerNameRus>k__BackingField: "\u0425\u0440\u0438\u0437\u0430\u043D\u0442\u0435\u043C\u0430"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 3187200436f3ddf4d9174e1e1c441164, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 4f2cbeb62a57d2d47988e62111a4ecb5, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: KalanchoeInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: KalanchoeInfo 20
   <FlowerNameRus>k__BackingField: "\u041A\u0430\u043B\u0430\u043D\u0445\u043E\u044D"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: e96e3576b7e9c704fbbc3cea2651a169, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 76c394a6d3eb41d4ba2c9af299da0919, type: 2}

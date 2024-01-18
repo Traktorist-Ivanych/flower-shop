@@ -35,7 +35,7 @@ namespace FlowerShop.Fertilizers
             if (playerMoney.CurrentPlayerMoney >= fertilizersSetting.FertilizersPrice)
             {
                 playerMoney.TakePlayerMoney(fertilizersSetting.FertilizersPrice);
-                fertilizersTable.AddFertilizers();
+                fertilizersTable.IncreaseAvailableFertilizersUsesNumber();
             }
         }
     }

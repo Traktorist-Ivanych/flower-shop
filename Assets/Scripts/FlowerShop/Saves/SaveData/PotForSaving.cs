@@ -1,5 +1,4 @@
-﻿using FlowerShop.Flowers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FlowerShop.Saves.SaveData
 {
@@ -8,7 +7,7 @@ namespace FlowerShop.Saves.SaveData
     {
         [field: SerializeField] public bool IsValuesSaved { get; private set; }
         [field: SerializeField] public bool IsSoilInsidePot { get; private set; }
-        [field: SerializeField] public FlowerInfo PlantedFlowerInfo { get; private set; }
+        [field: SerializeField] public string PlantedFlowerInfoUniqueKey { get; private set; }
         [field: SerializeField] public int FlowerGrowingLvl { get; private set; }
         [field: SerializeField] public float CurrentUpGrowingLvlTime { get; private set; }
         [field: SerializeField] public bool IsFlowerNeedWater { get; private set; }
@@ -18,12 +17,12 @@ namespace FlowerShop.Saves.SaveData
         
         public PotForSaving() {}
 
-        public PotForSaving(bool isSoilInsidePot, FlowerInfo plantedFlowerInfo, int flowerGrowingLvl, float currentUpGrowingLvlTime,
+        public PotForSaving(bool isSoilInsidePot, string plantedFlowerInfoUniqueKey, int flowerGrowingLvl, float currentUpGrowingLvlTime,
             bool isFlowerNeedWater, bool isPotTreatedByGrothAccelerator, bool isWeedInPot, int weedGrowingLvl)
         {
             IsValuesSaved = true;
             IsSoilInsidePot = isSoilInsidePot;
-            PlantedFlowerInfo = plantedFlowerInfo;
+            PlantedFlowerInfoUniqueKey = plantedFlowerInfoUniqueKey;
             FlowerGrowingLvl = flowerGrowingLvl;
             CurrentUpGrowingLvlTime = currentUpGrowingLvlTime;
             IsFlowerNeedWater = isFlowerNeedWater;

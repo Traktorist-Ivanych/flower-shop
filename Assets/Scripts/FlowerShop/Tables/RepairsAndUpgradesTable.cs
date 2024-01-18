@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
-    public class RepairsAndUpgradesTable : Table
+    public class RepairsAndUpgradesTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
 
@@ -17,6 +20,23 @@ namespace FlowerShop.Tables
         [SerializeField] private RepairingAndUpgradingHammer repairingAndUpgradingHammer;
 
         private readonly List<IUpgradableTable> upgradableTables = new();
+        private bool isRepairingAndUpgradingHammerInPlayerHands;
+        
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
+        {
+            Load();
+        }
+
+        private void Start()
+        {
+            if (isRepairingAndUpgradingHammerInPlayerHands)
+            {
+                repairingAndUpgradingHammer.LoadInPlayerHands();
+                ShowAllUpgradeIndicators();
+            }
+        }
 
         public override void ExecuteClickableAbility()
         {
@@ -38,6 +58,26 @@ namespace FlowerShop.Tables
             upgradableTables.Add(upgradableTable);
         }
 
+        public void Load()
+        {
+            RepairsAndUpgradesTableForSaving repairsAndUpgradesTableForLoading =
+                SavesHandler.Load<RepairsAndUpgradesTableForSaving>(UniqueKey);
+
+            if (repairsAndUpgradesTableForLoading.IsValuesSaved &&
+                repairsAndUpgradesTableForLoading.IsRepairingAndUpgradingHammerInPlayerHands)
+            {
+                isRepairingAndUpgradingHammerInPlayerHands = true;
+            }
+        }
+
+        public void Save()
+        {
+            RepairsAndUpgradesTableForSaving repairsAndUpgradesTableForSaving = 
+                new(isRepairingAndUpgradingHammerInPlayerHands);
+            
+            SavesHandler.Save(UniqueKey, repairsAndUpgradesTableForSaving);
+        }
+        
         private bool CanPlayerTakeHammerInHands()
         {
             return playerPickableObjectHandler.IsPickableObjectNull;
@@ -45,8 +85,11 @@ namespace FlowerShop.Tables
 
         private void TakeHammerInPlayerHands()
         {
+            isRepairingAndUpgradingHammerInPlayerHands = true;
             repairingAndUpgradingHammer.TakeInPlayerHandsAndSetPlayerFree();
-            StartCoroutine(ShowAllUpgradeIndicators());
+            StartCoroutine(ShowAllUpgradeIndicatorsWithDelay());
+            
+            Save();
         }
 
         private bool CanPlayerPutHammerOnTable()
@@ -56,6 +99,7 @@ namespace FlowerShop.Tables
 
         private void PutHammerOnTable()
         {
+            isRepairingAndUpgradingHammerInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
             repairingAndUpgradingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
 
@@ -63,16 +107,24 @@ namespace FlowerShop.Tables
             {
                 upgradableTable.HideUpgradeIndicator();
             }
+            
+            Save();
         }
 
-        private IEnumerator ShowAllUpgradeIndicators()
+        private IEnumerator ShowAllUpgradeIndicatorsWithDelay()
         {
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
-            
+
+            ShowAllUpgradeIndicators();
+        }
+
+        private void ShowAllUpgradeIndicators()
+        {
             foreach (IUpgradableTable upgradableTable in upgradableTables)
             {
                 upgradableTable.ShowUpgradeIndicator();
             }
         }
+            
     }
 }

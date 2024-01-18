@@ -21,5 +21,7 @@ namespace PlayerControl
         public const string PourTrigger = "Pour";
         public const string ThrowTrigger = "Throw";
         public const string StartCrossingTrigger = "StartCrossing";
+        public const string LoadToHold = "LoadToHold";
+        public const string LoadToHoldLittleObject = "LoadToHoldLittleObject";
     }
 }

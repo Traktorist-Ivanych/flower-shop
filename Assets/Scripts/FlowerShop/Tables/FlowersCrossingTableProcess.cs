@@ -16,6 +16,7 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(TableObjectsRotation))]
     public class FlowersCrossingTableProcess : UpgradableBreakableTable, ISavableObject
     {
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly TablesSettings tablesSettings;
@@ -68,15 +69,15 @@ namespace FlowerShop.Tables
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
 
-        private void Awake()
+        private protected override void Awake()
         {
+            base.Awake();
+
             Load();
         }
 
-        private protected override void Start()
+        private void Start()
         {
-            base.Start();
-            
             SetCrossingFlowerTime();
             
             breakableTableBaseComponent.CheckIfTableBroken();
@@ -130,7 +131,6 @@ namespace FlowerShop.Tables
                 else
                 {
                     crossingAbilityRedIndicator.enabled = false;
-                    crossedFlowerRoomRedIndicator.enabled = false;
 
                     isFlowerReadyForCrossing = true;
                     crossingAbilityGreenIndicator.enabled = true;
@@ -181,14 +181,14 @@ namespace FlowerShop.Tables
                 }
                 
                 isCrossingSeedReady = flowersCrossingTableProcessForLoading.IsCrossingSeedReady;
-                
-                if (flowersCrossingTableProcessForLoading.FlowerInfoForPlanting)
-                {
-                    flowerInfoForPlanting = flowersCrossingTableProcessForLoading.FlowerInfoForPlanting;
-                }
+
+                flowerInfoForPlanting =
+                    referencesForLoad.GetReference<FlowerInfo>(
+                        flowersCrossingTableProcessForLoading.PlantedFlowerInfoUniqueKey);
             }
             else
             {
+                ResetFlowerInfoForPlanting();
                 SetActionsBeforeBrokenQuantity(
                     repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
                     repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
@@ -199,7 +199,7 @@ namespace FlowerShop.Tables
         {
             FlowersCrossingTableProcessForSaving flowersCrossingTableProcessForSaving = 
                 new(tableLvl, breakableTableBaseComponent.ActionsBeforeBrokenQuantity, 
-                    currentCrossingFlowerTime, isCrossingSeedReady, flowerInfoForPlanting, IsSeedCrossing);
+                    currentCrossingFlowerTime, isCrossingSeedReady, flowerInfoForPlanting.UniqueKey, IsSeedCrossing);
             
             SavesHandler.Save(UniqueKey, flowersCrossingTableProcessForSaving);
         }
@@ -317,6 +317,8 @@ namespace FlowerShop.Tables
 
         private void CheckFlowerInfoForPlantingRoomIndicator()
         {
+            crossedFlowerRoomRedIndicator.enabled = false;
+            
             if (flowerInfoForPlanting.GrowingRoom == growingRoomWild)
             {
                 crossedFlowerRoomYellowIndicator.enabled = true;
@@ -328,6 +330,10 @@ namespace FlowerShop.Tables
             else if (flowerInfoForPlanting.GrowingRoom == growingRoomDecorative)
             {
                 crossedFlowerRoomGreenIndicator.enabled = true;
+            }
+            else
+            {
+                crossedFlowerRoomRedIndicator.enabled = true;
             }
         }
 

@@ -1,10 +1,13 @@
+using Saves;
 using UnityEngine;
 
 namespace FlowerShop.Flowers
 {
     [CreateAssetMenu(fileName = "NewFlowerInfo", menuName = "Flower Info", order = 57)]
-    public class FlowerInfo : ScriptableObject
+    public class FlowerInfo : ScriptableObject, IUniqueKey
     {
+        [field: SerializeField] public string UniqueKey { get; private set; }
+        
         [field: Header("FlowerInfo")]
         [field: SerializeField] public string FlowerNameRus { get; private set; }
         [field: SerializeField] public Sprite FlowerSprite { get; private set; }

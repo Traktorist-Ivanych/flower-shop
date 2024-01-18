@@ -42,15 +42,15 @@ namespace FlowerShop.Tables
             growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
         }
 
-        private void Awake()
+        private protected override void Awake()
         {
+            base.Awake();
+            
             Load();
         }
 
-        private protected override void Start()
+        private void Start()
         {
-            base.Start();
-
             if (potOnTable)
             {
                 tableObjectsRotation.StartObjectsRotation();

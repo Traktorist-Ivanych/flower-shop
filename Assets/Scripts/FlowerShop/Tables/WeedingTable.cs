@@ -1,14 +1,27 @@
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
+using Saves;
 using UnityEngine;
 
 namespace FlowerShop.Tables
 {
-    public class WeedingTable : UpgradableTable
+    public class WeedingTable : UpgradableTable, ISavableObject
     {
         [SerializeField] private Transform hoeOnTableTransform;
         [SerializeField] private WeedingHoe weedingHoe;
+        
+        [field: SerializeField] public string UniqueKey { get; private set; }
 
+        private bool isWeedingHoeInPlayerHands;
+
+        private protected override void Awake()
+        {
+            base.Awake();
+            
+            Load();
+        }
+        
         public override void ExecuteClickableAbility()
         {
             if (playerBusyness.IsPlayerFree)
@@ -32,7 +45,37 @@ namespace FlowerShop.Tables
         {
             base.UpgradeTable();
             
-            weedingHoe.Upgrade();
+            weedingHoe.Upgrade(tableLvl);
+            
+            Save();
+        }
+
+        public void Load()
+        {
+            WeedingTableForSaving weedingTableForLoading = SavesHandler.Load<WeedingTableForSaving>(UniqueKey);
+
+            if (weedingTableForLoading.IsValuesSaved)
+            {
+                tableLvl = weedingTableForLoading.TableLvl;
+                if (tableLvl > 0)
+                {
+                    LoadLvlMesh();
+                    weedingHoe.Upgrade(tableLvl);
+                }
+
+                if (weedingTableForLoading.IsWeedingHoeInPlayerHands)
+                {
+                    isWeedingHoeInPlayerHands = true;
+                    weedingHoe.LoadInPlayerHands();
+                }
+            }
+        }
+
+        public void Save()
+        {
+            WeedingTableForSaving weedingTableForSaving = new(tableLvl, isWeedingHoeInPlayerHands);
+            
+            SavesHandler.Save(UniqueKey, weedingTableForSaving);
         }
 
         private bool CanPlayerTakeHoeInHands()
@@ -42,7 +85,10 @@ namespace FlowerShop.Tables
 
         private void TakeHoeInPlayerHands()
         {
+            isWeedingHoeInPlayerHands = true;
             weedingHoe.TakeInPlayerHandsAndSetPlayerFree();
+            
+            Save();
         }
 
         private bool CanPlayerPutHoeOnTable()
@@ -57,8 +103,11 @@ namespace FlowerShop.Tables
 
         private void PutHoeOnTable()
         {
+            isWeedingHoeInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
             weedingHoe.PutOnTableAndSetPlayerFree(hoeOnTableTransform);
+            
+            Save();
         }
 
         private bool CanPlayerUpgradeTable()

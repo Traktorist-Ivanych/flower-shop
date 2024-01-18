@@ -19,8 +19,8 @@ namespace FlowerShop.Tables.Abstract
         {
             upgradableTableBaseComponent = GetComponent<UpgradableTableBaseComponent>();
         }
-
-        private protected virtual void Start()
+        
+        private protected virtual void Awake()
         {
             AddUpgradableTableToList();
         }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: DandelionInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: DandelionInfo 2
   <FlowerNameRus>k__BackingField: "\u041E\u0434\u0443\u0432\u0430\u043D\u0447\u0438\u043A"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 4ce011b637e49ed4ab92c491538d9c46, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: c7f867777ebb21a4092727fe8db8c424, type: 2}

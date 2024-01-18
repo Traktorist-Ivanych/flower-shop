@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: HydrangeaInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: HydrangeaInfo 12
   <FlowerNameRus>k__BackingField: "\u0413\u043E\u0440\u0442\u0435\u043D\u0437\u0438\u044F"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: d888d549666598a44ad433d2ba2d14ef, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 657331aa4608d904684281789204b5b8, type: 2}

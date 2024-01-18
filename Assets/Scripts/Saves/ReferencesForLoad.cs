@@ -5,39 +5,39 @@ namespace Saves
 {
     public class ReferencesForLoad : MonoBehaviour
     {
-        [SerializeField] private List<MonoBehaviour> savableObjectsReferences;
+        [SerializeField] private List<Object> uniqueKeyObjectsReferences;
 
         private void OnValidate()
         {
-            foreach (MonoBehaviour savableObjectsReference in savableObjectsReferences)
+            foreach (Object uniqueKeyObjectsReference in uniqueKeyObjectsReferences)
             {
-                if (savableObjectsReference is not IUniqueKey)
+                if (uniqueKeyObjectsReference is not IUniqueKey)
                 {
-                    savableObjectsReferences.Remove(savableObjectsReference);
-                    Debug.LogError("Only IPlayerPrefsKey can be added to List SavableObjectsReferences");
+                    uniqueKeyObjectsReferences.Remove(uniqueKeyObjectsReference);
+                    Debug.LogError("Only IUniqueKey can be added to List SavableObjectsReferences");
                 }
             }
         }
 
         public IUniqueKey GetIUniqueKeyReference(string key)
         {
-            foreach (MonoBehaviour savableObjectsReference in savableObjectsReferences)
+            foreach (Object uniqueKeyObjectsReference in uniqueKeyObjectsReferences)
             {
-                if ((savableObjectsReference as IUniqueKey)?.UniqueKey == key)
+                if ((uniqueKeyObjectsReference as IUniqueKey)?.UniqueKey == key)
                 {
-                    return savableObjectsReference as IUniqueKey;
+                    return uniqueKeyObjectsReference as IUniqueKey;
                 }
             }
             return null;
         }
 
-        public T GetReference<T>(string key) where T : MonoBehaviour
+        public T GetReference<T>(string key) where T : Object
         {
-            foreach (MonoBehaviour savableObjectsReference in savableObjectsReferences)
+            foreach (Object uniqueKeyObjectsReference in uniqueKeyObjectsReferences)
             {
-                if ((savableObjectsReference as ISavableObject)?.UniqueKey == key)
+                if ((uniqueKeyObjectsReference as IUniqueKey)?.UniqueKey == key)
                 {
-                    return savableObjectsReference as T;
+                    return uniqueKeyObjectsReference as T;
                 }
             }
             return null;

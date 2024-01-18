@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: FuchsiaInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: FuchsiaInfo 19
   <FlowerNameRus>k__BackingField: "\u0424\u0443\u043A\u0441\u0438\u044F"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: f86a4acaf8f14184d8e4f26ed7df9df0, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: e4e236eaad1e4a84db616d2edaecb997, type: 2}

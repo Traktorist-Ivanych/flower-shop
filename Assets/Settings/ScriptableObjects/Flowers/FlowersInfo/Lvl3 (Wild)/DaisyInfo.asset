@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: DaisyInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: DaisyInfo 24
   <FlowerNameRus>k__BackingField: "\u041C\u0430\u0440\u0433\u0430\u0440\u0438\u0442\u043A\u0430"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 5174730be6a93b54dad5b9be1ca9ace4, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 08a2de4902d93ca4cbd9fbb5de7b55fd, type: 2}

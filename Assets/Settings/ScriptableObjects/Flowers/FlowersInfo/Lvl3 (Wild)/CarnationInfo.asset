@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: CarnationInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: CarnationInfo 20
   <FlowerNameRus>k__BackingField: "\u0413\u0432\u043E\u0437\u0434\u0438\u043A\u0430"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 1a397648fb10a4546ba9f0be6b25d7d5, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 1c57dc36f7cdfda4cb58a64c6795dc35, type: 2}

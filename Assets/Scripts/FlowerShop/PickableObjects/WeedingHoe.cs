@@ -58,10 +58,17 @@ namespace FlowerShop.PickableObjects
             playerBusyness.SetPlayerFree();
         }
 
-        public void Upgrade()
+        public void Upgrade(int tableLvl)
         {
-            weedingHoeLvl++;
+            weedingHoeLvl = tableLvl;
             weedingHoeMeshFilter.mesh = weedingHoeLvlMeshes[weedingHoeLvl - 1];
+        }
+
+        public void LoadInPlayerHands()
+        {
+            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForLittleObjectTransform);
+            playerPickableObjectHandler.CurrentPickableObject = this;
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
         }
     }
 }

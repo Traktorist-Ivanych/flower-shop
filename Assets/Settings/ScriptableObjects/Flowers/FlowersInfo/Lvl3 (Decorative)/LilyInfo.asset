@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: LilyInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: LilyInfo 13
   <FlowerNameRus>k__BackingField: "\u041B\u0438\u043B\u0438\u044F"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 04c1d7a026e824d43975cd97377487a5, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 9edd2b9ec2b27fe4cb3917648b0bd2b7, type: 2}

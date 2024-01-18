@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: EmptyFlower
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: EmptyFlower 0
   <FlowerNameRus>k__BackingField: "\u041F\u0443\u0441\u0442\u044B\u0448\u043A\u0430"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 789bd45ab3ec1e246aa3189dcd242151, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: NarcissusInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: NarcissusInfo 8
   <FlowerNameRus>k__BackingField: "\u041D\u0430\u0440\u0446\u0438\u0441\u0441"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: d184f649d76e39e4cb655040bca2d0bc, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: db0735e95d6270542aac552e2c1db8f4, type: 2}

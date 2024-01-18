@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
   m_Name: TulipInfo
   m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: TulipInfo 4
   <FlowerNameRus>k__BackingField: "\u0422\u044E\u043B\u044C\u043F\u0430\u043D"
   <FlowerSprite>k__BackingField: {fileID: 21300000, guid: dfcb422a7c35ff74ba0ded1475e88a4f, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 0b76d389f8197fb42b052729d13f0001, type: 2}

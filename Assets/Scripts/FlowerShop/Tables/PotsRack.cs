@@ -22,15 +22,15 @@ namespace FlowerShop.Tables
 
         [field: SerializeField] public string UniqueKey { get; private set; }
 
-        private void Awake()
+        private protected override void Awake()
         {
+            base.Awake();
+
             Load();
         }
 
-        private protected override void Start()
+        private void Start()
         {
-            base.Start();
-
             for (int i = 0; i < currentFreePots; i++)
             {
                 potsRenderers[i].enabled = true;
@@ -71,10 +71,9 @@ namespace FlowerShop.Tables
 
         public void RemovePotFromListOnLoad(Pot potForRemoving)
         {
-            currentFreePots--;
-            
             if (pots.Contains(potForRemoving))
             {
+                currentFreePots--;
                 pots.Remove(potForRemoving);
             }
         }

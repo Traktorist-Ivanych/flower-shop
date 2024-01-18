@@ -16,6 +16,7 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class Pot : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -228,7 +229,7 @@ namespace FlowerShop.PickableObjects
 
         public void Save()
         {
-            PotForSaving potForSaving = new PotForSaving(IsSoilInsidePot, PlantedFlowerInfo, FlowerGrowingLvl,
+            PotForSaving potForSaving = new PotForSaving(IsSoilInsidePot, PlantedFlowerInfo.UniqueKey, FlowerGrowingLvl,
                 currentUpGrowingLvlTime, IsFlowerNeedWater, IsPotTreatedByGrothAccelerator, IsWeedInPot, weedGrowingLvl);
             
             SavesHandler.Save(UniqueKey ,potForSaving);
@@ -250,13 +251,12 @@ namespace FlowerShop.PickableObjects
                     ShowSoil();
                 }
 
-                if (potForLoading.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                PlantedFlowerInfo =
+                    referencesForLoad.GetReference<FlowerInfo>(potForLoading.PlantedFlowerInfoUniqueKey);
+
+                if (PlantedFlowerInfo != flowersSettings.FlowerInfoEmpty)
                 {
-                    ResetPlantedFlowerInfo();
-                }
-                else
-                {
-                    ShowSeed(potForLoading.PlantedFlowerInfo);
+                    ShowSeed(PlantedFlowerInfo);
                 }
 
                 if (potForLoading.IsFlowerNeedWater)
@@ -289,6 +289,7 @@ namespace FlowerShop.PickableObjects
         {
             objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
             potsRack.RemovePotFromListOnLoad(this);
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
         }
 
         public void LoadOnGrowingTable(Transform transformOnTable, int growingTableLvl)
