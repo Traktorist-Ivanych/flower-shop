@@ -5,81 +5,84 @@ using PlayerControl;
 using UnityEngine;
 using Zenject;
 
-/// <summary>
-/// Table, allowing Player to empty current pot content
-/// </summary>
-[RequireComponent(typeof(Animator))]
-public class TrashCan : Table
+namespace FlowerShop.Tables
 {
-    [Inject] private readonly PlayerComponents playerComponents;
-    [Inject] private readonly FlowersSettings flowersSettings;
+    /// <summary>
+    /// Table, allowing Player to empty current pot content
+    /// </summary>
+    [RequireComponent(typeof(Animator))]
+    public class TrashCan : Table
+    {
+        [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly FlowersSettings flowersSettings;
 
-    [SerializeField] private MeshRenderer flowerRenderer;
-    [SerializeField] private MeshRenderer soilRenderer;
-    [SerializeField] private MeshRenderer weedRenderer;
+        [SerializeField] private MeshRenderer flowerRenderer;
+        [SerializeField] private MeshRenderer soilRenderer;
+        [SerializeField] private MeshRenderer weedRenderer;
 
-    [HideInInspector, SerializeField] private Animator trashCanAnimator;
-    [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;
-    [HideInInspector, SerializeField] private MeshFilter weedMeshFilter;
+        [HideInInspector, SerializeField] private Animator trashCanAnimator;
+        [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;
+        [HideInInspector, SerializeField] private MeshFilter weedMeshFilter;
     
-    private Pot playerPot;
-    private static readonly int Throw = Animator.StringToHash("Throw");
+        private Pot playerPot;
+        private static readonly int Throw = Animator.StringToHash("Throw");
 
-    private void OnValidate()
-    {
-        trashCanAnimator = GetComponent<Animator>();
-        flowerMeshFilter = flowerRenderer.GetComponent<MeshFilter>();
-        weedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
-    }
-
-    public override void ExecuteClickableAbility()
-    {
-        if (CanPlayerThrowOutPotContent())
+        private void OnValidate()
         {
-            SetPlayerDestinationAndOnPlayerArriveAction(ThrowOutPotContent);
-        }
-    }
-
-    private bool CanPlayerThrowOutPotContent()
-    {
-        if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
-        {
-            playerPot = currentPot;
-
-            return playerPot.IsSoilInsidePot && playerBusyness.IsPlayerFree;
+            trashCanAnimator = GetComponent<Animator>();
+            flowerMeshFilter = flowerRenderer.GetComponent<MeshFilter>();
+            weedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
         }
 
-        return false;
-    }
-
-    private void ThrowOutPotContent()
-    {
-        playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
-        
-        soilRenderer.enabled = true;
-        
-        if (playerPot.PlantedFlowerInfo.FlowerName != flowersSettings.FlowerNameEmpty)
+        public override void ExecuteClickableAbility()
         {
-            flowerRenderer.enabled = true;
-            flowerMeshFilter.mesh = playerPot.PotObjects.FlowerMeshFilter.mesh;
-        }
-        
-        if (playerPot.IsWeedInPot)
-        {
-            weedRenderer.enabled = true;
-            weedMeshFilter.mesh = playerPot.PotObjects.WeedMeshFilter.mesh;
+            if (CanPlayerThrowOutPotContent())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(ThrowOutPotContent);
+            }
         }
 
-        playerPot.CleanPot();
-        
-        trashCanAnimator.SetTrigger(Throw);
-    }
+        private bool CanPlayerThrowOutPotContent()
+        {
+            if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                playerPot = currentPot;
 
-    private void FinishThrowingOutPotContent()
-    {
-        flowerRenderer.enabled = false;
-        soilRenderer.enabled = false;
-        weedRenderer.enabled = false;
-        playerBusyness.SetPlayerFree();
+                return playerPot.IsSoilInsidePot;
+            }
+
+            return false;
+        }
+
+        private void ThrowOutPotContent()
+        {
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
+        
+            soilRenderer.enabled = true;
+        
+            if (playerPot.PlantedFlowerInfo.FlowerName != flowersSettings.FlowerNameEmpty)
+            {
+                flowerRenderer.enabled = true;
+                flowerMeshFilter.mesh = playerPot.PotObjects.FlowerMeshFilter.mesh;
+            }
+        
+            if (playerPot.IsWeedInPot)
+            {
+                weedRenderer.enabled = true;
+                weedMeshFilter.mesh = playerPot.PotObjects.WeedMeshFilter.mesh;
+            }
+
+            playerPot.CleanPot();
+        
+            trashCanAnimator.SetTrigger(Throw);
+        }
+
+        private void FinishThrowingOutPotContent()
+        {
+            flowerRenderer.enabled = false;
+            soilRenderer.enabled = false;
+            weedRenderer.enabled = false;
+            playerBusyness.SetPlayerFree();
+        }
     }
 }

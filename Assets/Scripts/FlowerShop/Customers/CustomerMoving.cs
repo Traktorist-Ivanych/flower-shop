@@ -36,12 +36,9 @@ namespace FlowerShop.Customers
             buyerAnimator = GetComponent<Animator>();
         }
 
-        private void Start()
+        private void Awake()
         {
-            if (!isCustomerBusy)
-            {
-                customersSpawner.AddBuyerMoving(this);
-            }
+            customersSpawner.AddBuyerMoving(this);
         }
 
         private void Update()

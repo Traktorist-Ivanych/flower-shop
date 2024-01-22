@@ -33,7 +33,6 @@ namespace FlowerShop.RepairsAndUpgrades
         {
             if (upgradeCanvasLiaison.PriceInt <= playerMoney.CurrentPlayerMoney)
             {
-                playerMoney.TakePlayerMoney(upgradeCanvasLiaison.PriceInt);
                 StartCoroutine(repairingAndUpgradingHammer.ImproveTable());
                 upgradeCanvasLiaison.UpgradeCanvas.enabled = false;
             }

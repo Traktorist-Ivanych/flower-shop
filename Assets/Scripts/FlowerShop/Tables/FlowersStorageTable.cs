@@ -120,7 +120,8 @@ namespace FlowerShop.Tables
             {
                 wateringCan = currentWateringCan;
 
-                return wateringCan.GrowingRoom == growingRoom && wateringCan.CurrentWateringsNumber > 0 &&
+                return wateringCan.GrowingRoom == potOnTable.GrowingRoom && 
+                       wateringCan.CurrentWateringsNumber > 0 && 
                        potOnTable.IsFlowerNeedWater;
             }
 
@@ -139,7 +140,7 @@ namespace FlowerShop.Tables
             {
                 weedingHoe = currentWeedingHoe;
 
-                return potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == growingRoom;
+                return potOnTable.IsWeedInPot && weedingHoe.GrowingRoom == potOnTable.GrowingRoom;
             }
 
             return false;
@@ -179,6 +180,7 @@ namespace FlowerShop.Tables
             potOnTable.TakeInPlayerHandsAndSetPlayerFree();
             isPotOnTable = false;
             weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
+            potOnTable = null;
 
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }

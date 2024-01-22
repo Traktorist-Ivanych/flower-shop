@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff829b79289440aa83793273b5dcefd, type: 3}
   m_Name: FertilizersSetting
   m_EditorClassIdentifier: 
-  <GrothAcceleratorCoeff>k__BackingField: 5
+  <GrothAcceleratorCoeff>k__BackingField: 3
   <PrimaryGrothAcceleratorCoeff>k__BackingField: 1
   <FertilizerTreatingTime>k__BackingField: 1.5
   <FertilizersStartUsesNumber>k__BackingField: 3
-  <FertilizersPrice>k__BackingField: 1500
-  <IncreaseFertilizerAmount>k__BackingField: 3
+  <FertilizersPrice>k__BackingField: 2250
+  <IncreaseFertilizerAmount>k__BackingField: 5

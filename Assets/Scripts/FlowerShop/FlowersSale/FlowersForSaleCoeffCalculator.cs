@@ -18,7 +18,7 @@ namespace FlowerShop.FlowersSale
 
         public float CurrentFlowersForSaleCoeff { get; private set; }
 
-        public void AddFlowerSaleTableWithFLowerInList(FlowersSaleTable flowersSaleTableWith)
+        public void AddSaleTableWithFLowerInList(FlowersSaleTable flowersSaleTableWith)
         {
             saleTablesWithFlowers.Add(flowersSaleTableWith);
             uniqueFlowersForSale.Add(flowersSaleTableWith.FlowerInfoForSale);

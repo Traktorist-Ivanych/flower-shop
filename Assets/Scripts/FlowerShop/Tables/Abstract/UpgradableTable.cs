@@ -1,5 +1,6 @@
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.BaseComponents;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace FlowerShop.Tables.Abstract
     [RequireComponent(typeof(UpgradableTableBaseComponent))]
     public abstract class UpgradableTable : Table, IUpgradableTable
     {
+        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private protected readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
 
@@ -37,6 +39,8 @@ namespace FlowerShop.Tables.Abstract
 
         public virtual void UpgradeTable()
         {
+            playerMoney.TakePlayerMoney(upgradableTableBaseComponent.GetUpgradePrice(tableLvl));
+            
             tableLvl++;
             LoadLvlMesh();
             ShowUpgradeIndicator();

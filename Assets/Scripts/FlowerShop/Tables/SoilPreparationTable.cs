@@ -124,13 +124,12 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerStartSoilPreparation()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (!IsTableBroken && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 potToSoilPreparation = currentPot;
 
                 return potToSoilPreparation.GrowingRoom == growingRoom && 
-                       !potToSoilPreparation.IsSoilInsidePot &&
-                       !IsTableBroken;
+                       !potToSoilPreparation.IsSoilInsidePot;
             }
 
             return false;

@@ -1,5 +1,4 @@
-﻿using System;
-using FlowerShop.Fertilizers;
+﻿using FlowerShop.Fertilizers;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;

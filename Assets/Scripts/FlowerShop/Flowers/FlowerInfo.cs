@@ -15,6 +15,7 @@ namespace FlowerShop.Flowers
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
         [field: SerializeField] public int FlowerLvl { get; private set; }
         [field: SerializeField] public int FlowerSellingPrice { get; private set; }
+        [field: SerializeField] public Mesh FlowerSoilMesh { get; private set; }
         [SerializeField] private Mesh[] flowerLvlMeshes = new Mesh[4];
     
         [field: Header("FlowerCrossingRecipe")]

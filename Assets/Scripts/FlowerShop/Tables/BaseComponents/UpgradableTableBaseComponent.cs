@@ -50,5 +50,10 @@ namespace FlowerShop.Tables.BaseComponents
                 tableMeshFilter.mesh = upgradableTableInfo.GetUpgradableTableMesh(nextTableLvl - 1);
             }
         }
+
+        public int GetUpgradePrice(int nextTableLvl)
+        {
+            return upgradableTableInfo.GetUpgradableTablePrice(nextTableLvl);
+        }
     }
 }

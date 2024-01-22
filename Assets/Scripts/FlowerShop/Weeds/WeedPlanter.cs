@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Weeds
 {
-    public class WeedPlanter : MonoBehaviour
+    public class WeedPlanter : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly WeedSettings weedSettings;
 
         [SerializeField] private SoilPreparationTable soilPreparationTable;
@@ -15,14 +18,26 @@ namespace FlowerShop.Weeds
         private readonly List<Pot> potsForPlantingWeed = new();
         private float currentWeedPlantTime;
 
-        private void Start()
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
         {
-            SetCurrentWeedPlantTime();
+            Load();
+        }
+
+        private void OnEnable()
+        {
+            cyclicalSaver.CyclicalSaverEvent += Save;
+        }
+
+        private void OnDisable()
+        {
+            cyclicalSaver.CyclicalSaverEvent -= Save;
         }
 
         private void Update()
         {
-            if (currentWeedPlantTime >= 0)
+            if (currentWeedPlantTime > 0)
             {
                 currentWeedPlantTime -= Time.deltaTime;
             }
@@ -53,6 +68,27 @@ namespace FlowerShop.Weeds
             {
                 potsForPlantingWeed.Remove(potForRemoving);
             }
+        }
+
+        public void Load()
+        {
+            FloatProgressForSaving floatProgressForLoading = SavesHandler.Load<FloatProgressForSaving>(UniqueKey);
+
+            if (floatProgressForLoading.IsValuesSaved)
+            {
+                currentWeedPlantTime = floatProgressForLoading.Progress;
+            }
+            else
+            {
+                SetCurrentWeedPlantTime();
+            }
+        }
+
+        public void Save()
+        {
+            FloatProgressForSaving floatProgressForSaving = new(currentWeedPlantTime);
+            
+            SavesHandler.Save(UniqueKey, floatProgressForSaving);
         }
 
         private void SetCurrentWeedPlantTime()

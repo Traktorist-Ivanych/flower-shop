@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec4624ce68c4040974d467ca51c3d15, type: 3}
   m_Name: CoffeeSettings
   m_EditorClassIdentifier: 
-  <CoffeePrice>k__BackingField: 1250
+  <CoffeePrice>k__BackingField: 1750
   <CoffeeLiquidMovingTime>k__BackingField: 0.5
   <CoffeeGrinderRotationDuration>k__BackingField: 4
   <StartDrinkingCoffeeTimeDelay>k__BackingField: 0.35

@@ -16,10 +16,10 @@ MonoBehaviour:
   <AngelToStopRotation>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 7
   <NavAgentSpeed>k__BackingField: 7
-  <MinSpawnTime>k__BackingField: 20
-  <MinSpawnTimeDelta>k__BackingField: 15
-  <MaxSpawnTime>k__BackingField: 60
-  <MaxSpawnTimeDelta>k__BackingField: 40
+  <MinSpawnTime>k__BackingField: 40
+  <MinSpawnTimeDelta>k__BackingField: 25
+  <MaxSpawnTime>k__BackingField: 90
+  <MaxSpawnTimeDelta>k__BackingField: 50
   buyingFlowerCurve:
     serializedVersion: 2
     m_Curve:

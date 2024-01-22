@@ -35,12 +35,11 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerPlantSeed()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 plantingSeedPot = currentPot;
 
-                return playerBusyness.IsPlayerFree &&
-                       plantingSeedPot.GrowingRoom == growingRoom &&
+                return plantingSeedPot.GrowingRoom == growingRoom &&
                        plantingSeedPot.IsSoilInsidePot &&
                        plantingSeedPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty;
             }

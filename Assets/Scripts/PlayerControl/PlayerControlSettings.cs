@@ -22,7 +22,10 @@ namespace PlayerControl
         [field: SerializeField] public float PlayerNavAgentCoffeeAcceleration { get; private set; }
         [field: SerializeField] public float PlayerMovingCoffeeRotation { get; private set; }
         
-        [field: Header("Coffee effect Setting")]
+        [field: Header("Coffee Effect Setting")]
         [field: SerializeField] public float CoffeeEffectDurationTime { get; private set; }
+        
+        [field: Header("Money")]
+        [field: SerializeField] public int FirstAvailableMoney { get; private set; }
     }
 }

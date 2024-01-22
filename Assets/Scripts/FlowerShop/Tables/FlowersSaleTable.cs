@@ -1,17 +1,21 @@
+using System;
 using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
-    public class FlowersSaleTable : Table
+    public class FlowersSaleTable : Table, ISavableObject
     {
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
@@ -26,14 +30,15 @@ namespace FlowerShop.Tables
         
         private Pot potForSale;
         private bool isFlowerOnSaleTable;
+        private string flowerInfoOnTableUniqueKey;
         
         [field: SerializeField] public Transform TablePotTransform { get; private set; }
         [field: SerializeField] public Transform CustomerDestinationTarget { get; private set; }
         [field: HideInInspector, SerializeField] public MeshFilter SalableSoilMeshFilter { get; private set; }
         [field: HideInInspector, SerializeField] public MeshFilter SalableFlowerMeshFilter { get; private set; }
+        [field: SerializeField] public string UniqueKey { get; private set; }
         
         public FlowerInfo FlowerInfoForSale { get; private set; }
-        
         public Transform TargetToLookAt => targetToLookAt;
         
         private void OnValidate()
@@ -41,6 +46,11 @@ namespace FlowerShop.Tables
             SalableSoilMeshFilter = salableSoilRenderer.GetComponent<MeshFilter>();
             SalableFlowerMeshFilter = salableFlowerRenderer.GetComponent<MeshFilter>();
             salableSoilTransform = salableSoilRenderer.GetComponent<Transform>();
+        }
+
+        private void Awake()
+        {
+            Load();
         }
 
         public override void ExecuteClickableAbility()
@@ -53,22 +63,50 @@ namespace FlowerShop.Tables
 
         public void SaleFlower()
         {
+            isFlowerOnSaleTable = false;
             salableSoilRenderer.enabled = false;
             salableFlowerRenderer.enabled = false;
             flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
-            isFlowerOnSaleTable = false;
             playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
+            
+            ResetFlowerInfoOnTable();
+            
+            SavesHandler.DeletePlayerPrefsKey(UniqueKey);
+        }
+
+        public void Load()
+        {
+            FlowerInfoReferenceForSaving flowerInfoReferenceForLoading =
+                SavesHandler.Load<FlowerInfoReferenceForSaving>(UniqueKey);
+
+            if (flowerInfoReferenceForLoading.IsValuesSaved)
+            {
+                flowerInfoOnTableUniqueKey = flowerInfoReferenceForLoading.FlowerInfoOnTableUniqueKey;
+
+                FlowerInfoForSale = referencesForLoad.GetReference<FlowerInfo>(flowerInfoOnTableUniqueKey);
+
+                if (FlowerInfoForSale != flowersSettings.FlowerInfoEmpty)
+                {
+                    SetFlowerOnSaleTable();
+                }
+            }
+        }
+
+        public void Save()
+        {
+            FlowerInfoReferenceForSaving flowerInfoReferenceForSaving = new(flowerInfoOnTableUniqueKey);
+            
+            SavesHandler.Save(UniqueKey, flowerInfoReferenceForSaving);
         }
 
         private bool CanPlayerPutFlowerOnTable()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (playerBusyness.IsPlayerFree && !isFlowerOnSaleTable && 
+                playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 potForSale = currentPot;
                 
-                return playerBusyness.IsPlayerFree && 
-                       !isFlowerOnSaleTable && 
-                       potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && 
+                return potForSale.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl && 
                        !potForSale.IsWeedInPot;
             }
 
@@ -78,11 +116,12 @@ namespace FlowerShop.Tables
         private void PutFlowerOnTable()
         {
             FlowerInfoForSale = potForSale.PlantedFlowerInfo;
-            salableSoilRenderer.enabled = true;
-            SalableSoilMeshFilter.mesh = potForSale.PotObjects.SoilMeshFilter.mesh;
-            salableFlowerRenderer.enabled = true;
-            SalableFlowerMeshFilter.mesh = potForSale.PotObjects.FlowerMeshFilter.mesh;
             potForSale.CleanPot();
+            flowerInfoOnTableUniqueKey = FlowerInfoForSale.UniqueKey;
+            
+            SetFlowerOnSaleTable();
+
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
             
             salableSoilTransform.SetPositionAndRotation(
                 position: playerComponents.PlayerHandsForBigObjectTransform.position,
@@ -94,13 +133,27 @@ namespace FlowerShop.Tables
                     numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber, 
                     duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(() => playerBusyness.SetPlayerFree());
+            
+            Save();
+        }
 
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
-
+        private void SetFlowerOnSaleTable()
+        {
             isFlowerOnSaleTable = true;
             
+            salableSoilRenderer.enabled = true;
+            SalableSoilMeshFilter.mesh = FlowerInfoForSale.FlowerSoilMesh;
+            salableFlowerRenderer.enabled = true;
+            SalableFlowerMeshFilter.mesh = FlowerInfoForSale.GetFlowerLvlMesh(flowersSettings.MaxFlowerGrowingLvl);
+            
             flowersSaleTablesForCustomers.AddSaleTableWithFlower(this);
-            flowersForSaleCoeffCalculator.AddFlowerSaleTableWithFLowerInList(this);
+            flowersForSaleCoeffCalculator.AddSaleTableWithFLowerInList(this);
+        }
+
+        private void ResetFlowerInfoOnTable()
+        {
+            FlowerInfoForSale = flowersSettings.FlowerInfoEmpty;
+            flowerInfoOnTableUniqueKey = flowersSettings.FlowerInfoEmpty.UniqueKey;
         }
     }
 }

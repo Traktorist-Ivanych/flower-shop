@@ -120,6 +120,15 @@ namespace FlowerShop.Tables
                 secondFlowersCrossingTable.IsPotOnCrossingTable &&
                 secondFlowersCrossingTable.PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
             {
+                isFlowerReadyForCrossing = true;
+            }
+            else
+            {
+                isFlowerReadyForCrossing = false;
+            }
+
+            if (isFlowerReadyForCrossing)
+            {
                 flowerInfoForPlanting = flowersContainer.GetFlowerFromCrossingRecipe(
                     firstFlowersCrossingTable.PotOnTable.PlantedFlowerInfo.FlowerName,
                     secondFlowersCrossingTable.PotOnTable.PlantedFlowerInfo.FlowerName);
@@ -138,7 +147,7 @@ namespace FlowerShop.Tables
                     CheckFlowerInfoForPlantingRoomIndicator();
                 }
             }
-            else if (flowerInfoForPlanting)
+            else if (flowerInfoForPlanting != null && isCrossingSeedReady)
             {
                 CheckFlowerInfoForPlantingRoomIndicator();
             }

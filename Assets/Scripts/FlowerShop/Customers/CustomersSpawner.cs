@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using FlowerShop.FlowersSale;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables;
-using ModestTree;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Customers
 {
-    public class CustomersSpawner : MonoBehaviour
+    public class CustomersSpawner : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
@@ -21,16 +23,38 @@ namespace FlowerShop.Customers
         private float maxSpawnTime;
         private float currentSpawnTime;
 
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
+        {
+            Load();
+        }
+
+        private void OnEnable()
+        {
+            cyclicalSaver.CyclicalSaverEvent += Save;
+        }
+
+        private void Start()
+        {
+            TryToSpawnCustomer();
+        }
+
+        private void OnDisable()
+        {
+            cyclicalSaver.CyclicalSaverEvent -= Save;
+        }
+
         private void Update()
         {
-            if (currentSpawnTime <= 0)
+            if (currentSpawnTime > 0)
             {
-                CalculateCurrentSpawnTime();
-                TryToSpawnCustomer();
+                currentSpawnTime -= Time.deltaTime;
             }
             else
             {
-                currentSpawnTime -= Time.deltaTime;
+                CalculateCurrentSpawnTime();
+                TryToSpawnCustomer();
             }
         }
 
@@ -46,9 +70,27 @@ namespace FlowerShop.Customers
 
         public void RemoveBuyerMoving(CustomerMoving customerMoving)
         {
-            Assert.That(customersMoving.Contains(customerMoving));
+            if (customersMoving.Contains(customerMoving))
+            {
+                customersMoving.Remove(customerMoving);
+            }
+        }
+
+        public void Load()
+        {
+            FloatProgressForSaving floatProgressForLoading = SavesHandler.Load<FloatProgressForSaving>(UniqueKey);
+
+            if (floatProgressForLoading.IsValuesSaved)
+            {
+                currentSpawnTime = floatProgressForLoading.Progress;
+            }
+        }
+
+        public void Save()
+        {
+            FloatProgressForSaving floatProgressForSaving = new(currentSpawnTime);
             
-            customersMoving.Remove(customerMoving);
+            SavesHandler.Save(UniqueKey, floatProgressForSaving);
         }
 
         private void CalculateCurrentSpawnTime()
@@ -68,7 +110,7 @@ namespace FlowerShop.Customers
             {
                 FlowersSaleTable flowersSaleTableForBuyer = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
                     
-                if (flowersSaleTableForBuyer != null)
+                if (flowersSaleTableForBuyer)
                 {
                     CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
 

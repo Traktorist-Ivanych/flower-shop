@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8874dc0f43690c34d936decc3e150c7f, type: 3}
   m_Name: FlowerGrowingTableDecorative
   m_EditorClassIdentifier: 
-  <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0434\u043B\u044F \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u043D\u0438\u044F
-    \u0446\u0432\u0435\u0442\u043E\u0432"
   upgradeMeshes:
   - {fileID: 6502527040791135267, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   - {fileID: 8854542067135941588, guid: 703790e61f24a3240890f0a292b64061, type: 3}
@@ -23,4 +21,6 @@ MonoBehaviour:
   upgradeDescriptions:
   - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0440\u043E\u0441\u0442 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439"
   - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0440\u043E\u0441\u0442 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439"
-  upgradePrices: 7c010000ac030000
+  upgradePrices: 8403000008070000
+  <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0434\u043B\u044F \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u043D\u0438\u044F
+    \u0446\u0432\u0435\u0442\u043E\u0432"

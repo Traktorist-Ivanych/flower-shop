@@ -79,7 +79,7 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerPutPotOnTable()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (!IsPotOnCrossingTable && playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 PotOnTable = currentPot;
 
@@ -114,6 +114,7 @@ namespace FlowerShop.Tables
             IsPotOnCrossingTable = false;
             flowersCrossingTableProcess.CheckCrossingAbility();
             PotOnTable.TakeInPlayerHandsAndSetPlayerFree();
+            PotOnTable = null;
             
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }

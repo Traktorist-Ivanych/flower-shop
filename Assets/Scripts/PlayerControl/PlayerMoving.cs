@@ -26,11 +26,6 @@ namespace PlayerControl
             playerAnimator = GetComponent<Animator>();
         }
 
-        private void Start()
-        {
-            SetOrdinaryNavAgentSetting();
-        }
-
         private void Update()
         {
             if (playerAgent.velocity == Vector3.zero)

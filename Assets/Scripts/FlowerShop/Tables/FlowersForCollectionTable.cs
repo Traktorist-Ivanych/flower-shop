@@ -1,20 +1,24 @@
+using System;
 using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
 using FlowerShop.PickableObjects;
+using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
 {
     /// <summary>
-    /// Table, on which player can put flower for his own flower collection
+    /// Table, on which player can put flower for his own flowers collection
     /// </summary>
-    public class FlowersForCollectionTable : Table
+    public class FlowersForCollectionTable : Table, ISavableObject
     {
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -30,6 +34,13 @@ namespace FlowerShop.Tables
         private Pot playerPot;
         private FlowerInfo flowerInfoForCollection;
 
+        [field: SerializeField] public string UniqueKey { get; private set; }
+
+        private void Awake()
+        {
+            Load();
+        }
+
         private void OnValidate()
         {
             soilTransform = soilMeshRenderer.GetComponent<Transform>();
@@ -44,18 +55,41 @@ namespace FlowerShop.Tables
             }
         }
 
+        public void Load()
+        {
+            FlowerInfoReferenceForSaving flowerInfoReferenceForLoading =
+                SavesHandler.Load<FlowerInfoReferenceForSaving>(UniqueKey);
+
+            if (flowerInfoReferenceForLoading.IsValuesSaved)
+            {
+                flowerInfoForCollection = referencesForLoad.GetReference<FlowerInfo>(
+                        flowerInfoReferenceForLoading.FlowerInfoOnTableUniqueKey);
+
+                if (flowerInfoForCollection != flowersSettings.FlowerInfoEmpty)
+                {
+                    SetFlowerOnTable();
+                }
+            }
+        }
+
+        public void Save()
+        {
+            FlowerInfoReferenceForSaving flowerInfoReferenceForSaving = new(flowerInfoForCollection.UniqueKey);
+            
+            SavesHandler.Save(UniqueKey, flowerInfoReferenceForSaving);
+        }
+
         private bool CanPlayerPutFlowerOnTable()
         {
-            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            if (playerBusyness.IsPlayerFree && flowerInfoForCollection == null && 
+                playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
                 playerPot = currentPot;
 
-                return playerBusyness.IsPlayerFree &&
-                       playerPot.GrowingRoom == growingRoom &&
+                return playerPot.GrowingRoom == growingRoom &&
                        playerPot.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
                        !playerPot.IsWeedInPot &&
-                       flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo) &&
-                       flowerInfoForCollection == null;
+                       flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo);
             }
 
             return false;
@@ -63,11 +97,12 @@ namespace FlowerShop.Tables
 
         private void PutFlowerOnTable()
         {
-            soilMeshRenderer.enabled = true;
-            flowerMeshRenderer.enabled = true;
             flowerInfoForCollection = playerPot.PlantedFlowerInfo;
             playerPot.CleanPot();
-            flowerMeshFilter.mesh = flowerInfoForCollection.GetFlowerLvlMesh(flowersSettings.MaxFlowerGrowingLvl);
+
+            SetFlowerOnTable();
+            
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
             
             soilTransform.SetPositionAndRotation(
                 position: playerPot.transform.position, 
@@ -80,7 +115,14 @@ namespace FlowerShop.Tables
                     duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(() => playerBusyness.SetPlayerFree());
             
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.ThrowTrigger);
+            Save();
+        }
+
+        private void SetFlowerOnTable()
+        {
+            soilMeshRenderer.enabled = true;
+            flowerMeshRenderer.enabled = true;
+            flowerMeshFilter.mesh = flowerInfoForCollection.GetFlowerLvlMesh(flowersSettings.MaxFlowerGrowingLvl);
             
             flowersForCollection.AddFlowerToCollectionList(flowerInfoForCollection);
         }
