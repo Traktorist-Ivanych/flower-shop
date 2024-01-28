@@ -11,20 +11,16 @@ using Zenject;
 
 namespace FlowerShop.Tables
 {
-    [RequireComponent(typeof(TableObjectsRotation))]
+    [RequireComponent(typeof(FlowersGrowingTableEffects))]
     public class FlowersGrowingTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
     
         [SerializeField] private Transform tablePotTransform;
-        [SerializeField] private MeshRenderer growingLightMeshRenderer;
-        [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
-        [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
         [SerializeField] private WeedPlanter weedPlanter;
 
-        [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
-        [HideInInspector, SerializeField] private MeshFilter growingLightMeshFilter;
+        [HideInInspector, SerializeField] private FlowersGrowingTableEffects flowersGrowingTableEffects;
 
         private Fertilizer fertilizer;
         private WateringCan wateringCan;
@@ -38,8 +34,7 @@ namespace FlowerShop.Tables
         {
             base.OnValidate();
             
-            tableObjectsRotation = GetComponent<TableObjectsRotation>();
-            growingLightMeshFilter = growingLightMeshRenderer.GetComponent<MeshFilter>();
+            flowersGrowingTableEffects = GetComponent<FlowersGrowingTableEffects>();
         }
 
         private protected override void Awake()
@@ -51,9 +46,9 @@ namespace FlowerShop.Tables
 
         private void Start()
         {
-            if (potOnTable)
+            if (potOnTable && tableLvl > 0)
             {
-                tableObjectsRotation.StartObjectsRotation();
+                flowersGrowingTableEffects.StartFansRotation();
             }
             
             breakableTableBaseComponent.CheckIfTableBroken();
@@ -94,11 +89,16 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
-            growingLightMeshFilter.mesh = growingLightLvlMeshes[tableLvl - 1];
-            growingTableFanMeshRenderer.enabled = true;
+            base.UpgradeTableFinish();
+            flowersGrowingTableEffects.SetFlowersGrowingTableLvlForEffects(tableLvl);
+
+            if (isPotOnTable)
+            {
+                flowersGrowingTableEffects.EnableEffects();
+                potOnTable.CalculateUpGrowingLvlTimeOnTableUpgrade(tableLvl);
+            }
             
             SetActionsBeforeBrokenQuantity(
                 repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
@@ -117,8 +117,8 @@ namespace FlowerShop.Tables
                 tableLvl = flowersGrowingTableForLoading.TableLvl;
                 if (tableLvl > 0)
                 {
-                    growingTableFanMeshRenderer.enabled = true;
                     LoadLvlMesh();
+                    flowersGrowingTableEffects.SetFlowersGrowingTableLvlForEffects(tableLvl);
                 }
                 
                 potOnTable = referencesForLoad.GetReference<Pot>(flowersGrowingTableForLoading.PotUniqueKey);
@@ -174,7 +174,7 @@ namespace FlowerShop.Tables
         {
             potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
             playerPickableObjectHandler.ResetPickableObject();
-            tableObjectsRotation.StartObjectsRotation();
+            flowersGrowingTableEffects.StartFansRotation();
             PutPotOnTableBase();
             
             Save();
@@ -183,7 +183,7 @@ namespace FlowerShop.Tables
         private void PutPotOnTableBase()
         {
             isPotOnTable = true;
-            growingLightMeshRenderer.enabled = true;
+            flowersGrowingTableEffects.EnableEffects();
 
             if (!potOnTable.IsWeedInPot)
             {
@@ -257,9 +257,9 @@ namespace FlowerShop.Tables
             potOnTable.TakeInPlayerHandsFromGrowingTableAndSetPlayerFree();
             potOnTable = null;
             isPotOnTable = false;
-            growingLightMeshRenderer.enabled = false;
             UseBreakableTable();
-            tableObjectsRotation.PauseObjectsRotation();
+            flowersGrowingTableEffects.StopFansRotation();
+            flowersGrowingTableEffects.DisableEffects();
             
             Save();
         }

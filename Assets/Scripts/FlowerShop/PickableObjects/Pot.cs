@@ -176,8 +176,7 @@ namespace FlowerShop.PickableObjects
         public void PutOnGrowingTableAndSetPlayerFree(Transform targetTransform, int growingTableLvl)
         {
             PutOnGrowingTableBaseActions(growingTableLvl);
-            
-            currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
+            CalculateCurrentUpGrowingLvlTimeWithGrowingLvlTimeProgress();
             PutOnTableAndSetPlayerFree(targetTransform);
             
             Save();
@@ -304,16 +303,33 @@ namespace FlowerShop.PickableObjects
             potsRack.RemovePotFromListOnLoad(this);
         }
 
+        public void CalculateUpGrowingLvlTimeOnTableUpgrade(int growingTableLvl)
+        {
+            CalculateGrowingLvlTimeProgress();
+            CalculateUpGrowingLvlTime(growingTableLvl);
+            CalculateCurrentUpGrowingLvlTimeWithGrowingLvlTimeProgress();
+        }
+
         private void PutOnGrowingTableBaseActions(int growingTableLvl)
         {
             cyclicalSaver.CyclicalSaverEvent += Save;
             isPotOnGrowingTable = true;
+            CalculateUpGrowingLvlTime(growingTableLvl);
+        }
+
+        private void CalculateUpGrowingLvlTime(int growingTableLvl)
+        {
             upGrowingLvlTime = tablesSettings.UpGrowingLvlTime - tablesSettings.UpGrowingLvlTableLvlTimeDelta * growingTableLvl;
         }
 
         private void CalculateGrowingLvlTimeProgress()
         {
             growingLvlTimeProgress = currentUpGrowingLvlTime / upGrowingLvlTime;
+        }
+
+        private void CalculateCurrentUpGrowingLvlTimeWithGrowingLvlTimeProgress()
+        {
+            currentUpGrowingLvlTime = upGrowingLvlTime * growingLvlTimeProgress;
         }
 
         private bool ShouldWeedGrowingLvlIncrease()

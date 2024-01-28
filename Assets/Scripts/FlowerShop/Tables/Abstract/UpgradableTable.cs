@@ -37,13 +37,19 @@ namespace FlowerShop.Tables.Abstract
             upgradableTableBaseComponent.HideUpgradeIndicator();
         }
 
-        public virtual void UpgradeTable()
+        public void UpgradeTableStart()
+        {
+            upgradableTableBaseComponent.StartUpgradeTableProcessEffects();
+        }
+
+        public virtual void UpgradeTableFinish()
         {
             playerMoney.TakePlayerMoney(upgradableTableBaseComponent.GetUpgradePrice(tableLvl));
             
             tableLvl++;
             LoadLvlMesh();
             ShowUpgradeIndicator();
+            upgradableTableBaseComponent.FinishUpgradeTableProcessEffects();
         }
 
         private protected void LoadLvlMesh()

@@ -68,15 +68,15 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
+            base.UpgradeTableFinish();
             SetSoilPreparationTime();
             gearsMeshRenderers[tableLvl].enabled = true;
             
             SetActionsBeforeBrokenQuantity(
-                repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-                repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+                repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1),
+                repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
             
             Save();
         }
@@ -112,8 +112,8 @@ namespace FlowerShop.Tables
             else
             {
                 SetActionsBeforeBrokenQuantity(
-                    repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
-                    repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+                    repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
             }
         }
 

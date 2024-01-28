@@ -10,6 +10,8 @@ namespace FlowerShop.RepairsAndUpgrades
 
         public void ShowUpgradeCanvas();
 
-        public void UpgradeTable();
+        public void UpgradeTableStart();
+        
+        public void UpgradeTableFinish();
     }
 }

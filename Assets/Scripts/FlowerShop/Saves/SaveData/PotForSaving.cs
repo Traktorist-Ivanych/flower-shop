@@ -3,7 +3,7 @@
 namespace FlowerShop.Saves.SaveData
 {
     [System.Serializable]
-    public class PotForSaving
+    public struct PotForSaving
     {
         [field: SerializeField] public bool IsValuesSaved { get; private set; }
         [field: SerializeField] public bool IsSoilInsidePot { get; private set; }
@@ -15,8 +15,6 @@ namespace FlowerShop.Saves.SaveData
         [field: SerializeField] public bool IsWeedInPot { get; private set; }
         [field: SerializeField] public int WeedGrowingLvl { get; private set; }
         
-        public PotForSaving() {}
-
         public PotForSaving(bool isSoilInsidePot, string plantedFlowerInfoUniqueKey, int flowerGrowingLvl, float currentUpGrowingLvlTime,
             bool isFlowerNeedWater, bool isPotTreatedByGrothAccelerator, bool isWeedInPot, int weedGrowingLvl)
         {

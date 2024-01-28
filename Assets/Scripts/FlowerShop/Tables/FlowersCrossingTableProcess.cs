@@ -81,6 +81,11 @@ namespace FlowerShop.Tables
             SetCrossingFlowerTime();
             
             breakableTableBaseComponent.CheckIfTableBroken();
+
+            if (IsSeedCrossing)
+            {
+                tableObjectsRotation.StartObjectsRotation();
+            }
         }
 
         public override void ExecuteClickableAbility()
@@ -153,9 +158,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
+            base.UpgradeTableFinish();
             SetCrossingFlowerTime();
             UpgradeCrossingTableBlender();
             SetActionsBeforeBrokenQuantity(
@@ -232,6 +237,7 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
             isFlowerReadyForCrossing = false;
+            tableObjectsRotation.StartObjectsRotation();
             StartFlowersCrossingProcess();
         }
 
@@ -240,10 +246,10 @@ namespace FlowerShop.Tables
             cyclicalSaver.CyclicalSaverEvent += Save;
             
             IsSeedCrossing = true;
-            tableObjectsRotation.StartObjectsRotation();
             
             Observable.EveryUpdate().Subscribe( updateCrossingFlowersTimer =>
             {
+                
                 currentCrossingFlowerTime += Time.deltaTime;
 
                 if (currentCrossingFlowerTime >= crossingFlowerTime)

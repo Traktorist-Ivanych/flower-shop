@@ -41,9 +41,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
+            base.UpgradeTableFinish();
             
             weedingHoe.Upgrade(tableLvl);
             

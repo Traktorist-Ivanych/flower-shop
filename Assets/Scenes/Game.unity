@@ -1822,6 +1822,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (2)
@@ -3043,6 +3063,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (5)
@@ -3108,6 +3148,10 @@ PrefabInstance:
     - target: {fileID: 2091896567455850741, guid: 2a132c652322e7d4480f2458e9db6631, type: 3}
       propertyPath: m_Name
       value: TrashCanVariantExotic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300635341022904166, guid: 2a132c652322e7d4480f2458e9db6631, type: 3}
+      propertyPath: m_Name
+      value: SoilPot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3320,6 +3364,22 @@ PrefabInstance:
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
       objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
@@ -3759,6 +3819,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (10)
@@ -3770,6 +3850,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416452
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3860,6 +3944,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (2)
@@ -3871,6 +3979,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416455
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9346,6 +9458,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416242
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -9390,9 +9506,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14716,6 +14856,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416247
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -14760,9 +14904,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -240
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15586,6 +15754,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (12)
@@ -15597,6 +15785,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 13012024164510
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16780,6 +16972,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (4)
@@ -17281,6 +17489,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416473
       objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -17321,9 +17533,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -105
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17487,6 +17723,22 @@ PrefabInstance:
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
       objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
@@ -23400,6 +23652,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -165
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (11)
@@ -23695,6 +23967,22 @@ PrefabInstance:
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
       objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
@@ -29682,6 +29970,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416472
       objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.000002
@@ -29722,9 +30014,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29784,6 +30096,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (1)
@@ -29795,6 +30127,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31183,6 +31519,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416243
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -31227,9 +31567,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31340,6 +31700,26 @@ PrefabInstance:
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
@@ -32514,6 +32894,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416241
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -32558,9 +32942,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6556474612655469200, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
@@ -35830,6 +36234,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416474
       objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.000002
@@ -35870,9 +36278,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36834,6 +37266,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (3)
@@ -36845,6 +37297,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416459
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37907,6 +38363,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416471
       objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -37947,9 +38407,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38323,6 +38803,22 @@ PrefabInstance:
     - target: {fileID: 176123498092214060, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
       objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
@@ -39344,6 +39840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCanVariantDecorative
       objectReference: {fileID: 0}
+    - target: {fileID: 5740422385117087508, guid: 1a945ebc852614d48b41f2764c5621d7, type: 3}
+      propertyPath: m_Name
+      value: SoilPot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39869,6 +40369,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (11)
@@ -40383,6 +40903,10 @@ PrefabInstance:
       propertyPath: <PlayerPrefsKey>k__BackingField
       value: 123456
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -40427,9 +40951,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43727,6 +44271,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (7)
@@ -43844,6 +44404,26 @@ PrefabInstance:
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
@@ -43980,6 +44560,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416476
       objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.000002
@@ -44020,9 +44604,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44984,6 +45588,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (5)
@@ -45422,6 +46042,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (7)
@@ -45839,6 +46475,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (5)
@@ -46069,6 +46721,26 @@ PrefabInstance:
     - target: {fileID: 176123498092214060, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -210
       objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
@@ -47422,6 +48094,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (12)
@@ -47870,6 +48558,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2574496793654251882, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantExotic (8)
@@ -47881,6 +48593,10 @@ PrefabInstance:
     - target: {fileID: 6370856573855148804, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416456
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482047456816109204, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47907,6 +48623,10 @@ PrefabInstance:
     - target: {fileID: 172113116922077107, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: <UniqueKey>k__BackingField
       value: 1301202416475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458336299633992227, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6375712615698056091, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47948,9 +48668,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157481127378013308, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7179118287247133515, guid: b4176026bb32c424b9798408319d924c, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableVariantDecorative (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768737769673369053, guid: b4176026bb32c424b9798408319d924c, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48138,6 +48878,10 @@ PrefabInstance:
       propertyPath: <UniqueKey>k__BackingField
       value: 13012024162410
       objectReference: {fileID: 0}
+    - target: {fileID: 4592623552184584711, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6492047920182799295, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -48178,9 +48922,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005081893557904472, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
+      objectReference: {fileID: 0}
     - target: {fileID: 7044243329059890031, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
       propertyPath: m_Name
       value: FlowerGrowingTableWild (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922659442097999353, guid: 1f9974a3bd801744692ee04aea0416a1, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49008,6 +49772,22 @@ PrefabInstance:
     - target: {fileID: 176123498092214060, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8660255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133979632488134859, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999982
       objectReference: {fileID: 0}
     - target: {fileID: 4155689619031736316, guid: ef5779420fbbebb41b49698a7cc598c4, type: 3}
       propertyPath: m_Name
@@ -59004,6 +59784,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1998136429}
     m_Modifications:
+    - target: {fileID: 4099719665760389682, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Name
+      value: SoilPot
+      objectReference: {fileID: 0}
     - target: {fileID: 4662308226838123937, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
       propertyPath: m_Name
       value: TrashCanWild
@@ -60038,6 +60822,10 @@ PrefabInstance:
     - target: {fileID: 575502552802528526, guid: 2ec204ed3312e124d887790e4d237b87, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464487025661269512, guid: 2ec204ed3312e124d887790e4d237b87, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2868614973335969324, guid: 2ec204ed3312e124d887790e4d237b87, type: 3}
       propertyPath: <UniqueKey>k__BackingField

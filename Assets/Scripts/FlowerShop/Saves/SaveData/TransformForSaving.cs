@@ -3,13 +3,11 @@
 namespace FlowerShop.Saves.SaveData
 {
     [System.Serializable]
-    public class TransformForSaving
+    public struct TransformForSaving
     {
         [field: SerializeField] public bool IsValuesSaved { get; private set; }
         [field: SerializeField] public Vector3 Position { get; private set; }
         [field: SerializeField] public Quaternion Rotation { get; private set; }
-            
-        public TransformForSaving() {}
             
         public TransformForSaving(Transform transmittedTransform)
         {

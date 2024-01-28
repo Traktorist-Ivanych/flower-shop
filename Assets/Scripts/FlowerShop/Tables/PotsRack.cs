@@ -56,9 +56,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
+            base.UpgradeTableFinish();
 
             currentFreePots += tablesSettings.PotsCountAvailableOnUpgradeDelta;
             for (int i = 0; i < currentFreePots; i++)

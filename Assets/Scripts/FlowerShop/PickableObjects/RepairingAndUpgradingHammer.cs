@@ -45,9 +45,10 @@ namespace FlowerShop.PickableObjects
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
             UpgradableTable.HideUpgradeIndicator();
+            UpgradableTable.UpgradeTableStart();
             yield return new WaitForSeconds(repairsAndUpgradesSettings.TableUpgradeTime);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
-            UpgradableTable.UpgradeTable();
+            UpgradableTable.UpgradeTableFinish();
             playerBusyness.SetPlayerFree();
         }
 

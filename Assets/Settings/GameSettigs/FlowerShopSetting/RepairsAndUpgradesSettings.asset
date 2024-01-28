@@ -15,11 +15,11 @@ MonoBehaviour:
   <TableUpgradeTime>k__BackingField: 8
   <MaxUpgradableTableLvl>k__BackingField: 2
   <TableRepairTime>k__BackingField: 6
-  <SoilPreparationMinQuantity>k__BackingField: 10
-  <SoilPreparationMaxQuantity>k__BackingField: 15
-  <WateringTableMinQuantity>k__BackingField: 9
-  <WateringTableMaxQuantity>k__BackingField: 14
-  <FlowerGrowingTableMinQuantity>k__BackingField: 9
-  <FlowerGrowingTableMaxQuantity>k__BackingField: 14
-  <CrossingTableMinQuantity>k__BackingField: 8
-  <CrossingTableMaxQuantity>k__BackingField: 13
+  <SoilPreparationMinQuantity>k__BackingField: 8
+  <SoilPreparationMaxQuantity>k__BackingField: 16
+  <WateringTableMinQuantity>k__BackingField: 10
+  <WateringTableMaxQuantity>k__BackingField: 20
+  <FlowerGrowingTableMinQuantity>k__BackingField: 8
+  <FlowerGrowingTableMaxQuantity>k__BackingField: 16
+  <CrossingTableMinQuantity>k__BackingField: 10
+  <CrossingTableMaxQuantity>k__BackingField: 20

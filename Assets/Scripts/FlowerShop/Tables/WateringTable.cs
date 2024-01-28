@@ -38,6 +38,8 @@ namespace FlowerShop.Tables
             {
                 StartCoroutine(ReplenishWateringCan());
             }
+            
+            breakableTableBaseComponent.CheckIfTableBroken();
         }
 
         public override void ExecuteClickableAbility()
@@ -63,9 +65,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void UpgradeTable()
+        public override void UpgradeTableFinish()
         {
-            base.UpgradeTable();
+            base.UpgradeTableFinish();
             
             wateringCan.UpgradeWateringCan(tableLvl);
             
