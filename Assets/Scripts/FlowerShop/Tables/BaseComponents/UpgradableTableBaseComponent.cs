@@ -14,7 +14,7 @@ namespace FlowerShop.Tables.BaseComponents
         [SerializeField] private MeshRenderer upgradeIndicatorRenderer;
         [SerializeField] private MeshFilter tableMeshFilter; 
         [SerializeField] private UpgradableTableInfo upgradableTableInfo;
-        [SerializeField] private ParticleSystem UpgradeTableProcessPS;
+        [SerializeField] private ParticleSystem[] UpgradeTableProcessPS;
         [SerializeField] private ParticleSystem UpgradeTableSuccessPS;
 
         private IUpgradableTable upgradableTable;
@@ -47,12 +47,18 @@ namespace FlowerShop.Tables.BaseComponents
 
         public void StartUpgradeTableProcessEffects()
         {
-            UpgradeTableProcessPS.Play();
+            foreach (ParticleSystem upgradeTableProcessPS in UpgradeTableProcessPS)
+            {
+                upgradeTableProcessPS.Play();
+            }
         }
 
         public void FinishUpgradeTableProcessEffects()
         {
-            UpgradeTableProcessPS.Stop();
+            foreach (ParticleSystem upgradeTableProcessPS in UpgradeTableProcessPS)
+            {
+                upgradeTableProcessPS.Stop();
+            }
             UpgradeTableSuccessPS.Play();
         }
 

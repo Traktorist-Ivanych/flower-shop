@@ -20,12 +20,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SparkTrail
+  m_Name: ScrewTrail
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _COLORADDSUBDIFF_ON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _FLIPBOOKBLENDING_OFF
@@ -43,7 +42,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 0be04ea8700ede84c95ef61c7988b8f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 39456d39ba31d2e4dbc3db1ca16f3d7f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -111,7 +110,7 @@ Material:
     - _CameraNearFadeDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorMode: 1
+    - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
