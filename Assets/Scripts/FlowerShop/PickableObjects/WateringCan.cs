@@ -65,7 +65,6 @@ namespace FlowerShop.PickableObjects
 
         public void PourPotWithWateringCan()
         {
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
             CurrentWateringsNumber--;
             UpdateWateringCanIndicator();
             
@@ -150,10 +149,15 @@ namespace FlowerShop.PickableObjects
 
         private void UpdateWateringCanIndicator()
         {
-            float indicatorScaleZ = tablesSettings.WateringIndicatorChangeablePart *
-                CurrentWateringsNumber / maxWateringsNumber +
-                tablesSettings.WateringIndicatorUnchangeablePart;
-            wateringCanIndicatorTransform.localScale = new Vector3(1, 1, indicatorScaleZ);
+            float indicatorScaleZ = (float)CurrentWateringsNumber / maxWateringsNumber;
+            if (indicatorScaleZ <= 0.025f)
+            {
+                wateringCanIndicatorMeshRenderer.enabled = false;
+            }
+            else
+            {
+                wateringCanIndicatorTransform.localScale = new Vector3(1, 1, indicatorScaleZ);
+            }
         }
     }
 }

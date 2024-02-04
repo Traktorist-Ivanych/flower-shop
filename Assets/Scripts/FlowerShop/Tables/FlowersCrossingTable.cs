@@ -15,6 +15,7 @@ namespace FlowerShop.Tables
         
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private FlowersCrossingTableProcess flowersCrossingTableProcess;
+        [SerializeField] private ParticleSystem crossingFlowerPS;
         
         [field: SerializeField] public string UniqueKey { get; private set; }
         
@@ -44,6 +45,16 @@ namespace FlowerShop.Tables
                     SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
             }
+        }
+
+        public void PlayCrossingFlowerEffects()
+        {
+            crossingFlowerPS.Play();
+        }
+        
+        public void StopCrossingFlowerEffects()
+        {
+            crossingFlowerPS.Stop();
         }
 
         public void Load()

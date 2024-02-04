@@ -6,6 +6,7 @@ namespace PlayerControl
     public class PlayerControlInstaller : MonoInstaller
     {
         [SerializeField] private PlayerAbilityExecutor playerAbilityExecutor;
+        [SerializeField] private PlayerAnimationEvents playerAnimationEvents;
         [SerializeField] private PlayerBusyness playerBusyness;
         [SerializeField] private PlayerCoffeeEffect playerCoffeeEffect;
         [SerializeField] private PlayerComponents playerComponents;
@@ -19,6 +20,7 @@ namespace PlayerControl
         public override void InstallBindings()
         {
             Container.Bind<PlayerAbilityExecutor>().FromInstance(playerAbilityExecutor).AsSingle().NonLazy();
+            Container.Bind<PlayerAnimationEvents>().FromInstance(playerAnimationEvents).AsSingle().NonLazy();
             Container.Bind<PlayerBusyness>().FromInstance(playerBusyness).AsSingle().NonLazy();
             Container.Bind<PlayerCoffeeEffect>().FromInstance(playerCoffeeEffect).AsSingle().NonLazy();
             Container.Bind<PlayerComponents>().FromInstance(playerComponents).AsSingle().NonLazy();

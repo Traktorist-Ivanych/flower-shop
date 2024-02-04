@@ -20,8 +20,6 @@ namespace FlowerShop.Tables
         [field: SerializeField] public int WateringsNumber { get; private set; }
         [field: SerializeField] public int WateringsNumberLvlDelta { get; private set; }
         [field: SerializeField] public float ReplenishWateringCanTime { get; private set; }
-        [field: SerializeField] public float WateringIndicatorChangeablePart { get; private set; }
-        [field: SerializeField] public float WateringIndicatorUnchangeablePart { get; private set; }
         
         [field: Header("Soil Preparation Table")]
         [field: SerializeField] public float SoilPreparationTime { get; private set; }

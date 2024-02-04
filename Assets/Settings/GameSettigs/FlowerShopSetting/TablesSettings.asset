@@ -13,15 +13,13 @@ MonoBehaviour:
   m_Name: TablesSettings
   m_EditorClassIdentifier: 
   <PrimaryGrowingLvlTime>k__BackingField: 0
-  <UpGrowingLvlTime>k__BackingField: 60
-  <UpGrowingLvlTableLvlTimeDelta>k__BackingField: 20
+  <UpGrowingLvlTime>k__BackingField: 45
+  <UpGrowingLvlTableLvlTimeDelta>k__BackingField: 15
   <WateringsNumber>k__BackingField: 3
   <WateringsNumberLvlDelta>k__BackingField: 3
   <ReplenishWateringCanTime>k__BackingField: 3
-  <WateringIndicatorChangeablePart>k__BackingField: 0.95
-  <WateringIndicatorUnchangeablePart>k__BackingField: 0.05
-  <SoilPreparationTime>k__BackingField: 2.5
-  <SoilPreparationLvlTimeDelta>k__BackingField: 0.75
+  <SoilPreparationTime>k__BackingField: 3
+  <SoilPreparationLvlTimeDelta>k__BackingField: 1
   <CrossingFlowerTime>k__BackingField: 45
   <CrossingFlowerLvlTimeDelta>k__BackingField: 15
   <PotsCountAvailableOnStart>k__BackingField: 8

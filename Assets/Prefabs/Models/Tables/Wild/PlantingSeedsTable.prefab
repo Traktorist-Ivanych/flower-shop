@@ -167,4 +167,3 @@ MonoBehaviour:
   targetToLookAt: {fileID: 2568073560212117578}
   potOnTableTransform: {fileID: 2568073559245165302}
   seedsCanvas: {fileID: 0}
-  flowerNameEmpty: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}

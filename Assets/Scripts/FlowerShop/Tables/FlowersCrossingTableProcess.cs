@@ -246,6 +246,8 @@ namespace FlowerShop.Tables
             cyclicalSaver.CyclicalSaverEvent += Save;
             
             IsSeedCrossing = true;
+            firstFlowersCrossingTable.PlayCrossingFlowerEffects();
+            secondFlowersCrossingTable.PlayCrossingFlowerEffects();
             
             Observable.EveryUpdate().Subscribe( updateCrossingFlowersTimer =>
             {
@@ -263,6 +265,9 @@ namespace FlowerShop.Tables
                     firstFlowersCrossingTable.PotOnTable.CrossFlower();
                     secondFlowersCrossingTable.PotOnTable.CrossFlower();
                     UseBreakableTable();
+                    
+                    firstFlowersCrossingTable.StopCrossingFlowerEffects();
+                    secondFlowersCrossingTable.StopCrossingFlowerEffects();
                     
                     cyclicalSaver.CyclicalSaverEvent -= Save;
                     

@@ -71,9 +71,13 @@ namespace FlowerShop.PickableObjects
         {
             if (ShouldWeedGrowingLvlIncrease())
             {
+                if (weedGrowingLvl < weedSettings.MaxWeedGrowingLvl)
+                {
+                    weedGrowingLvl++;
+                    PotObjects.SetWeedLvlMesh(weedGrowingLvl);
+                }
                 ResetGrowingLvlTime();
-                weedGrowingLvl++;
-                PotObjects.SetWeedLvlMesh(weedGrowingLvl);
+                PotObjects.PlayWeedEffects();
             }
             else if (ShouldWaterIndicatorBeDisplayed())
             {
@@ -96,14 +100,16 @@ namespace FlowerShop.PickableObjects
             ResetGrowingLvlTime();
             
             ShowSeed(flowerInfoForPlanting);
+            PotObjects.PlaySeedPlantedEffects();
             
             Save();
         }
 
         public void PourFlower()
         {
-            HideWaterIndicator();
+            PourFlowerBase();
             UpFlowerGrowingLvl();
+            PotObjects.PlaySeedGrowingEffects();
 
             ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
             
@@ -116,6 +122,7 @@ namespace FlowerShop.PickableObjects
             ResetGrowingLvlTime();
             
             ShowWeed();
+            PotObjects.PlayWeedEffects();
             
             Save();
         }
@@ -133,6 +140,7 @@ namespace FlowerShop.PickableObjects
         public void TreatPotByGrothAccelerator()
         {
             SetTreatedGrothAcceleratorCoeff();
+            PotObjects.PlaySeedGrowingEffects();
             
             Save();
         }
@@ -142,15 +150,17 @@ namespace FlowerShop.PickableObjects
             UpFlowerGrowingLvl();
             if (FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
             {
-                HideWaterIndicator();
+                PourFlowerBase();
             }
+            PotObjects.PlaySeedGrowingEffects();
             
             Save();
         }
 
         public void TreatPotByGrowerToMaxLvl()
         {
-            HideWaterIndicator();
+            PourFlowerBase();
+            PotObjects.PlaySeedGrowingEffects();
             
             FlowerGrowingLvl = flowersSettings.MaxFlowerGrowingLvl;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
@@ -303,6 +313,11 @@ namespace FlowerShop.PickableObjects
             potsRack.RemovePotFromListOnLoad(this);
         }
 
+        public void HideWaterIndicator()
+        {
+            PotObjects.HideWaterIndicator();
+        }
+
         public void CalculateUpGrowingLvlTimeOnTableUpgrade(int growingTableLvl)
         {
             CalculateGrowingLvlTimeProgress();
@@ -334,13 +349,13 @@ namespace FlowerShop.PickableObjects
 
         private bool ShouldWeedGrowingLvlIncrease()
         {
-            return IsWeedInPot && weedGrowingLvl < weedSettings.MaxWeedGrowingLvl && 
-                   ShouldGrowingLvlIncrease();
+            return IsWeedInPot && ShouldGrowingLvlIncrease();
         }
 
         private bool ShouldWaterIndicatorBeDisplayed()
         {
-            return isPotOnGrowingTable && 
+            return !IsWeedInPot &&
+                   isPotOnGrowingTable && 
                    !IsFlowerNeedWater && 
                    FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl && 
                    ShouldGrowingLvlIncrease();
@@ -352,10 +367,10 @@ namespace FlowerShop.PickableObjects
             return currentUpGrowingLvlTime >= upGrowingLvlTime;
         }
 
-        private void HideWaterIndicator()
+        private void PourFlowerBase()
         {
             IsFlowerNeedWater = false;
-            PotObjects.HideWaterIndicator();
+            HideWaterIndicator();
         }
 
         private void UpFlowerGrowingLvl()

@@ -5,6 +5,7 @@ using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using FlowerShop.Weeds;
+using PlayerControl;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -14,6 +15,8 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(FlowersGrowingTableEffects))]
     public class FlowersGrowingTable : UpgradableBreakableTable, ISavableObject
     {
+        [Inject] private readonly PlayerAnimationEvents playerAnimationEvents;
+        [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
     
@@ -206,7 +209,9 @@ namespace FlowerShop.Tables
 
         private void PourPotOnTable()
         {
-            potOnTable.PourFlower();
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
+            potOnTable.HideWaterIndicator();
+            playerAnimationEvents.SetCurrentAnimationEvent(potOnTable.PourFlower);
         }
 
         private bool CanPlayerDeleteWeedInPot()

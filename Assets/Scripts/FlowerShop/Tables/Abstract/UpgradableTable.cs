@@ -37,11 +37,6 @@ namespace FlowerShop.Tables.Abstract
             upgradableTableBaseComponent.HideUpgradeIndicator();
         }
 
-        public void UpgradeTableStart()
-        {
-            upgradableTableBaseComponent.StartUpgradeTableProcessEffects();
-        }
-
         public virtual void UpgradeTableFinish()
         {
             playerMoney.TakePlayerMoney(upgradableTableBaseComponent.GetUpgradePrice(tableLvl));

@@ -4,6 +4,7 @@ using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Weeds;
+using PlayerControl;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -12,7 +13,9 @@ namespace FlowerShop.Tables
 {
     public class FlowersStorageTable : Table, ISavableObject
     {
-        [Inject] private ReferencesForLoad referencesForLoad;
+        [Inject] private readonly PlayerAnimationEvents playerAnimationEvents;
+        [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly FlowersSettings flowersSettings;
         
         [SerializeField] private Transform tablePotTransform;
@@ -130,7 +133,9 @@ namespace FlowerShop.Tables
 
         private void PourPotOnTable()
         {
-            potOnTable.PourFlower();
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
+            potOnTable.HideWaterIndicator();
+            playerAnimationEvents.SetCurrentAnimationEvent(potOnTable.PourFlower);
         }
 
         private bool CanPlayerDeleteWeedInPot()

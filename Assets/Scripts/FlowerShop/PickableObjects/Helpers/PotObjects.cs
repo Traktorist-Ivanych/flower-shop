@@ -2,6 +2,7 @@ using FlowerShop.Flowers;
 using FlowerShop.Settings;
 using FlowerShop.Weeds;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace FlowerShop.PickableObjects.Helpers
@@ -15,13 +16,16 @@ namespace FlowerShop.PickableObjects.Helpers
         [SerializeField] private MeshRenderer waterIndicator;
         [SerializeField] private MeshRenderer weedRenderer;
         [SerializeField] private Weed weed;
+        [SerializeField] private ParticleSystem weedIndicatorPS;
+        [SerializeField] private ParticleSystem seedIndicatorPS;
+        [SerializeField] private Material seedGrowingMaterial;
+        [SerializeField] private Material seedPlantedMaterial;
 
         [HideInInspector, SerializeField] private Transform waterIndicatorTransform;
+        [HideInInspector, SerializeField] private Renderer seedIndicatorPSRenderer;
 
         [field: HideInInspector, SerializeField] public MeshFilter FlowerMeshFilter { get; private set; }
-
         [field: HideInInspector, SerializeField] public MeshFilter SoilMeshFilter { get; private set; }
-
         [field: HideInInspector, SerializeField] public MeshFilter WeedMeshFilter { get; private set; }
 
         private void OnValidate()
@@ -30,6 +34,7 @@ namespace FlowerShop.PickableObjects.Helpers
             SoilMeshFilter = soilRenderer.GetComponent<MeshFilter>();
             WeedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
             waterIndicatorTransform = waterIndicator.transform;
+            seedIndicatorPSRenderer = seedIndicatorPS.GetComponent<Renderer>();
         }
 
         private void Update()
@@ -83,6 +88,23 @@ namespace FlowerShop.PickableObjects.Helpers
         public void SetWeedLvlMesh(int currentWeedGrowingLvl)
         {
             WeedMeshFilter.mesh = weed.GetWeedLvlMesh(currentWeedGrowingLvl);
+        }
+
+        public void PlayWeedEffects()
+        {
+            weedIndicatorPS.Play();
+        }
+
+        public void PlaySeedGrowingEffects()
+        {
+            seedIndicatorPSRenderer.material = seedGrowingMaterial;
+            seedIndicatorPS.Play();
+        }
+
+        public void PlaySeedPlantedEffects()
+        {
+            seedIndicatorPSRenderer.material = seedPlantedMaterial;
+            seedIndicatorPS.Play();
         }
     }
 }
