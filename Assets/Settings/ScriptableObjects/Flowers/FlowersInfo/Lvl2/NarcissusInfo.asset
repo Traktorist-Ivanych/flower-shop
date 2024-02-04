@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: NarcissusInfo
+  m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: NarcissusInfo 8
+  <FlowerNameRus>k__BackingField: "\u041D\u0430\u0440\u0446\u0438\u0441\u0441"
+  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: d184f649d76e39e4cb655040bca2d0bc, type: 3}
+  <FlowerName>k__BackingField: {fileID: 11400000, guid: db0735e95d6270542aac552e2c1db8f4, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <FlowerLvl>k__BackingField: 2
+  <FlowerSellingPrice>k__BackingField: 770
+  <FlowerSoilMesh>k__BackingField: {fileID: -1036173772136047727, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+  flowerLvlMeshes:
+  - {fileID: -2121138016917750333, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -4909993508930057774, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  - {fileID: 3408646663280097035, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  - {fileID: 2184624189913171290, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  <FirstCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: 0b76d389f8197fb42b052729d13f0001, type: 2}
+  <SecondCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: ec3ad2c68695f624a99fee4593e88966, type: 2}

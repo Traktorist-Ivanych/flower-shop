@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193023b51b96419d9057f9ff38315445, type: 3}
+  m_Name: FlowersSettings
+  m_EditorClassIdentifier: 
+  <CrossingFlowerMinLvl>k__BackingField: 2
+  <MaxFlowerGrowingLvl>k__BackingField: 3
+  <PrimaryFlowerGrowingLvl>k__BackingField: 0
+  <FlowerNameEmpty>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
+  <FlowerInfoEmpty>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
+  <GrowingRoomAny>k__BackingField: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}

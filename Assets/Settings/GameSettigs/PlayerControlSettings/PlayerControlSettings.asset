@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633b5c5c45cbc4d43ba4742dd845f28e, type: 3}
+  m_Name: PlayerControlSettings
+  m_EditorClassIdentifier: 
+  <RemainingDistance>k__BackingField: 0.1
+  <PlayerNavAgentSpeed>k__BackingField: 8
+  <PlayerNavAgentAngularSpeed>k__BackingField: 750
+  <PlayerNavAgentAcceleration>k__BackingField: 75
+  <PlayerMovingRotation>k__BackingField: 8
+  <PlayerNavAgentCoffeeSpeed>k__BackingField: 12
+  <PlayerNavAgentCoffeeAngularSpeed>k__BackingField: 1200
+  <PlayerNavAgentCoffeeAcceleration>k__BackingField: 120
+  <PlayerMovingCoffeeRotation>k__BackingField: 12
+  <CoffeeEffectDurationTime>k__BackingField: 600
+  <FirstAvailableMoney>k__BackingField: 0

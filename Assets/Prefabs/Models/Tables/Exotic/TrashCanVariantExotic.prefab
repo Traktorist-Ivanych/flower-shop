@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6752075038054282580
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 450463066303708683, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Name
+      value: FlowerExotic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207745953059978996, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Name
+      value: WeedExotic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099719665760389682, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Name
+      value: SoilPotExotic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433847053342715305, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2838768563372361112, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+    - target: {fileID: 4662308226838123937, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Name
+      value: TrashCanVariantExotic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123941, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: growingRoom
+      value: 
+      objectReference: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662308226838123942, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736892959570261169, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5249159559318419125, guid: e8511ca823b91bb428239ec1a8d465f4, type: 3}
+    - target: {fileID: 8051557397427641113, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5944614252197831104, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 651eae4d06098b8418c5d9e5fe4d26f5, type: 3}
