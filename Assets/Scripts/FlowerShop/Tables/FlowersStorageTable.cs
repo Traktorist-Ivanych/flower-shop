@@ -172,7 +172,7 @@ namespace FlowerShop.Tables
 
         private void UseFertilizer()
         {
-            fertilizer.TreatPot(potOnTable);
+            StartCoroutine(fertilizer.PotTreating(potOnTable));
         }
 
         private bool CanPlayerTakePotInHands()

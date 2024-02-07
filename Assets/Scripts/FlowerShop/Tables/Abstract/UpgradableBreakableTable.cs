@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.PickableObjects;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
 using UnityEngine;
@@ -56,6 +57,11 @@ namespace FlowerShop.Tables.Abstract
         public void UseBreakableTable()
         {
             breakableTableBaseComponent.UseBreakableTable();
+            if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                HideUpgradeIndicator();
+                ShowBreakdownIndicator();
+            }
         }
 
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)

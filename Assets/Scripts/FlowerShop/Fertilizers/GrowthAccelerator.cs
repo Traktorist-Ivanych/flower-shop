@@ -4,10 +4,10 @@ namespace FlowerShop.Fertilizers
 {
     public class GrowthAccelerator : Fertilizer
     {
-        public override void TreatPot(Pot potForTreating)
+        private protected override void FinishTreatingPot()
         {
-            base.TreatPot(potForTreating);
-            
+            base.FinishTreatingPot();
+
             potForTreating.TreatPotByGrothAccelerator();
         }
     }

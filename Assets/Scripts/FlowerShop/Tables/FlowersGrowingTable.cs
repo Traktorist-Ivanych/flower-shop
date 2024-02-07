@@ -1,7 +1,9 @@
+using System.Runtime.InteropServices;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using FlowerShop.Weeds;
@@ -19,6 +21,8 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly TablesSettings tablesSettings;
     
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private WeedPlanter weedPlanter;
@@ -99,6 +103,10 @@ namespace FlowerShop.Tables
 
             if (isPotOnTable)
             {
+                if (tableLvl == tablesSettings.FansEnableLvl)
+                {
+                    soundsHandler.StartPlayingGrowingTableFansAudio();
+                }
                 flowersGrowingTableEffects.EnableEffects();
                 potOnTable.CalculateUpGrowingLvlTimeOnTableUpgrade(tableLvl);
             }
@@ -192,6 +200,11 @@ namespace FlowerShop.Tables
             {
                 weedPlanter.AddPotInPlantingWeedList(potOnTable);
             }
+
+            if (tableLvl > 0)
+            {
+                soundsHandler.StartPlayingGrowingTableFansAudio();
+            }
         }
 
         private bool CanPlayerPourPotOnTable()
@@ -248,7 +261,7 @@ namespace FlowerShop.Tables
 
         private void UseFertilizer()
         {
-            fertilizer.TreatPot(potOnTable);
+            StartCoroutine(fertilizer.PotTreating(potOnTable));
         }
 
         private bool CanPlayerTakePotInHands()
@@ -265,6 +278,11 @@ namespace FlowerShop.Tables
             UseBreakableTable();
             flowersGrowingTableEffects.StopFansRotation();
             flowersGrowingTableEffects.DisableEffects();
+            
+            if (tableLvl > 0)
+            {
+                soundsHandler.StopPlayingGrowingTableFansAudio();
+            }
             
             Save();
         }

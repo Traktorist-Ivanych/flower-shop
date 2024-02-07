@@ -21,5 +21,5 @@ MonoBehaviour:
   <WateringTableMaxQuantity>k__BackingField: 20
   <FlowerGrowingTableMinQuantity>k__BackingField: 7
   <FlowerGrowingTableMaxQuantity>k__BackingField: 14
-  <CrossingTableMinQuantity>k__BackingField: 6
-  <CrossingTableMaxQuantity>k__BackingField: 12
+  <CrossingTableMinQuantity>k__BackingField: 7
+  <CrossingTableMaxQuantity>k__BackingField: 14

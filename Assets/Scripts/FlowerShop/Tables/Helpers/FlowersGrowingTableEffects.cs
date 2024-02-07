@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.Tables.Helpers
 {
     [RequireComponent(typeof(TableObjectsRotation))]
     public class FlowersGrowingTableEffects : MonoBehaviour
     {
+        [Inject] private readonly TablesSettings tablesSettings;
+        
         [SerializeField] private MeshRenderer growingLightMeshRenderer;
         [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
         [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
@@ -24,7 +27,7 @@ namespace FlowerShop.Tables.Helpers
         public void SetFlowersGrowingTableLvlForEffects(int flowersGrowingTableLvl)
         {
             currentTableLvl = flowersGrowingTableLvl;
-            if (currentTableLvl > 0)
+            if (currentTableLvl >= tablesSettings.FansEnableLvl)
             {
                 growingTableFanMeshRenderer.enabled = true;
                 growingLightMeshFilter.mesh = growingLightLvlMeshes[currentTableLvl - 1];
@@ -34,7 +37,7 @@ namespace FlowerShop.Tables.Helpers
         public void EnableEffects()
         {
             growingLightMeshRenderer.enabled = true;
-            if (currentTableLvl > 0)
+            if (currentTableLvl >= tablesSettings.FansEnableLvl)
             {
                 foreach (ParticleSystem wind in windPS)
                 {
@@ -51,7 +54,7 @@ namespace FlowerShop.Tables.Helpers
         public void DisableEffects()
         {
             growingLightMeshRenderer.enabled = false;
-            if (currentTableLvl > 0)
+            if (currentTableLvl >= tablesSettings.FansEnableLvl)
             {
                 foreach (ParticleSystem wind in windPS)
                 {

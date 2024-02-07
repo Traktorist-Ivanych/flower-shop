@@ -2,6 +2,7 @@ using System.Collections;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using Saves;
@@ -14,6 +15,7 @@ namespace FlowerShop.Tables
     public class SoilPreparationTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly SoundsHandler soundsHandler;
         [Inject] private readonly TablesSettings tablesSettings;
     
         [SerializeField] private Transform potOnTableTransform;
@@ -141,9 +143,11 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             tableObjectsRotation.StartObjectsRotation();
+            soundsHandler.StartPlayingSoilPreparationAudio();
             
             yield return new WaitForSeconds(soilPreparationTime);
             tableObjectsRotation.PauseObjectsRotation();
+            soundsHandler.StopPlayingSoilPreparationAudio();
             
             potToSoilPreparation.FillPotWithSoil();
             potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();

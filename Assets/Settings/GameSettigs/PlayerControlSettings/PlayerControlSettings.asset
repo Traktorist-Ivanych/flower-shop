@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerControlSettings
   m_EditorClassIdentifier: 
   <RemainingDistance>k__BackingField: 0.1
+  <MinMovableMagnitude>k__BackingField: 0.1
   <PlayerNavAgentSpeed>k__BackingField: 8
   <PlayerNavAgentAngularSpeed>k__BackingField: 750
   <PlayerNavAgentAcceleration>k__BackingField: 75
@@ -22,4 +23,4 @@ MonoBehaviour:
   <PlayerNavAgentCoffeeAcceleration>k__BackingField: 120
   <PlayerMovingCoffeeRotation>k__BackingField: 12
   <CoffeeEffectDurationTime>k__BackingField: 600
-  <FirstAvailableMoney>k__BackingField: 0
+  <FirstAvailableMoney>k__BackingField: 10000

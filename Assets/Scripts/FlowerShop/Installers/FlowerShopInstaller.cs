@@ -4,10 +4,11 @@ using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
+using FlowerShop.Player;
 using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Sounds;
 using FlowerShop.Tables;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace FlowerShop.Installers
@@ -30,6 +31,10 @@ namespace FlowerShop.Installers
         [Header("Fertilizers")] 
         [SerializeField] private FertilizersTable fertilizersTable;
         [SerializeField] private FertilizersCanvasLiaison fertilizersCanvasLiaison;
+        [Header("Player")]
+        [SerializeField] private PlayerSounds playerSounds;
+        [Header("Sounds")]
+        [SerializeField] private SoundsHandler soundsHandler;
 
         public override void InstallBindings()
         {
@@ -48,6 +53,10 @@ namespace FlowerShop.Installers
             
             Container.Bind<FertilizersTable>().FromInstance(fertilizersTable).AsSingle().NonLazy();
             Container.Bind<FertilizersCanvasLiaison>().FromInstance(fertilizersCanvasLiaison).AsSingle().NonLazy();
+            
+            Container.Bind<PlayerSounds>().FromInstance(playerSounds).AsSingle().NonLazy();
+            
+            Container.Bind<SoundsHandler>().FromInstance(soundsHandler).AsSingle().NonLazy();
         }
     }
 }

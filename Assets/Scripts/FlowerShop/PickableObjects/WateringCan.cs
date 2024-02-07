@@ -78,7 +78,7 @@ namespace FlowerShop.PickableObjects
 
         public float ReplenishWateringCanTime()
         {
-            return tablesSettings.ReplenishWateringCanTime * (maxWateringsNumber - CurrentWateringsNumber) / maxWateringsNumber;
+            return tablesSettings.TimeForReplenishWateringCanWithOneWatering * (maxWateringsNumber - CurrentWateringsNumber);
         }
 
         public void ReplenishWateringCan()
@@ -108,7 +108,7 @@ namespace FlowerShop.PickableObjects
 
         public void LoadInPlayerHands()
         {
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
+            objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForBigObjectTransform);
             playerPickableObjectHandler.CurrentPickableObject = this;
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
             wateringCanIndicatorMeshRenderer.enabled = true;

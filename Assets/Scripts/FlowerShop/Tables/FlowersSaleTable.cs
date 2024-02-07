@@ -1,10 +1,10 @@
-using System;
 using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using Saves;
@@ -15,13 +15,14 @@ namespace FlowerShop.Tables
 {
     public class FlowersSaleTable : Table, ISavableObject
     {
-        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
-        [Inject] private readonly FlowersSettings flowersSettings;
-        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
+        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private MeshRenderer salableSoilRenderer;
         [SerializeField] private MeshRenderer salableFlowerRenderer;
@@ -68,6 +69,7 @@ namespace FlowerShop.Tables
             salableFlowerRenderer.enabled = false;
             flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
             playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
+            soundsHandler.PlayAddMoneyAudio();
             
             ResetFlowerInfoOnTable();
             

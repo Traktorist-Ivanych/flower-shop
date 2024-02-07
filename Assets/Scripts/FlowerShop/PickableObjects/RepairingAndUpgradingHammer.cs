@@ -53,7 +53,7 @@ namespace FlowerShop.PickableObjects
 
         public void LoadInPlayerHands()
         {
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForLittleObjectTransform);
+            objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForLittleObjectTransform);
             playerPickableObjectHandler.CurrentPickableObject = this;
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
         }

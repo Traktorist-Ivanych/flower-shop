@@ -3,6 +3,7 @@ using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using PlayerControl;
@@ -23,6 +24,7 @@ namespace FlowerShop.Tables
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private Transform tablePotTransform;
     
@@ -248,6 +250,7 @@ namespace FlowerShop.Tables
             IsSeedCrossing = true;
             firstFlowersCrossingTable.PlayCrossingFlowerEffects();
             secondFlowersCrossingTable.PlayCrossingFlowerEffects();
+            soundsHandler.StartPlayingCrossingSound();
             
             Observable.EveryUpdate().Subscribe( updateCrossingFlowersTimer =>
             {
@@ -268,6 +271,7 @@ namespace FlowerShop.Tables
                     
                     firstFlowersCrossingTable.StopCrossingFlowerEffects();
                     secondFlowersCrossingTable.StopCrossingFlowerEffects();
+                    soundsHandler.StopPlayingCrossingSound();
                     
                     cyclicalSaver.CyclicalSaverEvent -= Save;
                     

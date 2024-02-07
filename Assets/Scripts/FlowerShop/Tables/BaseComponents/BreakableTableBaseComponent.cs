@@ -1,5 +1,6 @@
 using System.Collections;
 using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Interfaces;
 using PlayerControl;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace FlowerShop.Tables.BaseComponents
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerBusyness playerBusyness;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private MeshRenderer breakdownIndicatorRenderer;
         [SerializeField] private ParticleSystem[] brokenEffects;
@@ -42,6 +44,8 @@ namespace FlowerShop.Tables.BaseComponents
             {
                 IsTableBroken = true;
 
+                soundsHandler.StartPlayingBrokenTableAudio();
+                
                 foreach (ParticleSystem brokenEffect in brokenEffects)
                 {
                     brokenEffect.Play();
@@ -75,7 +79,8 @@ namespace FlowerShop.Tables.BaseComponents
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
             IsTableBroken = false;
             playerBusyness.SetPlayerFree();
-
+            soundsHandler.StopPlayingBrokenTableAudio();
+            
             foreach (ParticleSystem brokenEffect in brokenEffects)
             {
                 brokenEffect.Stop();

@@ -1,5 +1,6 @@
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using PlayerControl;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private MeshRenderer flowerRenderer;
         [SerializeField] private MeshRenderer soilRenderer;
@@ -40,6 +42,16 @@ namespace FlowerShop.Tables
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(ThrowOutPotContent);
             }
+        }
+
+        private void PlayOpenTrashCanAudio()
+        {
+            soundsHandler.PlayOpenTrashCanAudio();
+        }
+        
+        private void PlayCloseTrashCanAudio()
+        {
+            soundsHandler.PlayCloseTrashCanAudio();
         }
 
         private bool CanPlayerThrowOutPotContent()

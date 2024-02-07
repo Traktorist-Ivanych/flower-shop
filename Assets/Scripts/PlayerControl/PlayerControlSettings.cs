@@ -9,6 +9,7 @@ namespace PlayerControl
     {
         [field: Header("Moving Setting")]
         [field: SerializeField] public float RemainingDistance { get; private set; }
+        [field: SerializeField] public float MinMovableMagnitude { get; private set; }
         
         [field: Header("Ordinary Nav Agent Setting")]
         [field: SerializeField] public float PlayerNavAgentSpeed { get; private set; }

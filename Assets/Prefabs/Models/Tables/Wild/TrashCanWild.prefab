@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8051557397427641113}
   - component: {fileID: 6678304136995565705}
   m_Layer: 0
-  m_Name: SoilPotWild
+  m_Name: SoilPot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,8 +527,6 @@ MonoBehaviour:
   flowerRenderer: {fileID: 2070938032581978299}
   soilRenderer: {fileID: 6678304136995565705}
   weedRenderer: {fileID: 8461053377542186624}
-  flowerNameEmpty: {fileID: 0}
-  soilEndTransform: {fileID: 4662308225993360917}
-  soilTransform: {fileID: 2742897238208492826}
+  trashCanAnimator: {fileID: 4662308226838123943}
   flowerMeshFilter: {fileID: 4433847053342715305}
   weedMeshFilter: {fileID: 6736892959570261169}

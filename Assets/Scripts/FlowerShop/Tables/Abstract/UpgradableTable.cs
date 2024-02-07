@@ -1,4 +1,5 @@
 using FlowerShop.RepairsAndUpgrades;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.BaseComponents;
 using PlayerControl;
 using UnityEngine;
@@ -9,9 +10,10 @@ namespace FlowerShop.Tables.Abstract
     [RequireComponent(typeof(UpgradableTableBaseComponent))]
     public abstract class UpgradableTable : Table, IUpgradableTable
     {
-        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private protected readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
+        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
         [HideInInspector, SerializeField] private UpgradableTableBaseComponent upgradableTableBaseComponent;
         
@@ -44,6 +46,7 @@ namespace FlowerShop.Tables.Abstract
             tableLvl++;
             LoadLvlMesh();
             ShowUpgradeIndicator();
+            soundsHandler.PlayUpgradeFinishAudio();
             upgradableTableBaseComponent.FinishUpgradeTableProcessEffects();
         }
 

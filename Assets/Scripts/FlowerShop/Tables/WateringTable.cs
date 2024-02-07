@@ -2,6 +2,7 @@ using System.Collections;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using Saves;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace FlowerShop.Tables
     public class WateringTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly SoundsHandler soundsHandler;
         
         [SerializeField] private Transform wateringCanTableTransform;
         [SerializeField] private WateringCan wateringCan;
@@ -158,8 +160,10 @@ namespace FlowerShop.Tables
         {
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             waterPS.Play();
+            soundsHandler.StartPlayingReplenishWateringCanAudio();
             yield return new WaitForSeconds(wateringCan.ReplenishWateringCanTime());
             waterPS.Stop();
+            soundsHandler.StopPlayingReplenishWateringCanAudio();
             wateringCan.ReplenishWateringCan();
             UseBreakableTable();
             

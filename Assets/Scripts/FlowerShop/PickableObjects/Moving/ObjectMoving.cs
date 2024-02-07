@@ -24,7 +24,7 @@ namespace FlowerShop.PickableObjects.Moving
             MoveAndRotateObjectWithDoTween();
         }
 
-        public void SetParentAndParentPositionAndRotationOnLoad(Transform targetFinishTransform)
+        public void SetParentAndParentPositionAndRotation(Transform targetFinishTransform)
         {
             transform.SetParent(targetFinishTransform);
             transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
@@ -44,8 +44,7 @@ namespace FlowerShop.PickableObjects.Moving
 
         private void FinishMoving()
         {
-            transform.SetParent(finishTransform);
-            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
+            SetParentAndParentPositionAndRotation(finishTransform);
 
             if (shouldPlayerBecomeFree)
             {

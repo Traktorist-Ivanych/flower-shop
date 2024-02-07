@@ -5,6 +5,7 @@ using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables;
 using FlowerShop.Weeds;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace FlowerShop.Installers
         [SerializeField] private FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [SerializeField] private FlowersSettings flowersSettings;
         [SerializeField] private RepairsAndUpgradesSettings repairsAndUpgradesSettings;
+        [SerializeField] private SoundSettings soundSettings;
         [SerializeField] private TablesSettings tablesSettings;
         [SerializeField] private WeedSettings weedSettings;
         
@@ -34,6 +36,7 @@ namespace FlowerShop.Installers
                 .FromInstance(flowersForSaleCoeffCalculatorSettings).AsSingle().NonLazy();
             Container.Bind<FlowersSettings>().FromInstance(flowersSettings).AsSingle().NonLazy();
             Container.Bind<RepairsAndUpgradesSettings>().FromInstance(repairsAndUpgradesSettings).AsSingle().NonLazy();
+            Container.Bind<SoundSettings>().FromInstance(soundSettings).AsSingle().NonLazy();
             Container.Bind<TablesSettings>().FromInstance(tablesSettings).AsSingle().NonLazy();
             Container.Bind<WeedSettings>().FromInstance(weedSettings).AsSingle().NonLazy();
         }

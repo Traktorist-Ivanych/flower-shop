@@ -3,6 +3,7 @@ using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Helpers;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Saves.SaveData;
+using FlowerShop.Sounds;
 using FlowerShop.Tables;
 using FlowerShop.Weeds;
 using PlayerControl;
@@ -16,15 +17,16 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class Pot : MonoBehaviour, IPickableObject, ISavableObject
     {
-        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
-        [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
-        [Inject] private readonly PlayerComponents playerComponents;
-        [Inject] private readonly WeedSettings weedSettings;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
-        [Inject] private readonly FlowersSettings flowersSettings;
-        [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly FlowersContainer flowersContainer;
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly TablesSettings tablesSettings;
+        [Inject] private readonly WeedSettings weedSettings;
 
         [SerializeField] private PotsRack potsRack;
         
@@ -78,6 +80,7 @@ namespace FlowerShop.PickableObjects
                 }
                 ResetGrowingLvlTime();
                 PotObjects.PlayWeedEffects();
+                soundsHandler.PlayWeedPlantedAudio();
             }
             else if (ShouldWaterIndicatorBeDisplayed())
             {
@@ -99,6 +102,7 @@ namespace FlowerShop.PickableObjects
             ResetFlowerGrowingLvl();
             ResetGrowingLvlTime();
             
+            soundsHandler.PlaySeedPlantedAudio();
             ShowSeed(flowerInfoForPlanting);
             PotObjects.PlaySeedPlantedEffects();
             
@@ -110,6 +114,7 @@ namespace FlowerShop.PickableObjects
             PourFlowerBase();
             UpFlowerGrowingLvl();
             PotObjects.PlaySeedGrowingEffects();
+            soundsHandler.PlaySeedWateringAudio();
 
             ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
             
@@ -123,6 +128,7 @@ namespace FlowerShop.PickableObjects
             
             ShowWeed();
             PotObjects.PlayWeedEffects();
+            soundsHandler.PlayWeedPlantedAudio();
             
             Save();
         }
@@ -296,7 +302,7 @@ namespace FlowerShop.PickableObjects
 
         public void LoadInPlayerHands()
         {
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
+            objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForBigObjectTransform);
             potsRack.RemovePotFromListOnLoad(this);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
         }
@@ -309,7 +315,7 @@ namespace FlowerShop.PickableObjects
 
         public void LoadOnTable(Transform transformOnTable)
         {
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(transformOnTable);
+            objectMoving.SetParentAndParentPositionAndRotation(transformOnTable);
             potsRack.RemovePotFromListOnLoad(this);
         }
 
