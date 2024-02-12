@@ -1667,6 +1667,8 @@ MonoBehaviour:
   takeInPlayerHands: {fileID: 8300000, guid: 309af4658455eb145a47abd7b6df2c48, type: 3}
   giveFromPlayerHands: {fileID: 8300000, guid: 3864ed1863c99574fba7b1f4adfce3af, type: 3}
   watering: {fileID: 8300000, guid: 70996c933aaee384faa1b7acb25d1708, type: 3}
+  startCoffeeMachine: {fileID: 8300000, guid: d4dd12986db9f5a4cbe6c6e874751977, type: 3}
+  drinkCoffee: {fileID: 8300000, guid: f67d23aa092103645ab26018f965f077, type: 3}
   playerStepsAudioSource: {fileID: 8844277344795211252}
   effectsSingleAudioSource: {fileID: 136869146013550788}
   effectsLoopAudioSource: {fileID: 9197546212894681782}

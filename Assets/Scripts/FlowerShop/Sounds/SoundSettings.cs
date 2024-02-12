@@ -18,5 +18,7 @@ namespace FlowerShop.Sounds
         [field: SerializeField] public float MaxCrossingSoundVolume { get; private set; }
         [field: SerializeField] public float MaxGrowingTableFansSoundVolume { get; private set; }
         [field: SerializeField] public float MaxBrokenTableSoundVolume { get; private set; }
+        [field: SerializeField] public float MaxCoffeeGrinderSoundVolume { get; private set; }
+        [field: SerializeField] public float MaxMusicSoundVolume { get; private set; }
     }
 }

@@ -238,6 +238,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
+            playerBusyness.SetPlayerFree();
             isFlowerReadyForCrossing = false;
             tableObjectsRotation.StartObjectsRotation();
             StartFlowersCrossingProcess();

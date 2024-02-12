@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: CoffeeCanvasLiaison.CoffeePrice
+  viewModelPropertyName: FlowerShop.Coffee.CoffeeCanvasLiaison.CoffeePrice
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &5352940107452937641
 GameObject:
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 360, y: 740}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

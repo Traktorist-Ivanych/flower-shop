@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1020968636786830263
 Transform:
@@ -74,7 +74,7 @@ MonoBehaviour:
   targetToLookAt: {fileID: 2546873008974105818}
   tablePotTransform: {fileID: 2743832758157823263}
   weedPlanter: {fileID: 0}
-  growingRoomAny: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
+  <UniqueKey>k__BackingField: 
 --- !u!1 &5821090190316369527
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2743832758157823263
 Transform:
@@ -120,7 +120,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2546873008974105818
 Transform:
@@ -151,7 +151,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4332200850327236873
 Transform:

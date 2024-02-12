@@ -15,6 +15,8 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioClip takeInPlayerHands;
         [SerializeField] private AudioClip giveFromPlayerHands;
         [SerializeField] private AudioClip watering;
+        [SerializeField] private AudioClip startCoffeeMachine;
+        [SerializeField] private AudioClip drinkCoffee;
 
         [Header("AudioSources")] 
         [SerializeField] private AudioSource playerStepsAudioSource;
@@ -47,6 +49,16 @@ namespace FlowerShop.Sounds
         public void PlayGiveFromPlayerHandsSound()
         {
             effectsSingleAudioSource.PlayOneShot(giveFromPlayerHands);
+        }
+
+        public void PlayStartCoffeeMachineAudio()
+        {
+            effectsSingleAudioSource.PlayOneShot(startCoffeeMachine);
+        }
+        
+        public void PlayDrinkCoffeeAudio()
+        {
+            effectsSingleAudioSource.PlayOneShot(drinkCoffee);
         }
 
         public void StartPlayingWateringSound()

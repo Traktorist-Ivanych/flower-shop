@@ -214,7 +214,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 360, y: 740}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.TableName
+  viewModelPropertyName: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.TableName
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &4317368594127560035
 GameObject:
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.Price
+  viewModelPropertyName: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.Price
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &6041442911958252902
 GameObject:
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.Description
+  viewModelPropertyName: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.Description
   viewPropertyName: TMPro.TextMeshProUGUI.text
 --- !u!1 &8843008071740825087
 GameObject:
@@ -1293,5 +1293,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewAdapterTypeName: 
   viewAdapterOptions: {fileID: 0}
-  viewModelPropertyName: FlowerShop.Upgrades.UpgradeCanvasLiaison.TableSprite
+  viewModelPropertyName: FlowerShop.RepairsAndUpgrades.UpgradeCanvasLiaison.TableSprite
   viewPropertyName: UnityEngine.UI.Image.sprite

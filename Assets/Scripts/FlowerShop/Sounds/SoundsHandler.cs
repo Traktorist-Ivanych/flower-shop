@@ -19,6 +19,7 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioClip weedPlanted;
         [SerializeField] private AudioClip fertilizerTreat;
         [SerializeField] private AudioClip addMoney;
+        [SerializeField] private AudioClip fillCoffeeCup;
         
         [Header("AudioSources")]
         [SerializeField] private AudioSource effectsSingleAudioSource;
@@ -27,6 +28,7 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioSource crossingAudioSource;
         [SerializeField] private AudioSource growingTableFansAudioSource;
         [SerializeField] private AudioSource brokenTableAudioSource;
+        [SerializeField] private AudioSource coffeeGrinderAudioSource;
 
         private int currentCrossingSoundsActive;
         private int currentGrowingTablesWithFansActive;
@@ -50,6 +52,21 @@ namespace FlowerShop.Sounds
         public void StopPlayingSoilPreparationAudio()
         {
             StopPlayAudioSource(soilPreparationAudioSource);
+        }
+        
+        public void StartPlayingCoffeeGrinderAudio()
+        {
+            StartPlayAudioSource(coffeeGrinderAudioSource, soundSettings.MaxCoffeeGrinderSoundVolume);
+        }
+        
+        public void StopPlayingCoffeeGrinderAudio()
+        {
+            StopPlayAudioSource(coffeeGrinderAudioSource);
+        }
+
+        public void PlayFillCoffeeCupAudio()
+        {
+            effectsSingleAudioSource.PlayOneShot(fillCoffeeCup);
         }
 
         public void PlayOpenTrashCanAudio()

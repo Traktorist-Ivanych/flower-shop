@@ -325,7 +325,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 360, y: 740}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255c927c4c419d841a97327ca8993aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coffeeEffectPanel: {fileID: 0}
+  coffeeEffectPanel: {fileID: 2593805967829213897}
 --- !u!1 &6657140054391965034
 GameObject:
   m_ObjectHideFlags: 0

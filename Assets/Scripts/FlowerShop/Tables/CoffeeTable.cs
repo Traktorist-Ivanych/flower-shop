@@ -1,6 +1,7 @@
 using System.Collections;
 using FlowerShop.Coffee;
 using FlowerShop.Settings;
+using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using PlayerControl;
@@ -12,12 +13,13 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(TableObjectsRotation))]
     public class CoffeeTable : Table
     {
-        [Inject] private readonly PlayerComponents playerComponents;
-        [Inject] private readonly CoffeeSettings coffeeSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
+        [Inject] private readonly CoffeeSettings coffeeSettings;
         [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
+        [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
+        [Inject] private readonly SoundsHandler soundsHandler;
         
         [SerializeField] private CoffeeCap coffeeCap;
         [SerializeField] private Transform coffeeCapOnTableTransform;
@@ -56,10 +58,13 @@ namespace FlowerShop.Tables
             
             yield return new WaitForSeconds(statMakingCoffeeAnimationClip.length);
             tableObjectsRotation.StartObjectsRotation();
+            soundsHandler.StartPlayingCoffeeGrinderAudio();
 
             yield return new WaitForSeconds(coffeeSettings.CoffeeGrinderRotationDuration);
             tableObjectsRotation.PauseObjectsRotation();
+            soundsHandler.StopPlayingCoffeeGrinderAudio();
             coffeeCap.FillCoffeeCap();
+            soundsHandler.PlayFillCoffeeCupAudio();
 
             yield return new WaitForSeconds(coffeeSettings.CoffeeLiquidMovingTime);
             coffeeCap.TakeInPlayerHandsAndKeepPlayerBusy();

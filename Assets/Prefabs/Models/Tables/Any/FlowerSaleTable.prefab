@@ -97,7 +97,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2216170378255706664
 Transform:
@@ -130,7 +130,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2216170378978974682
 Transform:
@@ -188,14 +188,14 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 2216170379441180577}
   targetToLookAt: {fileID: 2216170379212808044}
-  <TargetToLookAt>k__BackingField: {fileID: 2216170379212808044}
+  salableSoilRenderer: {fileID: 5988138220798341882}
+  salableFlowerRenderer: {fileID: 1371709945709243080}
+  salableSoilTransform: {fileID: 3000667596827309929}
   <TablePotTransform>k__BackingField: {fileID: 2216170378255706664}
   <CustomerDestinationTarget>k__BackingField: {fileID: 2020611340397132982}
   <SalableSoilMeshFilter>k__BackingField: {fileID: 6920019480624781674}
   <SalableFlowerMeshFilter>k__BackingField: {fileID: 3619778791047180250}
-  salableSoilRenderer: {fileID: 5988138220798341882}
-  salableFlowerRenderer: {fileID: 1371709945709243080}
-  salableSoilTransform: {fileID: 3000667596827309929}
+  <UniqueKey>k__BackingField: 
 --- !u!1 &2216170379212808043
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2216170379212808044
 Transform:
@@ -241,7 +241,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2216170379441180577
 Transform:
@@ -272,7 +272,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2020611340397132982
 Transform:

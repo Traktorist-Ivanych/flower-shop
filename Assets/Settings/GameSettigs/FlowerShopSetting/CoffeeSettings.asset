@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CoffeeSettings
   m_EditorClassIdentifier: 
   <CoffeePrice>k__BackingField: 1750
-  <CoffeeLiquidMovingTime>k__BackingField: 0.5
-  <CoffeeGrinderRotationDuration>k__BackingField: 4
+  <CoffeeLiquidMovingTime>k__BackingField: 2
+  <CoffeeGrinderRotationDuration>k__BackingField: 5
   <StartDrinkingCoffeeTimeDelay>k__BackingField: 0.35

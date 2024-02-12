@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5138302613347569018
 Transform:
@@ -276,6 +276,7 @@ MonoBehaviour:
   flowersForCollection: {fileID: 0}
   soilTransform: {fileID: 1108944222814913916}
   flowerMeshFilter: {fileID: 1511881277981875663}
+  <UniqueKey>k__BackingField: 
 --- !u!1 &4576132669818811381
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +291,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4576132669818811386
 Transform:

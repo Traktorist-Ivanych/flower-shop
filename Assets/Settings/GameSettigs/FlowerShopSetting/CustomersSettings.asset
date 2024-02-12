@@ -16,10 +16,10 @@ MonoBehaviour:
   <AngelToStopRotation>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 7
   <NavAgentSpeed>k__BackingField: 7
-  <MinSpawnTime>k__BackingField: 40
-  <MinSpawnTimeDelta>k__BackingField: 25
-  <MaxSpawnTime>k__BackingField: 90
-  <MaxSpawnTimeDelta>k__BackingField: 50
+  <MinSpawnTime>k__BackingField: 60
+  <MinSpawnTimeDelta>k__BackingField: 35
+  <MaxSpawnTime>k__BackingField: 120
+  <MaxSpawnTimeDelta>k__BackingField: 85
   buyingFlowerCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,26 +27,26 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 1.9134185
-      outSlope: 1.9134185
-      tangentMode: 0
+      outSlope: 1.25
+      tangentMode: 65
       weightedMode: 0
       inWeight: 0
       outWeight: 0.23425975
     - serializedVersion: 3
-      time: 0.3
+      time: 0.4
       value: 0.5
-      inSlope: 1.2963694
-      outSlope: 1.2963694
+      inSlope: 0.95457095
+      outSlope: 0.95457095
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.12896006
+      inWeight: 0.23148146
+      outWeight: 0.18939397
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.4312722
+      inSlope: 0.8333333
       outSlope: 0.4312722
-      tangentMode: 0
+      tangentMode: 5
       weightedMode: 0
       inWeight: 0.36946186
       outWeight: 0
