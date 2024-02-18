@@ -196,6 +196,9 @@ MonoBehaviour:
   <SalableSoilMeshFilter>k__BackingField: {fileID: 6920019480624781674}
   <SalableFlowerMeshFilter>k__BackingField: {fileID: 3619778791047180250}
   <UniqueKey>k__BackingField: 
+  <ToFlowerPathPoints>k__BackingField: []
+  <OutFlowerPathPoints>k__BackingField: []
+  <FinishWithFlowerPathPoints>k__BackingField: []
 --- !u!1 &2216170379212808043
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +273,7 @@ GameObject:
   m_Layer: 0
   m_Name: CustomerDestinationTarget
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
@@ -282,13 +285,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3786248247862933240}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000004, y: 0.4999997, z: 0.4999997, w: 0.5000003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2216170378978974682}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3985994178049820737
 GameObject:
   m_ObjectHideFlags: 0

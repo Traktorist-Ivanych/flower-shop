@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2281d2dbb54a7bab864069a72ea14a, type: 3}
   m_Name: CustomersSettings
   m_EditorClassIdentifier: 
+  <MinRemainingDistanceBetweenPathPoints>k__BackingField: 0.5
   <RemainingDistanceToStartRotation>k__BackingField: 0.1
   <AngelToStopRotation>k__BackingField: 2.5
-  <RotationSpeed>k__BackingField: 7
-  <NavAgentSpeed>k__BackingField: 7
-  <MinSpawnTime>k__BackingField: 60
-  <MinSpawnTimeDelta>k__BackingField: 35
-  <MaxSpawnTime>k__BackingField: 120
-  <MaxSpawnTimeDelta>k__BackingField: 85
+  <RotationSpeed>k__BackingField: 6
+  <NavAgentSpeed>k__BackingField: 6
+  <MinDistanceToOpenAutomaticDoors>k__BackingField: 3.5
+  <MinSpawnTime>k__BackingField: 15
+  <MinSpawnTimeDelta>k__BackingField: 10
+  <MaxSpawnTime>k__BackingField: 20
+  <MaxSpawnTimeDelta>k__BackingField: 15
   buyingFlowerCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,13 +29,13 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 1.9134185
-      outSlope: 1.25
+      outSlope: 0.8333333
       tangentMode: 65
       weightedMode: 0
       inWeight: 0
       outWeight: 0.23425975
     - serializedVersion: 3
-      time: 0.4
+      time: 0.6
       value: 0.5
       inSlope: 0.95457095
       outSlope: 0.95457095
@@ -44,7 +46,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.8333333
+      inSlope: 1.2500001
       outSlope: 0.4312722
       tangentMode: 5
       weightedMode: 0

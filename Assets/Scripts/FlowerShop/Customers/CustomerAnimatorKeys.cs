@@ -10,5 +10,6 @@ namespace FlowerShop.Customers
         public static readonly int WalkSpeed = Animator.StringToHash("WalkSpeed");
         public static readonly int No = Animator.StringToHash("No");
         public static readonly int Yes = Animator.StringToHash("Yes");
+        public static readonly int LookAround = Animator.StringToHash("LookAround");
     }
 }

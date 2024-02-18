@@ -20,6 +20,7 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioClip fertilizerTreat;
         [SerializeField] private AudioClip addMoney;
         [SerializeField] private AudioClip fillCoffeeCup;
+        [SerializeField] private AudioClip automaticDoorOpenClose;
         
         [Header("AudioSources")]
         [SerializeField] private AudioSource effectsSingleAudioSource;
@@ -87,6 +88,11 @@ namespace FlowerShop.Sounds
         public void PlayCloseDoorAudio()
         {
             effectsSingleAudioSource.PlayOneShot(closeDoor);
+        }
+        
+        public void PlayOpenCloseAutomaticDoorAudio()
+        {
+            effectsSingleAudioSource.PlayOneShot(automaticDoorOpenClose);
         }
 
         public void PlayUpgradeFinishAudio()

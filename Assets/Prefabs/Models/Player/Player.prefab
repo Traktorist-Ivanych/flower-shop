@@ -1423,7 +1423,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &6291737497913853712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a56c87aa004c7e8dc021165b5d6317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UniqueKey>k__BackingField: 
+  <UniqueKey>k__BackingField: 1102202416451
 --- !u!114 &7005960515872514119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0329f2bff0a3a4f4085015db1f43982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UniqueKey>k__BackingField: 
+  <UniqueKey>k__BackingField: 1102202416452
 --- !u!114 &7005960515872514115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,8 +1519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7589cdad2773ab745a9adacea9370a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentPlayerMoney>k__BackingField: 5000
-  <UniqueKey>k__BackingField: 
+  <CurrentPlayerMoney>k__BackingField: 0
+  <UniqueKey>k__BackingField: 1102202416453
 --- !u!114 &3590259864566099027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoving: {fileID: 7005960515872514119}
-  <UniqueKey>k__BackingField: 
+  <UniqueKey>k__BackingField: 1102202416454
 --- !u!54 &7005960515872514139
 Rigidbody:
   m_ObjectHideFlags: 0

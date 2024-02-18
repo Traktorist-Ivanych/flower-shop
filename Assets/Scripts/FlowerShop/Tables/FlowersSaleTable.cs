@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
@@ -38,6 +40,9 @@ namespace FlowerShop.Tables
         [field: HideInInspector, SerializeField] public MeshFilter SalableSoilMeshFilter { get; private set; }
         [field: HideInInspector, SerializeField] public MeshFilter SalableFlowerMeshFilter { get; private set; }
         [field: SerializeField] public string UniqueKey { get; private set; }
+        [field: SerializeField] public List<Transform> ToFlowerPathPoints { get; private set; }
+        [field: SerializeField] public List<Transform> OutFlowerPathPoints { get; private set; }
+        [field: SerializeField] public List<Transform> FinishWithFlowerPathPoints { get; private set; }
         
         public FlowerInfo FlowerInfoForSale { get; private set; }
         public Transform TargetToLookAt => targetToLookAt;
@@ -156,6 +161,59 @@ namespace FlowerShop.Tables
         {
             FlowerInfoForSale = flowersSettings.FlowerInfoEmpty;
             flowerInfoOnTableUniqueKey = flowersSettings.FlowerInfoEmpty.UniqueKey;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Vector3 offset = new Vector3(0.035f,0,0.035f);
+            
+            if (ToFlowerPathPoints.Count > 1)
+            {
+                Gizmos.color = Color.blue;
+                Vector3[] toFlowerPathPoints = new Vector3[ToFlowerPathPoints.Count];
+                for (int i = 0; i < ToFlowerPathPoints.Count; i++)
+                {
+                    toFlowerPathPoints[i] = ToFlowerPathPoints[i].position;
+                }
+                Gizmos.DrawLineStrip(toFlowerPathPoints, false);
+            }
+            
+            if (OutFlowerPathPoints.Count > 1)
+            {
+                
+                Gizmos.color = Color.red;
+                Vector3[] outFlowerPathPoints = new Vector3[OutFlowerPathPoints.Count + 1];
+                for (int i = 0; i < outFlowerPathPoints.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        outFlowerPathPoints[i] = CustomerDestinationTarget.position - offset;
+                    }
+                    else
+                    {
+                        outFlowerPathPoints[i] = OutFlowerPathPoints[i-1].position - offset;
+                    }
+                }
+                Gizmos.DrawLineStrip(outFlowerPathPoints, false);
+            }
+            
+            if (FinishWithFlowerPathPoints.Count > 1)
+            {
+                Gizmos.color = Color.gray;
+                Vector3[] finishFlowerPathPoints = new Vector3[FinishWithFlowerPathPoints.Count + 1];
+                for (int i = 0; i < finishFlowerPathPoints.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        finishFlowerPathPoints[i] = CustomerDestinationTarget.position - offset * 2;
+                    }
+                    else
+                    {
+                        finishFlowerPathPoints[i] = FinishWithFlowerPathPoints[i-1].position - offset * 2;
+                    }
+                }
+                Gizmos.DrawLineStrip(finishFlowerPathPoints, false);
+            }
         }
     }
 }

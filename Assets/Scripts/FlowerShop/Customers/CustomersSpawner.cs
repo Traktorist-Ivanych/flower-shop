@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
-using FlowerShop.Tables;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -10,18 +9,23 @@ namespace FlowerShop.Customers
 {
     public class CustomersSpawner : MonoBehaviour, ISavableObject
     {
-        [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly CustomersSettings customersSettings;
-        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
 
-        [SerializeField] private Transform[] startTransforms;
-        [SerializeField] private Transform[] endTransforms;
+        [SerializeField] private List<Transform> spawnPathPoints;
+        [SerializeField] private List<Transform> enterShopPathPoints;
+        [SerializeField] private List<Transform> nextLookAroundPathPoints;
+        [SerializeField] private List<Transform> leftFinishPathPoints;
+        [SerializeField] private List<Transform> rightFinishPathPoints;
 
         private readonly List<CustomerMoving> customersMoving = new();
         private float minSpawnTime;
         private float maxSpawnTime;
         private float currentSpawnTime;
+        private int pathIndexes;
+        private int nextLookAroundPathPointsIndex;
+        private int finishPathPointsIndex;
 
         [field: SerializeField] public string UniqueKey { get; private set; }
 
@@ -30,14 +34,14 @@ namespace FlowerShop.Customers
             Load();
         }
 
-        private void OnEnable()
-        {
-            cyclicalSaver.CyclicalSaverEvent += Save;
-        }
-
         private void Start()
         {
             TryToSpawnCustomer();
+        }
+
+        private void OnEnable()
+        {
+            cyclicalSaver.CyclicalSaverEvent += Save;
         }
 
         private void OnDisable()
@@ -63,17 +67,35 @@ namespace FlowerShop.Customers
             customersMoving.Add(customerMoving);
         }
 
-        public Transform GetEndTransform()
-        {
-            return endTransforms[Random.Range(0, endTransforms.Length)];
-        }
-
-        public void RemoveBuyerMoving(CustomerMoving customerMoving)
+        public void RemoveCustomerMoving(CustomerMoving customerMoving)
         {
             if (customersMoving.Contains(customerMoving))
             {
                 customersMoving.Remove(customerMoving);
             }
+        }
+
+        public List<Transform> GetFinishPathPoints()
+        {
+            finishPathPointsIndex++;
+            if (finishPathPointsIndex == 1)
+            {
+                return leftFinishPathPoints;
+            }
+            finishPathPointsIndex = 0;
+            return rightFinishPathPoints;
+        }
+        
+        public Transform GetNextLookAroundPathPoint()
+        {
+            nextLookAroundPathPointsIndex++;
+
+            if (nextLookAroundPathPointsIndex >= nextLookAroundPathPoints.Count)
+            {
+                nextLookAroundPathPointsIndex = 0;
+            }
+
+            return nextLookAroundPathPoints[nextLookAroundPathPointsIndex];
         }
 
         public void Load()
@@ -108,16 +130,10 @@ namespace FlowerShop.Customers
         {
             if (customersMoving.Count > 0)
             {
-                FlowersSaleTable flowersSaleTableForBuyer = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
-                    
-                if (flowersSaleTableForBuyer)
-                {
-                    CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
-
-                    Transform startCustomerTransform = startTransforms[Random.Range(0, startTransforms.Length)];
-
-                    customerMoving.SetBuyerStartDestination(startCustomerTransform, flowersSaleTableForBuyer);
-                }
+                Transform startCustomerTransform = spawnPathPoints[Random.Range(0, spawnPathPoints.Count)];
+                
+                CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
+                customerMoving.SpawnCustomer(startCustomerTransform, enterShopPathPoints);
             }
         }
     }

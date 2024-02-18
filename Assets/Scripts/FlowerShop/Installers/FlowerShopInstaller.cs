@@ -1,10 +1,10 @@
 using FlowerShop.Coffee;
 using FlowerShop.Customers;
+using FlowerShop.Environment;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
-using FlowerShop.Player;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Sounds;
 using FlowerShop.Tables;
@@ -22,6 +22,7 @@ namespace FlowerShop.Installers
         [SerializeField] private FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Header("Customers")]
         [SerializeField] private CustomersSpawner customersSpawner;
+        [SerializeField] private CustomersObserver customersObserver;
         [Header("Canvas Liaisons")]
         [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
         [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
@@ -35,6 +36,8 @@ namespace FlowerShop.Installers
         [SerializeField] private PlayerSounds playerSounds;
         [Header("Sounds")]
         [SerializeField] private SoundsHandler soundsHandler;
+        [Header("Environment")]
+        [SerializeField] private AutomaticDoors automaticDoors;
 
         public override void InstallBindings()
         {
@@ -44,6 +47,7 @@ namespace FlowerShop.Installers
             Container.Bind<FlowersSaleTablesForCustomers>().FromInstance(flowersSaleTablesForCustomers).AsSingle().NonLazy();
 
             Container.Bind<CustomersSpawner>().FromInstance(customersSpawner).AsSingle().NonLazy();
+            Container.Bind<CustomersObserver>().FromInstance(customersObserver).AsSingle().NonLazy();
 
             Container.Bind<CoffeeCanvasLiaison>().FromInstance(coffeeCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
@@ -57,6 +61,8 @@ namespace FlowerShop.Installers
             Container.Bind<PlayerSounds>().FromInstance(playerSounds).AsSingle().NonLazy();
             
             Container.Bind<SoundsHandler>().FromInstance(soundsHandler).AsSingle().NonLazy();
+            
+            Container.Bind<AutomaticDoors>().FromInstance(automaticDoors).AsSingle().NonLazy();
         }
     }
 }

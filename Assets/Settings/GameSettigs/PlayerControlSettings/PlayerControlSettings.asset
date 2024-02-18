@@ -23,4 +23,4 @@ MonoBehaviour:
   <PlayerNavAgentCoffeeAcceleration>k__BackingField: 110
   <PlayerMovingCoffeeRotation>k__BackingField: 12
   <CoffeeEffectDurationTime>k__BackingField: 600
-  <FirstAvailableMoney>k__BackingField: 0
+  <FirstAvailableMoney>k__BackingField: 10000

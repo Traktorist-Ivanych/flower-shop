@@ -8,6 +8,7 @@ namespace FlowerShop.Customers
     public class CustomersSettings : ScriptableObject
     {
         [field: Header("Moving")]
+        [field: SerializeField] public float MinRemainingDistanceBetweenPathPoints { get; private set; }
         [field: SerializeField] public float RemainingDistanceToStartRotation { get; private set; }
         [field: SerializeField] public float AngelToStopRotation { get; private set; }
         [field: SerializeField] public float RotationSpeed { get; private set; }
