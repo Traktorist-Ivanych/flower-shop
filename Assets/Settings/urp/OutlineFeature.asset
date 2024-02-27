@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3569b207cbbabd24c949fba03107bf94, type: 3}
+  m_Name: OutlineFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  _renderTextureName: 
+  _renderSettings:
+    OverrideMaterial: {fileID: 0}
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  _bluredTextureName: 
+  _blurSettings:
+    BlurMaterial: {fileID: 0}
+    DownSample: 1
+    PassesCount: 1
+  _outlineMaterial: {fileID: 0}
+  _renderPassEvent: 0
