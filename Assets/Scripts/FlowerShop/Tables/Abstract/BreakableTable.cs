@@ -1,3 +1,4 @@
+using FlowerShop.PickableObjects;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
 using UnityEngine;
@@ -14,16 +15,6 @@ namespace FlowerShop.Tables.Abstract
         private protected virtual void OnValidate()
         {
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
-        }
-
-        public void ShowBreakdownIndicator()
-        {
-            breakableTableBaseComponent.ShowBreakdownIndicator();
-        }
-
-        public void HideBreakdownIndicator()
-        {
-            breakableTableBaseComponent.HideBreakdownIndicator();
         }
 
         public void UseBreakableTable()

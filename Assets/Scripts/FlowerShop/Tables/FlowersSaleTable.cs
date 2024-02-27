@@ -67,6 +67,11 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutFlowerOnTable();
+        }
+
         public void SaleFlower()
         {
             isFlowerOnSaleTable = false;

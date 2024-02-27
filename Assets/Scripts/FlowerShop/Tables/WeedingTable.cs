@@ -14,6 +14,7 @@ namespace FlowerShop.Tables
         [field: SerializeField] public string UniqueKey { get; private set; }
 
         private bool isWeedingHoeInPlayerHands;
+        private int currentFlowersThatNeedWeedingQuantity;
 
         private protected override void Awake()
         {
@@ -41,6 +42,12 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerTakeHoeInHandsForSelectableEffect() ||
+                   CanPlayerUpgradeTableForSelectableEffect() || CanPlayerPutHoeOnTable();
+        }
+
         public override void UpgradeTableFinish()
         {
             base.UpgradeTableFinish();
@@ -48,6 +55,16 @@ namespace FlowerShop.Tables
             weedingHoe.Upgrade(tableLvl);
             
             Save();
+        }
+
+        public void IncreaseFlowersThatNeedWeedingQuantity()
+        {
+            currentFlowersThatNeedWeedingQuantity++;
+        }
+
+        public void DecreaseFlowersThatNeedWeedingQuantity()
+        {
+            currentFlowersThatNeedWeedingQuantity--;
         }
 
         public void Load()
@@ -76,6 +93,11 @@ namespace FlowerShop.Tables
             WeedingTableForSaving weedingTableForSaving = new(tableLvl, isWeedingHoeInPlayerHands);
             
             SavesHandler.Save(UniqueKey, weedingTableForSaving);
+        }
+
+        private bool CanPlayerTakeHoeInHandsForSelectableEffect()
+        {
+            return currentFlowersThatNeedWeedingQuantity > 0 && CanPlayerTakeHoeInHands();
         }
 
         private bool CanPlayerTakeHoeInHands()
@@ -108,12 +130,6 @@ namespace FlowerShop.Tables
             weedingHoe.PutOnTableAndSetPlayerFree(hoeOnTableTransform);
             
             Save();
-        }
-
-        private bool CanPlayerUpgradeTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

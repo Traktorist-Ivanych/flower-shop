@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 93, y: 0, z: -149}
-  m_LocalScale: {x: 99.999985, y: 99.999985, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 440674913151163347}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treatEffect: {fileID: 4797138870014455903}
   objectMoving: {fileID: 8327959433648175833}
+  <UniqueKey>k__BackingField: 
 --- !u!1 &8183890088632801272
 GameObject:
   m_ObjectHideFlags: 0

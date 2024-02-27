@@ -47,6 +47,11 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutPotOnTable();
+        }
+
         public void PlayCrossingFlowerEffects()
         {
             crossingFlowerPS.Play();

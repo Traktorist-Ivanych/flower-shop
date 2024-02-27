@@ -20,7 +20,7 @@ MonoBehaviour:
   <WateringsNumberLvlDelta>k__BackingField: 3
   <TimeForReplenishWateringCanWithOneWatering>k__BackingField: 1
   <SoilPreparationTime>k__BackingField: 5
-  <SoilPreparationLvlTimeDelta>k__BackingField: 1.5
+  <SoilPreparationLvlTimeDelta>k__BackingField: 2
   <CrossingFlowerTime>k__BackingField: 45
   <CrossingFlowerLvlTimeDelta>k__BackingField: 15
   <PotsCountAvailableOnStart>k__BackingField: 8

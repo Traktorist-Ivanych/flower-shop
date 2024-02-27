@@ -1,5 +1,6 @@
 using FlowerShop.Coffee;
 using FlowerShop.Customers;
+using FlowerShop.Effects;
 using FlowerShop.Environment;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
@@ -38,6 +39,8 @@ namespace FlowerShop.Installers
         [SerializeField] private SoundsHandler soundsHandler;
         [Header("Environment")]
         [SerializeField] private AutomaticDoors automaticDoors;
+        [Header("Effects")]
+        [SerializeField] private SelectedTableEffect selectedTableEffect;
 
         public override void InstallBindings()
         {
@@ -63,6 +66,8 @@ namespace FlowerShop.Installers
             Container.Bind<SoundsHandler>().FromInstance(soundsHandler).AsSingle().NonLazy();
             
             Container.Bind<AutomaticDoors>().FromInstance(automaticDoors).AsSingle().NonLazy();
+            
+            Container.Bind<SelectedTableEffect>().FromInstance(selectedTableEffect).AsSingle().NonLazy();
         }
     }
 }

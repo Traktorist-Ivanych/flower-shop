@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
@@ -119,6 +120,12 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerStartSoilPreparation() || CanPlayerFixTable() || 
+                   CanPlayerUpgradeTableForSelectableEffect();
+        }
+
         private void SetSoilPreparationTime()
         {
             soilPreparationTime = tablesSettings.SoilPreparationTime - tableLvl * tablesSettings.SoilPreparationLvlTimeDelta;
@@ -156,11 +163,6 @@ namespace FlowerShop.Tables
             Save();
         }
 
-        private bool CanPlayerFixTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && IsTableBroken;
-        }
-
         private void FixSoilPreparationTable()
         {
             FixBreakableFlowerTable(
@@ -168,12 +170,6 @@ namespace FlowerShop.Tables
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
             
             Save();
-        }
-
-        private bool CanPlayerUpgradeTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer && 
-                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

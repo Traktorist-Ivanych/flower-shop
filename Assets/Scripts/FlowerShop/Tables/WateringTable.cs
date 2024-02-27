@@ -20,6 +20,7 @@ namespace FlowerShop.Tables
         [SerializeField] private ParticleSystem waterPS;
 
         private bool isWateringCanInPlayerHands;
+        private int currentFlowersThatNeedWaterQuantity;
         
         [field: SerializeField] public string UniqueKey { get; private set; }
 
@@ -56,7 +57,7 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(PutWateringCanOnTable);
                 }
-                else if (CanPlayerFixWateringTable())
+                else if (CanPlayerFixTable())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(FixWateringTable);
                 }
@@ -65,6 +66,13 @@ namespace FlowerShop.Tables
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas); 
                 }
             }
+        }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerTakeWateringCanInHandsForSelectableEffect() || 
+                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect() || 
+                   CanPlayerPutWateringCanOnTable();
         }
 
         public override void UpgradeTableFinish()
@@ -78,6 +86,16 @@ namespace FlowerShop.Tables
                 repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
             
             Save();
+        }
+
+        public void IncreaseFlowersThatNeedWaterQuantity()
+        {
+            currentFlowersThatNeedWaterQuantity++;
+        }
+
+        public void DecreaseFlowersThatNeedWaterQuantity()
+        {
+            currentFlowersThatNeedWaterQuantity--;
         }
 
         public void Load()
@@ -115,6 +133,11 @@ namespace FlowerShop.Tables
                 isWateringCanInPlayerHands: isWateringCanInPlayerHands);
             
             SavesHandler.Save(UniqueKey, wateringTableForSaving);
+        }
+
+        private bool CanPlayerTakeWateringCanInHandsForSelectableEffect()
+        {
+            return currentFlowersThatNeedWaterQuantity > 0 && CanPlayerTakeWateringCanInHands();
         }
 
         private bool CanPlayerTakeWateringCanInHands()
@@ -170,16 +193,6 @@ namespace FlowerShop.Tables
             Save();
         }
 
-        private bool CanPlayerFixWateringTable()
-        {
-            if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
-            {
-                return IsTableBroken;
-            }
-
-            return false;
-        }
-
         private void FixWateringTable()
         {
             FixBreakableFlowerTable(
@@ -187,16 +200,6 @@ namespace FlowerShop.Tables
                 repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
             
             Save();
-        }
-
-        private bool CanPlayerUpgradeTable()
-        {
-            if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
-            {
-                return tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
-            }
-
-            return false;
         }
     }
 }

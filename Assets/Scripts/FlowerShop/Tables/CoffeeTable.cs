@@ -40,6 +40,11 @@ namespace FlowerShop.Tables
                 SetPlayerDestinationAndOnPlayerArriveAction(OpenCoffeeCanvas);
             }
         }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerStartMakingCoffee();
+        }
 
         private bool CanPlayerStartMakingCoffee()
         {

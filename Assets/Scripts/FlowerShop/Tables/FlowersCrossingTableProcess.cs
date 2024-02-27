@@ -38,7 +38,9 @@ namespace FlowerShop.Tables
     
         [Header("CrossingTables")]
         [SerializeField] private FlowersCrossingTable firstFlowersCrossingTable;
+        [SerializeField] private Mesh[] firstFlowersCrossingTableLvlMeshes = new Mesh[2];
         [SerializeField] private FlowersCrossingTable secondFlowersCrossingTable;
+        [SerializeField] private Mesh[] secondFlowersCrossingTableLvlMeshes = new Mesh[2];
     
         [Header("CrossingTableBlender")]
         [SerializeField] private MeshFilter crossingTableBlenderMeshFilter;
@@ -50,6 +52,8 @@ namespace FlowerShop.Tables
         [SerializeField] private GrowingRoom growingRoomDecorative;
 
         [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
+        [HideInInspector, SerializeField] private MeshFilter firstFlowersCrossingTableMeshFilter;
+        [HideInInspector, SerializeField] private MeshFilter secondFlowersCrossingTableMeshFilter;
         
         private Pot potForPlanting;
         private FlowerInfo flowerInfoForPlanting;
@@ -67,7 +71,9 @@ namespace FlowerShop.Tables
         private protected override void OnValidate()
         {
             base.OnValidate();
-            
+
+            firstFlowersCrossingTableMeshFilter = firstFlowersCrossingTable.GetComponent<MeshFilter>();
+            secondFlowersCrossingTableMeshFilter = secondFlowersCrossingTable.GetComponent<MeshFilter>();
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
 
@@ -110,6 +116,12 @@ namespace FlowerShop.Tables
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
             }
+        }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerStartFlowersCrossing() || CanPlayerPlantCrossedSeed() ||
+                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect();
         }
 
         public void CheckCrossingAbility()
@@ -164,7 +176,7 @@ namespace FlowerShop.Tables
         {
             base.UpgradeTableFinish();
             SetCrossingFlowerTime();
-            UpgradeCrossingTableBlender();
+            UpgradeCrossingTableObjects();
             SetActionsBeforeBrokenQuantity(
                 repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
@@ -182,7 +194,7 @@ namespace FlowerShop.Tables
                 tableLvl = flowersCrossingTableProcessForLoading.TableLvl;
                 if (tableLvl > 0)
                 {
-                    UpgradeCrossingTableBlender();
+                    UpgradeCrossingTableObjects();
                     LoadLvlMesh();
                 }
                 
@@ -274,6 +286,8 @@ namespace FlowerShop.Tables
                     secondFlowersCrossingTable.StopCrossingFlowerEffects();
                     soundsHandler.StopPlayingCrossingSound();
                     
+                    selectedTableEffect.TryToRecalculateEffect();
+                    
                     cyclicalSaver.CyclicalSaverEvent -= Save;
                     
                     Save();
@@ -314,12 +328,6 @@ namespace FlowerShop.Tables
             potForPlanting.TakeInPlayerHandsAndSetPlayerFree();
         }
 
-        private bool CanPlayerFixTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   IsTableBroken;
-        }
-
         private void FixCrossingTable()
         {
             FixBreakableFlowerTable(
@@ -329,15 +337,11 @@ namespace FlowerShop.Tables
             Save();
         }
 
-        private bool CanPlayerUpgradeTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
-        }
-
-        private void UpgradeCrossingTableBlender()
+        private void UpgradeCrossingTableObjects()
         {
             crossingTableBlenderMeshFilter.mesh = crossingTableBlenderLvlMeshes[tableLvl - 1];
+            firstFlowersCrossingTableMeshFilter.mesh = firstFlowersCrossingTableLvlMeshes[tableLvl - 1];
+            secondFlowersCrossingTableMeshFilter.mesh = secondFlowersCrossingTableLvlMeshes[tableLvl - 1];   
         }
 
         private void CheckFlowerInfoForPlantingRoomIndicator()

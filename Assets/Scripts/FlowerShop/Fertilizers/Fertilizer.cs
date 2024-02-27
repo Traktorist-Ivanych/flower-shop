@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Saves.SaveData;
@@ -18,6 +19,7 @@ namespace FlowerShop.Fertilizers
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private ParticleSystem treatEffect;
@@ -60,6 +62,7 @@ namespace FlowerShop.Fertilizers
         {
             IsFertilizerInPlayerHands = true;
             playerPickableObjectHandler.CurrentPickableObject = this;
+            selectedTableEffect.ActivateEffectWithDelay();
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForCoffeeTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
@@ -70,6 +73,7 @@ namespace FlowerShop.Fertilizers
         {
             IsFertilizerInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
+            selectedTableEffect.ActivateEffectWithDelay();
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
@@ -89,6 +93,7 @@ namespace FlowerShop.Fertilizers
             IsFertilizerInPlayerHands = true;
             objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForCoffeeTransform);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void Load()

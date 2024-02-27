@@ -34,11 +34,6 @@ namespace FlowerShop.Customers
             Load();
         }
 
-        private void Start()
-        {
-            TryToSpawnCustomer();
-        }
-
         private void OnEnable()
         {
             cyclicalSaver.CyclicalSaverEvent += Save;

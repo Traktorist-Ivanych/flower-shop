@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
@@ -94,6 +93,13 @@ namespace FlowerShop.Tables
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
+        }
+
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutPotOnTable() || CanPlayerPourPotOnTable() || 
+                   CanPlayerDeleteWeedInPot() || CanPlayerUseFertilizer() || 
+                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect();
         }
 
         public override void UpgradeTableFinish()
@@ -287,12 +293,6 @@ namespace FlowerShop.Tables
             Save();
         }
 
-        private bool CanPlayerFixTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   IsTableBroken;
-        }
-
         private void FixFlowerGrowingTable()
         {
             FixBreakableFlowerTable(
@@ -300,12 +300,6 @@ namespace FlowerShop.Tables
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
             
             Save();
-        }
-
-        private bool CanPlayerUpgradeTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

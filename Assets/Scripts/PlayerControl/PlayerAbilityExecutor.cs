@@ -1,18 +1,14 @@
 using UnityEngine;
+using Zenject;
 
 namespace PlayerControl
 {
     [RequireComponent (typeof(PlayerMoving))]
     public class PlayerAbilityExecutor : MonoBehaviour
     {
-        [SerializeField] private PlayerMoving playerMoving;
+        [Inject] private readonly PlayerMoving playerMoving;
     
         private IPlayerAbility playerAbility;
-    
-        private void OnValidate()
-        {
-            playerMoving = GetComponent<PlayerMoving>();
-        }
     
         private void OnEnable()
         {

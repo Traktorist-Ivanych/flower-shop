@@ -159,6 +159,8 @@ public class Outline : MonoBehaviour {
 
   void Bake() {
 
+    Debug.Log("Bake");
+    
     // Generate smooth normals for each mesh
     var bakedMeshes = new HashSet<Mesh>();
 
@@ -179,6 +181,8 @@ public class Outline : MonoBehaviour {
 
   void LoadSmoothNormals() {
 
+    Debug.Log("LoadSmoothNormals");
+    
     // Retrieve or generate smooth normals
     foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
 
@@ -253,7 +257,7 @@ public class Outline : MonoBehaviour {
   }
 
   void CombineSubmeshes(Mesh mesh, Material[] materials) {
-
+    
     // Skip meshes with a single submesh
     if (mesh.subMeshCount == 1) {
       return;
@@ -271,6 +275,8 @@ public class Outline : MonoBehaviour {
 
   void UpdateMaterialProperties() {
 
+    Debug.Log("UpdateMaterialProperties");
+    
     // Apply properties according to mode
     outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
 

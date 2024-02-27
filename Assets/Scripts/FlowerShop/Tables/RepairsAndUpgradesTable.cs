@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using FlowerShop.PickableObjects;
@@ -21,6 +20,7 @@ namespace FlowerShop.Tables
 
         private readonly List<IUpgradableTable> upgradableTables = new();
         private bool isRepairingAndUpgradingHammerInPlayerHands;
+        private int currentTablesThatNeedRepairQuantity;
         
         [field: SerializeField] public string UniqueKey { get; private set; }
 
@@ -53,9 +53,25 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerTakeHammerInHandsForSelectableEffect() || 
+                   CanPlayerPutHammerOnTable();
+        }
+
         public void AddUpgradableTableToList(IUpgradableTable upgradableTable)
         {
             upgradableTables.Add(upgradableTable);
+        }
+
+        public void IncreaseTablesThatNeedRepairQuantity()
+        {
+            currentTablesThatNeedRepairQuantity++;
+        }
+
+        public void DecreaseTablesThatNeedRepairQuantity()
+        {
+            currentTablesThatNeedRepairQuantity--;
         }
 
         public void Load()
@@ -76,6 +92,11 @@ namespace FlowerShop.Tables
                 new(isRepairingAndUpgradingHammerInPlayerHands);
             
             SavesHandler.Save(UniqueKey, repairsAndUpgradesTableForSaving);
+        }
+
+        private bool CanPlayerTakeHammerInHandsForSelectableEffect()
+        {
+            return currentTablesThatNeedRepairQuantity > 0 && CanPlayerTakeHammerInHands();
         }
         
         private bool CanPlayerTakeHammerInHands()
@@ -102,11 +123,6 @@ namespace FlowerShop.Tables
             isRepairingAndUpgradingHammerInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
             repairingAndUpgradingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
-
-            foreach (IUpgradableTable upgradableTable in upgradableTables)
-            {
-                upgradableTable.HideUpgradeIndicator();
-            }
             
             Save();
         }
@@ -120,10 +136,7 @@ namespace FlowerShop.Tables
 
         private void ShowAllUpgradeIndicators()
         {
-            foreach (IUpgradableTable upgradableTable in upgradableTables)
-            {
-                upgradableTable.ShowUpgradeIndicator();
-            }
+            
         }
             
     }

@@ -69,6 +69,12 @@ namespace FlowerShop.Tables
             }
         }
 
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutPotOnTable() || CanPlayerPourPotOnTable() ||
+                   CanPlayerDeleteWeedInPot() || CanPlayerUseFertilizer();
+        }
+
         public void Load()
         {
             FlowersStorageTableForSaving flowersStorageTableForLoading =

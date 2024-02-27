@@ -189,6 +189,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 4019966146790846623}
   targetToLookAt: {fileID: 2051126589081292634}
+  selectedObjectsMeshRenderer:
+  - {fileID: 4175127580518198876}
   upgradableTableBaseComponent: {fileID: 3842995619828434499}
   hoeOnTableTransform: {fileID: 3481749624543355836}
   weedingHoe: {fileID: 7657209446677661110}

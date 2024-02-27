@@ -35,7 +35,7 @@ namespace FlowerShop.Tables
             {
                 potsRenderers[i].enabled = true;
             }
-        } 
+        }
         
         public override void ExecuteClickableAbility()
         {
@@ -54,6 +54,12 @@ namespace FlowerShop.Tables
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
             }
+        }
+
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerTakePotInHands() || CanPlayerPutPotOnTable() || 
+                   CanPlayerUpgradeTableForSelectableEffect();
         }
 
         public override void UpgradeTableFinish()
@@ -130,12 +136,6 @@ namespace FlowerShop.Tables
             pots.Add(currentPlayerPot);
             currentPlayerPot.PutOnTableAndSetPlayerFree(potObjectsTransform);
             playerPickableObjectHandler.ResetPickableObject();
-        }
-
-        private bool CanPlayerUpgradeTable()
-        {
-            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
-                   tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl;
         }
     }
 }

@@ -53,6 +53,11 @@ namespace FlowerShop.Tables
                 SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);
             }
         }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutFlowerOnTable();
+        }
 
         public void Load()
         {

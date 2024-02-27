@@ -1,3 +1,4 @@
+using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Saves.SaveData;
@@ -15,6 +16,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
     
         [SerializeField] private Transform wateringCanIndicatorTransform;
         [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
@@ -46,27 +48,32 @@ namespace FlowerShop.PickableObjects
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
+            wateringCanIndicatorMeshRenderer.enabled = true;
+            UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
+            
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
                 setPlayerFree: true);
-            wateringCanIndicatorMeshRenderer.enabled = true;
-            UpdateWateringCanIndicator();
         }
 
         public void PutOnTableAndSetPlayerFree(Transform targetTransform) 
         {
+            selectedTableEffect.ActivateEffectWithDelay();
+            wateringCanIndicatorMeshRenderer.enabled = false;
+            
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
                 setPlayerFree: true);
-            wateringCanIndicatorMeshRenderer.enabled = false;
         }
 
         public void PourPotWithWateringCan()
         {
             CurrentWateringsNumber--;
             UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
             
             Save();
         }
@@ -113,6 +120,7 @@ namespace FlowerShop.PickableObjects
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
             wateringCanIndicatorMeshRenderer.enabled = true;
             UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void Load()

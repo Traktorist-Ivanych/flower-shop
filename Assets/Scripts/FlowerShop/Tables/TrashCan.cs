@@ -43,6 +43,11 @@ namespace FlowerShop.Tables
                 SetPlayerDestinationAndOnPlayerArriveAction(ThrowOutPotContent);
             }
         }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerThrowOutPotContent();
+        }
 
         private void PlayOpenTrashCanAudio()
         {

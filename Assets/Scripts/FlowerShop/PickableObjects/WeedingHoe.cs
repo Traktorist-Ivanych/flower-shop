@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Weeds;
@@ -14,6 +15,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly WeedSettings weedSettings;
         
         [SerializeField] private Mesh[] weedingHoeLvlMeshes = new Mesh[2];
@@ -34,6 +36,8 @@ namespace FlowerShop.PickableObjects
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
+            selectedTableEffect.ActivateEffectWithDelay();
+            
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForLittleObjectTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger,
@@ -42,6 +46,8 @@ namespace FlowerShop.PickableObjects
 
         public void PutOnTableAndSetPlayerFree(Transform targetTransform)
         {
+            selectedTableEffect.ActivateEffectWithDelay();
+            
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
@@ -56,6 +62,7 @@ namespace FlowerShop.PickableObjects
             potForDeletingWeed.DeleteWeed();
             weedPlanterToAddPotIntoList.AddPotInPlantingWeedList(potForDeletingWeed);
             playerBusyness.SetPlayerFree();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void Upgrade(int tableLvl)
@@ -69,6 +76,7 @@ namespace FlowerShop.PickableObjects
             objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForLittleObjectTransform);
             playerPickableObjectHandler.CurrentPickableObject = this;
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
     }
 }

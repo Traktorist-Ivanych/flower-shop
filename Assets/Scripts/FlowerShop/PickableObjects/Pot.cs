@@ -1,3 +1,4 @@
+using FlowerShop.Effects;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Helpers;
@@ -19,16 +20,20 @@ namespace FlowerShop.PickableObjects
     {
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
+        [Inject] private readonly FertilizersTable fertilizersTable;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly SoundsHandler soundsHandler;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly WeedSettings weedSettings;
 
         [SerializeField] private PotsRack potsRack;
+        [SerializeField] private WateringTable wateringTable;
+        [SerializeField] private WeedingTable weedingTable;
         
         [HideInInspector, SerializeField] private ObjectMoving objectMoving;
 
@@ -85,8 +90,8 @@ namespace FlowerShop.PickableObjects
             else if (ShouldWaterIndicatorBeDisplayed())
             {
                 ResetGrowingLvlTime();
-                
                 ShowWaterIndicator();
+                selectedTableEffect.TryToRecalculateEffect();
             }
         }
 
@@ -115,7 +120,8 @@ namespace FlowerShop.PickableObjects
             UpFlowerGrowingLvl();
             PotObjects.PlaySeedGrowingEffects();
             soundsHandler.PlaySeedWateringAudio();
-
+            wateringTable.DecreaseFlowersThatNeedWaterQuantity();
+            
             ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
             
             Save();
@@ -130,11 +136,15 @@ namespace FlowerShop.PickableObjects
             PotObjects.PlayWeedEffects();
             soundsHandler.PlayWeedPlantedAudio();
             
+            selectedTableEffect.TryToRecalculateEffect();
+            weedingTable.IncreaseFlowersThatNeedWeedingQuantity();
+            
             Save();
         }
 
         public void DeleteWeed()
         {
+            weedingTable.DecreaseFlowersThatNeedWeedingQuantity();
             IsWeedInPot = false;
             ResetWeedGrowingLvl();
             ResetGrowingLvlTime();
@@ -176,6 +186,14 @@ namespace FlowerShop.PickableObjects
 
         public void CleanPot()
         {
+            if (IsFlowerNeedWater)
+            {
+                wateringTable.DecreaseFlowersThatNeedWaterQuantity();
+            }
+            if (IsWeedInPot)
+            {
+                weedingTable.DecreaseFlowersThatNeedWeedingQuantity();
+            }
             IsSoilInsidePot = false;
             IsFlowerNeedWater = false;
             IsWeedInPot = false;
@@ -185,6 +203,8 @@ namespace FlowerShop.PickableObjects
             ResetGrowingLvlTime();
             ResetGrothAcceleratorParameters();
             PotObjects.HideAllPotObjects();
+            selectedTableEffect.ActivateEffectWithDelay();
+            fertilizersTable.RemoveActivePot(this);
             
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
@@ -200,6 +220,8 @@ namespace FlowerShop.PickableObjects
     
         public void PutOnTableAndSetPlayerFree(Transform targetTransform)
         {
+            selectedTableEffect.ActivateEffectWithDelay();
+            
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
@@ -227,6 +249,7 @@ namespace FlowerShop.PickableObjects
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
+            selectedTableEffect.ActivateEffectWithDelay();
             
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
@@ -305,6 +328,7 @@ namespace FlowerShop.PickableObjects
             objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForBigObjectTransform);
             potsRack.RemovePotFromListOnLoad(this);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void LoadOnGrowingTable(Transform transformOnTable, int growingTableLvl)
@@ -329,6 +353,12 @@ namespace FlowerShop.PickableObjects
             CalculateGrowingLvlTimeProgress();
             CalculateUpGrowingLvlTime(growingTableLvl);
             CalculateCurrentUpGrowingLvlTimeWithGrowingLvlTimeProgress();
+        }
+
+        public bool CanPotBeTreated()
+        {
+            return FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl && 
+                   !IsPotTreatedByGrothAccelerator;
         }
 
         private void PutOnGrowingTableBaseActions(int growingTableLvl)
@@ -396,10 +426,13 @@ namespace FlowerShop.PickableObjects
             PlantedFlowerInfo = flowerInfoForPlanting;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
             PotObjects.ShowFlower();
+            weedingTable.IncreaseFlowersThatNeedWeedingQuantity();
+            fertilizersTable.AddActivePot(this);
         }
 
         private void ShowWaterIndicator()
         {
+            wateringTable.IncreaseFlowersThatNeedWaterQuantity();
             IsFlowerNeedWater = true;
             PotObjects.ShowWaterIndicator();
         }

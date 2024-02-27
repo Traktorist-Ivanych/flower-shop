@@ -541,6 +541,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 392755353090237553}
   targetToLookAt: {fileID: 1095347967205238935}
+  selectedObjectsMeshRenderer:
+  - {fileID: 5045339026325388876}
   upgradableTableBaseComponent: {fileID: 50640805948526565}
   breakableTableBaseComponent: {fileID: 3546608370683430025}
   tablePotTransform: {fileID: 624215933272328903}

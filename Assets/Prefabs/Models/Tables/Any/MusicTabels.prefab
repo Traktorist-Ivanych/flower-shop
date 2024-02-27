@@ -406,6 +406,8 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 3646248445591775610}
   targetToLookAt: {fileID: 3624805128407828250}
+  selectedObjectsMeshRenderer:
+  - {fileID: 5299223783302535545}
   musicPowerSwitcherTable: {fileID: 3653680356500423154}
   song:
   - {fileID: 8300000, guid: 081a2927c64a2d44b91bdce6ea4f3205, type: 3}
@@ -623,11 +625,14 @@ MonoBehaviour:
   growingRoom: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   destinationTarget: {fileID: 5898946106251839926}
   targetToLookAt: {fileID: 7026058469332211552}
+  selectedObjectsMeshRenderer:
+  - {fileID: 634763170226534649}
   musicPowerSwitcherTransform: {fileID: 4309726701796592239}
   musicSongsSwitcherTable: {fileID: 2555740804706554622}
   powerSwitcherOffRotation: {x: 0, y: 16.6, z: -45}
   powerSwitcherOnRotation: {x: 0, y: 16.6, z: 45}
   musicAudioSource: {fileID: 0}
+  musicEffects: []
   <UniqueKey>k__BackingField: 
 --- !u!1 &7859609061625565779
 GameObject:

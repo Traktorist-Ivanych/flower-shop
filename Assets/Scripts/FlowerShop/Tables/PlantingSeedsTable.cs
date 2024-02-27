@@ -17,13 +17,18 @@ namespace FlowerShop.Tables
         [SerializeField] private Canvas seedsCanvas;
 
         private Pot plantingSeedPot;
-
+        
         public override void ExecuteClickableAbility()
         {
             if (CanPlayerPlantSeed())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(() => StartCoroutine(StartPlantingSeed()));
             }
+        }
+
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPlantSeed();
         }
 
         public void PlantSeed(FlowerInfo transmittedFlowerInfo)

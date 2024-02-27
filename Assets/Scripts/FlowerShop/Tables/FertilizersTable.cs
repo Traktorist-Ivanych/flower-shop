@@ -1,4 +1,6 @@
-﻿using FlowerShop.Fertilizers;
+﻿using System.Collections.Generic;
+using FlowerShop.Fertilizers;
+using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
 using Zenject;
@@ -14,6 +16,7 @@ namespace FlowerShop.Tables
         
         [HideInInspector, SerializeField] private MeshRenderer[] fertilizersMeshRenderers;
 
+        private readonly List<Pot> activePots = new();
         private Fertilizer currentPlayerFertilizer;
 
         private void OnValidate()
@@ -79,13 +82,54 @@ namespace FlowerShop.Tables
                 }
             }
         }
-
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerTakeFertilizerInHandsForSelectableEffect() || CanPlayerPutFertilizerOnTable();
+        }
+        
         public void IncreaseAvailableFertilizersUsesNumber()
         {
             foreach (Fertilizer fertilizer in fertilizers)
             {
                 fertilizer.IncreaseAvailableUsesNumber();
             }
+        }
+
+        public void AddActivePot(Pot potToAdd)
+        {
+            activePots.Add(potToAdd);
+        }
+        
+        public void RemoveActivePot(Pot potToAdd)
+        {
+            activePots.Remove(potToAdd);
+        }
+        
+        private bool CanPlayerTakeFertilizerInHandsForSelectableEffect()
+        {
+            bool isFertilizersHaveEnoughUsages = false;
+            bool canActivePotsBeTreated = false;
+            
+            foreach (Fertilizer fertilizer in fertilizers)
+            {
+                if (fertilizer.AvailableUsesNumber > 0)
+                {
+                    isFertilizersHaveEnoughUsages = true;
+                }
+            }
+            
+            foreach (Pot activePot in activePots)
+            {
+                if (activePot.CanPotBeTreated())
+                {
+                    canActivePotsBeTreated = true;
+                    break;
+                }
+            }
+            
+            return isFertilizersHaveEnoughUsages && canActivePotsBeTreated &&
+                   CanPlayerTakeFertilizerInHands();
         }
 
         private bool CanPlayerTakeFertilizerInHands()

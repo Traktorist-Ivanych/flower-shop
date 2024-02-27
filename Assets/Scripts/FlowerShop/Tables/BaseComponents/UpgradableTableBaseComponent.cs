@@ -1,5 +1,6 @@
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -8,10 +9,10 @@ namespace FlowerShop.Tables.BaseComponents
     [RequireComponent(typeof(IUpgradableTable))]
     public class UpgradableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
 
-        [SerializeField] private MeshRenderer upgradeIndicatorRenderer;
         [SerializeField] private MeshFilter tableMeshFilter; 
         [SerializeField] private UpgradableTableInfo upgradableTableInfo;
         [SerializeField] private ParticleSystem UpgradeTableSuccessPS;
@@ -23,14 +24,9 @@ namespace FlowerShop.Tables.BaseComponents
             upgradableTable = GetComponent<IUpgradableTable>();
         }
 
-        public void ShowUpgradeIndicator()
+        public bool CanPlayerBuyUpgrade(int tableLvl)
         {
-            upgradeIndicatorRenderer.enabled = true;
-        }
-
-        public void HideUpgradeIndicator()
-        {
-            upgradeIndicatorRenderer.enabled = false;
+            return playerMoney.CurrentPlayerMoney >= upgradableTableInfo.GetUpgradableTablePrice(tableLvl);
         }
 
         public void SetUpgradableTableInfoToCanvas(int nextTableLvl)
