@@ -20,8 +20,6 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
-        [Inject] private readonly SoundsHandler soundsHandler;
-        [Inject] private readonly TablesSettings tablesSettings;
     
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private WeedPlanter weedPlanter;
@@ -52,9 +50,9 @@ namespace FlowerShop.Tables
 
         private void Start()
         {
-            if (potOnTable && tableLvl > 0)
+            if (potOnTable && potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
             {
-                flowersGrowingTableEffects.StartFansRotation();
+                flowersGrowingTableEffects.EnableEffects();
             }
             
             breakableTableBaseComponent.CheckIfTableBroken();
@@ -109,12 +107,11 @@ namespace FlowerShop.Tables
 
             if (isPotOnTable)
             {
-                if (tableLvl == tablesSettings.FansEnableLvl)
-                {
-                    soundsHandler.StartPlayingGrowingTableFansAudio();
-                }
-                flowersGrowingTableEffects.EnableEffects();
                 potOnTable.CalculateUpGrowingLvlTimeOnTableUpgrade(tableLvl);
+                if (potOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    flowersGrowingTableEffects.DisableEffects();
+                }
             }
             
             SetActionsBeforeBrokenQuantity(
@@ -191,7 +188,7 @@ namespace FlowerShop.Tables
         {
             potOnTable.PutOnGrowingTableAndSetPlayerFree(tablePotTransform, tableLvl);
             playerPickableObjectHandler.ResetPickableObject();
-            flowersGrowingTableEffects.StartFansRotation();
+            flowersGrowingTableEffects.EnableEffects();
             PutPotOnTableBase();
             
             Save();
@@ -200,16 +197,10 @@ namespace FlowerShop.Tables
         private void PutPotOnTableBase()
         {
             isPotOnTable = true;
-            flowersGrowingTableEffects.EnableEffects();
 
             if (!potOnTable.IsWeedInPot)
             {
                 weedPlanter.AddPotInPlantingWeedList(potOnTable);
-            }
-
-            if (tableLvl > 0)
-            {
-                soundsHandler.StartPlayingGrowingTableFansAudio();
             }
         }
 
@@ -230,7 +221,7 @@ namespace FlowerShop.Tables
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.PourTrigger);
             potOnTable.HideWaterIndicator();
-            playerAnimationEvents.SetCurrentAnimationEvent(potOnTable.PourFlower);
+            playerAnimationEvents.SetCurrentAnimationEvents(potOnTable.PourFlower, TryDisableTableEffects);
         }
 
         private bool CanPlayerDeleteWeedInPot()
@@ -282,13 +273,7 @@ namespace FlowerShop.Tables
             potOnTable = null;
             isPotOnTable = false;
             UseBreakableTable();
-            flowersGrowingTableEffects.StopFansRotation();
             flowersGrowingTableEffects.DisableEffects();
-            
-            if (tableLvl > 0)
-            {
-                soundsHandler.StopPlayingGrowingTableFansAudio();
-            }
             
             Save();
         }
@@ -300,6 +285,14 @@ namespace FlowerShop.Tables
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
             
             Save();
+        }
+
+        private void TryDisableTableEffects()
+        {
+            if (potOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
+            {
+                flowersGrowingTableEffects.DisableEffects();
+            }
         }
     }
 }

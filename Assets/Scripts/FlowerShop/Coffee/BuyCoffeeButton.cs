@@ -9,8 +9,9 @@ namespace FlowerShop.Coffee
     [RequireComponent(typeof(Button))]
     public class BuyCoffeeButton : MonoBehaviour
     {
-        [Inject] private readonly PlayerMoney playerMoney;
+        [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
         [Inject] private readonly CoffeeSettings coffeeSettings;
+        [Inject] private readonly PlayerMoney playerMoney;
 
         [SerializeField] private CoffeeTable coffeeTable;
 
@@ -35,6 +36,7 @@ namespace FlowerShop.Coffee
         {
             if (playerMoney.CurrentPlayerMoney - coffeeSettings.CoffeePrice >= 0)
             {
+                coffeeCanvasLiaison.CoffeeCanvas.enabled = false;
                 StartCoroutine(coffeeTable.MakeCoffeeProcess());
             }
         }

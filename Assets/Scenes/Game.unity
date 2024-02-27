@@ -64103,10 +64103,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1623502918}
     m_Modifications:
-    - target: {fileID: 400519873931438182, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 963194227}
     - target: {fileID: 1313570244048770255, guid: 3295a1d7386945846aa76d6adefed141, type: 3}
       propertyPath: m_Name
       value: UpgradeCanvas

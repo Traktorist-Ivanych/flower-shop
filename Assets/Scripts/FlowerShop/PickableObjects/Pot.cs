@@ -426,7 +426,6 @@ namespace FlowerShop.PickableObjects
             PlantedFlowerInfo = flowerInfoForPlanting;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
             PotObjects.ShowFlower();
-            weedingTable.IncreaseFlowersThatNeedWeedingQuantity();
             fertilizersTable.AddActivePot(this);
         }
 

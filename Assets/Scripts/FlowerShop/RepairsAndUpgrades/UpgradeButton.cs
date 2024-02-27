@@ -6,6 +6,7 @@ using Zenject;
 
 namespace FlowerShop.RepairsAndUpgrades
 {
+    [RequireComponent(typeof(Button))]
     public class UpgradeButton : MonoBehaviour
     {
         [Inject] private readonly PlayerMoney playerMoney;

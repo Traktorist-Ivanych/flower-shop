@@ -54,6 +54,10 @@ namespace FlowerShop.Tables
                     () => StartCoroutine(UseMusicPowerSwitcherTable()));
             }
         }
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerUseMusicPowerSwitcherTable();
+        }
 
         public void StartPlayingMusicAudioSource(AudioClip currentSong)
         {
@@ -138,6 +142,7 @@ namespace FlowerShop.Tables
             }
             
             playerBusyness.SetPlayerFree();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         private void TurnMusicOn()

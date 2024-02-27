@@ -8,10 +8,17 @@ namespace PlayerControl
 
         private event AnimationEvent CurrentAnimationEvent;
 
-        public void SetCurrentAnimationEvent(AnimationEvent currentAnimationEvent)
+        public void SetCurrentAnimationEvent(AnimationEvent currentEvent)
         {
             CurrentAnimationEvent = null;
-            CurrentAnimationEvent += currentAnimationEvent;
+            CurrentAnimationEvent += currentEvent;
+        }
+
+        public void SetCurrentAnimationEvents(AnimationEvent firstEvent, AnimationEvent secondEvent)
+        {
+            CurrentAnimationEvent = null;
+            CurrentAnimationEvent += firstEvent;
+            CurrentAnimationEvent += secondEvent;
         }
 
         private void InvokeCurrentAnimationEvent()

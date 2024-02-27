@@ -45,6 +45,11 @@ namespace FlowerShop.Tables
                     () => StartCoroutine(UseMusicSongsSwitcherTable()));
             }
         }
+        
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerUseMusicSongsSwitcherTable();
+        }
 
         public AudioClip GetCurrentSong()
         {
@@ -91,6 +96,7 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
             musicSongsSwitcherTableAnimator.SetTrigger(Switch);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         private void StopPlayingMusicAudioSource()

@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 5837165323124593705}
   - component: {fileID: 5283474948862603186}
   - component: {fileID: 5568953513640906923}
+  - component: {fileID: 5129285686765763164}
   m_Layer: 0
   m_Name: CancelButton
   m_TagString: Untagged
@@ -522,31 +523,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5283474948862603186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 400519873931438182}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerBusyness, Assembly-CSharp
-        m_MethodName: SetPlayerFree
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5129285686765763164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317368594127560035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba943a115c2b400ca35d9d9e1c22e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canselButton: {fileID: 5568953513640906923}
 --- !u!1 &5848892157067493060
 GameObject:
   m_ObjectHideFlags: 0

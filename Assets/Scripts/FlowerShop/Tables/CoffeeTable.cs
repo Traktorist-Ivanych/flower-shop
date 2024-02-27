@@ -84,6 +84,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);
             coffeeCap.PutOnTableAndSetPlayerFree(coffeeCapOnTableTransform);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace FlowerShop.Tables.BaseComponents
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
+        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
 
         [SerializeField] private MeshFilter tableMeshFilter; 
         [SerializeField] private UpgradableTableInfo upgradableTableInfo;
@@ -26,7 +27,12 @@ namespace FlowerShop.Tables.BaseComponents
 
         public bool CanPlayerBuyUpgrade(int tableLvl)
         {
-            return playerMoney.CurrentPlayerMoney >= upgradableTableInfo.GetUpgradableTablePrice(tableLvl);
+            if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+            {
+                return playerMoney.CurrentPlayerMoney >= upgradableTableInfo.GetUpgradableTablePrice(tableLvl);
+            }
+
+            return false;
         }
 
         public void SetUpgradableTableInfoToCanvas(int nextTableLvl)
