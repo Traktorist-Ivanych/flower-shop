@@ -47,6 +47,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (playerBusyness.IsPlayerFree)
             {
                 if (CanPlayerTakeWateringCanInHands())
@@ -189,6 +191,7 @@ namespace FlowerShop.Tables
             soundsHandler.StopPlayingReplenishWateringCanAudio();
             wateringCan.ReplenishWateringCan();
             UseBreakableTable();
+            selectedTableEffect.TryToRecalculateEffect();
             
             Save();
         }

@@ -38,6 +38,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (CanPlayerThrowOutPotContent())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(ThrowOutPotContent);

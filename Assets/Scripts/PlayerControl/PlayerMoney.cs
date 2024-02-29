@@ -7,6 +7,7 @@ namespace PlayerControl
 {
     public class PlayerMoney : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly MoneyChangeEffectsController moneyChangeEffectsController;
         [Inject] private readonly PlayerControlSettings playerControlSettings;
         [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
         [field: SerializeField] public int CurrentPlayerMoney { get; private set; }
@@ -21,6 +22,8 @@ namespace PlayerControl
         {
             CurrentPlayerMoney += moneyAmount;
             UpdatePlayerMoneyOnCanvas();
+            
+            moneyChangeEffectsController.DisplayEffect(Color.green, "+" + moneyAmount);
 
             Save();
         }
@@ -29,7 +32,9 @@ namespace PlayerControl
         {
             CurrentPlayerMoney -= moneyAmount;
             UpdatePlayerMoneyOnCanvas();
-
+            
+            moneyChangeEffectsController.DisplayEffect(Color.red, "-" + moneyAmount);
+            
             Save();
         }
 

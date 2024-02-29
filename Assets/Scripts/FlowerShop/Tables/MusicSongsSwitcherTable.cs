@@ -39,6 +39,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (CanPlayerUseMusicSongsSwitcherTable())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(
@@ -96,7 +98,6 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
             musicSongsSwitcherTableAnimator.SetTrigger(Switch);
-            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         private void StopPlayingMusicAudioSource()
@@ -119,6 +120,7 @@ namespace FlowerShop.Tables
         private void SetPlayerFree()
         {
             playerBusyness.SetPlayerFree();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
     }
 }

@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
+using PlayerControl;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -16,6 +18,8 @@ namespace FlowerShop.Tables
     public class SoilPreparationTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly SoundsHandler soundsHandler;
         [Inject] private readonly TablesSettings tablesSettings;
     
@@ -54,6 +58,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (playerBusyness.IsPlayerFree)
             {
                 if (CanPlayerStartSoilPreparation())
@@ -138,7 +144,8 @@ namespace FlowerShop.Tables
                 potToSoilPreparation = currentPot;
 
                 return potToSoilPreparation.GrowingRoom == growingRoom && 
-                       !potToSoilPreparation.IsSoilInsidePot;
+                       !potToSoilPreparation.IsSoilInsidePot &&
+                       playerMoney.CurrentPlayerMoney >= flowersSettings.SoilPrice;
             }
 
             return false;
@@ -157,6 +164,8 @@ namespace FlowerShop.Tables
             soundsHandler.StopPlayingSoilPreparationAudio();
             
             potToSoilPreparation.FillPotWithSoil();
+            playerMoney.TakePlayerMoney(flowersSettings.SoilPrice);
+            soundsHandler.PlayTakeMoneyAudio();
             potToSoilPreparation.TakeInPlayerHandsAndSetPlayerFree();
             UseBreakableTable();
             

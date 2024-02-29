@@ -48,6 +48,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (CanPlayerPutFlowerOnTable())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);

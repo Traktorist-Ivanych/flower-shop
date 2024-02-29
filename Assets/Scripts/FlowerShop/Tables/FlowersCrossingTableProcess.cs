@@ -98,6 +98,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (!playerBusyness.IsPlayerFree || IsSeedCrossing) return;
             
             if (CanPlayerStartFlowersCrossing())
@@ -253,6 +255,7 @@ namespace FlowerShop.Tables
             playerBusyness.SetPlayerFree();
             isFlowerReadyForCrossing = false;
             tableObjectsRotation.StartObjectsRotation();
+            selectedTableEffect.ActivateEffectWithDelay();
             StartFlowersCrossingProcess();
         }
 

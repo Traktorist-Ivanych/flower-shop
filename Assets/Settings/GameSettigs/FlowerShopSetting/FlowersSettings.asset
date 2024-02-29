@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193023b51b96419d9057f9ff38315445, type: 3}
   m_Name: FlowersSettings
   m_EditorClassIdentifier: 
+  <SoilPrice>k__BackingField: 150
+  <FirstLvlFlowersPrice>k__BackingField: 50
   <CrossingFlowerMinLvl>k__BackingField: 2
   <MaxFlowerGrowingLvl>k__BackingField: 3
   <PrimaryFlowerGrowingLvl>k__BackingField: 0

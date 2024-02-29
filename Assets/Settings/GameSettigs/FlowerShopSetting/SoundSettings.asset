@@ -15,10 +15,10 @@ MonoBehaviour:
   <VolumeOnStartPlaying>k__BackingField: 0
   <IncreasingVolumeTime>k__BackingField: 0.5
   <DecreasingVolumeTime>k__BackingField: 0.75
-  <MaxWateringTablesSoundVolume>k__BackingField: 0.55
-  <MaxSoilPreparationSoundVolume>k__BackingField: 0.55
-  <MaxCrossingSoundVolume>k__BackingField: 0.55
+  <MaxWateringTablesSoundVolume>k__BackingField: 0.45
+  <MaxSoilPreparationSoundVolume>k__BackingField: 0.45
+  <MaxCrossingSoundVolume>k__BackingField: 0.35
   <MaxGrowingTableFansSoundVolume>k__BackingField: 0.2
   <MaxBrokenTableSoundVolume>k__BackingField: 0.4
-  <MaxCoffeeGrinderSoundVolume>k__BackingField: 0.6
+  <MaxCoffeeGrinderSoundVolume>k__BackingField: 0.5
   <MaxMusicSoundVolume>k__BackingField: 0.5

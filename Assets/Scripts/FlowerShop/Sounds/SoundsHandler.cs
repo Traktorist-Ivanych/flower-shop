@@ -19,6 +19,7 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioClip weedPlanted;
         [SerializeField] private AudioClip fertilizerTreat;
         [SerializeField] private AudioClip addMoney;
+        [SerializeField] private AudioClip takeMoney;
         [SerializeField] private AudioClip fillCoffeeCup;
         [SerializeField] private AudioClip automaticDoorOpenClose;
         
@@ -123,6 +124,11 @@ namespace FlowerShop.Sounds
         public void PlayAddMoneyAudio()
         {
             effectsSingleAudioSource.PlayOneShot(addMoney);
+        }
+        
+        public void PlayTakeMoneyAudio()
+        {
+            effectsSingleAudioSource.PlayOneShot(takeMoney);
         }
 
         public void StartPlayingCrossingSound()

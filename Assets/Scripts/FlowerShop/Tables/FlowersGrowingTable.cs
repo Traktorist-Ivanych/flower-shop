@@ -60,6 +60,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (playerBusyness.IsPlayerFree)
             {
                 if (CanPlayerPutPotOnTable())
@@ -97,7 +99,8 @@ namespace FlowerShop.Tables
         {
             return CanPlayerPutPotOnTable() || CanPlayerPourPotOnTable() || 
                    CanPlayerDeleteWeedInPot() || CanPlayerUseFertilizer() || 
-                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect();
+                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect() ||
+                   CanPlayerTakePotInHandsForSelectedEffect();
         }
 
         public override void UpgradeTableFinish()
@@ -259,6 +262,12 @@ namespace FlowerShop.Tables
         private void UseFertilizer()
         {
             StartCoroutine(fertilizer.PotTreating(potOnTable));
+        }
+
+        private bool CanPlayerTakePotInHandsForSelectedEffect()
+        {
+            return CanPlayerTakePotInHands() && 
+                   potOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl;
         }
 
         private bool CanPlayerTakePotInHands()

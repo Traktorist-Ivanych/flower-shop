@@ -39,6 +39,8 @@ namespace FlowerShop.Tables
         
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+            
             if (playerBusyness.IsPlayerFree)
             {
                 if (CanPlayerTakePotInHands())

@@ -110,6 +110,7 @@ namespace FlowerShop.PickableObjects
             soundsHandler.PlaySeedPlantedAudio();
             ShowSeed(flowerInfoForPlanting);
             PotObjects.PlaySeedPlantedEffects();
+            selectedTableEffect.TryToRecalculateEffect();
             
             Save();
         }

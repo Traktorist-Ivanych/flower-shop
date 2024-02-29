@@ -28,5 +28,10 @@ namespace PlayerControl
         
         [field: Header("Money")]
         [field: SerializeField] public int FirstAvailableMoney { get; private set; }
+        
+        [field: Header("Canvas Money Effect")]
+        [field: SerializeField] public float MoneyEffectMovingSpeed { get; private set; }
+        [field: SerializeField] public float MoneyEffectTimeDuration { get; private set; }
+        [field: SerializeField] public float MoneyEffectStartHidingTime { get; private set; }
     }
 }

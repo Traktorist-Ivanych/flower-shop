@@ -8,9 +8,11 @@ namespace FlowerShop.Flowers
         order = 7)]
     public class FlowersSettings : ScriptableObject
     {
+        [field: SerializeField] public int SoilPrice { get; private set; }
+        [field: SerializeField] public int FirstLvlFlowersPrice { get; private set; }
+        
         [field: Tooltip("Determines from what level (inclusive) flower can be crossed")]
         [field: SerializeField] public int CrossingFlowerMinLvl { get; private set; }
-        
         [field: SerializeField] public int MaxFlowerGrowingLvl { get; private set; }
         
         [field: Tooltip("Determines what level will be set when flower is planted")]

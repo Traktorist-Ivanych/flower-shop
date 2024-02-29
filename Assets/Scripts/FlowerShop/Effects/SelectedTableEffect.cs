@@ -8,9 +8,8 @@ namespace FlowerShop.Effects
 {
     public class SelectedTableEffect : MonoBehaviour
     {
+        [Inject] private readonly EffectsSettings effectsSettings;
         [Inject] private readonly PlayerBusyness playerBusyness;
-        
-        [SerializeField] private float maxTimeToActiveEffect;
         
         public delegate void SelectedTableCheck();
         public event SelectedTableCheck SelectedTableCheckEvent;
@@ -22,9 +21,6 @@ namespace FlowerShop.Effects
         
         private readonly CompositeDisposable startEffectCompositeDisposable = new();
         private readonly int fillCoeff = Shader.PropertyToID("_FillCoeff");
-        
-        [field: SerializeField] public Material EnvironmentMaterial { get; private set; }
-        [field: SerializeField] public Material EffectMaterial { get; private set; }
 
         private void Start()
         {
@@ -62,7 +58,7 @@ namespace FlowerShop.Effects
                 }
             }
             
-            EffectMaterial.SetFloat(fillCoeff, currentFillCoef);
+            effectsSettings.SelectableMaterial.SetFloat(fillCoeff, currentFillCoef);
         }
 
         public void ActivateEffectWithDelay()
@@ -73,7 +69,7 @@ namespace FlowerShop.Effects
             {
                 currentTimeToActiveEffect += Time.deltaTime;
 
-                if (currentTimeToActiveEffect >= maxTimeToActiveEffect)
+                if (currentTimeToActiveEffect >= effectsSettings.SelectedEffectDisplayingTimeDelay)
                 {
                     ResetCurrentTimeToActiveEffect();
                     isEffectActive = true;

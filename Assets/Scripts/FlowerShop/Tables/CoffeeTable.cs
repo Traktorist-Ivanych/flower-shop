@@ -35,6 +35,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (CanPlayerStartMakingCoffee())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(OpenCoffeeCanvas);

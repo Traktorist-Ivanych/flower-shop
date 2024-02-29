@@ -34,6 +34,8 @@ namespace FlowerShop.Tables
 
         public override void ExecuteClickableAbility()
         {
+            base.ExecuteClickableAbility();
+
             if (playerBusyness.IsPlayerFree)
             { 
                 if (CanPlayerPutPotOnTable())
@@ -49,7 +51,7 @@ namespace FlowerShop.Tables
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerPutPotOnTable();
+            return CanPlayerPutPotOnTable() || CanPlayerTakePotInHandsForSelectedEffect();
         }
 
         public void PlayCrossingFlowerEffects()
@@ -116,6 +118,11 @@ namespace FlowerShop.Tables
             flowersCrossingTableProcess.CheckCrossingAbility();
             
             Save();
+        }
+
+        private bool CanPlayerTakePotInHandsForSelectedEffect()
+        {
+            return CanPlayerTakePotInHands() && PotOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
         }
 
         private bool CanPlayerTakePotInHands()
