@@ -19,10 +19,10 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
-        [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly SoundsHandler soundsHandler;
 
@@ -321,6 +321,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             potForPlanting.PlantSeed(flowerInfoForPlanting);
+            flowersContainer.TryToAddCrossedFlowerInfo(flowerInfoForPlanting);
             ResetFlowerInfoForPlanting();
             isCrossingSeedReady = false;
             CheckCrossingAbility();

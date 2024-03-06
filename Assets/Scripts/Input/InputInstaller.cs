@@ -8,6 +8,7 @@ namespace Input
         [SerializeField] private CameraHandler cameraHandler;
         [SerializeField] private MainCameraMover mainCameraMover;
         [SerializeField] private MainCameraMovingSetting mainCameraMovingSetting;
+        [SerializeField] private PlayerInputActions playerInputActions;
         [SerializeField] private PlayerTapInput playerTapInput;
         [SerializeField] private PlayerTapSettings playerTapSettings;
         
@@ -16,6 +17,7 @@ namespace Input
             Container.Bind<CameraHandler>().FromInstance(cameraHandler).AsSingle().NonLazy();
             Container.Bind<MainCameraMover>().FromInstance(mainCameraMover).AsSingle().NonLazy();
             Container.Bind<MainCameraMovingSetting>().FromInstance(mainCameraMovingSetting).AsSingle().NonLazy();
+            Container.Bind<PlayerInputActions>().FromInstance(playerInputActions).AsSingle().NonLazy();
             Container.Bind<PlayerTapInput>().FromInstance(playerTapInput).AsSingle().NonLazy();
             Container.Bind<PlayerTapSettings>().FromInstance(playerTapSettings).AsSingle().NonLazy();
         }

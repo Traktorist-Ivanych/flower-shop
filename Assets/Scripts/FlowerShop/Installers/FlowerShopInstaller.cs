@@ -26,6 +26,8 @@ namespace FlowerShop.Installers
         [SerializeField] private CustomersObserver customersObserver;
         [Header("Canvas Liaisons")]
         [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
+        [SerializeField] private FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
+        [SerializeField] private FlowersCanvasLiaison flowersCanvasLiaison;
         [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Header("Repair And Upgrades")]
         [SerializeField] private RepairsAndUpgradesTable repairsAndUpgradesTable;
@@ -53,6 +55,8 @@ namespace FlowerShop.Installers
             Container.Bind<CustomersObserver>().FromInstance(customersObserver).AsSingle().NonLazy();
 
             Container.Bind<CoffeeCanvasLiaison>().FromInstance(coffeeCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<FlowerInfoCanvasLiaison>().FromInstance(flowerInfoCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<FlowersCanvasLiaison>().FromInstance(flowersCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
 
             Container.Bind<RepairsAndUpgradesTable>().FromInstance(repairsAndUpgradesTable).AsSingle().NonLazy();

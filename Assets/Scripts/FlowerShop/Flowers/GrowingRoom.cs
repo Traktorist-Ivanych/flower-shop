@@ -6,5 +6,6 @@ namespace FlowerShop.Flowers
     public class GrowingRoom : ScriptableObject
     {
         [field: SerializeField] public string RoomName { get; private set; }
+        [field: SerializeField] public Sprite RoomColorSprite { get; private set; }
     }
 }

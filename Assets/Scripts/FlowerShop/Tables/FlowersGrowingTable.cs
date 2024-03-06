@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
@@ -18,6 +20,7 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly PlayerAnimationEvents playerAnimationEvents;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
     
@@ -262,6 +265,13 @@ namespace FlowerShop.Tables
         private void UseFertilizer()
         {
             StartCoroutine(fertilizer.PotTreating(potOnTable));
+            StartCoroutine(TryDisableEffectsAfterTreating());
+        }
+
+        private IEnumerator TryDisableEffectsAfterTreating()
+        {
+            yield return new WaitForSeconds(fertilizersSetting.FertilizerTreatingTime + 0.1f);
+            TryDisableTableEffects();
         }
 
         private bool CanPlayerTakePotInHandsForSelectedEffect()

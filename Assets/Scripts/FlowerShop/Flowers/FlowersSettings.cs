@@ -20,5 +20,8 @@ namespace FlowerShop.Flowers
         [field: SerializeField] public FlowerName FlowerNameEmpty { get; private set; }
         [field: SerializeField] public FlowerInfo FlowerInfoEmpty { get; private set; }
         [field: SerializeField] public GrowingRoom GrowingRoomAny { get; private set; }
+        
+        [field: SerializeField] public Sprite UnknownFlower { get; private set; }
+        [field: SerializeField] public Sprite UnplayableFlower { get; private set; }
     }
 }

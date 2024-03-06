@@ -25,5 +25,6 @@ MonoBehaviour:
   - {fileID: 5790429726790902446, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
   - {fileID: -2263712594346928808, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
   - {fileID: -2422952173900419134, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
-  <FirstCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: db0735e95d6270542aac552e2c1db8f4, type: 2}
-  <SecondCrossingFlowerName>k__BackingField: {fileID: 11400000, guid: 794df34992e6d3d4a986eaf479a6c3b8, type: 2}
+  <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
+  <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 3f8558972f2f36b439d4c7d3a2d95731, type: 2}
+  <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: bb69310b4fc3f2a4caf569e772076b1c, type: 2}

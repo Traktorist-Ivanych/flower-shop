@@ -1,6 +1,7 @@
 ﻿using FlowerShop.Effects;
 using PlayerControl;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,21 +14,21 @@ namespace FlowerShop.RepairsAndUpgrades
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         
-        [HideInInspector, SerializeField] private Button canselButton;
+        [HideInInspector, SerializeField] private Button cancelButton;
 
         private void OnValidate()
         {
-            canselButton = GetComponent<Button>();
+            cancelButton = GetComponent<Button>();
         }
         
         private void OnEnable()
         {
-            canselButton.onClick.AddListener(OnUpgradeCancelButtonClick);
+            cancelButton.onClick.AddListener(OnUpgradeCancelButtonClick);
         }
 
         private void OnDisable()
         {
-            canselButton.onClick.RemoveListener(OnUpgradeCancelButtonClick);
+            cancelButton.onClick.RemoveListener(OnUpgradeCancelButtonClick);
         }
 
         private void OnUpgradeCancelButtonClick()

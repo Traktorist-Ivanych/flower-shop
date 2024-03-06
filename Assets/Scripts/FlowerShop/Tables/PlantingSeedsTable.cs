@@ -55,7 +55,7 @@ namespace FlowerShop.Tables
                 return plantingSeedPot.GrowingRoom == growingRoom &&
                        plantingSeedPot.IsSoilInsidePot &&
                        plantingSeedPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty &&
-                       playerMoney.CurrentPlayerMoney >= flowersSettings.PrimaryFlowerGrowingLvl;
+                       playerMoney.CurrentPlayerMoney >= flowersSettings.FirstLvlFlowersPrice;
             }
 
             return false;

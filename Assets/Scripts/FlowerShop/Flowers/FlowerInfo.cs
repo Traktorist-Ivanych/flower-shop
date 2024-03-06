@@ -17,10 +17,12 @@ namespace FlowerShop.Flowers
         [field: SerializeField] public int FlowerSellingPrice { get; private set; }
         [field: SerializeField] public Mesh FlowerSoilMesh { get; private set; }
         [SerializeField] private Mesh[] flowerLvlMeshes = new Mesh[4];
+        
     
         [field: Header("FlowerCrossingRecipe")]
-        [field: SerializeField] public FlowerName FirstCrossingFlowerName { get; private set; }
-        [field: SerializeField] public FlowerName SecondCrossingFlowerName { get; private set; }
+        [field: SerializeField] public string CrossingRecipeDescription { get; private set; }
+        [field: SerializeField] public FlowerInfo FirstCrossingFlowerInfo { get; private set; }
+        [field: SerializeField] public FlowerInfo SecondCrossingFlowerInfo { get; private set; }
 
         public Mesh GetFlowerLvlMesh(int flowerGrowingLvl)
         {
