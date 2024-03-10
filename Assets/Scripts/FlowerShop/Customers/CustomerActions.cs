@@ -1,6 +1,7 @@
 using DG.Tweening;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
+using FlowerShop.Tables.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -44,6 +45,27 @@ namespace FlowerShop.Customers
             customerSoilMeshFilter.mesh = customerFlowersSaleTable.SalableSoilMeshFilter.mesh;
             customerFlowerMeshFilter.mesh = customerFlowersSaleTable.SalableFlowerMeshFilter.mesh;
             customerFlowersSaleTable.SaleFlower();
+        }
+
+        public void ExecuteSpecialSale(ISpecialSaleTable specialSaleTable)
+        {
+            customerSoilTransform.SetPositionAndRotation(
+                position: specialSaleTable.TablePotTransform.position, 
+                rotation: specialSaleTable.TablePotTransform.rotation);
+
+            customerSoilTransform.DOMove(
+                endValue: customerHandsTransform.position,
+                duration: actionsWithTransformSettings.MovingPickableObjectTime);
+            
+            customerSoilTransform.DORotate(
+                endValue: customerHandsTransform.rotation.eulerAngles,
+                duration: actionsWithTransformSettings.MovingPickableObjectTime);
+            
+            customerSoilRenderer.enabled = true;
+            customerFlowerRenderer.enabled = true;
+            customerSoilMeshFilter.mesh = specialSaleTable.SoilMeshFilter.mesh;
+            customerFlowerMeshFilter.mesh = specialSaleTable.FlowerMeshFilter.mesh;
+            specialSaleTable.ExecuteSpecialSale();
         }
 
         public void ClearFlowerInHands()

@@ -19,6 +19,23 @@ namespace FlowerShop.Customers
         [field: SerializeField] public float MinSpawnTimeDelta { get; private set; }
         [field: SerializeField] public float MaxSpawnTime { get; private set; }
         [field: SerializeField] public float MaxSpawnTimeDelta { get; private set; }
+        [field: SerializeField] public float MinTimeBetweenSpawn { get; private set; }
+        
+        [field: Header("Complaints")]
+        [field: SerializeField] public float MinComplaintsTime { get; private set; }
+        [field: SerializeField] public float MaxComplaintsTime { get; private set; }
+        [field: SerializeField] public float ComplaintsHandleTime { get; private set; }
+        [field: SerializeField] public string[] ComplaintDescriptions { get; private set; }
+        
+        [field: Header("Vip")]
+        [field: SerializeField] public int FlowerSellingPriceMultiplier { get; private set; }
+        [field: SerializeField] public int MinFlowersInPlayerCollectionCount { get; private set; }
+        [field: SerializeField] public float MinVipTime { get; private set; }
+        [field: SerializeField] public float MinVipTimeDelta { get; private set; }
+        [field: SerializeField] public float MaxVipTime { get; private set; }
+        [field: SerializeField] public float MaxVipTimeDelta { get; private set; }
+        [field: SerializeField] public float VipHandleTime { get; private set; }
+        [field: SerializeField] public string[] VipDescriptions { get; private set; }
         
         [Header("Buying Flower")]
         [SerializeField] private AnimationCurve buyingFlowerCurve;

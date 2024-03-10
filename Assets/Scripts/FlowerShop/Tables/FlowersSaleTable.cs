@@ -45,7 +45,6 @@ namespace FlowerShop.Tables
         [field: SerializeField] public List<Transform> FinishWithFlowerPathPoints { get; private set; }
         
         public FlowerInfo FlowerInfoForSale { get; private set; }
-        public Transform TargetToLookAt => targetToLookAt;
         
         private void OnValidate()
         {

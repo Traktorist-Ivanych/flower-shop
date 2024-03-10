@@ -13,10 +13,11 @@ namespace FlowerShop.Flowers
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         
         [SerializeField] private List<FlowerInfo> allFlowersInfo;
+        [SerializeField] private List<FlowerInfo> firstLvlFlowerInfos;
 
         private Dictionary<string, FlowerInfo> crossingRecipes;
         
-        private readonly List<FlowerInfo> crossedFlowerInfos = new();
+        private readonly List<FlowerInfo> availableFlowerInfos = new();
         
         [field: SerializeField] public FlowerInfo EmptyFlowerInfo { get; private set; }
         [field: SerializeField] public string UniqueKey { get; private set; }
@@ -43,7 +44,7 @@ namespace FlowerShop.Flowers
         public void Save()
         {
             FlowersContainerForSaving flowersContainerForSaving =
-                new FlowersContainerForSaving(crossedFlowerInfos);
+                new FlowersContainerForSaving(availableFlowerInfos);
             
             SavesHandler.Save(UniqueKey, flowersContainerForSaving);
         }
@@ -53,29 +54,39 @@ namespace FlowerShop.Flowers
             FlowersContainerForSaving flowersContainerForSaving =
                 SavesHandler.Load<FlowersContainerForSaving>(UniqueKey);
 
+            foreach (FlowerInfo firstLvlFlowerInfo in firstLvlFlowerInfos)
+            {
+                availableFlowerInfos.Add(firstLvlFlowerInfo);
+            }
+            
             if (flowersContainerForSaving.IsValuesSaved)
             {
                 foreach (string uniqueKeys in flowersContainerForSaving.CrossedFlowerInfoUniqueKeys)
                 {
-                    crossedFlowerInfos.Add(referencesForLoad.GetReference<FlowerInfo>(uniqueKeys));
+                    availableFlowerInfos.Add(referencesForLoad.GetReference<FlowerInfo>(uniqueKeys));
                 }
             }
         }
 
-        public void TryToAddCrossedFlowerInfo(FlowerInfo crossedFlowerInfo)
+        public void TryToAddAvailableFlowerInfo(FlowerInfo crossedFlowerInfo)
         {
-            if (!crossedFlowerInfos.Contains(crossedFlowerInfo))
+            if (!availableFlowerInfos.Contains(crossedFlowerInfo))
             {
-                crossedFlowerInfos.Add(crossedFlowerInfo);
+                availableFlowerInfos.Add(crossedFlowerInfo);
                 flowersCanvasLiaison.ShowCrossedFlowerInfo(crossedFlowerInfo);
 
                 Save();
             }
         }
 
-        public bool IsFlowerInfoCrossed(FlowerInfo flowerInfo)
+        public FlowerInfo GetRandomAvailableFlowerInfo()
         {
-            return crossedFlowerInfos.Contains(flowerInfo);
+            return availableFlowerInfos[Random.Range(0, availableFlowerInfos.Count)];
+        }
+
+        public bool IsFlowerInfoAvailable(FlowerInfo flowerInfo)
+        {
+            return availableFlowerInfos.Contains(flowerInfo);
         }
 
         public FlowerInfo GetFlowerFromCrossingRecipe(FlowerName firstFlowerName, FlowerName secondFlowerName)

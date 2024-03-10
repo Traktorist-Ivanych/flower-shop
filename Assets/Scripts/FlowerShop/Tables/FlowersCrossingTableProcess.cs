@@ -321,7 +321,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             potForPlanting.PlantSeed(flowerInfoForPlanting);
-            flowersContainer.TryToAddCrossedFlowerInfo(flowerInfoForPlanting);
+            flowersContainer.TryToAddAvailableFlowerInfo(flowerInfoForPlanting);
             ResetFlowerInfoForPlanting();
             isCrossingSeedReady = false;
             CheckCrossingAbility();

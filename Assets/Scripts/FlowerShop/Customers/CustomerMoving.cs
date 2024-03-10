@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FlowerShop.FlowersSale;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
+using FlowerShop.Tables.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -30,10 +31,12 @@ namespace FlowerShop.Customers
         private event OnArrive OnArriveEvent;
         
         private FlowersSaleTable customerFlowersSaleTable;
+        private ISpecialSaleTable specialSaleTable;
         private List<Transform> currentPathPoints;
         private Transform currentDestinationTarget;
         private NavMeshPath tempPath;
         private int currentPathPointIndex;
+        private bool isCustomerMoveForSpecialSale;
 
         private void OnValidate()
         {
@@ -55,6 +58,14 @@ namespace FlowerShop.Customers
             if (navAgent.isStopped) return;
 
             TrySetDestinationOrRotateCustomer();
+        }
+
+        public void SpawnCustomerForSpecialSale(Transform startTransform, List<Transform> pathPoints, 
+            ISpecialSaleTable targetSpecialSaleTable)
+        {
+            specialSaleTable = targetSpecialSaleTable;
+            isCustomerMoveForSpecialSale = true;
+            SpawnCustomer(startTransform, pathPoints);
         }
         
         public void SpawnCustomer(Transform startTransform, List<Transform> pathPoints)
@@ -145,28 +156,38 @@ namespace FlowerShop.Customers
 
         private void LookAroundEndAnimationEvent()
         {
-            FlowersSaleTable currentFlowersSaleTable = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
-
-            if (customerFlowersSaleTable)
+            if (isCustomerMoveForSpecialSale)
             {
-                flowersSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowersSaleTable);
-            }
-            
-            customerFlowersSaleTable = currentFlowersSaleTable;
-
-            if (customerFlowersSaleTable)
-            {
-                currentPathPoints = customerFlowersSaleTable.ToFlowerPathPoints;
+                currentPathPoints = specialSaleTable.ToFlowerPathPoints;
                 currentPathPointIndex = 0;
                 SetDestination(currentPathPoints[currentPathPointIndex]);
                 SetOnArriveEvent(PlayThinkAnimation);
             }
             else
             {
-                currentPathPoints = customersSpawner.GetFinishPathPoints();
-                currentPathPointIndex = 0;
-                SetDestination(currentPathPoints[currentPathPointIndex]);
-                SetOnArriveEvent(ResetCustomer);
+                FlowersSaleTable currentFlowersSaleTable = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
+
+                if (customerFlowersSaleTable)
+                {
+                    flowersSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowersSaleTable);
+                }
+            
+                customerFlowersSaleTable = currentFlowersSaleTable;
+
+                if (customerFlowersSaleTable)
+                {
+                    currentPathPoints = customerFlowersSaleTable.ToFlowerPathPoints;
+                    currentPathPointIndex = 0;
+                    SetDestination(currentPathPoints[currentPathPointIndex]);
+                    SetOnArriveEvent(PlayThinkAnimation);
+                }
+                else
+                {
+                    currentPathPoints = customersSpawner.GetFinishPathPoints();
+                    currentPathPointIndex = 0;
+                    SetDestination(currentPathPoints[currentPathPointIndex]);
+                    SetOnArriveEvent(ResetCustomer);
+                }
             }
         }
         
@@ -177,9 +198,16 @@ namespace FlowerShop.Customers
 
         private void CustomerThinkEndAnimationEvent()
         {
-            animator.SetTrigger(customersSettings.IsCustomerBuyingFlower()
-                ? CustomerAnimatorKeys.Yes
-                : CustomerAnimatorKeys.No);
+            if (isCustomerMoveForSpecialSale)
+            {
+                animator.SetTrigger(CustomerAnimatorKeys.Yes);
+            }
+            else
+            {
+                animator.SetTrigger(customersSettings.IsCustomerBuyingFlower()
+                    ? CustomerAnimatorKeys.Yes
+                    : CustomerAnimatorKeys.No);
+            }
         }
 
         private void CustomerThinkNoEndAnimationEvent()
@@ -193,15 +221,26 @@ namespace FlowerShop.Customers
 
         private void CustomerThinkYesEndAnimationEvent()
         {
-            customerActions.BuyFlower(customerFlowersSaleTable);
-            StartCoroutine(SetBuyerEndTransformWithFlower());
+            if (isCustomerMoveForSpecialSale)
+            {
+                isCustomerMoveForSpecialSale = false;
+                customerActions.ExecuteSpecialSale(specialSaleTable);
+                StartCoroutine(
+                    SetBuyerEndTransformWithFlower(specialSaleTable.FinishWithFlowerPathPoints));
+            }
+            else
+            {
+                customerActions.BuyFlower(customerFlowersSaleTable);
+                StartCoroutine(
+                    SetBuyerEndTransformWithFlower(customerFlowersSaleTable.FinishWithFlowerPathPoints));
+            }
         }
 
-        private IEnumerator SetBuyerEndTransformWithFlower()
+        private IEnumerator SetBuyerEndTransformWithFlower(List<Transform> finishPathPoints)
         {
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
-            currentPathPoints = customerFlowersSaleTable.FinishWithFlowerPathPoints;
+            currentPathPoints = finishPathPoints;
             currentPathPointIndex = 0;
             SetDestination(currentPathPoints[currentPathPointIndex]);
             SetOnArriveEvent(ResetCustomer);

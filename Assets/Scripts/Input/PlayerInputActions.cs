@@ -21,12 +21,12 @@ namespace Input
         {
             inputControls.Player.Enable();
             inputControls.Player.Tap.started += TapInput;
-            inputControls.Player.UIButton.started += EnableCanvasControlMode;
+            inputControls.Player.UIButton.started += OnUiButtonClick;
         }
 
         private void OnDisable()
         {
-            inputControls.Player.UIButton.started -= EnableCanvasControlMode;
+            inputControls.Player.UIButton.started -= OnUiButtonClick;
             inputControls.Player.Tap.started -= TapInput;
             inputControls.Player.Disable();
         }
@@ -51,10 +51,15 @@ namespace Input
         {
             isCanvasControlEnable = false;
         }
-
-        private void EnableCanvasControlMode(InputAction.CallbackContext context)
+        
+        public void EnableCanvasControlMode()
         {
             isCanvasControlEnable = true;
+        }
+
+        private void OnUiButtonClick(InputAction.CallbackContext context)
+        {
+            EnableCanvasControlMode();
         }
 
         private void TapInput(InputAction.CallbackContext context)

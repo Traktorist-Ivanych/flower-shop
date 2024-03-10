@@ -38,7 +38,7 @@ namespace FlowerShop.Flowers
         {
             flowerInfo = targetFlowerInfo;
             
-            if (flowerInfo.FlowerLvl == 1 || flowersContainer.IsFlowerInfoCrossed(flowerInfo))
+            if (flowerInfo.FlowerLvl == 1 || flowersContainer.IsFlowerInfoAvailable(flowerInfo))
             {
                 isInteractive = true;
                 flowerImage.sprite = flowerInfo.FlowerSprite;

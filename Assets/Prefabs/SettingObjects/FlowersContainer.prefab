@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a34a4505553e784693e419183c17f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EmptyFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
   allFlowersInfo:
   - {fileID: 11400000, guid: 5fde77ac81bfafa4186460b8afe4d085, type: 2}
   - {fileID: 11400000, guid: ef4433b348803be40ac5c66cb4ee7a70, type: 2}
@@ -71,3 +70,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ec852fda13f40e438f618619f1c4f2f, type: 2}
   - {fileID: 11400000, guid: 70900069b0603bc4e90c725e9ecfcc5c, type: 2}
   - {fileID: 11400000, guid: 44f2d2e1853e7db47a6c8976eca75d1b, type: 2}
+  firstLvlFlowerInfos:
+  - {fileID: 11400000, guid: 5fde77ac81bfafa4186460b8afe4d085, type: 2}
+  - {fileID: 11400000, guid: ef4433b348803be40ac5c66cb4ee7a70, type: 2}
+  - {fileID: 11400000, guid: dab2506e4ef7d974291dc0fce71098d4, type: 2}
+  - {fileID: 11400000, guid: a87e93ce45366a94f94c55cc3c51b1bc, type: 2}
+  <EmptyFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
+  <UniqueKey>k__BackingField: 0503202419211

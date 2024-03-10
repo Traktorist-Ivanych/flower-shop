@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
+using FlowerShop.Tables.Interfaces;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -20,12 +22,15 @@ namespace FlowerShop.Customers
         [SerializeField] private List<Transform> rightFinishPathPoints;
 
         private readonly List<CustomerMoving> customersMoving = new();
+        private readonly List<ISpecialSaleTable> specialSaleTablesForExecuting = new();
         private float minSpawnTime;
         private float maxSpawnTime;
         private float currentSpawnTime;
+        private float timeBetweenSpawnForSpecialSales;
         private int pathIndexes;
         private int nextLookAroundPathPointsIndex;
         private int finishPathPointsIndex;
+        private bool canCustomerBeSpawnForSpecialSale;
 
         [field: SerializeField] public string UniqueKey { get; private set; }
 
@@ -46,6 +51,16 @@ namespace FlowerShop.Customers
 
         private void Update()
         {
+            if (!canCustomerBeSpawnForSpecialSale)
+            {
+                timeBetweenSpawnForSpecialSales += Time.deltaTime;
+                if (timeBetweenSpawnForSpecialSales >= customersSettings.MinTimeBetweenSpawn)
+                {
+                    canCustomerBeSpawnForSpecialSale = true;
+                    timeBetweenSpawnForSpecialSales = 0;
+                }
+            }
+            
             if (currentSpawnTime > 0)
             {
                 currentSpawnTime -= Time.deltaTime;
@@ -54,6 +69,14 @@ namespace FlowerShop.Customers
             {
                 CalculateCurrentSpawnTime();
                 TryToSpawnCustomer();
+            }
+
+            if (specialSaleTablesForExecuting.Count > 0)
+            {
+                if (currentSpawnTime > customersSettings.MinTimeBetweenSpawn && canCustomerBeSpawnForSpecialSale)
+                {
+                    TryToSpawnCustomerForSpecialSale();
+                }
             }
         }
 
@@ -68,6 +91,11 @@ namespace FlowerShop.Customers
             {
                 customersMoving.Remove(customerMoving);
             }
+        }
+
+        public void AddSpecialSaleTable(ISpecialSaleTable specialSaleTable)
+        {
+            specialSaleTablesForExecuting.Add(specialSaleTable);
         }
 
         public List<Transform> GetFinishPathPoints()
@@ -129,6 +157,27 @@ namespace FlowerShop.Customers
                 
                 CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
                 customerMoving.SpawnCustomer(startCustomerTransform, enterShopPathPoints);
+
+                canCustomerBeSpawnForSpecialSale = false;
+                timeBetweenSpawnForSpecialSales = 0;
+            }
+        }
+
+        private void TryToSpawnCustomerForSpecialSale()
+        {
+            if (customersMoving.Count > 0)
+            {
+                Transform startCustomerTransform = spawnPathPoints[Random.Range(0, spawnPathPoints.Count)];
+                
+                CustomerMoving customerMoving = customersMoving[Random.Range(0, customersMoving.Count)];
+                customerMoving.SpawnCustomerForSpecialSale(
+                    startTransform: startCustomerTransform, 
+                    pathPoints: enterShopPathPoints, 
+                    targetSpecialSaleTable: specialSaleTablesForExecuting.Last());
+
+                specialSaleTablesForExecuting.Remove(specialSaleTablesForExecuting.Last());
+                canCustomerBeSpawnForSpecialSale = false;
+                timeBetweenSpawnForSpecialSales = 0;
             }
         }
     }

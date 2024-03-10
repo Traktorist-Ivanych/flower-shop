@@ -20,5 +20,15 @@ namespace FlowerShop.FlowersForCollection
         {
             return !flowerCollection.Contains(verifiableFlowerInfo);
         }
+
+        public FlowerInfo GetRandomFlowerInfoFromPlayerCollection()
+        {
+            return flowerCollection[Random.Range(0, flowerCollection.Count)];
+        }
+
+        public int FlowersInPlayerCollectionCount()
+        {
+            return flowerCollection.Count;
+        }
     }
 }

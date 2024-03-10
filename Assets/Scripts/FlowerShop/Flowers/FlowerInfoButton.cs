@@ -37,7 +37,7 @@ namespace FlowerShop.Flowers
         {
             if (flowerInfo.FlowerLvl > 1)
             {
-                if (flowersContainer.IsFlowerInfoCrossed(flowerInfo))
+                if (flowersContainer.IsFlowerInfoAvailable(flowerInfo))
                 {
                     SetIsCrossedTrue();
                 }

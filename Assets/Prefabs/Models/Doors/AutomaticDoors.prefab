@@ -74,7 +74,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  doorOpenTime: 0.7
+  doorOpenTime: 0.6
   automaticDoorLeft: {fileID: 4668782933476065347}
   automaticDoorRight: {fileID: 2762680866032236295}
   doorLeftOpen: {fileID: 9023533219589044076}

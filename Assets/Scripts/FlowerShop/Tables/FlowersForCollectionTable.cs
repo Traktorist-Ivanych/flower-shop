@@ -17,15 +17,15 @@ namespace FlowerShop.Tables
     /// </summary>
     public class FlowersForCollectionTable : Table, ISavableObject
     {
-        [Inject] private readonly ReferencesForLoad referencesForLoad;
-        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly FlowersForPlayerCollection flowersForCollection;
+        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
 
         [SerializeField] private Transform soilTablePosition;
         [SerializeField] private MeshRenderer soilMeshRenderer;
         [SerializeField] private MeshRenderer flowerMeshRenderer;
-        [SerializeField] private FlowersForPlayerCollection flowersForCollection;
 
         [HideInInspector, SerializeField] private Transform soilTransform;
         [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;

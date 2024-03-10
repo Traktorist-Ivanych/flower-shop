@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnvironmentSettings
   m_EditorClassIdentifier: 
   <ClosedDoorAngle>k__BackingField: 1
-  <MinDistanceToOpenAutomaticDoors>k__BackingField: 3.5
+  <MinDistanceToOpenAutomaticDoors>k__BackingField: 3.75

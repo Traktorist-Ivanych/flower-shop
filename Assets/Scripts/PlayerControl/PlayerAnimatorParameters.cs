@@ -24,5 +24,7 @@ namespace PlayerControl
         public const string LoadToHold = "LoadToHold";
         public const string LoadToHoldLittleObject = "LoadToHoldLittleObject";
         public const string WalkSpeed = "WalkSpeed";
+        public const string StartUsingComputer = "StartUsingComputer";
+        public const string StopUsingComputer = "StopUsingComputer";
     }
 }
