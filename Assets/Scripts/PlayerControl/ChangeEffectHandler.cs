@@ -2,7 +2,7 @@
 
 namespace PlayerControl
 {
-    public class MoneyChangeEffectsController : MonoBehaviour
+    public class ChangeEffectHandler : MonoBehaviour
     {
         [SerializeField] private MoneyChangeEffect[] moneyChangeEffects;
 

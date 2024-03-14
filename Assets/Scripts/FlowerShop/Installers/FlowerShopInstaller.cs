@@ -25,6 +25,7 @@ namespace FlowerShop.Installers
         [Header("Sale")]
         [SerializeField] private FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
         [SerializeField] private FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [SerializeField] private ShopRating shopRating;
         [Header("Customers")] 
         [SerializeField] private ComplaintsHandler complaintsHandler;
         [SerializeField] private CustomersSpawner customersSpawner;
@@ -36,6 +37,7 @@ namespace FlowerShop.Installers
         [SerializeField] private ComputerMainPageCanvasLiaison computerMainPageCanvas;
         [SerializeField] private FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
         [SerializeField] private FlowersCanvasLiaison flowersCanvasLiaison;
+        [SerializeField] private StatsCanvasLiaison statsCanvasLiaison;
         [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
         [SerializeField] private VipCanvasLiaison vipCanvasLiaison;
         [Header("Canvas Elements")]
@@ -62,6 +64,7 @@ namespace FlowerShop.Installers
 
             Container.Bind<FlowersForSaleCoeffCalculator>().FromInstance(flowersForSaleCoeffCalculator).AsSingle().NonLazy();
             Container.Bind<FlowersSaleTablesForCustomers>().FromInstance(flowersSaleTablesForCustomers).AsSingle().NonLazy();
+            Container.Bind<ShopRating>().FromInstance(shopRating).AsSingle().NonLazy();
 
             Container.Bind<ComplaintsHandler>().FromInstance(complaintsHandler).AsSingle().NonLazy();
             Container.Bind<CustomersSpawner>().FromInstance(customersSpawner).AsSingle().NonLazy();
@@ -73,6 +76,7 @@ namespace FlowerShop.Installers
             Container.Bind<ComputerMainPageCanvasLiaison>().FromInstance(computerMainPageCanvas).AsSingle().NonLazy();
             Container.Bind<FlowerInfoCanvasLiaison>().FromInstance(flowerInfoCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<FlowersCanvasLiaison>().FromInstance(flowersCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<StatsCanvasLiaison>().FromInstance(statsCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<VipCanvasLiaison>().FromInstance(vipCanvasLiaison).AsSingle().NonLazy();
             

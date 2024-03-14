@@ -8,6 +8,7 @@ namespace FlowerShop.Flowers
         order = 7)]
     public class FlowersSettings : ScriptableObject
     {
+        [field: SerializeField] public int MaxGradesCount { get; private set; }
         [field: SerializeField] public float AllUniqueFlowersCount { get; private set; }
         [field: SerializeField] public int SoilPrice { get; private set; }
         [field: SerializeField] public int FirstLvlFlowersPrice { get; private set; }

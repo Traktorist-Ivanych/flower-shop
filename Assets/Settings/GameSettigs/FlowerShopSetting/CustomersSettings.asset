@@ -17,14 +17,14 @@ MonoBehaviour:
   <AngelToStopRotation>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 6
   <NavAgentSpeed>k__BackingField: 6
-  <MinSpawnTime>k__BackingField: 45
-  <MinSpawnTimeDelta>k__BackingField: 35
-  <MaxSpawnTime>k__BackingField: 90
-  <MaxSpawnTimeDelta>k__BackingField: 70
+  <MinSpawnTime>k__BackingField: 30
+  <MinSpawnTimeDelta>k__BackingField: 15
+  <MaxSpawnTime>k__BackingField: 60
+  <MaxSpawnTimeDelta>k__BackingField: 30
   <MinTimeBetweenSpawn>k__BackingField: 5
-  <MinComplaintsTime>k__BackingField: 600
-  <MaxComplaintsTime>k__BackingField: 1200
-  <ComplaintsHandleTime>k__BackingField: 300
+  <MinComplaintsTime>k__BackingField: 1500
+  <MaxComplaintsTime>k__BackingField: 3000
+  <ComplaintsHandleTime>k__BackingField: 600
   <ComplaintDescriptions>k__BackingField:
   - "\u041A\u043B\u0438\u0435\u043D\u0442 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u043B
     \u0443 \u043D\u0430\u0441 \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A
@@ -56,11 +56,13 @@ MonoBehaviour:
     \u0442\u0430\u043A\u0438\u043C \u0436\u0435 \u043D\u043E\u0432\u044B\u043C."
   <FlowerSellingPriceMultiplier>k__BackingField: 3
   <MinFlowersInPlayerCollectionCount>k__BackingField: 4
-  <MinVipTime>k__BackingField: 1200
-  <MinVipTimeDelta>k__BackingField: 600
-  <MaxVipTime>k__BackingField: 1800
-  <MaxVipTimeDelta>k__BackingField: 900
-  <VipHandleTime>k__BackingField: 450
+  <AverageGradeInfluence>k__BackingField: 0.65
+  <FlowersInPlayerCollectionInfluence>k__BackingField: 0.35
+  <MinVipTime>k__BackingField: 1500
+  <MinVipTimeDelta>k__BackingField: 750
+  <MaxVipTime>k__BackingField: 3000
+  <MaxVipTimeDelta>k__BackingField: 1500
+  <VipHandleTime>k__BackingField: 600
   <VipDescriptions>k__BackingField:
   - "\u041A\u043B\u0438\u0435\u043D\u0442 \u0443\u0432\u0438\u0434\u0435\u043B \u043D\u0430
     \u043D\u0430\u0448\u0435\u043C \u0441\u0430\u0439\u0442\u0435 \u044D\u0442\u043E\u0442

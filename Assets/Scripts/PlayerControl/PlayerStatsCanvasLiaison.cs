@@ -15,12 +15,21 @@ namespace PlayerControl
         public string PlayerMoney { get; private set; }
         
         [Binding]
+        public string ShopRating { get; private set; }
+        
+        [Binding]
         public float CoffeeEffectIndicatorFillAmount { get; private set; }
 
         public void UpdatePlayerMoneyOnCanvas(string transmittedPlayerMoney)
         {
             PlayerMoney = transmittedPlayerMoney;
             OnPropertyChanged(nameof(PlayerMoney));
+        }
+
+        public void UpdateShopRating(string shopRating)
+        {
+            ShopRating = shopRating;
+            OnPropertyChanged(nameof(ShopRating));
         }
 
         public void UpdateCoffeeEffectIndicatorFillAmount(float fillAmountValue)

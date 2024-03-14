@@ -30,6 +30,8 @@ namespace FlowerShop.Customers
         [field: Header("Vip")]
         [field: SerializeField] public int FlowerSellingPriceMultiplier { get; private set; }
         [field: SerializeField] public int MinFlowersInPlayerCollectionCount { get; private set; }
+        [field: SerializeField] public float AverageGradeInfluence { get; private set; }
+        [field: SerializeField] public float FlowersInPlayerCollectionInfluence { get; private set; }
         [field: SerializeField] public float MinVipTime { get; private set; }
         [field: SerializeField] public float MinVipTimeDelta { get; private set; }
         [field: SerializeField] public float MaxVipTime { get; private set; }

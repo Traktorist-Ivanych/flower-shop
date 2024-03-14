@@ -1,5 +1,6 @@
 ﻿using FlowerShop.ComputerPages;
 using FlowerShop.Flowers;
+using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
 using Saves;
 using UnityEngine;
@@ -15,8 +16,10 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersContainer flowersContainer;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly ShopRating shopRating;
 
         private float currentComplaintHandleTime;
         private float currentComplaintTime;
@@ -68,6 +71,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         public void CompleteComplaint()
         {
             RemoveComplaint();
+            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
             
             Save();
         }
@@ -135,6 +139,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         private void FaultComplaint()
         {
             RemoveComplaint();
+            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MinShopGrade);
             
             Save();
         }

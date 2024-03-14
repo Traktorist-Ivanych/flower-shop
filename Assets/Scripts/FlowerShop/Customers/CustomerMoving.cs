@@ -19,7 +19,9 @@ namespace FlowerShop.Customers
         [Inject] private readonly CustomersObserver customersObserver;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CustomersSpawner customersSpawner;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [Inject] private readonly ShopRating shopRating;
 
         [SerializeField] private Transform waitingTransform;
 
@@ -183,6 +185,7 @@ namespace FlowerShop.Customers
                 }
                 else
                 {
+                    shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MinShopGrade);
                     currentPathPoints = customersSpawner.GetFinishPathPoints();
                     currentPathPointIndex = 0;
                     SetDestination(currentPathPoints[currentPathPointIndex]);

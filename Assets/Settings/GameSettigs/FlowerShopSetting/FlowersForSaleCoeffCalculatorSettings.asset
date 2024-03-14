@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AllFlowersForSale>k__BackingField: 10
   <UniqueFlowersForSale>k__BackingField: 5
+  <SaleCoeffForMaxGrade>k__BackingField: 0.4
+  <MinShopGrade>k__BackingField: 1
+  <MaxShopGrade>k__BackingField: 5

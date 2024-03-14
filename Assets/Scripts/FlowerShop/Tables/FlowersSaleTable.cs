@@ -24,6 +24,7 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly ShopRating shopRating;
         [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private MeshRenderer salableSoilRenderer;
@@ -78,6 +79,7 @@ namespace FlowerShop.Tables
             isFlowerOnSaleTable = false;
             salableSoilRenderer.enabled = false;
             salableFlowerRenderer.enabled = false;
+            shopRating.AddGrade(flowersForSaleCoeffCalculator.CalculateCurrentGrade());
             flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
             playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
             soundsHandler.PlayAddMoneyAudio();

@@ -1,6 +1,7 @@
 ﻿using FlowerShop.ComputerPages;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
+using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
 using Saves;
 using UnityEngine;
@@ -15,8 +16,10 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersForPlayerCollection flowersForPlayerCollection;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly ShopRating shopRating;
         [Inject] private readonly VipCanvasLiaison vipCanvasLiaison;
 
         private float currentVipOrderHandleTime;
@@ -73,6 +76,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         public void CompleteVipOrder()
         {
             RemoveVipOrder();
+            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
             
             Save();
         }
@@ -140,6 +144,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         private void FaultVipOrder()
         {
             RemoveVipOrder();
+            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MinShopGrade);
             
             Save();
         }
@@ -156,15 +161,16 @@ namespace FlowerShop.Customers.VipAndComplaints
 
         private void SetTimeToMakeVipOrder()
         {
-            float minTime = customersSettings.MinVipTime -
-                            customersSettings.MinVipTimeDelta *
-                            flowersForPlayerCollection.FlowersInPlayerCollectionCount() /
-                            flowersSettings.AllUniqueFlowersCount;
+            float currentCoeff = (float)shopRating.CurrentAverageGrade / 
+                                 flowersForSaleCoeffCalculatorSettings.MaxShopGrade *
+                                 customersSettings.AverageGradeInfluence
+                                 +
+                                 flowersForPlayerCollection.FlowersInPlayerCollectionCount() /
+                                 flowersSettings.AllUniqueFlowersCount *
+                                 customersSettings.FlowersInPlayerCollectionInfluence;
             
-            float maxTime = customersSettings.MaxVipTime -
-                            customersSettings.MaxVipTimeDelta *
-                            flowersForPlayerCollection.FlowersInPlayerCollectionCount() /
-                            flowersSettings.AllUniqueFlowersCount;
+            float minTime = customersSettings.MinVipTime - customersSettings.MinVipTimeDelta * currentCoeff;
+            float maxTime = customersSettings.MaxVipTime - customersSettings.MaxVipTimeDelta * currentCoeff;
             
             currentVipOrderTime = Random.Range(minTime, maxTime);
         }
