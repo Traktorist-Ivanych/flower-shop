@@ -36,7 +36,7 @@ namespace FlowerShop.Coffee
         {
             if (playerMoney.CurrentPlayerMoney - coffeeSettings.CoffeePrice >= 0)
             {
-                coffeeCanvasLiaison.CoffeeCanvas.enabled = false;
+                coffeeCanvasLiaison.DisableCanvas();
                 StartCoroutine(coffeeTable.MakeCoffeeProcess());
             }
         }

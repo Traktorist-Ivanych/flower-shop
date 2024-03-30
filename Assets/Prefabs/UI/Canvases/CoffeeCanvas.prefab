@@ -655,7 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee29a8f508c3cc843803705c857308d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CoffeeCanvas>k__BackingField: {fileID: 4386901444484881558}
+  coffeeCanvas: {fileID: 4386901444484881558}
 --- !u!1 &5461810562917081928
 GameObject:
   m_ObjectHideFlags: 0

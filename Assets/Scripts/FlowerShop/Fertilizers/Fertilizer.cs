@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.PickableObjects.Moving;
@@ -14,6 +15,7 @@ namespace FlowerShop.Fertilizers
     [RequireComponent(typeof(ObjectMoving))]
     public abstract class Fertilizer : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly PlayerBusyness playerBusyness;
@@ -123,6 +125,11 @@ namespace FlowerShop.Fertilizers
             fertilizersCanvasLiaison.UpdateFertilizersAvailableUsesNumber();
             playerBusyness.SetPlayerFree();
             soundsHandler.PlayFertilizerTreatAudio();
+            
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
             
             Save();
         }

@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using Input;
@@ -10,6 +11,7 @@ namespace FlowerShop.Tables.Abstract
 {
     public abstract class Table : MonoBehaviour, IClickableAbility, IPlayerAbility
     {
+        [Inject] private protected readonly EducationHandler educationHandler;
         [Inject] private protected readonly EffectsSettings effectsSettings;
         [Inject] private protected readonly PlayerMoving playerMoving;
         [Inject] private protected readonly PlayerAbilityExecutor playerAbilityExecutor;
@@ -39,7 +41,15 @@ namespace FlowerShop.Tables.Abstract
             selectedTableEffect.SelectedTableCheckEvent -= TryToShowSelectedTableEffect;
         }
         
-        public virtual void ExecuteClickableAbility()
+        public void ExecuteClickableAbility()
+        {
+            if (CanTableBeInteractedDuringEducation())
+            {
+                TryInteractWithTable();
+            }
+        }
+
+        private protected virtual void TryInteractWithTable()
         {
             StartClickableAbilityEffect();
         }
@@ -58,11 +68,16 @@ namespace FlowerShop.Tables.Abstract
             
             selectedTableEffect.DeactivateEffect();
             SetClickSuccessMaterial();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
         }
         
         private void TryToShowSelectedTableEffect()
         {
-            if (CanSelectedTableEffectBeDisplayed())
+            if (CanTableBeInteractedDuringEducation() && CanSelectedTableEffectBeDisplayed())
             {
                 SetSelectableMaterial();
             }
@@ -70,6 +85,12 @@ namespace FlowerShop.Tables.Abstract
             {
                 ResetMaterial();
             }
+        }
+
+        private bool CanTableBeInteractedDuringEducation()
+        {
+            return !educationHandler.IsEducationActive ||
+                   educationHandler.IsMonoBehaviourCurrentEducationStep(this);
         }
 
         private void StartClickableAbilityEffect()

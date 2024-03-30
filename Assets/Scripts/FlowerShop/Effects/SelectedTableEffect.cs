@@ -1,4 +1,3 @@
-using System;
 using PlayerControl;
 using UniRx;
 using UnityEngine;
@@ -51,7 +50,7 @@ namespace FlowerShop.Effects
             }
             else
             {
-                if (currentFillCoef >= 0)
+                if (currentFillCoef > 0)
                 {
                     isValueIncrease = false;
                     currentFillCoef -= Time.deltaTime;
@@ -71,9 +70,13 @@ namespace FlowerShop.Effects
 
                 if (currentTimeToActiveEffect >= effectsSettings.SelectedEffectDisplayingTimeDelay)
                 {
+                    if (!isEffectActive)
+                    {
+                        isEffectActive = true;
+                        SelectedTableCheckEvent?.Invoke();
+                    }
+                    
                     ResetCurrentTimeToActiveEffect();
-                    isEffectActive = true;
-                    SelectedTableCheckEvent?.Invoke();
                     startEffectCompositeDisposable.Clear();
                 }
             }).AddTo(startEffectCompositeDisposable);
@@ -85,6 +88,14 @@ namespace FlowerShop.Effects
             SelectedTableCheckEvent?.Invoke();
             ResetCurrentTimeToActiveEffect();
             startEffectCompositeDisposable.Clear();
+        }
+        
+        public void ActivateEffectWithoutDelayAtFirst()
+        {
+            currentFillCoef = 0;
+            isValueIncrease = true;
+            
+            ActivateEffectWithoutDelay();
         }
 
         public void TryToRecalculateEffect()

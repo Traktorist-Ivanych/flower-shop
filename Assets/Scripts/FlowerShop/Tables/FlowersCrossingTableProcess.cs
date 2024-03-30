@@ -17,14 +17,14 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(TableObjectsRotation))]
     public class FlowersCrossingTableProcess : UpgradableBreakableTable, ISavableObject
     {
-        [Inject] private readonly ReferencesForLoad referencesForLoad;
+        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersSettings flowersSettings;
-        [Inject] private readonly TablesSettings tablesSettings;
-        [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly TablesSettings tablesSettings;
 
         [SerializeField] private Transform tablePotTransform;
     
@@ -96,9 +96,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (!playerBusyness.IsPlayerFree || IsSeedCrossing) return;
             
@@ -257,6 +257,8 @@ namespace FlowerShop.Tables
             tableObjectsRotation.StartObjectsRotation();
             selectedTableEffect.ActivateEffectWithDelay();
             StartFlowersCrossingProcess();
+            
+            educationHandler.TryBrokenSoilPreparationTableDuringEducation();
         }
 
         private void StartFlowersCrossingProcess()
@@ -325,6 +327,7 @@ namespace FlowerShop.Tables
             ResetFlowerInfoForPlanting();
             isCrossingSeedReady = false;
             CheckCrossingAbility();
+            educationHandler.TrySetNextStepByPlantingCrossedSeed();
             
             Save();
 
@@ -337,8 +340,6 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.CrossingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.CrossingTableMaxQuantity * (tableLvl + 1));
-            
-            Save();
         }
 
         private void UpgradeCrossingTableObjects()

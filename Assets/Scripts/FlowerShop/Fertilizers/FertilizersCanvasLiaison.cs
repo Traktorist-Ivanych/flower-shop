@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Input;
 using UnityEngine;
 using UnityWeld.Binding;
 using Zenject;
@@ -9,15 +10,15 @@ namespace FlowerShop.Fertilizers
     public class FertilizersCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
         [Inject] private readonly FertilizersSetting fertilizersSetting;
+        [Inject] private readonly PlayerInputActions playerInputActions;
         
         [SerializeField] private GrowthAccelerator growthAccelerator;
         [SerializeField] private GrowingLvlIncreaser growingLvlIncreaser;
         [SerializeField] private GrowerToMaxLvl growerToMaxLvl;
         [SerializeField] private GameObject fertilizerInfoPanel;
+        [SerializeField] private Canvas fertilizersCanvas;
         
         public event PropertyChangedEventHandler PropertyChanged;
-        
-        [field: SerializeField] public Canvas FertilizersCanvas { get; private set; }
 
         [Binding]
         public int GrowthAcceleratorAvailableUsesNumber => growthAccelerator.AvailableUsesNumber;
@@ -50,6 +51,18 @@ namespace FlowerShop.Fertilizers
             FertilizersPriceDescription =
                 "Цена " + fertilizersSetting.IncreaseFertilizerAmount + " ед. каждого удобрения";
             OnPropertyChanged(nameof(FertilizersPriceDescription));
+        }
+
+        public void EnableCanvas()
+        {
+            playerInputActions.EnableCanvasControlMode();
+            fertilizersCanvas.enabled = true;
+        }
+        
+        public void DisableCanvas()
+        {
+            playerInputActions.DisableCanvasControlMode();
+            fertilizersCanvas.enabled = false;
         }
 
         public void UpdateFertilizersAvailableUsesNumber()

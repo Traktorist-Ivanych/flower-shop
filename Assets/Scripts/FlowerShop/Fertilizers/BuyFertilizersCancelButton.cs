@@ -32,7 +32,7 @@ namespace FlowerShop.Fertilizers
 
         private void OnUpgradeCancelButtonClick()
         {
-            fertilizersCanvasLiaison.FertilizersCanvas.enabled = false;
+            fertilizersCanvasLiaison.DisableCanvas();
             playerBusyness.SetPlayerFree();
             selectedTableEffect.ActivateEffectWithDelay();
         }

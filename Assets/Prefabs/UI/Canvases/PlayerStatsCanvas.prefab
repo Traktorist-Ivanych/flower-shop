@@ -1483,6 +1483,8 @@ GameObject:
   - component: {fileID: 1523117686302688142}
   - component: {fileID: 6018043370058423398}
   - component: {fileID: 5895586710413974028}
+  - component: {fileID: 2702045601873703699}
+  - component: {fileID: 4143009028457923668}
   m_Layer: 0
   m_Name: FlowersCanvasButtonPanel
   m_TagString: Untagged
@@ -1616,6 +1618,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Keyboard>/space
+--- !u!114 &2702045601873703699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5045496076926541269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfa68a38a74a738ae8c484ca7b4d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowerButton: {fileID: 6018043370058423398}
+--- !u!114 &4143009028457923668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5045496076926541269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81fbff9eb394c3f8e29204f63fc6972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiButton: {fileID: 2702045601873703699}
 --- !u!1 &5065820765744428526
 GameObject:
   m_ObjectHideFlags: 0

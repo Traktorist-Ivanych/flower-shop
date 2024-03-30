@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fe6c905fd16eb4ebc0ff8643495100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UpgradeCanvas>k__BackingField: {fileID: 400519873931438182}
+  upgradeCanvas: {fileID: 400519873931438182}
 --- !u!1 &1843718793573689937
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba943a115c2b400ca35d9d9e1c22e7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canselButton: {fileID: 5568953513640906923}
+  cancelButton: {fileID: 5568953513640906923}
 --- !u!1 &5848892157067493060
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using FlowerShop.PickableObjects;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
+using Input;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
@@ -14,6 +15,7 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly PlayerInputActions playerInputActions;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly SoundsHandler soundsHandler;
 
@@ -21,10 +23,10 @@ namespace FlowerShop.Tables
         [SerializeField] private Canvas seedsCanvas;
 
         private Pot plantingSeedPot;
-        
-        public override void ExecuteClickableAbility()
+
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (CanPlayerPlantSeed())
             {
@@ -67,6 +69,7 @@ namespace FlowerShop.Tables
             
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             
+            playerInputActions.EnableCanvasControlMode();
             seedsCanvas.enabled = true;
         }
     }

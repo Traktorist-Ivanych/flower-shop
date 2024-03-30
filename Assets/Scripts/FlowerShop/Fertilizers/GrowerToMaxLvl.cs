@@ -1,6 +1,4 @@
-﻿using FlowerShop.PickableObjects;
-
-namespace FlowerShop.Fertilizers
+﻿namespace FlowerShop.Fertilizers
 {
     public class GrowerToMaxLvl : Fertilizer
     {

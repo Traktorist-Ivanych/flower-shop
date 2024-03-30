@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace FlowerShop.RepairsAndUpgrades
     [RequireComponent(typeof(Button))]
     public class UpgradeButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
@@ -35,7 +37,12 @@ namespace FlowerShop.RepairsAndUpgrades
             if (upgradeCanvasLiaison.PriceInt <= playerMoney.CurrentPlayerMoney)
             {
                 StartCoroutine(repairingAndUpgradingHammer.ImproveTable());
-                upgradeCanvasLiaison.UpgradeCanvas.enabled = false;
+                upgradeCanvasLiaison.DisableCanvas();
+
+                if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+                {
+                    educationHandler.CompleteEducationStep();
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
-﻿using FlowerShop.Effects;
+﻿using FlowerShop.Education;
+using FlowerShop.Effects;
 using PlayerControl;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -10,6 +10,7 @@ namespace FlowerShop.RepairsAndUpgrades
     [RequireComponent(typeof(Button))]
     public class UpgradeCancelButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
@@ -33,9 +34,12 @@ namespace FlowerShop.RepairsAndUpgrades
 
         private void OnUpgradeCancelButtonClick()
         {
-            upgradeCanvasLiaison.UpgradeCanvas.enabled = false;
-            playerBusyness.SetPlayerFree();
-            selectedTableEffect.ActivateEffectWithoutDelay();
+            if (!educationHandler.IsEducationActive)
+            {
+                upgradeCanvasLiaison.DisableCanvas();
+                playerBusyness.SetPlayerFree();
+                selectedTableEffect.ActivateEffectWithoutDelay();
+            }
         }
     }
 }

@@ -52,9 +52,9 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             {
@@ -141,7 +141,7 @@ namespace FlowerShop.Tables
 
         private void ShowFertilizerCanvas()
         {
-            fertilizersCanvasLiaison.FertilizersCanvas.enabled = true;
+            fertilizersCanvasLiaison.EnableCanvas();
         }
 
         private bool CanPlayerPutFertilizerOnTable()

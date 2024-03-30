@@ -15,10 +15,10 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerInputActions playerInputActions;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly VipOrdersHandler vipOrdersHandler;
-        
-        public override void ExecuteClickableAbility()
+
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (CanPlayerUseComputer())
             {

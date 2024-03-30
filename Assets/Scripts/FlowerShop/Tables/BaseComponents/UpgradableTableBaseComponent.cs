@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using PlayerControl;
@@ -9,6 +10,7 @@ namespace FlowerShop.Tables.BaseComponents
     [RequireComponent(typeof(IUpgradableTable))]
     public class UpgradableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
@@ -49,6 +51,11 @@ namespace FlowerShop.Tables.BaseComponents
         public void FinishUpgradeTableProcessEffects()
         {
             UpgradeTableSuccessPS.Play();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
         }
 
         public void SetNextLvlMesh(int nextTableLvl)

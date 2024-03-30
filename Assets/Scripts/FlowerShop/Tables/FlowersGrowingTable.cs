@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
-using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
 using FlowerShop.Tables.Helpers;
 using FlowerShop.Weeds;
@@ -53,7 +51,8 @@ namespace FlowerShop.Tables
 
         private void Start()
         {
-            if (potOnTable && potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+            if (isPotOnTable && potOnTable &&
+                potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
             {
                 flowersGrowingTableEffects.EnableEffects();
             }
@@ -61,9 +60,9 @@ namespace FlowerShop.Tables
             breakableTableBaseComponent.CheckIfTableBroken();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             {
@@ -142,7 +141,7 @@ namespace FlowerShop.Tables
                 }
                 
                 potOnTable = referencesForLoad.GetReference<Pot>(flowersGrowingTableForLoading.PotUniqueKey);
-
+                Debug.Log(potOnTable + " - " + this);
                 if (potOnTable != null)
                 {
                     potOnTable.LoadOnGrowingTable(tablePotTransform, tableLvl);
@@ -164,7 +163,7 @@ namespace FlowerShop.Tables
         {
             string potOnTableUniqueKey = "Empty";
 
-            if (potOnTable)
+            if (isPotOnTable && potOnTable)
             {
                 potOnTableUniqueKey = potOnTable.UniqueKey;
             }
@@ -302,8 +301,6 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
-            
-            Save();
         }
 
         private void TryDisableTableEffects()

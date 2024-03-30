@@ -32,7 +32,7 @@ namespace FlowerShop.Coffee
 
         private void OnUpgradeCancelButtonClick()
         {
-            coffeeCanvasLiaison.CoffeeCanvas.enabled = false;
+            coffeeCanvasLiaison.DisableCanvas();
             playerBusyness.SetPlayerFree();
             selectedTableEffect.ActivateEffectWithDelay();
         }

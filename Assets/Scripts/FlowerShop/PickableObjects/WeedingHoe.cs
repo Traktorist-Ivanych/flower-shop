@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
@@ -12,6 +13,7 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class WeedingHoe : MonoBehaviour, IPickableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -63,6 +65,11 @@ namespace FlowerShop.PickableObjects
             weedPlanterToAddPotIntoList.AddPotInPlantingWeedList(potForDeletingWeed);
             playerBusyness.SetPlayerFree();
             selectedTableEffect.ActivateEffectWithDelay();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
         }
 
         public void Upgrade(int tableLvl)

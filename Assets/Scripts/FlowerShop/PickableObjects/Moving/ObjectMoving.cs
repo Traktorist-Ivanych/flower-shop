@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using FlowerShop.Education;
 using FlowerShop.Settings;
 using PlayerControl;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace FlowerShop.PickableObjects.Moving
     public class ObjectMoving : MonoBehaviour
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerBusyness playerBusyness;
 
@@ -22,6 +24,11 @@ namespace FlowerShop.PickableObjects.Moving
             finishTransform = targetFinishTransform;
             playerComponents.PlayerAnimator.SetTrigger(movingObjectAnimatorTrigger);
             MoveAndRotateObjectWithDoTween();
+            
+            if (setPlayerFree && educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
         }
 
         public void SetParentAndParentPositionAndRotation(Transform targetFinishTransform)
@@ -46,10 +53,9 @@ namespace FlowerShop.PickableObjects.Moving
         {
             SetParentAndParentPositionAndRotation(finishTransform);
 
-            if (shouldPlayerBecomeFree)
-            {
-                playerBusyness.SetPlayerFree();
-            }
+            if (!shouldPlayerBecomeFree) return;
+            
+            playerBusyness.SetPlayerFree();
         }
     }
 }

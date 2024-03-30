@@ -36,9 +36,9 @@ namespace FlowerShop.Tables
             weedMeshFilter = weedRenderer.GetComponent<MeshFilter>();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (CanPlayerThrowOutPotContent())
             {

@@ -22,10 +22,10 @@ namespace FlowerShop.Tables
             
             Load();
         }
-        
-        public override void ExecuteClickableAbility()
+
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             {

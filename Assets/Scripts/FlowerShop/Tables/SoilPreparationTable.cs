@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
@@ -56,9 +55,9 @@ namespace FlowerShop.Tables
             breakableTableBaseComponent.CheckIfTableBroken();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             {
@@ -86,6 +85,13 @@ namespace FlowerShop.Tables
             SetActionsBeforeBrokenQuantity(
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+            
+            Save();
+        }
+
+        public void BrokenTable()
+        {
+            ForciblyBrokenTable();
             
             Save();
         }
@@ -177,8 +183,6 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
-            
-            Save();
         }
     }
 }

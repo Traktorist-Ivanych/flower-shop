@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FlowerShop.Education;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables;
@@ -10,6 +11,7 @@ namespace FlowerShop.Weeds
 {
     public class WeedPlanter : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly WeedSettings weedSettings;
 
@@ -45,7 +47,8 @@ namespace FlowerShop.Weeds
             {
                 SetCurrentWeedPlantTime();
             
-                if (potsForPlantingWeed.Count > 0 && weedSettings.ShouldWeedBePlanting())
+                if (!educationHandler.IsEducationActive && potsForPlantingWeed.Count > 0 &&
+                    weedSettings.ShouldWeedBePlanting())
                 {
                     Pot potForPlantingWeed = potsForPlantingWeed[Random.Range(0, potsForPlantingWeed.Count)];
                     potForPlantingWeed.PlantWeed();

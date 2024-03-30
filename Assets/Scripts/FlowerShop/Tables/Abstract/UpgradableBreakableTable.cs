@@ -24,9 +24,14 @@ namespace FlowerShop.Tables.Abstract
             breakableTableBaseComponent.UseBreakableTable();
         }
 
+        private protected void ForciblyBrokenTable()
+        {
+            breakableTableBaseComponent.BrokenTable();
+        }
+
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
-            breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity);
+            StartCoroutine(breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity));
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)

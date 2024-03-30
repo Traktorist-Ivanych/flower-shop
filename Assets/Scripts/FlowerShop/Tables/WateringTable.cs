@@ -45,9 +45,9 @@ namespace FlowerShop.Tables
             breakableTableBaseComponent.CheckIfTableBroken();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             {
@@ -201,8 +201,6 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.WateringTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
-            
-            Save();
         }
     }
 }

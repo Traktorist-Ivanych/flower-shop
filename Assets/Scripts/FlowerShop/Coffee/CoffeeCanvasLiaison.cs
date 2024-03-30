@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Input;
 using UnityEngine;
 using UnityWeld.Binding;
 using Zenject;
@@ -9,8 +10,9 @@ namespace FlowerShop.Coffee
     public class CoffeeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
         [Inject] private readonly CoffeeSettings coffeeSettings;
+        [Inject] private readonly PlayerInputActions playerInputActions;
 
-        [field: SerializeField] public Canvas CoffeeCanvas { get; private set; }
+        [SerializeField] private Canvas coffeeCanvas;
     
         public event PropertyChangedEventHandler PropertyChanged;
     
@@ -21,6 +23,18 @@ namespace FlowerShop.Coffee
         {
             CoffeePrice = coffeeSettings.CoffeePrice.ToString();
             OnPropertyChanged(nameof(CoffeePrice));
+        }
+        
+        public void EnableCanvas()
+        {
+            playerInputActions.EnableCanvasControlMode();
+            coffeeCanvas.enabled = true;
+        }
+        
+        public void DisableCanvas()
+        {
+            playerInputActions.DisableCanvasControlMode();
+            coffeeCanvas.enabled = false;
         }
 
         private void OnPropertyChanged(string propertyName)

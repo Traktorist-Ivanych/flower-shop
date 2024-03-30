@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
@@ -19,6 +20,7 @@ namespace FlowerShop.PickableObjects
     public class Pot : MonoBehaviour, IPickableObject, ISavableObject
     {
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly FertilizersTable fertilizersTable;
         [Inject] private readonly FlowersContainer flowersContainer;
@@ -121,7 +123,6 @@ namespace FlowerShop.PickableObjects
             UpFlowerGrowingLvl();
             PotObjects.PlaySeedGrowingEffects();
             soundsHandler.PlaySeedWateringAudio();
-            wateringTable.DecreaseFlowersThatNeedWaterQuantity();
             
             ((WateringCan)playerPickableObjectHandler.CurrentPickableObject).PourPotWithWateringCan();
             
@@ -206,6 +207,11 @@ namespace FlowerShop.PickableObjects
             PotObjects.HideAllPotObjects();
             selectedTableEffect.ActivateEffectWithDelay();
             fertilizersTable.RemoveActivePot(this);
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
             
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
@@ -406,6 +412,11 @@ namespace FlowerShop.PickableObjects
 
         private void PourFlowerBase()
         {
+            if (IsFlowerNeedWater)
+            {
+                wateringTable.DecreaseFlowersThatNeedWaterQuantity();
+            }
+            
             IsFlowerNeedWater = false;
             HideWaterIndicator();
         }

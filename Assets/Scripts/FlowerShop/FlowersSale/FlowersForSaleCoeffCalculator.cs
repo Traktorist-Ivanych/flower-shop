@@ -48,8 +48,6 @@ namespace FlowerShop.FlowersSale
                 CurrentFlowersForSaleCoeff * flowersForSaleCoeffCalculatorSettings.MaxShopGrade / 
                 flowersForSaleCoeffCalculatorSettings.SaleCoeffForMaxGrade);
             
-            Debug.Log(currentGrade);
-            
             return Mathf.Clamp(
                 value: currentGrade, 
                 min: flowersForSaleCoeffCalculatorSettings.MinShopGrade, 

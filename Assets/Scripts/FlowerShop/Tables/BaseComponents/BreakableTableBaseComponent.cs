@@ -1,16 +1,18 @@
 using System.Collections;
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Sounds;
-using FlowerShop.Tables.Interfaces;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables.BaseComponents
 {
-    public class BreakableTableBaseComponent : MonoBehaviour, IBreakableTable
+    public class BreakableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -19,10 +21,17 @@ namespace FlowerShop.Tables.BaseComponents
         [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private ParticleSystem[] brokenEffects;
+        
+        private ISavableObject savingTable;
 
         public int ActionsBeforeBrokenQuantity { get; private set; }
 
         public bool IsTableBroken { get; private set; }
+
+        private void Start()
+        {
+            savingTable = GetComponent<ISavableObject>();
+        }
 
         public void UseBreakableTable()
         {
@@ -34,41 +43,32 @@ namespace FlowerShop.Tables.BaseComponents
         {
             if (ActionsBeforeBrokenQuantity <= 0)
             {
-                repairsAndUpgradesTable.IncreaseTablesThatNeedRepairQuantity();
-                selectedTableEffect.TryToRecalculateEffect();
-                IsTableBroken = true;
-
-                soundsHandler.StartPlayingBrokenTableAudio();
-                
-                foreach (ParticleSystem brokenEffect in brokenEffects)
-                {
-                    brokenEffect.Play();
-                }
+                BrokenTable();
             }
         }
 
-        public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
+        public void BrokenTable()
         {
-            SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
-            StartCoroutine(FixBreakableFlowerTableProcess());
+            ActionsBeforeBrokenQuantity = 0;
+            repairsAndUpgradesTable.IncreaseTablesThatNeedRepairQuantity();
+            selectedTableEffect.TryToRecalculateEffect();
+            IsTableBroken = true;
+
+            soundsHandler.StartPlayingBrokenTableAudio();
+                
+            foreach (ParticleSystem brokenEffect in brokenEffects)
+            {
+                brokenEffect.Play();
+            }
         }
 
-        public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
-        {
-            ActionsBeforeBrokenQuantity = Random.Range(minQuantity, maxQuantity);
-        }
-
-        public void LoadActionsBeforeBrokenQuantity(int loadedActionsBeforeBrokenQuantity)
-        {
-            ActionsBeforeBrokenQuantity = loadedActionsBeforeBrokenQuantity;
-        }
-
-        private IEnumerator FixBreakableFlowerTableProcess()
+        public IEnumerator FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
             
             yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
-
+            
+            SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
             IsTableBroken = false;
             playerBusyness.SetPlayerFree();
@@ -80,6 +80,23 @@ namespace FlowerShop.Tables.BaseComponents
             {
                 brokenEffect.Stop();
             }
+            
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
+            
+            savingTable.Save();
+        }
+
+        public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
+        {
+            ActionsBeforeBrokenQuantity = Random.Range(minQuantity, maxQuantity);
+        }
+
+        public void LoadActionsBeforeBrokenQuantity(int loadedActionsBeforeBrokenQuantity)
+        {
+            ActionsBeforeBrokenQuantity = loadedActionsBeforeBrokenQuantity;
         }
     }
 }

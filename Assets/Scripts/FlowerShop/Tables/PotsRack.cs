@@ -36,10 +36,10 @@ namespace FlowerShop.Tables
                 potsRenderers[i].enabled = true;
             }
         }
-        
-        public override void ExecuteClickableAbility()
+
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
             
             if (playerBusyness.IsPlayerFree)
             {

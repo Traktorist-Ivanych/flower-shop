@@ -33,9 +33,9 @@ namespace FlowerShop.Tables
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (CanPlayerStartMakingCoffee())
             {
@@ -56,7 +56,7 @@ namespace FlowerShop.Tables
 
         private void OpenCoffeeCanvas()
         {
-            coffeeCanvasLiaison.CoffeeCanvas.enabled = true;
+            coffeeCanvasLiaison.EnableCanvas();
         }
 
         public IEnumerator MakeCoffeeProcess()

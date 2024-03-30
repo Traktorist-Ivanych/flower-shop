@@ -32,9 +32,9 @@ namespace FlowerShop.Tables
             flowersCrossingTableProcess.CheckCrossingAbility();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
-            base.ExecuteClickableAbility();
+            base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
             { 

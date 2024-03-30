@@ -2,6 +2,7 @@ using FlowerShop.Coffee;
 using FlowerShop.ComputerPages;
 using FlowerShop.Customers;
 using FlowerShop.Customers.VipAndComplaints;
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Environment;
 using FlowerShop.Fertilizers;
@@ -35,6 +36,7 @@ namespace FlowerShop.Installers
         [SerializeField] private CoffeeCanvasLiaison coffeeCanvasLiaison;
         [SerializeField] private ComplaintsCanvasLiaison complaintsCanvasLiaison;
         [SerializeField] private ComputerMainPageCanvasLiaison computerMainPageCanvas;
+        [SerializeField] private EducationCanvasLiaison educationCanvasLiaison;
         [SerializeField] private FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
         [SerializeField] private FlowersCanvasLiaison flowersCanvasLiaison;
         [SerializeField] private StatsCanvasLiaison statsCanvasLiaison;
@@ -56,6 +58,8 @@ namespace FlowerShop.Installers
         [SerializeField] private AutomaticDoors automaticDoors;
         [Header("Effects")]
         [SerializeField] private SelectedTableEffect selectedTableEffect;
+        [Header("Education")]
+        [SerializeField] private EducationHandler educationHandler;
 
         public override void InstallBindings()
         {
@@ -75,6 +79,7 @@ namespace FlowerShop.Installers
             Container.Bind<ComplaintsCanvasLiaison>().FromInstance(complaintsCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<ComputerMainPageCanvasLiaison>().FromInstance(computerMainPageCanvas).AsSingle().NonLazy();
             Container.Bind<FlowerInfoCanvasLiaison>().FromInstance(flowerInfoCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<EducationCanvasLiaison>().FromInstance(educationCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<FlowersCanvasLiaison>().FromInstance(flowersCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<StatsCanvasLiaison>().FromInstance(statsCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
@@ -95,6 +100,8 @@ namespace FlowerShop.Installers
             Container.Bind<AutomaticDoors>().FromInstance(automaticDoors).AsSingle().NonLazy();
             
             Container.Bind<SelectedTableEffect>().FromInstance(selectedTableEffect).AsSingle().NonLazy();
+            
+            Container.Bind<EducationHandler>().FromInstance(educationHandler).AsSingle().NonLazy();
         }
     }
 }

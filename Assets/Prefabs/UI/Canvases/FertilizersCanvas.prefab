@@ -2194,7 +2194,7 @@ MonoBehaviour:
   growingLvlIncreaser: {fileID: 0}
   growerToMaxLvl: {fileID: 0}
   fertilizerInfoPanel: {fileID: 8665624745249523347}
-  <FertilizersCanvas>k__BackingField: {fileID: 136317795062837959}
+  fertilizersCanvas: {fileID: 136317795062837959}
 --- !u!1 &7885967886501050305
 GameObject:
   m_ObjectHideFlags: 0

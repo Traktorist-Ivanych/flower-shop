@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
@@ -13,6 +14,7 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class WateringCan : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly TablesSettings tablesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -74,6 +76,11 @@ namespace FlowerShop.PickableObjects
             CurrentWateringsNumber--;
             UpdateWateringCanIndicator();
             selectedTableEffect.ActivateEffectWithDelay();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
             
             Save();
         }

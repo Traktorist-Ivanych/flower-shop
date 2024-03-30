@@ -1,4 +1,3 @@
-using FlowerShop.PickableObjects;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace FlowerShop.Tables.Abstract
 
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
-            breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity);
+            StartCoroutine(breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity));
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FlowerShop.Education;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Interfaces;
@@ -13,6 +14,7 @@ namespace FlowerShop.Customers
     {
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
 
         [SerializeField] private List<Transform> spawnPathPoints;
@@ -151,7 +153,7 @@ namespace FlowerShop.Customers
 
         private void TryToSpawnCustomer()
         {
-            if (customersMoving.Count > 0)
+            if (!educationHandler.IsEducationActive && customersMoving.Count > 0)
             {
                 Transform startCustomerTransform = spawnPathPoints[Random.Range(0, spawnPathPoints.Count)];
                 
