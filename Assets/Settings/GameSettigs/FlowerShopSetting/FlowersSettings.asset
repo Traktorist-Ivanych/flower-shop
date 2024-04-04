@@ -21,6 +21,7 @@ MonoBehaviour:
   <PrimaryFlowerGrowingLvl>k__BackingField: 0
   <FlowerNameEmpty>k__BackingField: {fileID: 11400000, guid: 3144698ce086cb343993b10461597ec5, type: 2}
   <FlowerInfoEmpty>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
+  <GrowingRoomWild>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <GrowingRoomAny>k__BackingField: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   <UnknownFlower>k__BackingField: {fileID: 21300000, guid: 4d9a04e8f1596114488b849a34ad324c, type: 3}
   <UnplayableFlower>k__BackingField: {fileID: 21300000, guid: 789ecc3c04393bd44bd7eada24806ca4, type: 3}

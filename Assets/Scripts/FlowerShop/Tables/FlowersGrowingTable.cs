@@ -141,7 +141,7 @@ namespace FlowerShop.Tables
                 }
                 
                 potOnTable = referencesForLoad.GetReference<Pot>(flowersGrowingTableForLoading.PotUniqueKey);
-                Debug.Log(potOnTable + " - " + this);
+                
                 if (potOnTable != null)
                 {
                     potOnTable.LoadOnGrowingTable(tablePotTransform, tableLvl);

@@ -1,4 +1,5 @@
 ﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
 using FlowerShop.FlowersSale;
@@ -15,6 +16,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersForPlayerCollection flowersForPlayerCollection;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
@@ -57,7 +59,10 @@ namespace FlowerShop.Customers.VipAndComplaints
                 {
                     SetTimeToMakeVipOrder();
 
-                    SetVipOrder();
+                    if (!educationHandler.IsEducationActive)
+                    {
+                        SetVipOrder();
+                    }
                 }
             }
 

@@ -17,10 +17,10 @@ MonoBehaviour:
   <AngelToStopRotation>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 6
   <NavAgentSpeed>k__BackingField: 6
-  <MinSpawnTime>k__BackingField: 30
-  <MinSpawnTimeDelta>k__BackingField: 15
-  <MaxSpawnTime>k__BackingField: 60
-  <MaxSpawnTimeDelta>k__BackingField: 30
+  <MinSpawnTime>k__BackingField: 60
+  <MinSpawnTimeDelta>k__BackingField: 30
+  <MaxSpawnTime>k__BackingField: 180
+  <MaxSpawnTimeDelta>k__BackingField: 90
   <MinTimeBetweenSpawn>k__BackingField: 5
   <MinComplaintsTime>k__BackingField: 1500
   <MaxComplaintsTime>k__BackingField: 3000
@@ -99,28 +99,28 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 1.9134185
-      outSlope: 0.8333333
-      tangentMode: 65
-      weightedMode: 0
+      outSlope: 0.0650719
+      tangentMode: 5
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0.23425975
+      outWeight: 0.3596055
     - serializedVersion: 3
-      time: 0.6
+      time: 0.65
       value: 0.5
-      inSlope: 0.95457095
-      outSlope: 0.95457095
+      inSlope: 1.1355324
+      outSlope: 1.1355324
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.23148146
-      outWeight: 0.18939397
+      outWeight: 0.29761907
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1.2500001
+      inSlope: 1.7672021
       outSlope: 0.4312722
-      tangentMode: 5
+      tangentMode: 65
       weightedMode: 0
-      inWeight: 0.36946186
+      inWeight: 0.19047616
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

@@ -12,6 +12,7 @@ namespace FlowerShop.Customers
 {
     public class CustomersSpawner : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly CustomerAccessControllerTable customerAccessControllerTable;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly EducationHandler educationHandler;
@@ -153,7 +154,8 @@ namespace FlowerShop.Customers
 
         private void TryToSpawnCustomer()
         {
-            if (!educationHandler.IsEducationActive && customersMoving.Count > 0)
+            if (customerAccessControllerTable.IsAccessOpen && !educationHandler.IsEducationActive && 
+                customersMoving.Count > 0)
             {
                 Transform startCustomerTransform = spawnPathPoints[Random.Range(0, spawnPathPoints.Count)];
                 

@@ -1,4 +1,5 @@
 ﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
@@ -15,6 +16,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
@@ -53,7 +55,10 @@ namespace FlowerShop.Customers.VipAndComplaints
             {
                 SetTimeToMakeComplaint();
 
-                SetComplaint();
+                if (!educationHandler.IsEducationActive)
+                {
+                    SetComplaint();
+                }
             }
 
             if (IsComplaintActive)

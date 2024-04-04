@@ -95,6 +95,8 @@ namespace FlowerShop.Effects
             currentFillCoef = 0;
             isValueIncrease = true;
             
+            effectsSettings.SelectableMaterial.SetFloat(fillCoeff, currentFillCoef);
+            
             ActivateEffectWithoutDelay();
         }
 

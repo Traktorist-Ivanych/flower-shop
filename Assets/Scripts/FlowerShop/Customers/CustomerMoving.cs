@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using FlowerShop.FlowersSale;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
@@ -36,7 +37,6 @@ namespace FlowerShop.Customers
         private ISpecialSaleTable specialSaleTable;
         private List<Transform> currentPathPoints;
         private Transform currentDestinationTarget;
-        private NavMeshPath tempPath;
         private int currentPathPointIndex;
         private bool isCustomerMoveForSpecialSale;
 
@@ -215,8 +215,10 @@ namespace FlowerShop.Customers
 
         private void CustomerThinkNoEndAnimationEvent()
         {
-            currentPathPoints = customerFlowersSaleTable.OutFlowerPathPoints;
-            currentPathPoints.Add(customersSpawner.GetNextLookAroundPathPoint());
+            List<Transform> tempPath = customerFlowersSaleTable.OutFlowerPathPoints.ToList();
+            tempPath.Add(customersSpawner.GetNextLookAroundPathPoint());
+            currentPathPoints = tempPath;
+            
             currentPathPointIndex = 0;
             SetDestination(currentPathPoints[currentPathPointIndex]);
             SetOnArriveEvent(PlayLookAroundAnimation);
@@ -257,6 +259,8 @@ namespace FlowerShop.Customers
             navAgent.isStopped = true;
             customersSpawner.AddBuyerMoving(this);
             customersObserver.RemoveInactiveCustomer(this);
+            customerFlowersSaleTable = null;
+            specialSaleTable = null;
         }
     }
 }

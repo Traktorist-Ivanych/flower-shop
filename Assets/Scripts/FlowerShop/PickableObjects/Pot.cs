@@ -138,8 +138,8 @@ namespace FlowerShop.PickableObjects
             PotObjects.PlayWeedEffects();
             soundsHandler.PlayWeedPlantedAudio();
             
-            selectedTableEffect.TryToRecalculateEffect();
             weedingTable.IncreaseFlowersThatNeedWeedingQuantity();
+            selectedTableEffect.TryToRecalculateEffect();
             
             Save();
         }

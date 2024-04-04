@@ -13,6 +13,7 @@ using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Sounds;
 using FlowerShop.Tables;
+using FlowerShop.Tables.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -29,6 +30,7 @@ namespace FlowerShop.Installers
         [SerializeField] private ShopRating shopRating;
         [Header("Customers")] 
         [SerializeField] private ComplaintsHandler complaintsHandler;
+        [SerializeField] private CustomerAccessControllerTable customerAccessControllerTable;
         [SerializeField] private CustomersSpawner customersSpawner;
         [SerializeField] private CustomersObserver customersObserver;
         [SerializeField] private VipOrdersHandler vipOrdersHandler;
@@ -71,6 +73,7 @@ namespace FlowerShop.Installers
             Container.Bind<ShopRating>().FromInstance(shopRating).AsSingle().NonLazy();
 
             Container.Bind<ComplaintsHandler>().FromInstance(complaintsHandler).AsSingle().NonLazy();
+            Container.Bind<CustomerAccessControllerTable>().FromInstance(customerAccessControllerTable).AsSingle().NonLazy();
             Container.Bind<CustomersSpawner>().FromInstance(customersSpawner).AsSingle().NonLazy();
             Container.Bind<CustomersObserver>().FromInstance(customersObserver).AsSingle().NonLazy();
             Container.Bind<VipOrdersHandler>().FromInstance(vipOrdersHandler).AsSingle().NonLazy();

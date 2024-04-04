@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
@@ -11,9 +12,12 @@ namespace FlowerShop.Tables
 {
     public class PotsRack : UpgradableTable, ISavableObject
     {
+        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly TablesSettings tablesSettings;
         
         [SerializeField] private Transform potObjectsTransform;
+        [SerializeField] private FlowersCrossingTableProcess wildCrossingTableProcess;
+        [SerializeField] private FlowersCrossingTableProcess roomCrossingTableProcess;
         [SerializeField] private List<Pot> pots;
         [SerializeField] private List<MeshRenderer> potsRenderers;
 
@@ -60,7 +64,7 @@ namespace FlowerShop.Tables
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerTakePotInHands() || CanPlayerPutPotOnTable() || 
+            return CanPlayerTakePotInHandsForSelectedEffect() || CanPlayerPutPotOnTable() || 
                    CanPlayerUpgradeTableForSelectableEffect();
         }
 
@@ -109,6 +113,24 @@ namespace FlowerShop.Tables
         private bool CanPlayerTakePotInHands()
         {
             return playerPickableObjectHandler.IsPickableObjectNull && currentFreePots > 0;
+        }
+
+        private bool CanPlayerTakePotInHandsForSelectedEffect()
+        {
+            if (growingRoom == flowersSettings.GrowingRoomWild)
+            {
+                return CanPlayerTakePotInHands();
+            }
+
+            if ((wildCrossingTableProcess.IsCrossingSeedReady &&
+                 wildCrossingTableProcess.FlowerInfoForPlanting.GrowingRoom == growingRoom) ||
+                (roomCrossingTableProcess.IsCrossingSeedReady &&
+                 roomCrossingTableProcess.FlowerInfoForPlanting.GrowingRoom == growingRoom))
+            {
+                return CanPlayerTakePotInHands();
+            }
+
+            return false;
         }
 
         private void TakePotInPlayerHands()

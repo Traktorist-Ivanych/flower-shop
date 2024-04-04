@@ -64,6 +64,7 @@ namespace FlowerShop.FlowersSale
                 shopGrades = new int[flowersSettings.MaxGradesCount];
                 CurrentAverageGrade = 0;
                 UpdateGradeRatingOnCanvas();
+                statsCanvasLiaison.UpdateStatsCanvas(gradesCount, fiveStars, fourStars, treeStars, twoStars, oneStar);
             }
         }
 
@@ -100,14 +101,20 @@ namespace FlowerShop.FlowersSale
         {
             double gradesCountForCurrentAverage = 0;
             double gradesSumForCurrentAverage = 0;
+            gradesCount = 0;
+            fiveStars = 0;
+            fourStars = 0;
+            treeStars = 0;
+            twoStars = 0;
+            oneStar = 0;
 
             foreach (int shopGrade in shopGrades)
             {
                 if (shopGrade != 0)
                 {
-                    gradesCount++;
                     gradesCountForCurrentAverage++;
                     gradesSumForCurrentAverage += shopGrade;
+                    gradesCount++;
 
                     switch (shopGrade)
                     {

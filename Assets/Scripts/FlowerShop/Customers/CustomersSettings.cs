@@ -45,7 +45,8 @@ namespace FlowerShop.Customers
         
         public bool IsCustomerBuyingFlower()
         {
-            return buyingFlowerCurve.Evaluate(Random.Range(0, 1f)) >= buyingFlowerSuccessBorder;
+            float currentTime = Random.Range(0, 1f);
+            return buyingFlowerCurve.Evaluate(currentTime) >= buyingFlowerSuccessBorder;
         }
     }
 }

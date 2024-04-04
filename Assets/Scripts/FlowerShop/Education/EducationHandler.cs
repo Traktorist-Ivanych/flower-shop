@@ -6,6 +6,7 @@ using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
 using Input;
+using PlayerControl;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -17,6 +18,7 @@ namespace FlowerShop.Education
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly EducationCanvasLiaison educationCanvasLiaison;
         [Inject] private readonly EducationSettings educationSettings;
+        [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerInputActions playerInputActions;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
 
@@ -126,6 +128,7 @@ namespace FlowerShop.Education
                     ShowEducationDescriptionAsStep(
                         educationSettings.MoneyAndShopRatingDescriptionText, 
                         educationSettings.MoneyAndShopRatingDescriptionCoordinates);
+                    playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopWelcome);
                     break;
                 case 2:
                     ShowEducationDescriptionAsStep(
@@ -747,6 +750,7 @@ namespace FlowerShop.Education
 
         private void CompleteFirstStep()
         {
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartWelcome);
             IsEducationActive = true;
             playerInputActions.EnableCanvasControlMode();
             educationCanvasLiaison.EducationCanvas.enabled = true;
