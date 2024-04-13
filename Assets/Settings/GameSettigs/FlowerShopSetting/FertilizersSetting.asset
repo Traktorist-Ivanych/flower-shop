@@ -16,5 +16,5 @@ MonoBehaviour:
   <PrimaryGrothAcceleratorCoeff>k__BackingField: 1
   <FertilizerTreatingTime>k__BackingField: 1
   <FertilizersStartUsesNumber>k__BackingField: 5
-  <FertilizersPrice>k__BackingField: 2250
+  <IncreaseFertilizerAmountIAP>k__BackingField: 20
   <IncreaseFertilizerAmount>k__BackingField: 5

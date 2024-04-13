@@ -1,0 +1,21 @@
+# ninja log v5
+32	254	7341128064429004	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	9f9087ec2039c8ad
+15	1246	7341128074327143	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	c6a8840781da0eb8
+254	394	7341128065459222	D:/Study/UnityProgects/FlowerShop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3hp4b656/obj/arm64-v8a/libswappywrapper.so	62229e0beceb89ee
+22	956	7341128071431407	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1eb65615f06e48fe
+12	1050	7341128072371618	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	6cca7acd6572a44e
+10	949	7341128071361390	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b75ef7e040e48b8e
+29	900	7341128070861279	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	aaf4b828fe21056c
+25	1013	7341128072001534	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	53fd98716e54a8d
+6	1190	7341128073767017	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c116a049f98661e6
+1246	1337	7341128074969726	D:/Study/UnityProgects/FlowerShop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3hp4b656/obj/arm64-v8a/libgame.so	1f8e26f648bbd866
+27	218	7341175515484253	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	9f9087ec2039c8ad
+218	387	7341175516774600	D:/Study/UnityProgects/FlowerShop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3hp4b656/obj/arm64-v8a/libswappywrapper.so	62229e0beceb89ee
+20	948	7341175522746857	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	aaf4b828fe21056c
+23	988	7341175523146931	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1eb65615f06e48fe
+12	995	7341175523216947	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b75ef7e040e48b8e
+17	1038	7341175523647046	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	53fd98716e54a8d
+5	1094	7341175524217200	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	6cca7acd6572a44e
+9	1227	7341175525534469	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c116a049f98661e6
+14	1295	7341175526214660	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	c6a8840781da0eb8
+1295	1391	7341175526880907	D:/Study/UnityProgects/FlowerShop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3hp4b656/obj/arm64-v8a/libgame.so	1f8e26f648bbd866

@@ -17,6 +17,7 @@ namespace PlayerControl
 
         private float currentCoffeeEffectDuration;
         private float currentCoffeeEffectIndicatorFillAmount;
+        private bool isCoffeeEffectPurchased;
         
         private readonly CompositeDisposable coffeeTimerCompositeDisposable = new();
         
@@ -41,6 +42,22 @@ namespace PlayerControl
             Save();
         }
 
+        public void PurchaseCoffeeEffect()
+        {
+            PurchaseCoffeeEffectMain();
+            
+            Save();
+        }
+
+        public void SetPurchasedCoffeeEffectIndicator()
+        {
+            coffeeTimerCompositeDisposable.Clear();
+            IsCoffeeEffectActive = true;
+            playerStatsCanvasLiaison.SetCoffeeEffectPanelActive(true);
+            currentCoffeeEffectDuration = 0;
+            UpdateCoffeeEffectIndicatorFillAmount();
+        }
+
         public void Load()
         {
             PlayerCoffeeEffectForSaving playerCoffeeEffectForLoading =
@@ -48,8 +65,23 @@ namespace PlayerControl
 
             if (playerCoffeeEffectForLoading.IsValuesSaved)
             {
-                currentCoffeeEffectDuration = playerCoffeeEffectForLoading.CurrentCoffeeEffectDuration;
-                EnableCoffeeEffect();
+                if (playerCoffeeEffectForLoading.IsCoffeeEffectPurchased)
+                {
+                    PurchaseCoffeeEffectMain();
+                    SetPurchasedCoffeeEffectIndicator();
+                }
+                else
+                {
+                    if (IsCoffeeEffectActive)
+                    {
+                        currentCoffeeEffectDuration = playerCoffeeEffectForLoading.CurrentCoffeeEffectDuration;
+                        EnableCoffeeEffect();
+                    }
+                    else
+                    {
+                        playerMoving.SetOrdinaryNavAgentSetting();
+                    }
+                }
             }
             else
             {
@@ -59,9 +91,16 @@ namespace PlayerControl
 
         public void Save()
         {
-            PlayerCoffeeEffectForSaving playerCoffeeEffectForSaving = new(currentCoffeeEffectDuration);
+            PlayerCoffeeEffectForSaving playerCoffeeEffectForSaving = 
+                new(IsCoffeeEffectActive ,currentCoffeeEffectDuration, isCoffeeEffectPurchased);
             
             SavesHandler.Save(UniqueKey, playerCoffeeEffectForSaving);
+        }
+
+        private void PurchaseCoffeeEffectMain()
+        {
+            isCoffeeEffectPurchased = true;
+            playerMoving.SetCoffeeNavAgentSetting();
         }
 
         private void EnableCoffeeEffect()
@@ -100,7 +139,8 @@ namespace PlayerControl
             currentCoffeeEffectDuration = 0;
             playerMoving.SetOrdinaryNavAgentSetting();
             cyclicalSaver.CyclicalSaverEvent -= Save;
-            SavesHandler.DeletePlayerPrefsKey(UniqueKey);
+            
+            Save();
         }
     }
 }

@@ -24,6 +24,9 @@ MonoBehaviour:
   <PlayerMovingCoffeeRotation>k__BackingField: 12
   <CoffeeEffectDurationTime>k__BackingField: 600
   <FirstAvailableMoney>k__BackingField: 2500
+  <AdsMoneyReward>k__BackingField: 2500
+  <IAPMoneyRewardFirst>k__BackingField: 10000
+  <IAPMoneyRewardSecond>k__BackingField: 25000
   <MoneyEffectMovingSpeed>k__BackingField: 27.5
   <MoneyEffectTimeDuration>k__BackingField: 2.5
   <MoneyEffectStartHidingTime>k__BackingField: 2

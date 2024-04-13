@@ -1,3 +1,4 @@
+using FlowerShop.Ads;
 using FlowerShop.Coffee;
 using FlowerShop.ComputerPages;
 using FlowerShop.Customers;
@@ -62,6 +63,10 @@ namespace FlowerShop.Installers
         [SerializeField] private SelectedTableEffect selectedTableEffect;
         [Header("Education")]
         [SerializeField] private EducationHandler educationHandler;
+        [Header("Ads")]
+        [SerializeField] private LevelPlayAds levelPlayAds;
+        [Header("Coffee")]
+        [SerializeField] private CoffeeTable coffeeTable;
 
         public override void InstallBindings()
         {
@@ -105,6 +110,10 @@ namespace FlowerShop.Installers
             Container.Bind<SelectedTableEffect>().FromInstance(selectedTableEffect).AsSingle().NonLazy();
             
             Container.Bind<EducationHandler>().FromInstance(educationHandler).AsSingle().NonLazy();
+            
+            Container.Bind<LevelPlayAds>().FromInstance(levelPlayAds).AsSingle().NonLazy();
+            
+            Container.Bind<CoffeeTable>().FromInstance(coffeeTable).AsSingle().NonLazy();
         }
     }
 }

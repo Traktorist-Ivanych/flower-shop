@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Ads;
 using FlowerShop.Coffee;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
@@ -16,9 +17,9 @@ namespace FlowerShop.Tables
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
         [Inject] private readonly CoffeeSettings coffeeSettings;
+        [Inject] private readonly LevelPlayAds levelPlayAds;
         [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
         [Inject] private readonly PlayerComponents playerComponents;
-        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly SoundsHandler soundsHandler;
         
         [SerializeField] private CoffeeCap coffeeCap;
@@ -57,9 +58,10 @@ namespace FlowerShop.Tables
         private void OpenCoffeeCanvas()
         {
             coffeeCanvasLiaison.EnableCanvas();
+            levelPlayAds.LoadRewardedAd();
         }
 
-        public IEnumerator MakeCoffeeProcess()
+        public IEnumerator MakePurchasedCoffeeProcess()
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeeTrigger);
             
@@ -81,7 +83,35 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(coffeeSettings.StartDrinkingCoffeeTimeDelay);
             coffeeCap.EmptyCoffeeCap();
-            playerMoney.TakePlayerMoney(coffeeSettings.CoffeePrice);
+            playerCoffeeEffect.SetPurchasedCoffeeEffectIndicator();
+
+            yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);
+            coffeeCap.PutOnTableAndSetPlayerFree(coffeeCapOnTableTransform);
+            selectedTableEffect.ActivateEffectWithDelay();
+        }
+
+        public IEnumerator MakeCoffeeProcessForAds()
+        {
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StatMakingCoffeeTrigger);
+            
+            yield return new WaitForSeconds(statMakingCoffeeAnimationClip.length);
+            tableObjectsRotation.StartObjectsRotation();
+            soundsHandler.StartPlayingCoffeeGrinderAudio();
+
+            yield return new WaitForSeconds(coffeeSettings.CoffeeGrinderRotationDuration);
+            tableObjectsRotation.PauseObjectsRotation();
+            soundsHandler.StopPlayingCoffeeGrinderAudio();
+            coffeeCap.FillCoffeeCap();
+            soundsHandler.PlayFillCoffeeCupAudio();
+
+            yield return new WaitForSeconds(coffeeSettings.CoffeeLiquidMovingTime);
+            coffeeCap.TakeInPlayerHandsAndKeepPlayerBusy();
+
+            yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.DrinkCoffeeTrigger);
+
+            yield return new WaitForSeconds(coffeeSettings.StartDrinkingCoffeeTimeDelay);
+            coffeeCap.EmptyCoffeeCap();
             playerCoffeeEffect.StartCoffeeEffect();
 
             yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);

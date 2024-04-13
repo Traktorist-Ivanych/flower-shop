@@ -30,12 +30,6 @@ namespace FlowerShop.Fertilizers
         public int GrowerToMaxLvlAvailableUsesNumber => growerToMaxLvl.AvailableUsesNumber;
         
         [Binding]
-        public string FertilizersPriceDescription { get; private set; }
-        
-        [Binding]
-        public int FertilizersPrice => fertilizersSetting.FertilizersPrice;
-        
-        [Binding]
         public string FertilizerName { get; private set; }
         
         [Binding]
@@ -43,15 +37,6 @@ namespace FlowerShop.Fertilizers
         
         [Binding]
         public string FertilizerDescription { get; private set; }
-
-        private void Start()
-        {
-            OnPropertyChanged(nameof(FertilizersPrice));
-
-            FertilizersPriceDescription =
-                "Цена " + fertilizersSetting.IncreaseFertilizerAmount + " ед. каждого удобрения";
-            OnPropertyChanged(nameof(FertilizersPriceDescription));
-        }
 
         public void EnableCanvas()
         {

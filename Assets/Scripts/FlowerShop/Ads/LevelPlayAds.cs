@@ -8,19 +8,20 @@ namespace FlowerShop.Ads
     public class LevelPlayAds : MonoBehaviour
     {
         [Inject] private readonly FertilizersTable fertilizersTable;
+        
+        public delegate void AdReward();
+        private event AdReward AdRewardEvent;
+        
         [SerializeField] private Image adsImage;
         
         private void Start()
         {
-            IronSource.Agent.init("1e0f975c5");
-            IronSource.Agent.validateIntegration();
+            IronSource.Agent.init ("1e0f975c5");
         }
 
         private void OnEnable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
-            
-            IronSource.Agent.shouldTrackNetworkState(true);
             
             IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
             IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
@@ -35,20 +36,28 @@ namespace FlowerShop.Ads
             IronSource.Agent.onApplicationPause(isPaused);
         }
 
-        public void ShowRewardedAd()
+        public void LoadRewardedAd()
         {
+            if (!IronSource.Agent.isRewardedVideoAvailable())
+            {
+                IronSource.Agent.loadRewardedVideo();
+            }
+        }
+
+        public void ShowRewardedAd(AdReward reward)
+        {
+            AdRewardEvent = null;
+            AdRewardEvent += reward;
+            
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo();
-            }
-            else
-            {
-                Debug.Log("Rewarded Video Not Available");
             }
         }
 
         private void SdkInitializationCompletedEvent()
         {
+            IronSource.Agent.validateIntegration();
             adsImage.enabled = true;
         }
         
@@ -85,7 +94,8 @@ namespace FlowerShop.Ads
         // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
         void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
-            fertilizersTable.IncreaseAvailableFertilizersUsesNumber();
+            AdRewardEvent?.Invoke();
+            AdRewardEvent = null;
         }
         
         // The rewarded video ad was failed to show.

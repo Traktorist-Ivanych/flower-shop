@@ -82,9 +82,9 @@ namespace FlowerShop.Fertilizers
                 setPlayerFree: true);
         }
 
-        public void IncreaseAvailableUsesNumber()
+        public void IncreaseAvailableUsesNumber(int quantity)
         {
-            AvailableUsesNumber += fertilizersSetting.IncreaseFertilizerAmount;
+            AvailableUsesNumber += quantity;
             fertilizersCanvasLiaison.UpdateFertilizersAvailableUsesNumber();
             
             Save();

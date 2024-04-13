@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FlowerShop.Ads;
 using FlowerShop.Fertilizers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
@@ -9,7 +10,9 @@ namespace FlowerShop.Tables
 {
     public class FertilizersTable : Table
     {
+        [Inject] private readonly LevelPlayAds levelPlayAds;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
+        [Inject] private readonly FertilizersSetting fertilizersSetting;
         
         [SerializeField] private Transform fertilizersTableTransform;
         [SerializeField] private Fertilizer[] fertilizers;
@@ -94,7 +97,15 @@ namespace FlowerShop.Tables
         {
             foreach (Fertilizer fertilizer in fertilizers)
             {
-                fertilizer.IncreaseAvailableUsesNumber();
+                fertilizer.IncreaseAvailableUsesNumber(fertilizersSetting.IncreaseFertilizerAmount);
+            }
+        }
+        
+        public void IncreaseAvailableFertilizersUsesNumberByIAP()
+        {
+            foreach (Fertilizer fertilizer in fertilizers)
+            {
+                fertilizer.IncreaseAvailableUsesNumber(fertilizersSetting.IncreaseFertilizerAmountIAP);
             }
         }
 
@@ -141,6 +152,7 @@ namespace FlowerShop.Tables
 
         private void ShowFertilizerCanvas()
         {
+            levelPlayAds.LoadRewardedAd();
             fertilizersCanvasLiaison.EnableCanvas();
         }
 

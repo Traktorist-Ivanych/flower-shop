@@ -12,7 +12,7 @@ namespace FlowerShop.Fertilizers
         [field: SerializeField] public float PrimaryGrothAcceleratorCoeff { get; private set; }
         [field: SerializeField] public float FertilizerTreatingTime { get; private set; }
         [field: SerializeField] public int FertilizersStartUsesNumber { get; private set; }
-        [field: SerializeField] public int FertilizersPrice { get; private set; }
+        [field: SerializeField] public int IncreaseFertilizerAmountIAP { get; private set; }
         [field: SerializeField] public int IncreaseFertilizerAmount { get; private set; }
     }
 }

@@ -1,11 +1,17 @@
-﻿using FlowerShop.ComputerPages;
+﻿using FlowerShop.Ads;
+using FlowerShop.ComputerPages;
+using FlowerShop.Tables;
 using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.Fertilizers
 {
     [RequireComponent(typeof(UIButton))]
     public class AdsForFertilizers : MonoBehaviour
     {
+        [Inject] private readonly FertilizersTable fertilizersTable;
+        [Inject] private readonly LevelPlayAds levelPlayAds;
+        
         [HideInInspector, SerializeField] private UIButton uiButton;
 
         private void OnValidate()
@@ -25,7 +31,7 @@ namespace FlowerShop.Fertilizers
 
         private void OnButtonClick()
         {
-            
+            levelPlayAds.ShowRewardedAd(fertilizersTable.IncreaseAvailableFertilizersUsesNumber);
         }
     }
 }
