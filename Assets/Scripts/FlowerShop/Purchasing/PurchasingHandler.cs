@@ -22,16 +22,16 @@ namespace FlowerShop.Purchasing
         {
             switch (product.definition.id)
             {
-                case "com.RoyalLily.FlowerShop.add10000coins":
+                case "com.royallily.flowershop.add10000coins":
                     Add10000Coins();
                     break;
-                case "com.RoyalLily.FlowerShop.add25000coins":
+                case "com.royallily.flowershop.add25000coins":
                     Add25000Coins();
                     break;
-                case "com.RoyalLily.FlowerShop.addFertilizers":
+                case "com.royallily.flowershop.addfertilizers":
                     AddFertilizers();
                     break;
-                case "com.RoyalLily.FlowerShop.addCoffeeEffect":
+                case "com.royallily.flowershop.addcoffeeeffect":
                     AddCoffeeEffect();
                     break;
             }

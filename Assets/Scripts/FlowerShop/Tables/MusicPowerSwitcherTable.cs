@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using FlowerShop.Achievements;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
@@ -14,6 +15,7 @@ namespace FlowerShop.Tables
     public class MusicPowerSwitcherTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly LetThereBeSound letThereBeSound;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly SoundSettings soundSettings;
 
@@ -139,6 +141,7 @@ namespace FlowerShop.Tables
             {
                 IsMusicPowerOn = true;
                 TurnMusicOn();
+                letThereBeSound.IncreaseProgress();
                 
                 Save();
             }

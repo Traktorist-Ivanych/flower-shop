@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using FlowerShop.Achievements;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -9,13 +10,14 @@ using Saves;
 using UnityEngine;
 using Zenject;
 
-namespace FlowerShop.Tables.Interfaces
+namespace FlowerShop.Tables
 {
     public class CustomerAccessControllerTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly Sprinter sprinter;
 
         [SerializeField] private Transform customerAccessSign;
         [SerializeField] private Transform signOpen;
@@ -91,6 +93,11 @@ namespace FlowerShop.Tables.Interfaces
             IsAccessOpen = !IsAccessOpen;
             selectedTableEffect.ActivateEffectWithDelay();
             playerBusyness.SetPlayerFree();
+
+            if (!IsAccessOpen)
+            {
+                sprinter.SetProgress(0);
+            }
             
             Save();
         }

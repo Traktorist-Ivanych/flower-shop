@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FlowerShop.Achievements;
 using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
@@ -18,6 +19,7 @@ namespace FlowerShop.Education
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly EducationCanvasLiaison educationCanvasLiaison;
         [Inject] private readonly EducationSettings educationSettings;
+        [Inject] private readonly ExemplaryStudent exemplaryStudent;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerInputActions playerInputActions;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
@@ -80,7 +82,7 @@ namespace FlowerShop.Education
             }
             else
             {
-                //CompleteFirstStep();
+                CompleteFirstStep();
             }
         }
 
@@ -738,6 +740,7 @@ namespace FlowerShop.Education
                     educationCanvasLiaison.EducationCanvas.enabled = false;
                     IsEducationActive = false;
                     ActivateEffect();
+                    exemplaryStudent.IncreaseProgress();
                     Save();
                     break;
             }

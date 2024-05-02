@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: HyacinthInfo
+  m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: 02052024125210
+  <FlowerNameRus>k__BackingField: "\u0413\u0438\u0430\u0446\u0438\u043D\u0442"
+  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 8004de43fff886a4fad8e562be1cb2aa, type: 3}
+  <FlowerName>k__BackingField: {fileID: 11400000, guid: 621c0cb7c4ac295449394559bf80bfd4, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
+  <FlowerLvl>k__BackingField: 4
+  <FlowerSellingPrice>k__BackingField: 1350
+  <FlowerSoilMesh>k__BackingField: {fileID: -4619308205030461230, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+  flowerLvlMeshes:
+  - {fileID: 2965215601118900591, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -4721280958829222371, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
+  - {fileID: -454610950305408582, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
+  - {fileID: -4791848115882610806, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
+  <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
+  <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: a1d257342505fac41ac6b1eaff18e042, type: 2}
+  <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: bb399832ea07c6140ad4b524e49edb3e, type: 2}

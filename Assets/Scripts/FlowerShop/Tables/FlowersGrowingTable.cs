@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
@@ -16,6 +17,7 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(FlowersGrowingTableEffects))]
     public class FlowersGrowingTable : UpgradableBreakableTable, ISavableObject
     {
+        [Inject] private readonly PlantGrowingPlant plantGrowingPlant;
         [Inject] private readonly PlayerAnimationEvents playerAnimationEvents;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
@@ -195,6 +197,7 @@ namespace FlowerShop.Tables
             playerPickableObjectHandler.ResetPickableObject();
             flowersGrowingTableEffects.EnableEffects();
             PutPotOnTableBase();
+            plantGrowingPlant.IncreaseProgress();
             
             Save();
         }
@@ -292,6 +295,7 @@ namespace FlowerShop.Tables
             isPotOnTable = false;
             UseBreakableTable();
             flowersGrowingTableEffects.DisableEffects();
+            plantGrowingPlant.DecreaseAchievementProgress();
             
             Save();
         }

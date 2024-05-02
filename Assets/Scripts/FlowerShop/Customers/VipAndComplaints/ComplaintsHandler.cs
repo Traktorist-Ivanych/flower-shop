@@ -1,4 +1,5 @@
-﻿using FlowerShop.ComputerPages;
+﻿using FlowerShop.Achievements;
+using FlowerShop.ComputerPages;
 using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
@@ -16,6 +17,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly Dedication dedication;
         [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
@@ -77,6 +79,8 @@ namespace FlowerShop.Customers.VipAndComplaints
         {
             RemoveComplaint();
             shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
+            
+            dedication.IncreaseProgress();
             
             Save();
         }

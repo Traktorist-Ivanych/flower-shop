@@ -28,7 +28,8 @@ namespace FlowerShop.Flowers
             
             foreach (FlowerInfo flowerInfo in allFlowersInfo)
             {
-                if (flowerInfo.FlowerLvl >= flowersSettings.CrossingFlowerMinLvl)
+                if (flowerInfo.FlowerLvl >= flowersSettings.CrossingFlowerMinLvl &&
+                    flowerInfo.FlowerLvl <= flowersSettings.CrossingFlowerMaxLvl)
                 {
                     string crossingRecipe = GetCrossingRecipe(
                         firstFlowerName: flowerInfo.FirstCrossingFlowerInfo.FlowerName, 

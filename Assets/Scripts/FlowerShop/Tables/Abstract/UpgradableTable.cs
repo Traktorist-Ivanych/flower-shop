@@ -1,3 +1,4 @@
+using FlowerShop.Achievements;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Sounds;
@@ -11,6 +12,7 @@ namespace FlowerShop.Tables.Abstract
     [RequireComponent(typeof(UpgradableTableBaseComponent))]
     public abstract class UpgradableTable : Table, IUpgradableTable
     {
+        [Inject] private readonly AllTheBest allTheBest;
         [Inject] private protected readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
@@ -43,6 +45,7 @@ namespace FlowerShop.Tables.Abstract
             LoadLvlMesh();
             soundsHandler.PlayUpgradeFinishAudio();
             upgradableTableBaseComponent.FinishUpgradeTableProcessEffects();
+            allTheBest.IncreaseProgress();
         }
 
         private protected void LoadLvlMesh()

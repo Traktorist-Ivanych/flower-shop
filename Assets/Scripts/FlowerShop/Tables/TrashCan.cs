@@ -1,3 +1,4 @@
+using FlowerShop.Achievements;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Sounds;
@@ -14,6 +15,7 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(Animator))]
     public class TrashCan : Table
     {
+        [Inject] private readonly DecentCitizen decentCitizen;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly SoundsHandler soundsHandler;
@@ -92,6 +94,7 @@ namespace FlowerShop.Tables
             }
 
             playerPot.CleanPot();
+            decentCitizen.IncreaseProgress();
         
             trashCanAnimator.SetTrigger(Throw);
         }

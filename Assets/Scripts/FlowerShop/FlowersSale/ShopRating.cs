@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using FlowerShop.Achievements;
 using FlowerShop.ComputerPages;
 using FlowerShop.Flowers;
 using FlowerShop.Saves.SaveData;
@@ -12,10 +13,14 @@ namespace FlowerShop.FlowersSale
 {
     public class ShopRating : MonoBehaviour, ISavableObject
     {
+        [Inject] private readonly Burnout burnout;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
+        [Inject] private readonly Sprinter sprinter;
         [Inject] private readonly StatsEffects statsEffects;
         [Inject] private readonly StatsCanvasLiaison statsCanvasLiaison;
+        [Inject] private readonly TheBestFlowerShop theBestFlowerShop;
 
         private int[] shopGrades;
         private int currentGradeIndex;
@@ -46,6 +51,20 @@ namespace FlowerShop.FlowersSale
             currentGradeIndex++;
 
             CalculateAverageGrade();
+
+            if (currentGrade == flowersForSaleCoeffCalculatorSettings.MinShopGrade)
+            {
+                burnout.IncreaseProgress();
+            }
+            
+            if (currentGrade == flowersForSaleCoeffCalculatorSettings.MaxShopGrade)
+            {
+                sprinter.IncreaseProgress();
+            }
+            else
+            {
+                sprinter.SetProgress(0);
+            }
         }
 
         public void Load()
@@ -136,6 +155,8 @@ namespace FlowerShop.FlowersSale
                     }
                 }
             }
+            
+            theBestFlowerShop.SetProgress(fiveStars);
 
             if (gradesCountForCurrentAverage > 0)
             {

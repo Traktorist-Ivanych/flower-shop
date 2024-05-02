@@ -15,14 +15,17 @@ namespace FlowerShop.Flowers
         
         [field: Tooltip("Determines from what level (inclusive) flower can be crossed")]
         [field: SerializeField] public int CrossingFlowerMinLvl { get; private set; }
+        [field: SerializeField] public int CrossingFlowerMaxLvl { get; private set; }
         [field: SerializeField] public int MaxFlowerGrowingLvl { get; private set; }
         
         [field: Tooltip("Determines what level will be set when flower is planted")]
         [field: SerializeField] public int PrimaryFlowerGrowingLvl { get; private set; }
         [field: SerializeField] public FlowerName FlowerNameEmpty { get; private set; }
         [field: SerializeField] public FlowerInfo FlowerInfoEmpty { get; private set; }
-        [field: SerializeField] public GrowingRoom GrowingRoomWild { get; private set; }
         [field: SerializeField] public GrowingRoom GrowingRoomAny { get; private set; }
+        [field: SerializeField] public GrowingRoom GrowingRoomDecorative { get; private set; }
+        [field: SerializeField] public GrowingRoom GrowingRoomExotic { get; private set; }
+        [field: SerializeField] public GrowingRoom GrowingRoomWild { get; private set; }
         [field: SerializeField] public Sprite UnknownFlower { get; private set; }
         [field: SerializeField] public Sprite UnplayableFlower { get; private set; }
     }

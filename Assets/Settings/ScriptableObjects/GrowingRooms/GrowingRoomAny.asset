@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GrowingRoomAny
   m_EditorClassIdentifier: 
   <RoomName>k__BackingField: Any
-  <RoomColorSprite>k__BackingField: {fileID: 21300000, guid: 4d9a04e8f1596114488b849a34ad324c, type: 3}
+  <RoomColorSprite>k__BackingField: {fileID: 21300000, guid: bc38a29698885a244894603639c72f0f, type: 3}

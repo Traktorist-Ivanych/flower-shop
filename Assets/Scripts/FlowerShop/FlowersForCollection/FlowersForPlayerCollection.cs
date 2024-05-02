@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using FlowerShop.Achievements;
 using FlowerShop.Flowers;
 using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.FlowersForCollection
 {
@@ -9,11 +11,32 @@ namespace FlowerShop.FlowersForCollection
     /// </summary>
     public class FlowersForPlayerCollection : MonoBehaviour
     {
+        [Inject] private readonly AspiringCollector aspiringCollector;
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly LoverOfDecorativeFlowers loverOfDecorativeFlowers;
+        [Inject] private readonly LoverOfExoticFlowers loverOfExoticFlowers;
+        [Inject] private readonly WildflowerLover wildflowerLover;
+        
         private readonly List<FlowerInfo> flowerCollection = new();
 
         public void AddFlowerToCollectionList(FlowerInfo addedFlowerInfo)
         {
             flowerCollection.Add(addedFlowerInfo);
+
+            if (addedFlowerInfo.GrowingRoom.Equals(flowersSettings.GrowingRoomDecorative))
+            {
+                loverOfDecorativeFlowers.IncreaseProgress();
+            }
+            else if (addedFlowerInfo.GrowingRoom.Equals(flowersSettings.GrowingRoomExotic))
+            {
+                loverOfExoticFlowers.IncreaseProgress();
+            }
+            else if (addedFlowerInfo.GrowingRoom.Equals(flowersSettings.GrowingRoomWild))
+            {
+                wildflowerLover.IncreaseProgress();
+            }
+            
+            aspiringCollector.IncreaseProgress();
         }
 
         public bool IsFlowerForCollectionUnique(FlowerInfo verifiableFlowerInfo)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FlowerShop.Achievements;
 using FlowerShop.FlowersSale;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
@@ -17,6 +18,7 @@ namespace FlowerShop.Customers
     public class CustomerMoving : MonoBehaviour
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly CustomerFocus customerFocus;
         [Inject] private readonly CustomersObserver customersObserver;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CustomersSpawner customersSpawner;
@@ -238,6 +240,8 @@ namespace FlowerShop.Customers
                 customerActions.BuyFlower(customerFlowersSaleTable);
                 StartCoroutine(
                     SetBuyerEndTransformWithFlower(customerFlowersSaleTable.FinishWithFlowerPathPoints));
+                
+                customerFocus.IncreaseProgress();
             }
         }
 

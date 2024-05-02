@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: GardeniaInfo
+  m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: 0205202413285
+  <FlowerNameRus>k__BackingField: "\u0413\u0430\u0440\u0434\u0435\u043D\u0438\u044F"
+  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 2b84c091db8412040b4402e1ddf143db, type: 3}
+  <FlowerName>k__BackingField: {fileID: 11400000, guid: 1f4aedbc8c881e242b6b38712f7a1a90, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
+  <FlowerLvl>k__BackingField: 4
+  <FlowerSellingPrice>k__BackingField: 1310
+  <FlowerSoilMesh>k__BackingField: {fileID: -5944614252197831104, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+  flowerLvlMeshes:
+  - {fileID: 2838768563372361112, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -2368372371349315894, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  - {fileID: 803429997376663394, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  - {fileID: -179225567671494674, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
+  <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: cd9428b81633c7346ad4e41a52929494, type: 2}
+  <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 5056bce85541e8747af82f110281538e, type: 2}

@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.RepairsAndUpgrades;
@@ -13,6 +14,7 @@ namespace FlowerShop.Tables.BaseComponents
     public class BreakableTableBaseComponent : MonoBehaviour
     {
         [Inject] private readonly EducationHandler educationHandler;
+        [Inject] private readonly Handyman handyman;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -85,6 +87,8 @@ namespace FlowerShop.Tables.BaseComponents
             {
                 educationHandler.CompleteEducationStep();
             }
+            
+            handyman.IncreaseProgress();
             
             savingTable.Save();
         }

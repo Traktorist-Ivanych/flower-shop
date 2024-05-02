@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Ads;
 using FlowerShop.Coffee;
 using FlowerShop.Settings;
@@ -14,8 +15,10 @@ namespace FlowerShop.Tables
     [RequireComponent(typeof(TableObjectsRotation))]
     public class CoffeeTable : Table
     {
+        [Inject] private readonly AchievementsSettings achievementsSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
+        [Inject] private readonly CoffeeLover coffeeLover;
         [Inject] private readonly CoffeeSettings coffeeSettings;
         [Inject] private readonly LevelPlayAds levelPlayAds;
         [Inject] private readonly PlayerCoffeeEffect playerCoffeeEffect;
@@ -83,6 +86,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(coffeeSettings.StartDrinkingCoffeeTimeDelay);
             coffeeCap.EmptyCoffeeCap();
+            coffeeLover.SetProgress(achievementsSettings.CoffeeLoverMaxProgress);
             playerCoffeeEffect.SetPurchasedCoffeeEffectIndicator();
 
             yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);
@@ -112,6 +116,7 @@ namespace FlowerShop.Tables
 
             yield return new WaitForSeconds(coffeeSettings.StartDrinkingCoffeeTimeDelay);
             coffeeCap.EmptyCoffeeCap();
+            coffeeLover.IncreaseProgress();
             playerCoffeeEffect.StartCoffeeEffect();
 
             yield return new WaitForSeconds(drinkCoffeeAnimationClip.length);

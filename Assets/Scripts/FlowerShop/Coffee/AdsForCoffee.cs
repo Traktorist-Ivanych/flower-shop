@@ -1,6 +1,7 @@
 ﻿using FlowerShop.Ads;
 using FlowerShop.ComputerPages;
 using FlowerShop.Tables;
+using Input;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace FlowerShop.Coffee
     [RequireComponent(typeof(UIButton))]
     public class AdsForCoffee : MonoBehaviour
     {
+        [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
         [Inject] private readonly CoffeeTable coffeeTable;
         [Inject] private readonly LevelPlayAds levelPlayAds;
         
@@ -32,6 +34,7 @@ namespace FlowerShop.Coffee
         private void OnButtonClick()
         {
             levelPlayAds.ShowRewardedAd(() => StartCoroutine(coffeeTable.MakeCoffeeProcessForAds()));
+            coffeeCanvasLiaison.DisableCanvas();
         }
     }
 }

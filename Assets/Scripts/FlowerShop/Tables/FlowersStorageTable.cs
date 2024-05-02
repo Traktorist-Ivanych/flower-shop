@@ -1,3 +1,4 @@
+using FlowerShop.Achievements;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
@@ -17,6 +18,7 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly WarehouseLogistics warehouseLogistics;
         
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private WeedPlanter weedPlanter;
@@ -121,6 +123,8 @@ namespace FlowerShop.Tables
             isPotOnTable = true;
             TryAddPotOnTableInPlantingWeedList();
             
+            warehouseLogistics.IncreaseProgress();
+            
             Save();
         }
 
@@ -195,6 +199,8 @@ namespace FlowerShop.Tables
             weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
             potOnTable = null;
 
+            warehouseLogistics.DecreaseAchievementProgress();
+            
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
 

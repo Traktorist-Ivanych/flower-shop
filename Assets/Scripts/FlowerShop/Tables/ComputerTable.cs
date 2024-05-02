@@ -3,6 +3,7 @@ using FlowerShop.Customers.VipAndComplaints;
 using FlowerShop.Tables.Abstract;
 using Input;
 using PlayerControl;
+using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables
@@ -16,6 +17,18 @@ namespace FlowerShop.Tables
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly VipOrdersHandler vipOrdersHandler;
 
+        [SerializeField] private MeshRenderer infoIndicator;
+
+        public void ShowIndicator()
+        {
+            infoIndicator.enabled = true;
+        }
+        
+        private void HideIndicator()
+        {
+            infoIndicator.enabled = false;
+        }
+        
         private protected override void TryInteractWithTable()
         {
             base.TryInteractWithTable();
@@ -46,6 +59,7 @@ namespace FlowerShop.Tables
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartUsingComputer);
             playerAnimationEvents.SetCurrentAnimationEvent(EnableComputerMainPage);
+            HideIndicator();
         }
 
         private void EnableComputerMainPage()

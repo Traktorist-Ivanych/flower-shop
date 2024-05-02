@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
@@ -10,7 +11,6 @@ using PlayerControl;
 using Saves;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace FlowerShop.Tables
@@ -22,6 +22,7 @@ namespace FlowerShop.Tables
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HardworkingBreeder hardworkingBreeder;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly SoundsHandler soundsHandler;
@@ -293,6 +294,8 @@ namespace FlowerShop.Tables
                     soundsHandler.StopPlayingCrossingSound();
                     
                     selectedTableEffect.TryToRecalculateEffect();
+                    
+                    hardworkingBreeder.IncreaseProgress();
                     
                     cyclicalSaver.CyclicalSaverEvent -= Save;
                     

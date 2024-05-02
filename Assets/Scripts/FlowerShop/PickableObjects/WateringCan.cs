@@ -1,3 +1,4 @@
+using FlowerShop.Achievements;
 using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
@@ -17,6 +18,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly TablesSettings tablesSettings;
+        [Inject] private readonly TakingCareOfPlants takingCareOfPlants;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
     
@@ -81,6 +83,8 @@ namespace FlowerShop.PickableObjects
             {
                 educationHandler.CompleteEducationStep();
             }
+            
+            takingCareOfPlants.IncreaseProgress();
             
             Save();
         }

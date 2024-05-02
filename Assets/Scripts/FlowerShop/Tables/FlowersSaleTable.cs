@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using FlowerShop.Achievements;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.PickableObjects;
@@ -23,6 +23,7 @@ namespace FlowerShop.Tables
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
+        [Inject] private readonly ToCapacity toCapacity;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ShopRating shopRating;
         [Inject] private readonly SoundsHandler soundsHandler;
@@ -86,6 +87,8 @@ namespace FlowerShop.Tables
             
             ResetFlowerInfoOnTable();
             
+            toCapacity.DecreaseAchievementProgress();
+            
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
 
@@ -148,6 +151,8 @@ namespace FlowerShop.Tables
                     numJumps: actionsWithTransformSettings.DefaultDoTweenJumpsNumber, 
                     duration: actionsWithTransformSettings.MovingPickableObjectTime)
                 .OnComplete(() => playerBusyness.SetPlayerFree());
+            
+            toCapacity.IncreaseProgress();
             
             Save();
         }

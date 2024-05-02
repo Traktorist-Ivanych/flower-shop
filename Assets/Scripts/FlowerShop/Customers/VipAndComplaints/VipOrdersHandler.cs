@@ -1,4 +1,5 @@
-﻿using FlowerShop.ComputerPages;
+﻿using FlowerShop.Achievements;
+using FlowerShop.ComputerPages;
 using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
@@ -20,6 +21,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly FlowersForPlayerCollection flowersForPlayerCollection;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly KnowALotAboutBusiness knowALotAboutBusiness;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ShopRating shopRating;
         [Inject] private readonly VipCanvasLiaison vipCanvasLiaison;
@@ -82,6 +84,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         {
             RemoveVipOrder();
             shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
+            knowALotAboutBusiness.IncreaseProgress();
             
             Save();
         }

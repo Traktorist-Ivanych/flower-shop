@@ -67,6 +67,8 @@ namespace FlowerShop.Installers
         [SerializeField] private LevelPlayAds levelPlayAds;
         [Header("Coffee")]
         [SerializeField] private CoffeeTable coffeeTable;
+        [Header("Computer")]
+        [SerializeField] private ComputerTable computerTable;
 
         public override void InstallBindings()
         {
@@ -114,6 +116,8 @@ namespace FlowerShop.Installers
             Container.Bind<LevelPlayAds>().FromInstance(levelPlayAds).AsSingle().NonLazy();
             
             Container.Bind<CoffeeTable>().FromInstance(coffeeTable).AsSingle().NonLazy();
+            
+            Container.Bind<ComputerTable>().FromInstance(computerTable).AsSingle().NonLazy();
         }
     }
 }

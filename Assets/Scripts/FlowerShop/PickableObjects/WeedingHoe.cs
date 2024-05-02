@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
@@ -18,6 +19,7 @@ namespace FlowerShop.PickableObjects
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
+        [Inject] private readonly WeedKiller weedKiller;
         [Inject] private readonly WeedSettings weedSettings;
         
         [SerializeField] private Mesh[] weedingHoeLvlMeshes = new Mesh[2];
@@ -66,6 +68,8 @@ namespace FlowerShop.PickableObjects
             playerBusyness.SetPlayerFree();
             selectedTableEffect.ActivateEffectWithDelay();
 
+            weedKiller.IncreaseProgress();
+            
             if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
             {
                 educationHandler.CompleteEducationStep();

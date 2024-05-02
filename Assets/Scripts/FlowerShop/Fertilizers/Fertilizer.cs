@@ -1,4 +1,5 @@
 using System.Collections;
+using FlowerShop.Achievements;
 using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
@@ -23,6 +24,7 @@ namespace FlowerShop.Fertilizers
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly ThereIsNoTimeToWait thereIsNoTimeToWait;
 
         [SerializeField] private ParticleSystem treatEffect;
         
@@ -130,6 +132,8 @@ namespace FlowerShop.Fertilizers
             {
                 educationHandler.CompleteEducationStep();
             }
+            
+            thereIsNoTimeToWait.IncreaseProgress();
             
             Save();
         }
