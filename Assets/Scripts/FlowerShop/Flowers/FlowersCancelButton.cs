@@ -33,7 +33,7 @@ namespace FlowerShop.Flowers
         private void OnCancelButtonClick()
         {
             playerInputActions.DisableCanvasControlMode();
-            flowersCanvasLiaison.FlowersCanvas.enabled = false;
+            flowersCanvasLiaison.HideFlowersCanvas();
             
             if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
             {

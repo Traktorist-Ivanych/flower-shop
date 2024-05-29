@@ -1,0 +1,334 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: EducationTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 7a75d0d0d9eb7b24c9116c12c0eb07db, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 7605116928
+    m_Localized: Education
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4809684738048
+    m_Localized: "   Welcome!\r\n   My name is Carrie. I am an employee of this flower
+      shop. I found out that you became its owner. Let me tell you what's what."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4858082811904
+    m_Localized: '   We have to: breed and grow many different types of flowers,
+      fight weeds, improve the store, serve customers, listen to music, drink coffee
+      and much more.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4909425287168
+    m_Localized: "   In the upper right corner you can see the amount of money at
+      our disposal and the rating of the flower shop.\r\n   We will need money to
+      buy soil and seeds, and we also need it to improve the equipment of the store.\r\n  
+      The rating reflects the satisfaction of our customers. The maximum rating is
+      5. The higher the rating, the more customers like our store, and the more often
+      they will come to us."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4960302194688
+    m_Localized: "   In the lower right corner of the screen you can see the Almanac
+      button of all colors. It displays all available flowers at the current moment,
+      distributing them into levels.\r\n   At first, most of the flowers are not
+      available to you. To display a new flower, you need to remove its seed.\r\n  
+      You can also click on any of the colors to see all the additional information
+      about it.\r\n   Close the hint and look in the Almanac."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5006414372864
+    m_Localized: "   Now let's try to grow our first flower. It all starts with choosing
+      the pot in which it will grow.\r\n   Close the prompt and click on the pot
+      rack, then I will run to it and pick up the pot."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5059237437440
+    m_Localized: "   The next step is to fill the pot with soil. We have a separate
+      table for this. But you have to pay for the soil.\r\n   Close the hint panel
+      and click on the table to prepare the ground."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5139633856512
+    m_Localized: "   Great, the soil is ready!\r\n   Now we need to buy and plant
+      a seed of the flower that we want to grow. There is also a separate table for
+      this.\r\n   Only 4 seeds are available for purchase, but don\u2019t be upset,
+      this quantity will be enough for us to produce a whole collection of different
+      flowers, because this is our main goal.\r\n   Let's grow a cactus first."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5196508618752
+    m_Localized: "   In order for our Cactus to start growing, it needs to be placed
+      on the table under a lamp.\r\n   All flowers have 3 stages of growth. They
+      can only grow under lamps. To move to the next stage, the flowers must be watered.
+      If the flower has opened and fully grown, the lamp turns off."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5245506478080
+    m_Localized: '   Now let''s plant a Dandelion.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5294714052608
+    m_Localized: "   So, we now have 2 flowers growing. To speed up their growth
+      process, you can use fertilizers. I just hid a few of them.\r\n   There are
+      3 types in total, each with different properties. Information about them can
+      be obtained from the corresponding table.\r\n   Let's read what purple fertilizer
+      does and use it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5353769852928
+    m_Localized: "   And now we have 2 fully grown flowers. Instantly. Beauty!\r\n  
+      Let's bring the fertilizer back."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423596625920
+    m_Localized: "   I was thinking that everything is ready for us to hatch the
+      seed of a new flower. Let's try it!\r\n   To do this, you need to place the
+      grown flowers in the appropriate sections of the table for crossing.\r\n  
+      It is he who will help us grow our own collection of various flowers."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5471990505472
+    m_Localized: "   The crossing table is actually smart. Sometimes even too...\r\n  
+      It contains indicators that tell you about the current crossing.\r\n   If the
+      side indicators are green, then the table will be able to produce a new seed,
+      and if it is red, it doesn\u2019t like something.\r\n   The central indicator
+      tells you the color of the room in which you will need to grow a new flower.
+      The pot and soil for it should be selected from the appropriate room.\r\n  
+      The color of the room can be determined by the color of the wallpaper on the
+      walls."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5527363706880
+    m_Localized: "   The crossing table may malfunction. But this happens very rarely.\r\n  
+      Something strange happens inside it, and as a result of crossing, completely
+      different flowers are produced, not according to the recipe. I call them Rare.
+      I only know of 6 colors that can be obtained this way.\r\n   They are easy
+      to identify - when watered, they emit an interesting glow. By the way, they
+      are very profitable to sell.\r\n   Well, click on the center section of the
+      crossing table and I'll launch it. Please note that it will take time to hatch
+      a new seed."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5578542604288
+    m_Localized: "   Oops, it seems our soil preparation table is broken. This happens
+      sometimes, the technology fails... But don\u2019t worry, I have a hammer for
+      such cases. We'll fix it quickly now.\r\n   Find the table with the hammer
+      and click on it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5628446433280
+    m_Localized: "   Like this! A couple of blows and the table is operational again.\r\n  
+      With a hammer you can not only repair equipment, but also improve it. In addition
+      to speeding up the equipment\u2019s workflow, improvements also increase its
+      service life. This means that tables will break less often.\r\n   Let's try
+      to improve the table for growing flowers. All information about the upcoming
+      improvement will be displayed in a separate menu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5676773203968
+    m_Localized: "   So we have increased the level of the table for growing flowers.\r\n  
+      We've dealt with the hammer, let's put it back in place."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5722390454272
+    m_Localized: "   I hear that the seed of a new flower is about to be ready. Let's
+      prepare a pot with soil for it.\r\n   Since the center section indicator is
+      yellow, the pot and soil are needed from the yellow room."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5765382070272
+    m_Localized: "   The new seed is still hatching, so you need to wait a little.\r\n  
+      As soon as the table stops buzzing, click on the central section and I will
+      plant a new flower. After which it will need to be placed under a lamp."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5816292532224
+    m_Localized: "   The new seed has already been hatched, great! If I'm not mistaken,
+      we brought out Vasilki.\r\n   Click on the center section of the crossing table
+      and I will plant them. After which the cornflowers will need to be placed under
+      the lamp."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5885716652032
+    m_Localized: "   As you have already noticed, we have 3 types of fertilizers.
+      We have already used the purple one, we just need to try 2 more.\r\n   Let's
+      take the green one and process our hatched flower. At the same time, we\u2019ll
+      find out what it does."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5935519817728
+    m_Localized: "   Yeah, it\u2019s clear, green fertilizer significantly accelerates
+      the growth of the flower, if only you had time to water it.\r\n   Now let's
+      put the green manure back in place."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5982617657344
+    m_Localized: "   Once the seed is hatched by the crossing table, the flowers
+      standing on its side sections lose 1 stage of growth. If you put them under
+      lamps, they will grow again.\r\n   Let's do this."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030134927360
+    m_Localized: "   Oops, it looks like one of our flowers is overgrown with weeds.
+      It needs to be removed urgently!\r\n   Weeds take all the nutrients from the
+      soil and prevent flowers from growing. Also, a flower overgrown with weeds
+      cannot be sold or crossed.\r\n   Let's pull this weed out!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6094559436800
+    m_Localized: "   Look, our Cornflowers require watering. You need to use a watering
+      can.\r\n   Watering a flower moves it to the next stage of growth.\r\n   Please
+      note that the capacity of the watering can is limited; to replenish it, you
+      just need to return the watering can to the table and wait."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6144664592384
+    m_Localized: "   All we have to do is try the blue fertilizer.\r\n   I learned
+      that it instantly moves the flower to the next stage of growth. We just have
+      2 flowers at the penultimate stage of growth.\r\n   Let's try the fertilizer
+      on them."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211337248768
+    m_Localized: "   Cornflowers need watering again.\r\n   Let's bring them some
+      water."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6260133781504
+    m_Localized: "   Our store has separate rooms for creating a collection of grown
+      flowers.\r\n   Fully grown, unique, weed-free flowers should be placed in this
+      room. You can admire your own collection at any time. And also all the flowers
+      from this room are posted on the website for VIP orders.\r\n   A flower ordered
+      by VIP is sold at a much higher price. But in order to unlock the ability to
+      receive VIP orders, you first need to add at least a few colors to your collection."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6322524053504
+    m_Localized: "   Let's put Dandelions in the collection.\r\n   Find the yellow
+      collection room and click on the table. But don\u2019t stop at Dandelions alone,
+      because the more flowers in the collection, the more often you will receive
+      VIP orders.\r\n   Fill the tables with unique flowers and don\u2019t deny yourself
+      the opportunity to admire your collection, because it is the result of your
+      work!\r\n   By the way, the tables for the collection of Rare Flowers are located
+      in the sales room, covered with white wallpaper. Rare flowers are not included
+      in VIP orders."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6374738944000
+    m_Localized: "   Great! The formation of your collection has begun!\r\n   Now
+      let's place the empty pot on the orange table with the clock icon.\r\n   These
+      tables are designed to hold pots at any stage of growth of the flowers they
+      contain.\r\n   I would also like to say that there is a trash can next to the
+      pot rack. You can throw the soil with the unwanted flower into it. But in this
+      case, the money spent will not be returned, so I advise you to use it in the
+      most critical situations."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6417193689088
+    m_Localized: "   Now I will tell you about sales.\r\n   As I already said, the
+      walls of the client hall are covered with white wallpaper. It contains tables
+      for displaying flowers for sale, they are marked with a dollar sign. Just put
+      a grown weed-free flower there and customers will definitely buy it.\r\n  
+      Our customers really appreciate the variety of flowers for sale. They leave
+      a rating for our store every time they buy a flower. The greater the variety
+      of colors we offer for sale, the higher the valuation."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6608093241344
+    m_Localized: '   Let''s put the Cactus up for sale.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6662694690816
+    m_Localized: '   Now let''s return the empty pot to the rack.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6713240248320
+    m_Localized: "   All we have to do is water the Cornflowers one last time, and
+      they will be completely ready.\r\n   Let's complete their growth."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6759046242304
+    m_Localized: "   In the sales room there is a table with a laptop.\r\n   In it
+      you can get acquainted with information about complaints, VIP orders, see details
+      of the latest store ratings and the progress of your achievements."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6841359458304
+    m_Localized: "   Sometimes we will receive complaints about the quality of our
+      flowers from customers.\r\n   As soon as you see the circular arrow indicator
+      in the lower left corner of the screen, it means one of our clients has filed
+      a complaint.\r\n   You can view information about the flower in your laptop
+      on the appropriate tab. The waiting time for our response is limited.\r\n  
+      If the customer does not receive a replacement flower, he will leave negative
+      feedback. Place the customer's requested grown flower on the table with a complaint
+      icon on time, and its score will be the highest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6887735877632
+    m_Localized: "   We will also periodically receive VIP orders. If you see a VIP
+      order indicator in the lower left corner of the screen, then it\u2019s time
+      for us to act.\r\n   All information about the current order can be viewed
+      in the laptop in the appropriate tab. Order processing time is also limited.\r\n  
+      To satisfy the customer, simply place the grown, ordered weed-free flower on
+      the table with the VIP order badge. If we complete the order on time, the client
+      will pay a large amount and leave the maximum rating, but if we fail to do
+      so, we will end up with the worst rating."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939350982656
+    m_Localized: "   Now let's talk about achievements.\r\n   In the laptop you can
+      see the conditions of tasks, as well as the progress of their completion.\r\n  
+      Once the task is completed, the indicator above the laptop will light up. You
+      will need to open the achievements tab, find the completed achievement in the
+      list and click on the question mark to the right of the task. Then you will
+      receive a cash reward and a corresponding figurine on the achievement table.\r\n  
+      There are two such tables in total. They are located in the sales hall near
+      the entrance doors to the store."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6998910099456
+    m_Localized: "   In our store, in the sales area, there is a coffee machine.\r\n  
+      In our town, coffee is in short supply and you can\u2019t just get it. But
+      the coffee is worth the effort it takes to find it. After a cup of coffee I
+      feel a surge of energy for a long time. My movement speed increases significantly.
+      In addition, your mood also improves.\r\n   I hid enough coffee beans for one
+      cup, I should drink it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7044225359872
+    m_Localized: "   Oh, what gorgeous coffee! I wish I could drink it more often...\r\n  
+      I would also like to tell you about music.\r\n If you look around, you will
+      see that there are music speakers throughout the store. You can turn the sound
+      on and off yourself, as well as switch the melody being played, at any time
+      on tables with audio equipment.\r\n   The playlist is small, but I hope you
+      can find a tune you like."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7092455661568
+    m_Localized: "   This concludes our training. From now on, you are at the helm,
+      and I will do everything you say. But within reasonable limits!\r\n   Our store
+      is currently closed to customers, as soon as you can fill the sales tables
+      with what you think are enough flowers - click on the central table in the
+      sales room and I will open the store. You can close it again at any time.\r\n  
+      Check your laptop, you will receive a reward for the first achievement you
+      complete!"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

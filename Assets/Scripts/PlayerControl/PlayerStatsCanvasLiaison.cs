@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityWeld.Binding;
 
 namespace PlayerControl
@@ -7,8 +8,9 @@ namespace PlayerControl
     [Binding]
     public class PlayerStatsCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        [SerializeField] private GameObject coffeeEffectPanel;
-        
+        [SerializeField] private Image coffeeEffectIndicator;
+        [SerializeField] private Image coffeeEffectIndicatorBackGround;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [Binding]
@@ -40,7 +42,8 @@ namespace PlayerControl
 
         public void SetCoffeeEffectPanelActive(bool flag)
         {
-            coffeeEffectPanel.SetActive(flag);
+            coffeeEffectIndicator.enabled = flag;
+            coffeeEffectIndicatorBackGround.enabled = flag;
         }
 
         private void OnPropertyChanged(string propertyName)

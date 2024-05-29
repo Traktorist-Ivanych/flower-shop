@@ -3,6 +3,7 @@ using DG.Tweening;
 using FlowerShop.Achievements;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -21,6 +22,8 @@ namespace FlowerShop.Tables
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly ToCapacity toCapacity;
@@ -68,11 +71,54 @@ namespace FlowerShop.Tables
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (isFlowerOnSaleTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+                }
+                else if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (currentPot.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerDidNotGrow);
+                }
+                else if (currentPot.IsWeedInPot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WeedInPot);
+                }
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyHands);
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
         }
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerPutFlowerOnTable();
+            return CanPlayerPutFlowerOnTable() || CanPlayerUseTableInfoCanvas();
         }
 
         public void SaleFlower()
@@ -155,6 +201,16 @@ namespace FlowerShop.Tables
             toCapacity.IncreaseProgress();
             
             Save();
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private void SetFlowerOnSaleTable()

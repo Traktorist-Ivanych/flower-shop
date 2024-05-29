@@ -33,8 +33,13 @@ namespace FlowerShop.Coffee
 
         private void OnButtonClick()
         {
-            levelPlayAds.ShowRewardedAd(() => StartCoroutine(coffeeTable.MakeCoffeeProcessForAds()));
+            levelPlayAds.ShowRewardedAd(CoffeeAdReward);
+        }
+
+        private void CoffeeAdReward()
+        {
             coffeeCanvasLiaison.DisableCanvas();
+            StartCoroutine(coffeeTable.MakeCoffeeProcessForAds());
         }
     }
 }

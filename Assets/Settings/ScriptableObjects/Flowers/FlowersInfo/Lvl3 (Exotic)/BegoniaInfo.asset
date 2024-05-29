@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: BegoniaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: BegoniaInfo 17
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6076553289728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0411\u0435\u0433\u043E\u043D\u0438\u044F"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 8dc62a1fa6bdf334498ea10d390b0188, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 8ac1becff05949d41b98d3bc5c7d54d7, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 940268467, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 3b2ea644211444748af26460a7ebb3f7, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 3
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: 166488569608651889, guid: 032f691221509da48936c0132557a88d, type: 3}
   - {fileID: -8741578309200224651, guid: 032f691221509da48936c0132557a88d, type: 3}
   - {fileID: 321304364601849875, guid: 032f691221509da48936c0132557a88d, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: eb8c508bd4a8b174d80ea6b6b5210ff5, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 408c4720ae305bd409d5022dcbfe68ba, type: 2}
+  references:
+    version: 2
+    RefIds: []

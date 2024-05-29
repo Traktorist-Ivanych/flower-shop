@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.TakingCareOfPlants;
-            achievementDescription.text = achievementsTextSettings.TakingCareOfPlantsDescription;
-            
             achievementMaxProgress = achievementsSettings.TakingCareOfPlantsMaxProgress;
             UpdateScrollbar();
         }

@@ -11,6 +11,7 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class RepairingAndUpgradingHammer : MonoBehaviour, IPickableObject
     {
+        [Inject] private readonly ActionProgressbar playerActionPtogressbar;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -29,7 +30,7 @@ namespace FlowerShop.PickableObjects
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
-            selectedTableEffect.ActivateEffectWithoutDelay();
+            selectedTableEffect.ActivateEffectWithDelay();
             
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForLittleObjectTransform, 
@@ -50,11 +51,12 @@ namespace FlowerShop.PickableObjects
         public IEnumerator ImproveTable()
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
+            playerActionPtogressbar.EnableActionProgressbar(repairsAndUpgradesSettings.TableUpgradeTime);
             yield return new WaitForSeconds(repairsAndUpgradesSettings.TableUpgradeTime);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
             UpgradableTable.UpgradeTableFinish();
             playerBusyness.SetPlayerFree();
-            selectedTableEffect.ActivateEffectWithoutDelay();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void LoadInPlayerHands()
@@ -62,7 +64,7 @@ namespace FlowerShop.PickableObjects
             objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForLittleObjectTransform);
             playerPickableObjectHandler.CurrentPickableObject = this;
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
-            selectedTableEffect.ActivateEffectWithoutDelay();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
     }
 }

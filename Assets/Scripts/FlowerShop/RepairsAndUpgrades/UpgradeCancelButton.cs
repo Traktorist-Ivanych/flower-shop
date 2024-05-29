@@ -1,4 +1,5 @@
-﻿using FlowerShop.Education;
+﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using PlayerControl;
 using UnityEngine;
@@ -7,7 +8,7 @@ using Zenject;
 
 namespace FlowerShop.RepairsAndUpgrades
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class UpgradeCancelButton : MonoBehaviour
     {
         [Inject] private readonly EducationHandler educationHandler;
@@ -15,21 +16,21 @@ namespace FlowerShop.RepairsAndUpgrades
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         
-        [HideInInspector, SerializeField] private Button cancelButton;
+        [HideInInspector, SerializeField] private UIButton cancelButton;
 
         private void OnValidate()
         {
-            cancelButton = GetComponent<Button>();
+            cancelButton = GetComponent<UIButton>();
         }
         
         private void OnEnable()
         {
-            cancelButton.onClick.AddListener(OnUpgradeCancelButtonClick);
+            cancelButton.OnClickEvent += OnUpgradeCancelButtonClick;
         }
 
         private void OnDisable()
         {
-            cancelButton.onClick.RemoveListener(OnUpgradeCancelButtonClick);
+            cancelButton.OnClickEvent -= OnUpgradeCancelButtonClick;
         }
 
         private void OnUpgradeCancelButtonClick()

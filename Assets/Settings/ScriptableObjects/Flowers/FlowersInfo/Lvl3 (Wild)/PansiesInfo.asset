@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: PansiesInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: PansiesInfo 25
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 5933745627136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0410\u043D\u044E\u0442\u0438\u043D\u044B \u0433\u043B\u0430\u0437\u043A\u0438"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: b2bfdcb02cfb79947bc58abb0940a338, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 0ad77df32a3b8da4d9beb9c31f885826, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1468887886, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 00e1e621fc10016458b599ef0949fe1b, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <FlowerLvl>k__BackingField: 3
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: 3348444537901806381, guid: e9401b9467e4e6b4b875120462e684f8, type: 3}
   - {fileID: 8869473513270897597, guid: e9401b9467e4e6b4b875120462e684f8, type: 3}
   - {fileID: 5638666898034723312, guid: e9401b9467e4e6b4b875120462e684f8, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: eb8c508bd4a8b174d80ea6b6b5210ff5, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 841a6fd0abbb5164ab70e15278d03e5a, type: 2}
+  references:
+    version: 2
+    RefIds: []

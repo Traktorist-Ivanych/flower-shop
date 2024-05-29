@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d1b8062db8d41429b7ca7c649b37cb, type: 3}
   m_Name: AchievementsSettings
   m_EditorClassIdentifier: 
-  <AwardReceived>k__BackingField: {fileID: 21300000, guid: e9b8019c53700814cbbe1897db246ec9, type: 3}
-  <AwardAwaitingReceipt>k__BackingField: {fileID: 21300000, guid: 0daca218c796aff40b74365b80a1e998, type: 3}
+  <AwardReceived>k__BackingField: {fileID: -1104769942, guid: 9058a078f617c7c4db9c2339204326bd, type: 3}
+  <AwardAwaitingReceipt>k__BackingField: {fileID: -1932286592, guid: 9058a078f617c7c4db9c2339204326bd, type: 3}
   <LowMoneyReward>k__BackingField: 250
   <MediumMoneyReward>k__BackingField: 500
-  <HighMoneyReward>k__BackingField: 750
+  <HighMoneyReward>k__BackingField: 1000
   <GreatCollectorMaxProgress>k__BackingField: 6
   <AllTheBestMaxProgress>k__BackingField: 102
   <BurnoutMaxProgress>k__BackingField: 1

@@ -63,6 +63,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -121,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621584cfea380874d96f480b5b44ccc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableInfo: {fileID: 11400000, guid: 5a8f4d44cf344c14a97135e632f28d93, type: 2}
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 4332200850327236873}
   targetToLookAt: {fileID: 2546873008974105818}

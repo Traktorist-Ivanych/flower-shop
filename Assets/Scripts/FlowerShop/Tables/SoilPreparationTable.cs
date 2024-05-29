@@ -1,5 +1,7 @@
 using System.Collections;
+using FlowerShop.Effects;
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -17,6 +19,8 @@ namespace FlowerShop.Tables
     public class SoilPreparationTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly SoundsHandler soundsHandler;
@@ -26,6 +30,7 @@ namespace FlowerShop.Tables
         [SerializeField] private MeshRenderer[] gearsMeshRenderers;
 
         [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
+        [HideInInspector, SerializeField] private ActionProgressbar actionProgressbar;
 
         private Pot potToSoilPreparation;
         private float soilPreparationTime;
@@ -39,6 +44,7 @@ namespace FlowerShop.Tables
             base.OnValidate();
             
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
+            actionProgressbar = GetComponentInChildren<ActionProgressbar>();
         }
 
         private protected override void Awake()
@@ -73,6 +79,56 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (IsTableBroken)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.BrokenTable);
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyHands);
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (currentPot.GrowingRoom != growingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (currentPot.IsSoilInsidePot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PotNotEmpty);
+                }
+                else if (playerMoney.CurrentPlayerMoney < flowersSettings.SoilPrice)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NotEnoughMoney);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableHasMaxLvl);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
             }
         }
 
@@ -135,7 +191,7 @@ namespace FlowerShop.Tables
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
             return CanPlayerStartSoilPreparation() || CanPlayerFixTable() || 
-                   CanPlayerUpgradeTableForSelectableEffect();
+                   CanPlayerUpgradeTableForSelectableEffect() || CanPlayerUseTableInfoCanvas();
         }
 
         private void SetSoilPreparationTime()
@@ -164,7 +220,8 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             tableObjectsRotation.StartObjectsRotation();
             soundsHandler.StartPlayingSoilPreparationAudio();
-            
+
+            actionProgressbar.EnableActionProgressbar(soilPreparationTime);
             yield return new WaitForSeconds(soilPreparationTime);
             tableObjectsRotation.PauseObjectsRotation();
             soundsHandler.StopPlayingSoilPreparationAudio();
@@ -183,6 +240,16 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.SoilPreparationMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return !IsTableBroken && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
     }
 }

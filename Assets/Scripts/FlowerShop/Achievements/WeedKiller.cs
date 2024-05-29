@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.WeedKiller;
-            achievementDescription.text = achievementsTextSettings.WeedKillerDescription;
-            
             achievementMaxProgress = achievementsSettings.WeedKillerMaxProgress;
             UpdateScrollbar();
         }

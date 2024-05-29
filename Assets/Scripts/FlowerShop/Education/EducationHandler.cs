@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FlowerShop.Achievements;
 using FlowerShop.Effects;
+using FlowerShop.Fertilizers;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -10,6 +11,7 @@ using Input;
 using PlayerControl;
 using Saves;
 using UnityEngine;
+using UnityEngine.Localization;
 using Zenject;
 
 namespace FlowerShop.Education
@@ -24,10 +26,24 @@ namespace FlowerShop.Education
         [Inject] private readonly PlayerInputActions playerInputActions;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
 
+        [Header("Canvas Scalers")]
+        [SerializeField] private CanvasElementScaler flowersCanvasButton;
+        [SerializeField] private CanvasElementScaler cactusSeedButton;
+        [SerializeField] private CanvasElementScaler dandelionSeedButton;
+        [SerializeField] private CanvasElementScaler growthAcceleratorButton;
+        [SerializeField] private CanvasElementScaler growingLvlIncreaserButton;
+        [SerializeField] private CanvasElementScaler growerToMaxLvlButton;
+        [SerializeField] private CanvasElementScaler improvementButton;
+        [SerializeField] private CanvasElementScaler growerToMaxLvlInfoButton;
+        [SerializeField] private CanvasElementScaler closeFertilizersInfoPanelButton;
+
+        [Header("Scene Objects")]
         [SerializeField] private SoilPreparationTable soilPreparationTable;
         [SerializeField] private FlowersCrossingTableProcess flowersCrossingTableProcess;
         [SerializeField] private Pot potForPlantWeed;
         [SerializeField] private Pot potForPouring;
+
+        [Header("Education Sequence")]
         [SerializeField] private List<MonoBehaviour> educationSequence = new();
         
         private int step;
@@ -82,7 +98,7 @@ namespace FlowerShop.Education
             }
             else
             {
-                CompleteFirstStep();
+                //CompleteFirstStep();
             }
         }
 
@@ -102,8 +118,7 @@ namespace FlowerShop.Education
                     soilPreparationTable.BrokenTable();
                 }
                 ShowEducationDescriptionAsStep(
-                    educationSettings.BrokenTableDescriptionText,
-                    educationSettings.BrokenTableDescriptionCoordinates);
+                    educationSettings.BrokenTableDescriptionText);
             }
         }
 
@@ -122,33 +137,28 @@ namespace FlowerShop.Education
             switch (step)
             {
                 case 0:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.FirstDescriptionText,
-                        educationSettings.FirstDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.FirstDescriptionText);
                     break;
                 case 1:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.MoneyAndShopRatingDescriptionText, 
-                        educationSettings.MoneyAndShopRatingDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.MoneyAndShopRatingDescriptionText);
                     playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopWelcome);
                     break;
                 case 2:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.FlowersCanvasDescriptionText, 
-                        educationSettings.FlowersCanvasDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.FlowersCanvasDescriptionText);
                     break;
                 case 3:
                     educationCanvasLiaison.EducationCanvas.enabled = false;
+                    playerInputActions.EnableCanvasControlMode();
+                    flowersCanvasButton.ActivateEffect();
                     SetNextStep();
                     Save();
                     break;
                 case 4: // Open FlowersCanvas
+                    flowersCanvasButton.DeactivateEffect();
                     SetNextStep();
                     break;
                 case 5: // Close FlowersCanvas
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PotsRackDescriptionText,
-                        educationSettings.PotsRackDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.PotsRackDescriptionText);
                     break;
                 case 6:
                     HideEducationDescriptionAsStep();
@@ -157,9 +167,7 @@ namespace FlowerShop.Education
                     SetNextStep();
                     break;
                 case 8: // Take Pot from PotsRack
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.SoilPreparationDescriptionText,
-                        educationSettings.SoilPreparationDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.SoilPreparationDescriptionText);
                     break;
                 case 9:
                     HideEducationDescriptionAsStep();
@@ -168,24 +176,22 @@ namespace FlowerShop.Education
                     SetNextStep();
                     break;
                 case 11: // Take Pot with soil in PlayerHands
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.SeedPlantDescriptionText,
-                        educationSettings.SeedPlantDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.SeedPlantDescriptionText);
                     break;
                 case 12:
                     HideEducationDescriptionAsStep();
                     break;
                 case 13: // Open SeedCanvas
+                    cactusSeedButton.ActivateEffect();
                     SetNextStep();
                     break;
                 case 14: // Plant Cactus seed
+                    cactusSeedButton.DeactivateEffect();
                     SetNextStep();
                     Save();
                     break;
                 case 15:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.GrowingTableDescriptionText,
-                        educationSettings.GrowingTableDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.GrowingTableDescriptionText);
                     break;
                 case 16:
                     HideEducationDescriptionAsStep();
@@ -194,9 +200,7 @@ namespace FlowerShop.Education
                     SetNextStep();
                     break;
                 case 18: // Put Pot on GrowingTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PlantNextFlowerDescriptionText,
-                        educationSettings.PlantNextFlowerDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.PlantNextFlowerDescriptionText);
                     break;
                 case 19:
                     HideEducationDescriptionAsStep();
@@ -218,9 +222,11 @@ namespace FlowerShop.Education
                     Save();
                     break;
                 case 24: // Click on SeedTable
+                    dandelionSeedButton.ActivateEffect();
                     SetNextStep();
                     break;
                 case 25: // Plant Dandelion
+                    dandelionSeedButton.DeactivateEffect();
                     SetNextStep();
                     Save();
                     break;
@@ -233,509 +239,476 @@ namespace FlowerShop.Education
                     SetNextStep();
                     break;
                 case 28: // Put Pot on GrowingTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.FertilizersDescriptionText,
-                        educationSettings.FertilizersDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.FertilizersDescriptionText);
                     break;
                 case 29: // Put Pot on GrowingTable
                     HideEducationDescriptionAsStep();
                     break;
                 case 30: // Click on FertilizersTable
+                    growerToMaxLvlInfoButton.ActivateEffect();
                     SetNextStep();
                     break;
-                case 31: // Click on GrowerToMaxLvl
+                case 31: // Click on GrowerToMaxLvl Info Button
+                    growerToMaxLvlInfoButton.DeactivateEffect();
+                    closeFertilizersInfoPanelButton.ActivateEffect();
                     SetNextStep();
                     break;
-                case 32: // Take GrowerToMaxLvl in PlayerHands
+                case 32: // Click on Close Info Panel
+                    closeFertilizersInfoPanelButton.DeactivateEffect();
+                    growerToMaxLvlButton.ActivateEffect();
+                    SetNextStep();
+                    break;
+                case 33: // Click on GrowerToMaxLvl
+                    SetNextStep();
+                    growerToMaxLvlButton.DeactivateEffect();
+                    break;
+                case 34: // Take GrowerToMaxLvl in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 33: // Click on Fist GrowingTable with GrowerToMaxLvl in PlayerHands
+                case 35: // Click on Fist GrowingTable with GrowerToMaxLvl in PlayerHands
                     SetNextStep();
                     break;
-                case 34: // Treat Pot on Fist GrowingTable
+                case 36: // Treat Pot on Fist GrowingTable
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 35: // Click on Second GrowingTable with GrowerToMaxLvl in PlayerHands
+                case 37: // Click on Second GrowingTable with GrowerToMaxLvl in PlayerHands
                     SetNextStep();
                     break;
-                case 36: // Treat Pot on Second GrowingTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.FertilizersEndUsingDescriptionText,
-                        educationSettings.FertilizersEndUsingDescriptionCoordinates);
+                case 38: // Treat Pot on Second GrowingTable
+                    ShowEducationDescriptionAsStep(educationSettings.FertilizersEndUsingDescriptionText);
                     break;
-                case 37:
+                case 39:
                     HideEducationDescriptionAsStep();
                     break;
-                case 38: // Click on FertilizersTable
+                case 40: // Click on FertilizersTable
                     SetNextStep();
                     break;
-                case 39: // Put Fertilizer on Table
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CrossingTableDescriptionText,
-                        educationSettings.CrossingTableDescriptionCoordinates);
+                case 41: // Put Fertilizer on Table
+                    ShowEducationDescriptionAsStep(educationSettings.CrossingTableDescriptionText);
                     break;
-                case 40:
+                case 42:
                     HideEducationDescriptionAsStep();
                     break;
-                case 41: // Click on Fist GrowingTable
+                case 43: // Click on Fist GrowingTable
                     SetNextStep();
                     break;
-                case 42: // Take Pot in Player Hands
-                    SetNextStep();
-                    ActivateEffect();
-                    Save();
-                    break;
-                case 43: // Click on First Crossing Table
-                    SetNextStep();
-                    break;
-                case 44: // Put Pot on First Crossing Table
+                case 44: // Take Pot in Player Hands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 45: // Click on Second GrowingTable
+                case 45: // Click on First Crossing Table
                     SetNextStep();
                     break;
-                case 46: // Take Pot in Player Hands
+                case 46: // Put Pot on First Crossing Table
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 47: // Click on Second Crossing Table
+                case 47: // Click on Second GrowingTable
                     SetNextStep();
                     break;
-                case 48: // Put Pot on Second Crossing Table
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CrossingTableProcessDescriptionText,
-                        educationSettings.CrossingTableProcessDescriptionCoordinates);
+                case 48: // Take Pot in Player Hands
+                    SetNextStep();
+                    ActivateEffect();
+                    Save();
                     break;
-                case 49:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CrossingTableProcessStartDescriptionText,
-                        educationSettings.CrossingTableProcessStartDescriptionCoordinates);
+                case 49: // Click on Second Crossing Table
+                    SetNextStep();
                     break;
-                case 50:
-                    HideEducationDescriptionAsStep();
+                case 50: // Put Pot on Second Crossing Table
+                    ShowEducationDescriptionAsStep(educationSettings.CrossingTableProcessDescriptionText);
                     break;
-                case 51: // Click on CrossingTableProcess
-                    // Cause by CrossingTableProcess
+                case 51:
+                    ShowEducationDescriptionAsStep(educationSettings.CrossingTableProcessStartDescriptionText);
                     break;
                 case 52:
                     HideEducationDescriptionAsStep();
                     break;
-                case 53: // Click on RepairAndImprovementTable
+                case 53: // Click on CrossingTableProcess
+                    // Cause by CrossingTableProcess
+                    break;
+                case 54:
+                    HideEducationDescriptionAsStep();
+                    break;
+                case 55: // Click on RepairAndImprovementTable
                     SetNextStep();
                     break;
-                case 54: // Take Hammer in PlayerHands
+                case 56: // Take Hammer in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 55: // Click on SoilPreparationTable
+                case 57: // Click on SoilPreparationTable
                     SetNextStep();
                     break;
-                case 56: // Repair SoilPreparationTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.UpgradeTableDescriptionText,
-                        educationSettings.UpgradeTableDescriptionCoordinates);
+                case 58: // Repair SoilPreparationTable
+                    ShowEducationDescriptionAsStep(educationSettings.UpgradeTableDescriptionText);
                     break;
-                case 57:
+                case 59:
                     HideEducationDescriptionAsStep();
                     break;
-                case 58: // Click on Growing Table with Hammer in PlayerHands
+                case 60: // Click on Growing Table with Hammer in PlayerHands
+                    improvementButton.ActivateEffect();
                     SetNextStep();
                     break;
-                case 59: // Click on Upgrade Button
+                case 61: // Click on Upgrade Button
+                    improvementButton.DeactivateEffect();
                     SetNextStep();
                     break;
-                case 60:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CompleteUpgradingTableDescriptionText,
-                        educationSettings.CompleteUpgradingTableDescriptionCoordinates);
+                case 62:
+                    ShowEducationDescriptionAsStep(educationSettings.CompleteUpgradingTableDescriptionText);
                     break;
-                case 61:
+                case 63:
                     HideEducationDescriptionAsStep();
                     break;
-                case 62: // Click on RepairAndImprovementTable
+                case 64: // Click on RepairAndImprovementTable
                     SetNextStep();
                     break;
-                case 63: // Put Hammer on RepairAndImprovementTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.SoilForNewSeedDescriptionText,
-                        educationSettings.SoilForNewSeedDescriptionCoordinates);
+                case 65: // Put Hammer on RepairAndImprovementTable
+                    ShowEducationDescriptionAsStep(educationSettings.SoilForNewSeedDescriptionText);
                     break;
-                case 64:
+                case 66:
                     HideEducationDescriptionAsStep();
                     break;
-                case 65: // Click on PotsRack
-                    SetNextStep();
-                    break;
-                case 66: // Take Pot in PlayerHands
-                    SetNextStep();
-                    ActivateEffect();
-                    Save();
-                    break;
-                case 67: // Click on SoilPreparationTable
+                case 67: // Click on PotsRack
                     SetNextStep();
                     break;
                 case 68: // Take Pot in PlayerHands
+                    SetNextStep();
+                    ActivateEffect();
+                    Save();
+                    break;
+                case 69: // Click on SoilPreparationTable
+                    SetNextStep();
+                    break;
+                case 70: // Take Pot in PlayerHands
                     if (flowersCrossingTableProcess.IsSeedCrossing)
                     {
-                        ShowEducationDescriptionAsStep(
-                            educationSettings.WaitThenPlantNewSeedDescriptionText,
-                            educationSettings.WaitThenPlantNewSeedDescriptionCoordinates);
+                        ShowEducationDescriptionAsStep(educationSettings.WaitThenPlantNewSeedDescriptionText);
                     }
                     else
                     {
-                        ShowEducationDescriptionAsStep(
-                            educationSettings.PlantNewSeedDescriptionText,
-                            educationSettings.PlantNewSeedDescriptionCoordinates);
+                        ShowEducationDescriptionAsStep(educationSettings.PlantNewSeedDescriptionText);
                     }
                     break;
-                case 69:
+                case 71:
                     HideEducationDescriptionAsStep();
                     break;
-                case 70: // Click on FlowersCrossingTableProcess
+                case 72: // Click on FlowersCrossingTableProcess
                     if (!flowersCrossingTableProcess.IsSeedCrossing)
                     {
                         SetNextStep();
                     }
                     break;
-                case 71: // Take Pot with new seed in PlayerHands
+                case 73: // Take Pot with new seed in PlayerHands
                     // Cause by CrossingTableProcess
                     break;
-                case 72: // Click on FlowerGrowingTable
+                case 74: // Click on FlowerGrowingTable
                     SetNextStep();
                     break;
-                case 73: // Put Pot with new seed on GrowingTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.GrowthAcceleratorUsingDescriptionText,
-                        educationSettings.GrowthAcceleratorUsingDescriptionCoordinates);
+                case 75: // Put Pot with new seed on GrowingTable
+                    ShowEducationDescriptionAsStep(educationSettings.GrowthAcceleratorUsingDescriptionText);
                     break;
-                case 74:
+                case 76:
                     HideEducationDescriptionAsStep();
                     break;
-                case 75: // Click on FertilizersTable
+                case 77: // Click on FertilizersTable
+                    growthAcceleratorButton.ActivateEffect();
                     SetNextStep();
                     break;
-                case 76: // Click on GrowthAccelerator Button
+                case 78: // Click on GrowthAccelerator Button
+                    growthAcceleratorButton.DeactivateEffect();
                     SetNextStep();
                     break;
-                case 77: // Take GrowthAccelerator in PlayerHands
+                case 79: // Take GrowthAccelerator in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 78: // Click on GrowingTable with GrowthAccelerator in PlayerHands
+                case 80: // Click on GrowingTable with GrowthAccelerator in PlayerHands
                     SetNextStep();
                     break;
-                case 79: // Treat Pot by GrowthAccelerator
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.GrowthAcceleratorEndUsingDescriptionText,
-                        educationSettings.GrowthAcceleratorEndUsingDescriptionCoordinates);
+                case 81: // Treat Pot by GrowthAccelerator
+                    ShowEducationDescriptionAsStep(educationSettings.GrowthAcceleratorEndUsingDescriptionText);
                     break;
-                case 80:
+                case 82:
                     HideEducationDescriptionAsStep();
                     break;
-                case 81: // Click on FertilizersTable
+                case 83: // Click on FertilizersTable
                     SetNextStep();
                     break;
-                case 82: // Put GrowthAccelerator on FertilizersTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.TakePotFromCrossingTableDescriptionText,
-                        educationSettings.TakePotFromCrossingTableDescriptionCoordinates);
+                case 84: // Put GrowthAccelerator on FertilizersTable
+                    ShowEducationDescriptionAsStep(educationSettings.TakePotFromCrossingTableDescriptionText);
                     break;
-                case 83:
+                case 85:
                     HideEducationDescriptionAsStep();
                     break;
-                case 84: // Click on First CrossingTable
+                case 86: // Click on First CrossingTable
                     SetNextStep();
                     break;
-                case 85: // Take Pot in PlayerHands
-                    SetNextStep();
-                    ActivateEffect();
-                    Save();
-                    break;
-                case 86: // Click on GrowingTable
-                    SetNextStep();
-                    break;
-                case 87: // Put Pot on GrowingTable
+                case 87: // Take Pot in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 88: // Click on Second CrossingTable
+                case 88: // Click on GrowingTable
                     SetNextStep();
                     break;
-                case 89: // Take Pot in PlayerHands
+                case 89: // Put Pot on GrowingTable
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 90: // Click on GrowingTable
+                case 90: // Click on Second CrossingTable
                     SetNextStep();
                     break;
-                case 91: // Put Pot on GrowingTable and plant Weed
+                case 91: // Take Pot in PlayerHands
+                    SetNextStep();
+                    ActivateEffect();
+                    Save();
+                    break;
+                case 92: // Click on GrowingTable
+                    SetNextStep();
+                    break;
+                case 93: // Put Pot on GrowingTable and plant Weed
                     potForPlantWeed.PlantWeed();
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.WeedDescriptionText,
-                        educationSettings.WeedDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.WeedDescriptionText);
                     break;
-                case 92:
+                case 94:
                     HideEducationDescriptionAsStep();
                     break;
-                case 93: // Click on HoeTable
+                case 95: // Click on HoeTable
                     SetNextStep();
                     break;
-                case 94: // Take Hoe in PlayerHands
-                    SetNextStep();
-                    ActivateEffect();
-                    Save();
-                    break;
-                case 95: // Click on GrowingTable with Weed in Pot
-                    SetNextStep();
-                    break;
-                case 96: // Delete Weed from Pot
+                case 96: // Take Hoe in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 97: // Click on HoeTable
+                case 97: // Click on GrowingTable with Weed in Pot
                     SetNextStep();
                     break;
-                case 98: // Pot Hoe on Table
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PourPotFirstTimeDescriptionText,
-                        educationSettings.PourPotFirstTimeDescriptionCoordinates);
+                case 98: // Delete Weed from Pot
+                    SetNextStep();
+                    ActivateEffect();
+                    Save();
                     break;
-                case 99:
+                case 99: // Click on HoeTable
+                    SetNextStep();
+                    break;
+                case 100: // Pot Hoe on Table
+                    ShowEducationDescriptionAsStep(educationSettings.PourPotFirstTimeDescriptionText);
+                    break;
+                case 101:
                     HideEducationDescriptionAsStep();
                     break;
-                case 100: // Click on WateringTable
+                case 102: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 101: // Take WateringCan in PlayerHands
+                case 103: // Take WateringCan in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 102: // Click on GrowingTable with Pot that need Water
+                case 104: // Click on GrowingTable with Pot that need Water
                     if (potForPouring.IsFlowerNeedWater)
                     {
                         SetNextStep();
                     }
                     break;
-                case 103: // Pour Pot
+                case 105: // Pour Pot
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 104: // Click on WateringTable
+                case 106: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 105: // Put WateringCan on WateringTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.GrowingLvlIncreaserDescriptionText,
-                        educationSettings.GrowingLvlIncreaserDescriptionCoordinates);
+                case 107: // Put WateringCan on WateringTable
+                    ShowEducationDescriptionAsStep(educationSettings.GrowingLvlIncreaserDescriptionText);
                     break;
-                case 106:
+                case 108:
                     HideEducationDescriptionAsStep();
                     break;
-                case 107: // Click on FertilizersTable
+                case 109: // Click on FertilizersTable
+                    growingLvlIncreaserButton.ActivateEffect();
                     SetNextStep();
                     break;
-                case 108: // Click on GrowingLvlIncreaser Button
+                case 110: // Click on GrowingLvlIncreaser Button
+                    growingLvlIncreaserButton.DeactivateEffect();
                     SetNextStep();
                     break;
-                case 109: // Take GrowingLvlIncreaser in PlayerHands
-                    SetNextStep();
-                    ActivateEffect();
-                    Save();
-                    break;
-                case 110: // Click on First GrowingTable
-                    SetNextStep();
-                    break;
-                case 111: // Use GrowingLvlIncreaser on First GrowingTable
+                case 111: // Take GrowingLvlIncreaser in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 112: // Click on Second GrowingTable
+                case 112: // Click on First GrowingTable
                     SetNextStep();
                     break;
-                case 113: // Use GrowingLvlIncreaser on Second GrowingTable
+                case 113: // Use GrowingLvlIncreaser on First GrowingTable
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 114: // Click on FertilizersTable
+                case 114: // Click on Second GrowingTable
                     SetNextStep();
                     break;
-                case 115: // Put GrowingLvlIncreaser on FertilizersTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PourPotSecondTimeDescriptionText,
-                        educationSettings.PourPotSecondTimeDescriptionCoordinates);
+                case 115: // Use GrowingLvlIncreaser on Second GrowingTable
+                    SetNextStep();
+                    ActivateEffect();
+                    Save();
                     break;
-                case 116:
+                case 116: // Click on FertilizersTable
+                    SetNextStep();
+                    break;
+                case 117: // Put GrowingLvlIncreaser on FertilizersTable
+                    ShowEducationDescriptionAsStep(educationSettings.PourPotSecondTimeDescriptionText);
+                    break;
+                case 118:
                     HideEducationDescriptionAsStep();
                     break;
-                case 117: // Click on WateringTable
+                case 119: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 118: // Take WateringCan in PlayerHands
+                case 120: // Take WateringCan in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 119: // Click on GrowingTable with Pot to Pour
+                case 121: // Click on GrowingTable with Pot to Pour
                     if (potForPouring.IsFlowerNeedWater)
                     {
                         SetNextStep();
                     }
                     break;
-                case 120: // PourPot on GrowingTable
+                case 122: // PourPot on GrowingTable
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 121: // Click on WateringTable
+                case 123: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 122: // Put WateringCan on WateringTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CollectionRoomDescriptionText,
-                        educationSettings.CollectionRoomDescriptionCoordinates);
+                case 124: // Put WateringCan on WateringTable
+                    ShowEducationDescriptionAsStep(educationSettings.CollectionRoomDescriptionText);
                     break;
-                case 123:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PutPotInCollectionRoomDescriptionText,
-                        educationSettings.PutPotInCollectionRoomDescriptionCoordinates);
+                case 125:
+                    ShowEducationDescriptionAsStep(educationSettings.PutPotInCollectionRoomDescriptionText);
                     break;
-                case 124:
+                case 126:
                     HideEducationDescriptionAsStep();
                     break;
-                case 125: // Click on GrowingTable with Pot for Collection
+                case 127: // Click on GrowingTable with Pot for Collection
                     SetNextStep();
                     break;
-                case 126: // Take Pot in PlayerHands
+                case 128: // Take Pot in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 127: // Click on TableForCollection
+                case 129: // Click on TableForCollection
                     SetNextStep();
                     break;
-                case 128: // Put Pot on TableForCollection
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.StorageTableRoomDescriptionText,
-                        educationSettings.StorageTableDescriptionCoordinates);
+                case 130: // Put Pot on TableForCollection
+                    ShowEducationDescriptionAsStep(educationSettings.StorageTableRoomDescriptionText);
                     break;
-                case 129:
+                case 131:
                     HideEducationDescriptionAsStep();
                     break;
-                case 130: // Click on StorageTable
+                case 132: // Click on StorageTable
                     SetNextStep();
                     break;
-                case 131: // Put Pot on StorageTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.SalesDescriptionText,
-                        educationSettings.SalesDescriptionCoordinates);
+                case 133: // Put Pot on StorageTable
+                    ShowEducationDescriptionAsStep(educationSettings.SalesDescriptionText);
                     break;
-                case 132:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PutPotOnSaleTableDescriptionText,
-                        educationSettings.PutPotOnSaleTableDescriptionCoordinates);
+                case 134:
+                    ShowEducationDescriptionAsStep(educationSettings.PutPotOnSaleTableDescriptionText);
                     break;
-                case 133:
+                case 135:
                     HideEducationDescriptionAsStep();
                     break;
-                case 134: // Click on GrowingTable with Pot for Sale
+                case 136: // Click on GrowingTable with Pot for Sale
                     SetNextStep();
                     break;
-                case 135: // Take Pot in PlayerHands
+                case 137: // Take Pot in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 136: // Click on SaleTable
+                case 138: // Click on SaleTable
                     SetNextStep();
                     break;
-                case 137: // Put Pot on SaleTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PutPotOnPotsRackDescriptionText,
-                        educationSettings.PutPotOnPotsRackDescriptionCoordinates);
+                case 139: // Put Pot on SaleTable
+                    ShowEducationDescriptionAsStep(educationSettings.PutPotOnPotsRackDescriptionText);
                     break;
-                case 138:
+                case 140:
                     HideEducationDescriptionAsStep();
                     break;
-                case 139: // Click on PotsRack
+                case 141: // Click on PotsRack
                     SetNextStep();
                     break;
-                case 140: // Put Pot on PotsRack
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.PourPotLastTimeDescriptionText,
-                        educationSettings.PourPotLastTimeDescriptionCoordinates);
+                case 142: // Put Pot on PotsRack
+                    ShowEducationDescriptionAsStep(educationSettings.PourPotLastTimeDescriptionText);
                     break;
-                case 141:
+                case 143:
                     HideEducationDescriptionAsStep();
                     break;
-                case 142: // Click on WateringTable
+                case 144: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 143: // Take WateringCan in PlayerHands
+                case 145: // Take WateringCan in PlayerHands
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 144: // Click on GrowingTable
+                case 146: // Click on GrowingTable
                     if (potForPouring.IsFlowerNeedWater)
                     {
                         SetNextStep();
                     }
                     break;
-                case 145: // Pour Pot
+                case 147: // Pour Pot
                     SetNextStep();
                     ActivateEffect();
                     Save();
                     break;
-                case 146: // Click on WateringTable
+                case 148: // Click on WateringTable
                     SetNextStep();
                     break;
-                case 147: // Put WateringCan on WateringTable
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.ComputerTableDescriptionText,
-                        educationSettings.ComputerTableDescriptionCoordinates);
-                    break;
-                case 148:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.ComplaintsDescriptionText,
-                        educationSettings.ComplaintsDescriptionCoordinates);
-                    break;
-                case 149:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.VipDescriptionText,
-                        educationSettings.VipDescriptionCoordinates);
+                case 149: // Put WateringCan on WateringTable
+                    ShowEducationDescriptionAsStep(educationSettings.ComputerTableDescriptionText);
                     break;
                 case 150:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.CoffeeDescriptionText,
-                        educationSettings.CoffeeDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.ComplaintsDescriptionText);
                     break;
                 case 151:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.MusicDescriptionText,
-                        educationSettings.MusicDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.VipDescriptionText);
                     break;
                 case 152:
-                    ShowEducationDescriptionAsStep(
-                        educationSettings.EducationEndDescriptionText,
-                        educationSettings.EducationEndDescriptionCoordinates);
+                    ShowEducationDescriptionAsStep(educationSettings.AchievementsText);
                     break;
                 case 153:
+                    ShowEducationDescriptionAsStep(educationSettings.CoffeeDescriptionText);
+                    break;
+                case 154:
+                    HideEducationDescriptionAsStep();
+                    break;
+                case 155: // Click on CoffeTable
+                    SetNextStep();
+                    break;
+                case 156:
+                    ShowEducationDescriptionAsStep(educationSettings.MusicDescriptionText);
+                    break;
+                case 157:
+                    ShowEducationDescriptionAsStep(educationSettings.EducationEndDescriptionText);
+                    break;
+                case 158:
                     playerInputActions.DisableCanvasControlMode();
                     educationCanvasLiaison.EducationCanvas.enabled = false;
                     IsEducationActive = false;
@@ -758,17 +731,15 @@ namespace FlowerShop.Education
             playerInputActions.EnableCanvasControlMode();
             educationCanvasLiaison.EducationCanvas.enabled = true;
             educationCanvasLiaison.SetEducationText(
-                text: educationSettings.WelcomeText, 
-                textPanelCoordinates: educationSettings.WelcomeCoordinates);
+                localizedText: educationSettings.WelcomeText);
         }
 
-        private void ShowEducationDescriptionAsStep(string educationText, Vector2 educationTextCoordinates)
+        private void ShowEducationDescriptionAsStep(LocalizedString educationText)
         {
             playerInputActions.EnableCanvasControlMode();
             educationCanvasLiaison.EducationCanvas.enabled = true;
             educationCanvasLiaison.SetEducationText(
-                text: educationText, 
-                textPanelCoordinates: educationTextCoordinates);
+                localizedText: educationText);
             SetNextStep();
 
             Save();

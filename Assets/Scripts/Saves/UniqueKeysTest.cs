@@ -40,6 +40,12 @@ namespace Saves
                         Debug.LogError("UniqueKey is not Unique! " + allSavableObjects[i] + " and " + allSavableObjects[b]);
                     }
                 }
+
+                if (allSavableObjects[i].UniqueKey == "")
+                {
+                    Debug.LogError("UniqueKey is empty! " + allSavableObjects[i]);
+                    isTextComplite = false;
+                }
             }
 
             if (isTextComplite)

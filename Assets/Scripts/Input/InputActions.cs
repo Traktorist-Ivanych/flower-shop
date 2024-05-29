@@ -91,6 +91,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""9eedb833-2dd7-425f-958a-59b9a2a5a860"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,6 +177,17 @@ namespace Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UIButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf56063e-5bb7-473e-bf8a-c9ed3fa419d3"",
+                    ""path"": ""*/{Back}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -762,6 +782,7 @@ namespace Input
             m_Player_TapPosition = m_Player.FindAction("TapPosition", throwIfNotFound: true);
             m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
             m_Player_UIButton = m_Player.FindAction("UIButton", throwIfNotFound: true);
+            m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -842,6 +863,7 @@ namespace Input
         private readonly InputAction m_Player_TapPosition;
         private readonly InputAction m_Player_Tap;
         private readonly InputAction m_Player_UIButton;
+        private readonly InputAction m_Player_Back;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -853,6 +875,7 @@ namespace Input
             public InputAction @TapPosition => m_Wrapper.m_Player_TapPosition;
             public InputAction @Tap => m_Wrapper.m_Player_Tap;
             public InputAction @UIButton => m_Wrapper.m_Player_UIButton;
+            public InputAction @Back => m_Wrapper.m_Player_Back;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -883,6 +906,9 @@ namespace Input
                 @UIButton.started += instance.OnUIButton;
                 @UIButton.performed += instance.OnUIButton;
                 @UIButton.canceled += instance.OnUIButton;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -908,6 +934,9 @@ namespace Input
                 @UIButton.started -= instance.OnUIButton;
                 @UIButton.performed -= instance.OnUIButton;
                 @UIButton.canceled -= instance.OnUIButton;
+                @Back.started -= instance.OnBack;
+                @Back.performed -= instance.OnBack;
+                @Back.canceled -= instance.OnBack;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1097,6 +1126,7 @@ namespace Input
             void OnTapPosition(InputAction.CallbackContext context);
             void OnTap(InputAction.CallbackContext context);
             void OnUIButton(InputAction.CallbackContext context);
+            void OnBack(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

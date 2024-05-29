@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ClosedDoorAngle>k__BackingField: 1
   <MinDistanceToOpenAutomaticDoors>k__BackingField: 3.75
+  <SpawnPasserDelay>k__BackingField: 15
+  <MinRemainingDistanceBetweenPathPoints>k__BackingField: 0.2
+  <CarMovingTime>k__BackingField: 8
+  <CarSpawnMinTime>k__BackingField: 4
+  <CarSpawnMaxTime>k__BackingField: 6

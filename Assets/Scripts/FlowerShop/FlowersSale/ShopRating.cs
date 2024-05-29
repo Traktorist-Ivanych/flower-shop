@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading;
-using FlowerShop.Achievements;
+﻿using FlowerShop.Achievements;
 using FlowerShop.ComputerPages;
+using FlowerShop.Customers.VipAndComplaints;
 using FlowerShop.Flowers;
 using FlowerShop.Saves.SaveData;
 using PlayerControl;
@@ -21,10 +20,10 @@ namespace FlowerShop.FlowersSale
         [Inject] private readonly StatsEffects statsEffects;
         [Inject] private readonly StatsCanvasLiaison statsCanvasLiaison;
         [Inject] private readonly TheBestFlowerShop theBestFlowerShop;
+        [Inject] private readonly VipOrdersHandler vipOrdersHandler;
 
         private int[] shopGrades;
         private int currentGradeIndex;
-        private double lastAverageGrade;
         
         private int gradesCount;
         private int fiveStars;
@@ -33,7 +32,8 @@ namespace FlowerShop.FlowersSale
         private int twoStars;
         private int oneStar;
 
-        public double CurrentAverageGrade { get; private set; } 
+        public int CurrentGradesCount { get; private set; }
+        public float CurrentAverageGrade { get; private set; } 
         [field: SerializeField] public string UniqueKey { get; private set; }
 
         private void Awake()
@@ -50,7 +50,16 @@ namespace FlowerShop.FlowersSale
             shopGrades[currentGradeIndex] = currentGrade;
             currentGradeIndex++;
 
-            CalculateAverageGrade();
+            CalculateCurrentAverageGrade();
+
+            if (currentGrade == 5)
+            {
+                statsEffects.RatingChangeEffect.DisplayEffect(Color.green, "+" + currentGrade.ToString());
+            }
+            else
+            {
+                statsEffects.RatingChangeEffect.DisplayEffect(Color.red, "+" + currentGrade.ToString());
+            }
 
             if (currentGrade == flowersForSaleCoeffCalculatorSettings.MinShopGrade)
             {
@@ -65,6 +74,10 @@ namespace FlowerShop.FlowersSale
             {
                 sprinter.SetProgress(0);
             }
+
+            vipOrdersHandler.CalculateCurrentVipOrderPriceMultipler();
+
+            Save();
         }
 
         public void Load()
@@ -75,51 +88,27 @@ namespace FlowerShop.FlowersSale
             {
                 shopGrades = shopRatingForSaving.ShopGrades; 
                 currentGradeIndex = shopRatingForSaving.CurrentGradeIndex; 
-                lastAverageGrade = shopRatingForSaving.LastAverageGrade;
                 CalculateCurrentAverageGrade();
             }
             else
             {
                 shopGrades = new int[flowersSettings.MaxGradesCount];
                 CurrentAverageGrade = 0;
-                UpdateGradeRatingOnCanvas();
+                UpdateGradeRatingOnCanvas("0,0");
                 statsCanvasLiaison.UpdateStatsCanvas(gradesCount, fiveStars, fourStars, treeStars, twoStars, oneStar);
             }
         }
 
         public void Save()
         {
-            ShopRatingForSaving shopRatingForSaving = new(shopGrades, currentGradeIndex, lastAverageGrade);
+            ShopRatingForSaving shopRatingForSaving = new(shopGrades, currentGradeIndex);
             
             SavesHandler.Save(UniqueKey, shopRatingForSaving);
         }
 
-        private void CalculateAverageGrade()
-        {
-            lastAverageGrade = CurrentAverageGrade;
-            
-            CalculateCurrentAverageGrade();
-            
-            double averageGradeDelta = CurrentAverageGrade - lastAverageGrade;
-
-            if (averageGradeDelta >= 0)
-            {
-                statsEffects.RatingChangeEffect.DisplayEffect(Color.green, 
-                    "+" + averageGradeDelta.ToString(Thread.CurrentThread.CurrentCulture));
-            }
-            else
-            {
-                statsEffects.RatingChangeEffect.DisplayEffect(Color.red, 
-                    averageGradeDelta.ToString(Thread.CurrentThread.CurrentCulture));
-            }
-
-            Save();
-        }
-
         private void CalculateCurrentAverageGrade()
         {
-            double gradesCountForCurrentAverage = 0;
-            double gradesSumForCurrentAverage = 0;
+            int gradesSumForCurrentAverage = 0;
             gradesCount = 0;
             fiveStars = 0;
             fourStars = 0;
@@ -131,7 +120,6 @@ namespace FlowerShop.FlowersSale
             {
                 if (shopGrade != 0)
                 {
-                    gradesCountForCurrentAverage++;
                     gradesSumForCurrentAverage += shopGrade;
                     gradesCount++;
 
@@ -155,23 +143,30 @@ namespace FlowerShop.FlowersSale
                     }
                 }
             }
-            
+
+            CurrentGradesCount = gradesCount;
+
             theBestFlowerShop.SetProgress(fiveStars);
 
-            if (gradesCountForCurrentAverage > 0)
+            if (gradesCount > 0)
             {
-                double averageGrade = gradesSumForCurrentAverage / gradesCountForCurrentAverage;
-                CurrentAverageGrade = Math.Round(averageGrade, 1, MidpointRounding.AwayFromZero);
+                CurrentAverageGrade = (float)gradesSumForCurrentAverage / gradesCount;
+                string ratingText = (gradesSumForCurrentAverage / gradesCount).ToString() + "," + 
+                    (gradesSumForCurrentAverage % gradesCount * 10 / gradesCount).ToString();
+                UpdateGradeRatingOnCanvas(ratingText);
             }
-            
-            UpdateGradeRatingOnCanvas();
+            else
+            {
+                CurrentAverageGrade = 0;
+                UpdateGradeRatingOnCanvas("0,0");
+            }
+
             statsCanvasLiaison.UpdateStatsCanvas(gradesCount, fiveStars, fourStars, treeStars, twoStars, oneStar);
         }
 
-        private void UpdateGradeRatingOnCanvas()
+        private void UpdateGradeRatingOnCanvas(string rating)
         {
-            playerStatsCanvasLiaison.UpdateShopRating(
-                CurrentAverageGrade.ToString(Thread.CurrentThread.CurrentCulture));
+            playerStatsCanvasLiaison.UpdateShopRating(rating);
         }
     }
 }

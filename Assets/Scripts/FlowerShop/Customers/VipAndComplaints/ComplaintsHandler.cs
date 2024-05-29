@@ -4,6 +4,7 @@ using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
 using FlowerShop.Saves.SaveData;
+using FlowerShop.Tables;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -14,18 +15,17 @@ namespace FlowerShop.Customers.VipAndComplaints
     {
         [Inject] private readonly CanvasIndicators canvasIndicators;
         [Inject] private readonly ComplaintsCanvasLiaison complaintsCanvasLiaison;
-        [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly Dedication dedication;
         [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
-        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ShopRating shopRating;
 
         private float currentComplaintHandleTime;
+        private float сomplaintHandleTime;
         private float currentComplaintTime;
         private int complaintDescriptionIndex;
         private string complaintFlowerInfoUniqueKey;
@@ -68,7 +68,7 @@ namespace FlowerShop.Customers.VipAndComplaints
                 currentComplaintHandleTime += Time.deltaTime;
                 UpdateComplaintIndicator();
 
-                if (currentComplaintHandleTime >= customersSettings.ComplaintsHandleTime)
+                if (currentComplaintHandleTime >= сomplaintHandleTime)
                 {
                     FaultComplaint();
                 }
@@ -77,9 +77,7 @@ namespace FlowerShop.Customers.VipAndComplaints
 
         public void CompleteComplaint()
         {
-            RemoveComplaint();
-            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
-            
+            RemoveComplaint();            
             dedication.IncreaseProgress();
             
             Save();
@@ -115,13 +113,15 @@ namespace FlowerShop.Customers.VipAndComplaints
                 }
                 else
                 {
-                    ComplaintFlowerInfo = flowersSettings.FlowerInfoEmpty;
+                    ComplaintFlowerInfo = customersSettings.InactiveOrder;
+                    complaintsCanvasLiaison.SetComplaintFlowerInfo(ComplaintFlowerInfo, complaintDescriptionIndex);
                 }
             }
             else
             {
                 SetTimeToMakeComplaint();
-                ComplaintFlowerInfo = flowersSettings.FlowerInfoEmpty;
+                ComplaintFlowerInfo = customersSettings.InactiveOrder;
+                complaintsCanvasLiaison.SetComplaintFlowerInfo(ComplaintFlowerInfo, complaintDescriptionIndex);
             }
         }
 
@@ -129,7 +129,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         {
             ComplaintFlowerInfo = flowersContainer.GetRandomAvailableFlowerInfo();
             complaintFlowerInfoUniqueKey = ComplaintFlowerInfo.UniqueKey;
-            complaintDescriptionIndex = Random.Range(0, customersSettings.ComplaintDescriptions.Length);
+            complaintDescriptionIndex = Random.Range(1, customersSettings.LocalizedComplaintDescriptions.Length);
 
             SetComplaintMain();
             
@@ -139,10 +139,12 @@ namespace FlowerShop.Customers.VipAndComplaints
         private void SetComplaintMain()
         {
             IsComplaintActive = true;
-            computerMainPageCanvasLiaison.ComplaintsButton.interactable = true;
-            canvasIndicators.ComplaintIndicatorImage.enabled = true;
-            UpdateComplaintIndicator();
+            canvasIndicators.ShowComplaintIndicator();
             complaintsCanvasLiaison.SetComplaintFlowerInfo(ComplaintFlowerInfo, complaintDescriptionIndex);
+            сomplaintHandleTime = customersSettings.CompletingOrderTimeMain +
+                (customersSettings.CompletingOrderTimeForFlowerLvl * (ComplaintFlowerInfo.FlowerLvl - 1));
+            UpdateComplaintIndicator();
+            complaintsCanvasLiaison.ShowIndicator();
         }
 
         private void FaultComplaint()
@@ -158,9 +160,10 @@ namespace FlowerShop.Customers.VipAndComplaints
             IsComplaintActive = false;
             currentComplaintHandleTime = 0;
             complaintDescriptionIndex = 0;
-            ComplaintFlowerInfo = flowersSettings.FlowerInfoEmpty;
-            computerMainPageCanvasLiaison.ComplaintsButton.interactable = false;
-            canvasIndicators.ComplaintIndicatorImage.enabled = false;
+            ComplaintFlowerInfo = customersSettings.InactiveOrder;
+            complaintsCanvasLiaison.SetComplaintFlowerInfo(ComplaintFlowerInfo, complaintDescriptionIndex);
+            canvasIndicators.HideComplaintIndicator();
+            complaintsCanvasLiaison.HideIndicator();
         }
 
         private void SetTimeToMakeComplaint()
@@ -171,9 +174,7 @@ namespace FlowerShop.Customers.VipAndComplaints
 
         private void UpdateComplaintIndicator()
         {
-            canvasIndicators.ComplaintIndicatorImage.fillAmount = 
-                (customersSettings.ComplaintsHandleTime - currentComplaintHandleTime) / 
-                customersSettings.ComplaintsHandleTime;
+            canvasIndicators.ComplaintIndicatorImage.fillAmount = currentComplaintHandleTime / сomplaintHandleTime;
         }
     }
 }

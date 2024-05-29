@@ -1,6 +1,7 @@
 using FlowerShop.Education;
 using FlowerShop.Effects;
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using Input;
 using PlayerControl;
 using UniRx;
@@ -18,7 +19,9 @@ namespace FlowerShop.Tables.Abstract
         [Inject] private protected readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private protected readonly PlayerBusyness playerBusyness;
         [Inject] private protected readonly SelectedTableEffect selectedTableEffect;
+        [Inject] private protected readonly TableInfoCanvasLiaison tableInfoCanvasLiaison;
 
+        [SerializeField] private protected TableInfo tableInfo;
         [SerializeField] private protected GrowingRoom growingRoom;
         [SerializeField] private protected Transform destinationTarget;
         [SerializeField] private protected Transform targetToLookAt;
@@ -31,12 +34,12 @@ namespace FlowerShop.Tables.Abstract
 
         private float currentClickableAbilityEffectTime;
         
-        private void OnEnable()
+        private protected virtual void OnEnable()
         {
             selectedTableEffect.SelectedTableCheckEvent += TryToShowSelectedTableEffect;
         }
 
-        private void OnDisable()
+        private protected virtual void OnDisable()
         {
             selectedTableEffect.SelectedTableCheckEvent -= TryToShowSelectedTableEffect;
         }
@@ -89,8 +92,12 @@ namespace FlowerShop.Tables.Abstract
 
         private bool CanTableBeInteractedDuringEducation()
         {
-            return !educationHandler.IsEducationActive ||
-                   educationHandler.IsMonoBehaviourCurrentEducationStep(this);
+            if (educationHandler.IsEducationActive)
+            {
+                return educationHandler.IsMonoBehaviourCurrentEducationStep(this);
+            }
+
+            return true;
         }
 
         private void StartClickableAbilityEffect()

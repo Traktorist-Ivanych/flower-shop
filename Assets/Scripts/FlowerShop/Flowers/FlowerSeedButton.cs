@@ -1,12 +1,15 @@
+using FlowerShop.ComputerPages;
 using FlowerShop.Education;
 using FlowerShop.Tables;
 using Input;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Localization.Components;
 using Zenject;
 
 namespace FlowerShop.Flowers
 {
+    [RequireComponent(typeof(UIButton))]
     public class FlowerSeedButton : MonoBehaviour
     {
         [Inject] private readonly EducationHandler educationHandler;
@@ -14,22 +17,28 @@ namespace FlowerShop.Flowers
         
         [SerializeField] private FlowerInfo plantingFlowerInfo;
         [SerializeField] private PlantingSeedsTable plantingSeedsTable;
-        
-        [HideInInspector, SerializeField] private Button seedButton;
+        [SerializeField] private LocalizeStringEvent localizeStringEvent;
+
+        [HideInInspector, SerializeField] private UIButton seedButton;
 
         private void OnValidate()
         {
-            seedButton = GetComponent<Button>();
+            seedButton = GetComponent<UIButton>();
+        }
+
+        private void Awake()
+        {
+            localizeStringEvent.StringReference = plantingFlowerInfo.LocalizedFlowerName;
         }
 
         private void OnEnable()
         {
-            seedButton.onClick.AddListener(OnSeedButtonClick);
+            seedButton.OnClickEvent += OnSeedButtonClick;
         }
 
         private void OnDisable()
         {
-            seedButton.onClick.RemoveListener(OnSeedButtonClick);
+            seedButton.OnClickEvent -= OnSeedButtonClick;
         }
 
         private void OnSeedButtonClick()

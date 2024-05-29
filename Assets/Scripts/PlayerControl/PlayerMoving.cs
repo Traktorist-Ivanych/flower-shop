@@ -63,6 +63,12 @@ namespace PlayerControl
             needForRotation = true;
         }
 
+        public void SetNotTablePlayerDestination(Vector3 destinationTarget)
+        {
+            playerAgent.destination = destinationTarget;
+            needForRotation = false;
+        }
+
         public void SetCoffeeNavAgentSetting()
         {
             playerAgent.speed = playerControlSettings.PlayerNavAgentCoffeeSpeed;

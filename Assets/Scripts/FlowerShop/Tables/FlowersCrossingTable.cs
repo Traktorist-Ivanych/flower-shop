@@ -1,4 +1,5 @@
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
@@ -11,14 +12,16 @@ namespace FlowerShop.Tables
     public class FlowersCrossingTable : Table, ISavableObject
     {
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
-        
+
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private FlowersCrossingTableProcess flowersCrossingTableProcess;
         [SerializeField] private ParticleSystem crossingFlowerPS;
-        
+
         [field: SerializeField] public string UniqueKey { get; private set; }
-        
+
         public Pot PotOnTable { get; private set; }
         public bool IsPotOnCrossingTable { get; private set; }
 
@@ -37,7 +40,7 @@ namespace FlowerShop.Tables
             base.TryInteractWithTable();
 
             if (playerBusyness.IsPlayerFree)
-            { 
+            {
                 if (CanPlayerPutPotOnTable())
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(PutPotOnTable);
@@ -46,19 +49,77 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (flowersCrossingTableProcess.IsTableBroken)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.BrokenTable);
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (currentPot.GrowingRoom != growingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (IsPotOnCrossingTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+                }
+                else if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (currentPot.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerDidNotGrow);
+                }
+                else if (currentPot.IsWeedInPot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WeedInPot);
+                }
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (!IsPotOnCrossingTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyTable);
+                }
+                else if (flowersCrossingTableProcess.IsSeedCrossing)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.SeedCrossing);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
             }
         }
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerPutPotOnTable() || CanPlayerTakePotInHandsForSelectedEffect();
+            return CanPlayerPutPotOnTable() || CanPlayerTakePotInHandsForSelectedEffect() || CanPlayerUseTableInfoCanvas();
         }
 
         public void PlayCrossingFlowerEffects()
         {
             crossingFlowerPS.Play();
         }
-        
+
         public void StopCrossingFlowerEffects()
         {
             crossingFlowerPS.Stop();
@@ -89,9 +150,9 @@ namespace FlowerShop.Tables
             {
                 potOnTableUniqueKey = PotOnTable.UniqueKey;
             }
-            
+
             FlowersCrossingTableForSaving flowersCrossingTableForSaving = new(potOnTableUniqueKey);
-            
+
             SavesHandler.Save(UniqueKey, flowersCrossingTableForSaving);
         }
 
@@ -101,12 +162,12 @@ namespace FlowerShop.Tables
             {
                 PotOnTable = currentPot;
 
-                return PotOnTable.GrowingRoom == growingRoom && 
+                return PotOnTable.GrowingRoom == growingRoom &&
                        PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
-                       !PotOnTable.IsWeedInPot && 
+                       !PotOnTable.IsWeedInPot &&
                        !flowersCrossingTableProcess.IsTableBroken;
             }
-            
+
             return false;
         }
 
@@ -116,7 +177,7 @@ namespace FlowerShop.Tables
             playerPickableObjectHandler.ResetPickableObject();
             IsPotOnCrossingTable = true;
             flowersCrossingTableProcess.CheckCrossingAbility();
-            
+
             Save();
         }
 
@@ -132,13 +193,23 @@ namespace FlowerShop.Tables
                    playerPickableObjectHandler.IsPickableObjectNull;
         }
 
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return !flowersCrossingTableProcess.IsTableBroken && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
+
         private void TakePotInPlayerHands()
         {
             IsPotOnCrossingTable = false;
             flowersCrossingTableProcess.CheckCrossingAbility();
             PotOnTable.TakeInPlayerHandsAndSetPlayerFree();
             PotOnTable = null;
-            
+
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
     }

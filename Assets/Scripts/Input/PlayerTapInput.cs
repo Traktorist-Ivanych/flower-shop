@@ -5,8 +5,8 @@ namespace Input
 {
     public class PlayerTapInput : MonoBehaviour
     {
-        [Inject] private CameraHandler cameraHandler;
-        [Inject] private PlayerTapSettings playerTapSettings;
+        [Inject] private readonly CameraHandler cameraHandler;
+        [Inject] private readonly PlayerTapSettings playerTapSettings;
 
         public void PlayerTap(Vector2 inputPosition)
         {
@@ -18,6 +18,10 @@ namespace Input
                 if (hit.collider.gameObject.TryGetComponent(out IClickableAbility clickableAbility))
                 {
                     clickableAbility.ExecuteClickableAbility();
+                }
+                else if (hit.collider.gameObject.TryGetComponent(out IClicableFloor clicableFloor))
+                {
+                    clicableFloor.ExecuteClickableFloorAbility(hit.point);
                 }
             }
         }

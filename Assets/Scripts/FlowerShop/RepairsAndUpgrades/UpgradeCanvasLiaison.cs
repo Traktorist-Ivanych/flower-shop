@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Input;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityWeld.Binding;
 using Zenject;
 
@@ -14,7 +15,8 @@ namespace FlowerShop.RepairsAndUpgrades
         public event PropertyChangedEventHandler PropertyChanged;
 
         [SerializeField] private Canvas upgradeCanvas;
-    
+        [SerializeField] private LocalizedString priceWord;
+
         [Binding]
         public string TableName { get; private set; }
     
@@ -49,7 +51,7 @@ namespace FlowerShop.RepairsAndUpgrades
             OnPropertyChanged(nameof(Description));
 
             PriceInt = priceInt;
-            Price = priceInt.ToString();
+            Price = priceWord.GetLocalizedString() + " " + priceInt.ToString();
             OnPropertyChanged(nameof(Price));
         }
         

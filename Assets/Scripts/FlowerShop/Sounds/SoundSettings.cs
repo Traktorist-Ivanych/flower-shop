@@ -11,7 +11,8 @@ namespace FlowerShop.Sounds
         [field: SerializeField] public float VolumeOnStartPlaying { get; private set; }
         [field: SerializeField] public float IncreasingVolumeTime { get; private set; }
         [field: SerializeField] public float DecreasingVolumeTime { get; private set; }
-        
+        [field: SerializeField] public float SoundSliderSettingsMultiplier { get; private set; }
+
         [field: Header("VolumeSettings")]
         [field: SerializeField] public float MaxWateringTablesSoundVolume { get; private set; }
         [field: SerializeField] public float MaxSoilPreparationSoundVolume { get; private set; }

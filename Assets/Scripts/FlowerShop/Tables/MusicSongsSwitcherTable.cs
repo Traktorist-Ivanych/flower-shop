@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using FlowerShop.Achievements;
+using FlowerShop.Help;
+using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
@@ -15,14 +17,20 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly MusicLover musicLover;
         [Inject] private readonly PlayerComponents playerComponents;
+
+        public delegate void SwitchSong();
+        public event SwitchSong SwitchSongEvent;
 
         [SerializeField] private MusicPowerSwitcherTable musicPowerSwitcherTable;
         [SerializeField] private AudioClip[] song;
 
         [HideInInspector, SerializeField] private Animator musicSongsSwitcherTableAnimator;
 
+        private float currentListenSongTime;
         private float[] listenSongsTimes;
         private bool[] isSongsListened;
         
@@ -42,30 +50,45 @@ namespace FlowerShop.Tables
         {
             listenSongsTimes = new float[song.Length];
             isSongsListened = new bool[song.Length];
-            
+
             Load();
         }
 
-        private void OnEnable()
+        private protected override void OnEnable()
         {
+            base.OnEnable();
+
             cyclicalSaver.CyclicalSaverEvent += Save;
         }
         
-        private void OnDisable()
+        private protected override void OnDisable()
         {
+            base.OnDisable();
+
             cyclicalSaver.CyclicalSaverEvent -= Save;
         }
 
         private void Update()
         {
-            if (musicPowerSwitcherTable.IsMusicPowerOn && !isSongsListened[currentSongNumber])
+            if (musicPowerSwitcherTable.IsMusicPowerOn)
             {
-                listenSongsTimes[currentSongNumber] += Time.deltaTime;
-
-                if (listenSongsTimes[currentSongNumber] >= song[currentSongNumber].length)
+                if (!isSongsListened[currentSongNumber])
                 {
-                    isSongsListened[currentSongNumber] = true;
-                    musicLover.IncreaseProgress();
+                    listenSongsTimes[currentSongNumber] += Time.deltaTime;
+
+                    if (listenSongsTimes[currentSongNumber] >= song[currentSongNumber].length - 5)
+                    {
+                        isSongsListened[currentSongNumber] = true;
+                        musicLover.IncreaseProgress();
+                    }
+                }
+
+                currentListenSongTime += Time.deltaTime;
+
+                if (currentListenSongTime >= song[currentSongNumber].length)
+                {
+                    currentListenSongTime = 0;
+                    SwitchSongEvent?.Invoke();
                 }
             }
         }
@@ -79,11 +102,39 @@ namespace FlowerShop.Tables
                 SetPlayerDestinationAndOnPlayerArriveAction(
                     () => StartCoroutine(UseMusicSongsSwitcherTable()));
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
         }
-        
+
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (!musicPowerSwitcherTable.IsMusicPowerOn)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MusicPowerOff);
+                }
+            }
+            else if (!playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.HandsFull);
+            }
+        }
+
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerUseMusicSongsSwitcherTable();
+            return CanPlayerUseMusicSongsSwitcherTable() || CanPlayerUseTableInfoCanvas();
         }
 
         public AudioClip GetCurrentSong()
@@ -99,6 +150,43 @@ namespace FlowerShop.Tables
         public void TurnReadingNeedleOff()
         {
             musicSongsSwitcherTableAnimator.SetTrigger(PowerOff);
+        }
+
+        public void SwitchPlaybackMode(SwitchSong switchSongAction)
+        {
+            SwitchSongEvent = null;
+            SwitchSongEvent += switchSongAction;
+        }
+
+        public void RepeatPlayback()
+        {
+
+        }
+
+        public void SequencePlayback()
+        {
+            currentSongNumber++;
+            if (currentSongNumber >= song.Length)
+            {
+                currentSongNumber = 0;
+            }
+
+            musicPowerSwitcherTable.SetAudioClip(song[currentSongNumber]);
+
+            Save();
+        }
+
+        public void RandomPlayback()
+        {
+            currentSongNumber += Random.Range(1, song.Length);
+            if (currentSongNumber >= song.Length)
+            {
+                currentSongNumber -= song.Length;
+            }
+
+            musicPowerSwitcherTable.SetAudioClip(song[currentSongNumber]);
+
+            Save();
         }
 
         public void Load()
@@ -157,6 +245,16 @@ namespace FlowerShop.Tables
         {
             playerBusyness.SetPlayerFree();
             selectedTableEffect.ActivateEffectWithDelay();
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
     }
 }

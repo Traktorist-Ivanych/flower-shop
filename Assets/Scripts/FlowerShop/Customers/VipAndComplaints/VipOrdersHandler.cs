@@ -1,6 +1,5 @@
 ﻿using FlowerShop.Achievements;
 using FlowerShop.ComputerPages;
-using FlowerShop.Education;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
 using FlowerShop.FlowersSale;
@@ -14,10 +13,8 @@ namespace FlowerShop.Customers.VipAndComplaints
     public class VipOrdersHandler : MonoBehaviour, ISavableObject
     {
         [Inject] private readonly CanvasIndicators canvasIndicators;
-        [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
-        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FlowersForPlayerCollection flowersForPlayerCollection;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
@@ -27,10 +24,12 @@ namespace FlowerShop.Customers.VipAndComplaints
         [Inject] private readonly VipCanvasLiaison vipCanvasLiaison;
 
         private float currentVipOrderHandleTime;
+        private float vipOrderHandleTime;
         private float currentVipOrderTime;
         private int vipOrderDescriptionIndex;
         private string vipOrderFlowerInfoUniqueKey;
         
+        public int CurrentVipOrderPriceMultipler {  get; private set; }
         [field: SerializeField] public string UniqueKey { get; private set; }
         [field: HideInInspector, SerializeField] public FlowerInfo VipOrderFlowerInfo { get; private set; }
         [field: HideInInspector, SerializeField] public bool IsVipOrderActive { get; private set; }
@@ -50,6 +49,11 @@ namespace FlowerShop.Customers.VipAndComplaints
             cyclicalSaver.CyclicalSaverEvent -= Save;
         }
 
+        private void Start()
+        {
+            CalculateCurrentVipOrderPriceMultipler();
+        }
+
         private void Update()
         {
             if (flowersForPlayerCollection.FlowersInPlayerCollectionCount() >=
@@ -60,11 +64,7 @@ namespace FlowerShop.Customers.VipAndComplaints
                 if (currentVipOrderTime <= 0)
                 {
                     SetTimeToMakeVipOrder();
-
-                    if (!educationHandler.IsEducationActive)
-                    {
-                        SetVipOrder();
-                    }
+                    SetVipOrder();
                 }
             }
 
@@ -73,17 +73,33 @@ namespace FlowerShop.Customers.VipAndComplaints
                 currentVipOrderHandleTime += Time.deltaTime;
                 UpdateVipOrderIndicator();
 
-                if (currentVipOrderHandleTime >= customersSettings.ComplaintsHandleTime)
+                if (currentVipOrderHandleTime >= vipOrderHandleTime)
                 {
                     FaultVipOrder();
                 }
             }
         }
 
+        public void CalculateCurrentVipOrderPriceMultipler()
+        {
+            if (shopRating.CurrentAverageGrade >= customersSettings.MaxPriceMultiplerGradesBorder &&
+                shopRating.CurrentGradesCount >= customersSettings.MinGradesCountForMaxPriceMultipler)
+            {
+                CurrentVipOrderPriceMultipler = customersSettings.MaxPriceMultipler;
+            }
+            else if (shopRating.CurrentAverageGrade >= customersSettings.MiddlePriceMultiplerGradesBorder)
+            {
+                CurrentVipOrderPriceMultipler = customersSettings.MiddlePriceMultipler;
+            }
+            else
+            {
+                CurrentVipOrderPriceMultipler = customersSettings.MinPriceMultipler;
+            }
+        }
+
         public void CompleteVipOrder()
         {
             RemoveVipOrder();
-            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
             knowALotAboutBusiness.IncreaseProgress();
             
             Save();
@@ -119,13 +135,15 @@ namespace FlowerShop.Customers.VipAndComplaints
                 }
                 else
                 {
-                    VipOrderFlowerInfo = flowersSettings.FlowerInfoEmpty;
+                    VipOrderFlowerInfo = customersSettings.InactiveOrder;
+                    vipCanvasLiaison.SetVipFlowerInfo(VipOrderFlowerInfo, vipOrderDescriptionIndex);
                 }
             }
             else
             {
                 SetTimeToMakeVipOrder();
-                VipOrderFlowerInfo = flowersSettings.FlowerInfoEmpty;
+                VipOrderFlowerInfo = customersSettings.InactiveOrder;
+                vipCanvasLiaison.SetVipFlowerInfo(VipOrderFlowerInfo, vipOrderDescriptionIndex);
             }
         }
 
@@ -133,7 +151,7 @@ namespace FlowerShop.Customers.VipAndComplaints
         {
             VipOrderFlowerInfo = flowersForPlayerCollection.GetRandomFlowerInfoFromPlayerCollection();
             vipOrderFlowerInfoUniqueKey = VipOrderFlowerInfo.UniqueKey;
-            vipOrderDescriptionIndex = Random.Range(0, customersSettings.VipDescriptions.Length);
+            vipOrderDescriptionIndex = Random.Range(1, customersSettings.LocalizedVipDescriptions.Length);
 
             SetVipOrderMain();
             
@@ -143,10 +161,12 @@ namespace FlowerShop.Customers.VipAndComplaints
         private void SetVipOrderMain()
         {
             IsVipOrderActive = true;
-            computerMainPageCanvasLiaison.VipButton.interactable = true;
-            canvasIndicators.VipIndicatorImage.enabled = true;
+            canvasIndicators.ShowVipIndicator();
             UpdateVipOrderIndicator();
-            vipCanvasLiaison.SetComplaintFlowerInfo(VipOrderFlowerInfo, vipOrderDescriptionIndex);
+            vipCanvasLiaison.SetVipFlowerInfo(VipOrderFlowerInfo, vipOrderDescriptionIndex);
+            vipCanvasLiaison.ShowIndicator();
+            vipOrderHandleTime = customersSettings.CompletingOrderTimeMain +
+                (customersSettings.CompletingOrderTimeForFlowerLvl * (VipOrderFlowerInfo.FlowerLvl - 1));
         }
 
         private void FaultVipOrder()
@@ -162,9 +182,10 @@ namespace FlowerShop.Customers.VipAndComplaints
             IsVipOrderActive = false;
             currentVipOrderHandleTime = 0;
             vipOrderDescriptionIndex = 0;
-            VipOrderFlowerInfo = flowersSettings.FlowerInfoEmpty;
-            computerMainPageCanvasLiaison.VipButton.interactable = false;
-            canvasIndicators.VipIndicatorImage.enabled = false;
+            VipOrderFlowerInfo = customersSettings.InactiveOrder;
+            vipCanvasLiaison.SetVipFlowerInfo(VipOrderFlowerInfo, vipOrderDescriptionIndex);
+            canvasIndicators.HideVipIndicator();
+            vipCanvasLiaison.HideIndicator();
         }
 
         private void SetTimeToMakeVipOrder()
@@ -185,9 +206,7 @@ namespace FlowerShop.Customers.VipAndComplaints
 
         private void UpdateVipOrderIndicator()
         {
-            canvasIndicators.VipIndicatorImage.fillAmount = 
-                (customersSettings.VipHandleTime - currentVipOrderHandleTime) / 
-                customersSettings.VipHandleTime;
+            canvasIndicators.VipIndicatorImage.fillAmount = currentVipOrderHandleTime / vipOrderHandleTime;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Saves.SaveData;
@@ -14,6 +15,8 @@ namespace FlowerShop.Tables
     public class RepairsAndUpgradesTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
 
         [SerializeField] private Transform hammerOnTableTransform;
         [SerializeField] private RepairingAndUpgradingHammer repairingAndUpgradingHammer;
@@ -52,12 +55,29 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(PutHammerOnTable);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
             }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
         }
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerTakeHammerInHandsForSelectableEffect() || 
+            return CanPlayerTakeHammerInHandsForSelectableEffect() || CanPlayerUseTableInfoCanvas() ||
                    CanPlayerPutHammerOnTable();
         }
 
@@ -115,6 +135,16 @@ namespace FlowerShop.Tables
             Save();
         }
 
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
+
         private bool CanPlayerPutHammerOnTable()
         {
             return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer;
@@ -125,7 +155,12 @@ namespace FlowerShop.Tables
             isRepairingAndUpgradingHammerInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
             repairingAndUpgradingHammer.PutOnTableAndSetPlayerFree(hammerOnTableTransform);
-            
+
+            foreach (IUpgradableTable upgradableTable in upgradableTables)
+            {
+                upgradableTable.HideIndicator();
+            }
+
             Save();
         }
 
@@ -138,7 +173,10 @@ namespace FlowerShop.Tables
 
         private void ShowAllUpgradeIndicators()
         {
-            
+            foreach (IUpgradableTable upgradableTable in upgradableTables)
+            {
+                upgradableTable.ShowIndicator();
+            }
         }
             
     }

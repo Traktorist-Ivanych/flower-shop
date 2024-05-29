@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.WarehouseLogistics;
-            achievementDescription.text = achievementsTextSettings.WarehouseLogisticsDescription;
-            
             achievementMaxProgress = achievementsSettings.WarehouseLogisticsMaxProgress;
             UpdateScrollbar();
         }

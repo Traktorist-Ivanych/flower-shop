@@ -15,6 +15,7 @@ MonoBehaviour:
   <VolumeOnStartPlaying>k__BackingField: 0
   <IncreasingVolumeTime>k__BackingField: 0.5
   <DecreasingVolumeTime>k__BackingField: 0.75
+  <SoundSliderSettingsMultiplier>k__BackingField: 20
   <MaxWateringTablesSoundVolume>k__BackingField: 0.45
   <MaxSoilPreparationSoundVolume>k__BackingField: 0.45
   <MaxCrossingSoundVolume>k__BackingField: 0.35

@@ -1,10 +1,11 @@
+using FlowerShop.ComputerPages;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.Flowers
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     [RequireComponent(typeof(Image))]
     public class FlowerInfoButton : MonoBehaviour
     {
@@ -13,24 +14,27 @@ namespace FlowerShop.Flowers
         [Inject] private readonly FlowersSettings flowersSettings;
         
         [SerializeField] private FlowerInfo flowerInfo;
+        [SerializeField] private Image inCollcectionIndicator;
 
-        [HideInInspector, SerializeField] private Button flowerButton;
+        [HideInInspector, SerializeField] private UIButton flowerButton;
         [HideInInspector, SerializeField] private Image flowerImage;
+
+        private bool isCrossed;
 
         private void OnValidate()
         {
-            flowerButton = GetComponent<Button>();
+            flowerButton = GetComponent<UIButton>();
             flowerImage = GetComponent<Image>();
         }
 
         private void OnEnable()
         {
-            flowerButton.onClick.AddListener(OnButtonClick);
+            flowerButton.OnClickEvent += OnButtonClick;
         }
 
         private void OnDisable()
         {
-            flowerButton.onClick.RemoveListener(OnButtonClick);
+            flowerButton.OnClickEvent -= OnButtonClick;
         }
 
         private void Start()
@@ -43,7 +47,7 @@ namespace FlowerShop.Flowers
                 }
                 else
                 {
-                    flowerImage.sprite = flowersSettings.UnknownFlower;
+                    flowerImage.sprite = flowersSettings.UnknownFlower128;
                 }
             }
         }
@@ -56,14 +60,23 @@ namespace FlowerShop.Flowers
             }
         }
 
+        public void TrySetInCollectionIndicator(FlowerInfo inCollectionFlowerInfo)
+        {
+            if (inCollectionFlowerInfo.Equals(flowerInfo))
+            {
+                inCollcectionIndicator.sprite = flowersSettings.InCollectionIndicator;
+            }
+        }
+
         private void OnButtonClick()
         {
-            flowerInfoCanvasLiaison.ShowFlowerInfo(flowerInfo, flowerImage.sprite);
+            flowerInfoCanvasLiaison.ShowFlowerInfo(isCrossed, flowerInfo);
         }
 
         private void SetIsCrossedTrue()
         {
-            flowerImage.sprite = flowerInfo.FlowerSprite;
+            isCrossed = true;
+            flowerImage.sprite = flowerInfo.FlowerSprite128;
         }
     }
 }

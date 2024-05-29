@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: AdeniumInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413281
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6661293793280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0410\u0434\u0435\u043D\u0438\u0443\u043C"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: de2d88c684b37a147aa2b45ba278b850, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 2ed97602b7b40d6478131bc4ae06378f, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1641195394, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 929dc93c142052942b50a636128a9741, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -7640655987020366905, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: 416463476859505870, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: 5610174422293840429, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: cd9428b81633c7346ad4e41a52929494, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: b2a8583300c72d44cbc18cb228bd7485, type: 2}
+  references:
+    version: 2
+    RefIds: []

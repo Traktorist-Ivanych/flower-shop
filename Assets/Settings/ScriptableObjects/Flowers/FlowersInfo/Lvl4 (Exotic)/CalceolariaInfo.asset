@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: CalceolariaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413282
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6734027218944
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u041A\u0430\u043B\u044C\u0446\u0435\u043E\u043B\u044F\u0440\u0438\u044F"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 05e4fa6105d13a4408bc96ac41b1fba1, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 0bcabf7db2990ee459f66ccd400f9c95, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1086033997, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: b9865d5781d190b4cb877504eb6a3f1b, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -4442764211268908527, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: -1582276229222661371, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: 4851930595751029947, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: cd9428b81633c7346ad4e41a52929494, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: c324187da6c6a9a41a12ca48ee19223f, type: 2}
+  references:
+    version: 2
+    RefIds: []

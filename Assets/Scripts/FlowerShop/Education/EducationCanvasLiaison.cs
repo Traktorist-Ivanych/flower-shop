@@ -1,39 +1,27 @@
-﻿using System.ComponentModel;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityWeld.Binding;
+using UnityEngine.Localization;
+using Zenject;
 
 namespace FlowerShop.Education
 {
-    [Binding]
-    public class EducationCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
+    public class EducationCanvasLiaison : MonoBehaviour
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        [SerializeField] private RectTransform educationPanelRectTransform;
+        [Inject] private readonly EducationSettings educationSettings;
 
-        [Binding]
-        [field: TextArea] public string EducationText { get; private set; }
-        
+        [SerializeField] private RectTransform educationPanelRectTransform;
+        [SerializeField] private TextMeshProUGUI educationText;
+
         [field: SerializeField] public Canvas EducationCanvas { get; private set; }
 
-        public void SetEducationText(string text, Vector2 textPanelCoordinates)
+        public void SetEducationText(LocalizedString localizedText)
         {
-            Vector2 panelPosition = educationPanelRectTransform.anchoredPosition;
-            panelPosition.y = textPanelCoordinates.x;
-            educationPanelRectTransform.anchoredPosition = panelPosition;
+            educationText.text = localizedText.GetLocalizedString();
+            educationText.ForceMeshUpdate();
+
             Vector2 panelRect = educationPanelRectTransform.sizeDelta;
-            panelRect.y = textPanelCoordinates.y;
+            panelRect.y = educationText.renderedHeight + educationSettings.HeightCanvasFieldsForEducationText;
             educationPanelRectTransform.sizeDelta = panelRect;
-            
-            EducationText = text;
-            OnPropertyChanged(nameof(EducationText));
-        }
-        
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

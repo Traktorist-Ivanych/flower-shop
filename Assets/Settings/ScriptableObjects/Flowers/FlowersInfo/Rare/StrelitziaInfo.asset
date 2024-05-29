@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: StrelitziaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413415
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 7267249086464
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0421\u0442\u0440\u0435\u043B\u0438\u0446\u0438\u044F"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: caa96133d632a21448dc62ea5b48e4b0, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 4f731fc5db5ddc449ab41299a0bce025, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -2037876243, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 4b1b1cf22fdb9ce46a14e392bb45874b, type: 2}
-  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   <FlowerLvl>k__BackingField: 5
   <FlowerSellingPrice>k__BackingField: 3000
   <FlowerSoilMesh>k__BackingField: {fileID: -1036173772136047727, guid: 703790e61f24a3240890f0a292b64061, type: 3}
@@ -25,7 +35,19 @@ MonoBehaviour:
   - {fileID: 218919073783244925, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
   - {fileID: -7213860382152884066, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
   - {fileID: 3678175233002388650, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89474248531968
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0435
     \u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: CanvasesTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: b71746b59fd24e140a7e5801bd223d78, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 144746274816
+    m_Localized: Seeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16058283778048
+    m_Localized: Fertilizers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436857462784
+    m_Localized: +5 units each fertilizer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16447255142400
+    m_Localized: +20 units each fertilizer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17180562087936
+    m_Localized: AD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18642285420544
+    m_Localized: Buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28464217120768
+    m_Localized: 'Price:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29036798337024
+    m_Localized: Improve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41847318437888
+    m_Localized: Drink a cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41909972951040
+    m_Localized: Permanent effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44047457378304
+    m_Localized: Home page
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44662635945984
+    m_Localized: VIP order
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45074143305728
+    m_Localized: 'Contents of the appeal:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50145971200000
+    m_Localized: Complaint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51431961583616
+    m_Localized: Statistics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51667790520320
+    m_Localized: Shop rating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52350132477952
+    m_Localized: Achievements
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83439613960192
+    m_Localized: Flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83730455388160
+    m_Localized: Level 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83763292594176
+    m_Localized: Level 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83773149208576
+    m_Localized: Level 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83781370044416
+    m_Localized: Level 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83789616046080
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84839735549952
+    m_Localized: 'Level:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85115943051264
+    m_Localized: 'Growing room color:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85441999855616
+    m_Localized: 'Method of obtaining:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86650521444352
+    m_Localized: 'Price:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88963457802240
+    m_Localized: buying seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89048040136704
+    m_Localized: crossing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89474248531968
+    m_Localized: random crossing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99093897338880
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99306632437760
+    m_Localized: Restore purchases
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99568700940288
+    m_Localized: Sound volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99625479233536
+    m_Localized: Music volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99957840076800
+    m_Localized: Music playing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103717740011520
+    m_Localized: Repeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103720978014208
+    m_Localized: Consistently
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103722857062400
+    m_Localized: Random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105220433305600
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105215362392064
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105123943342080
+    m_Localized: Quit the game?
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

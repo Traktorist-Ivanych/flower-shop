@@ -18,3 +18,6 @@ MonoBehaviour:
   <SelectableMaterial>k__BackingField: {fileID: 2100000, guid: de5555512b6fbda41ad7d6365302365f, type: 2}
   <SuccessMaterial>k__BackingField: {fileID: 2100000, guid: 5854b645f031b5a4b972a9c49254a3ad, type: 2}
   <FailMaterial>k__BackingField: {fileID: 2100000, guid: 0e24f3410629ed543ad5c17bba5737d9, type: 2}
+  <ScalingTime>k__BackingField: 0.5
+  <StartScale>k__BackingField: {x: 1, y: 1, z: 1}
+  <EndScale>k__BackingField: {x: 1.15, y: 1.15, z: 1.15}

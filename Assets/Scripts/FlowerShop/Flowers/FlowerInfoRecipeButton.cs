@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using FlowerShop.ComputerPages;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.Flowers
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     [RequireComponent(typeof(Image))]
     public class FlowerInfoRecipeButton : MonoBehaviour
     {
@@ -15,23 +16,23 @@ namespace FlowerShop.Flowers
         private FlowerInfo flowerInfo;
         private bool isInteractive;
 
-        [HideInInspector, SerializeField] private Button flowerButton;
+        [HideInInspector, SerializeField] private UIButton flowerButton;
         [HideInInspector, SerializeField] private Image flowerImage;
         
         private void OnValidate()
         {
-            flowerButton = GetComponent<Button>();
+            flowerButton = GetComponent<UIButton>();
             flowerImage = GetComponent<Image>();
         }
 
         private void OnEnable()
         {
-            flowerButton.onClick.AddListener(OnButtonClick);
+            flowerButton.OnClickEvent += OnButtonClick;
         }
 
         private void OnDisable()
         {
-            flowerButton.onClick.RemoveListener(OnButtonClick);
+            flowerButton.OnClickEvent -= OnButtonClick;
         }
 
         public void SetFlowerInfo(FlowerInfo targetFlowerInfo)
@@ -41,7 +42,7 @@ namespace FlowerShop.Flowers
             if (flowerInfo.FlowerLvl == 1 || flowersContainer.IsFlowerInfoAvailable(flowerInfo))
             {
                 isInteractive = true;
-                flowerImage.sprite = flowerInfo.FlowerSprite;
+                flowerImage.sprite = flowerInfo.FlowerSprite512;
             }
             else if (flowerInfo == flowersSettings.FlowerInfoEmpty)
             {
@@ -59,7 +60,7 @@ namespace FlowerShop.Flowers
         {
             if (isInteractive)
             {
-                flowerInfoCanvasLiaison.ShowFlowerInfo(flowerInfo, flowerInfo.FlowerSprite);
+                flowerInfoCanvasLiaison.ShowFlowerInfo(isInteractive, flowerInfo);
             }
         }
     }

@@ -13,6 +13,7 @@ namespace FlowerShop.Tables.BaseComponents
 {
     public class BreakableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly ActionProgressbar playerActionProgressbar;
         [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly Handyman handyman;
         [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
@@ -67,7 +68,8 @@ namespace FlowerShop.Tables.BaseComponents
         public IEnumerator FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
-            
+
+            playerActionProgressbar.EnableActionProgressbar(repairsAndUpgradesSettings.TableRepairTime);
             yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
             
             SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);

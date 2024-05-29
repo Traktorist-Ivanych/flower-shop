@@ -7,5 +7,9 @@ namespace FlowerShop.RepairsAndUpgrades
         public void ShowUpgradeCanvas();
         
         public void UpgradeTableFinish();
+
+        public void ShowIndicator();
+
+        public void HideIndicator();
     }
 }

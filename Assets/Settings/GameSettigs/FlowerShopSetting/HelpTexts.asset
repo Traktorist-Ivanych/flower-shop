@@ -1,0 +1,372 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d95dd377bc23945ac29ce8f78f75e1, type: 3}
+  m_Name: HelpTexts
+  m_EditorClassIdentifier: 
+  <HeightCanvasFieldsForHelpText>k__BackingField: 105
+  <HeightCanvasFieldsForTableInfoText>k__BackingField: 245
+  <EnableSprite>k__BackingField: {fileID: -1104769942, guid: 9058a078f617c7c4db9c2339204326bd, type: 3}
+  <DisableSprite>k__BackingField: {fileID: 21300000, guid: 68936859444264147b6b2c16edc0980a, type: 3}
+  <PlayerBusy>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 222501005348864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <TableAlreadyHasPot>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 222529589530624
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <MismatchGrowingRoom>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 222559549444096
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <BrokenTable>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 233548051304448
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NoFlowerPlanted>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238246313512960
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerAlreadyGrown>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238275845607424
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EmptyTable>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 239708389167104
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerDoesNotNeedWatering>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238298780061696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EmptyWateringCan>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238340874096640
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NoWeed>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238377196769280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FertilizersAreOut>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238397211987968
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerAlreadyProcessed>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238416732278784
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <TableHasMaxLvl>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 238435011055616
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <HandsFull>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 242502198284288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CoffeeEffectAlreadyActive>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 242509081137152
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WeedInPot>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 247560067534848
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WrongFlower>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 247596029497344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerDidNotGrow>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 247628090757120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EmptyHands>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 247646537306112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WrongPickableObject>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 247663406796800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <IncreaseNumberOfFlowersForSale>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 252577759547392
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SeedCrossing>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 263906243301376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SeedAlreadyCrossed>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 269777757196288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CrossingTableCanNotStartCrossing>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 269806366543872
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SeedNotCrossed>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 269840545927168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NoSoilInsidePot>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 269862209507328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <MismatchGrowingRoomForCrossingTable>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 269881662689280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerAlreadyInCollection>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 281320469221376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <MusicPowerOff>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 281339293257728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerAlreadyPlanted>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 285769665269760
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NotEnoughMoney>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 285776288075776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NotEnoughPots>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 285809053978624
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PotNotEmpty>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 285825957023744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PotEmpty>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 295466992586752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerNotRare>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 294599191089152
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WateringCanReplenish>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 294605713231872
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CoffeeEffectPurchased>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 298924558700544
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NoAvailableVipOrders>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 302102830305280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <NoAvailableComplaintOrders>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 302464148623360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

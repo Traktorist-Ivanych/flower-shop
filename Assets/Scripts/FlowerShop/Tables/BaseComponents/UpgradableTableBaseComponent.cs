@@ -1,4 +1,5 @@
 using FlowerShop.Education;
+using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using PlayerControl;
@@ -16,6 +17,7 @@ namespace FlowerShop.Tables.BaseComponents
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
 
+        [SerializeField] private MeshRenderer upgradableIndicator;
         [SerializeField] private MeshFilter tableMeshFilter; 
         [SerializeField] private UpgradableTableInfo upgradableTableInfo;
         [SerializeField] private ParticleSystem UpgradeTableSuccessPS;
@@ -40,7 +42,7 @@ namespace FlowerShop.Tables.BaseComponents
         public void SetUpgradableTableInfoToCanvas(int nextTableLvl)
         {
             upgradeCanvasLiaison.SetUpgradableTableInfo(
-                tableName: upgradableTableInfo.TableName,
+                tableName: upgradableTableInfo.LocalizedTableName.GetLocalizedString(),
                 description: upgradableTableInfo.GetUpgradableTableDescription(nextTableLvl),
                 priceInt: upgradableTableInfo.GetUpgradableTablePrice(nextTableLvl),
                 tableSprite: upgradableTableInfo.GetUpgradableTableSprite(nextTableLvl));
@@ -69,6 +71,16 @@ namespace FlowerShop.Tables.BaseComponents
         public int GetUpgradePrice(int nextTableLvl)
         {
             return upgradableTableInfo.GetUpgradableTablePrice(nextTableLvl);
+        }
+
+        public void ShowIndicator()
+        {
+            upgradableIndicator.enabled = true;
+        }
+
+        public void HideIndicator()
+        {
+            upgradableIndicator.enabled = false;
         }
     }
 }

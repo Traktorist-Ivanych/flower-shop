@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: EustomaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202412523
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6384029327360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u042D\u0443\u0441\u0442\u043E\u043C\u0430"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 7740be625e9126d4db209ea3621a2ad4, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 1f4ad746a0afc6c43bf6149910ed4cbc, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1329515076, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 839517375b2b11447adc65c62769d8b7, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -7596216084231017522, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
   - {fileID: 7077001505310717693, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
   - {fileID: 1697408328609763212, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: a1d257342505fac41ac6b1eaff18e042, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 1f702ce016b46fa49a1b76f7700fc09b, type: 2}
+  references:
+    version: 2
+    RefIds: []

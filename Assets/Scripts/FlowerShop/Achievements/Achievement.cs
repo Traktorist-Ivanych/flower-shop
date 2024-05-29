@@ -1,4 +1,5 @@
 using FlowerShop.ComputerPages;
+using FlowerShop.Effects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Sounds;
 using FlowerShop.Tables;
@@ -6,6 +7,8 @@ using PlayerControl;
 using Saves;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 using Zenject;
 
@@ -20,12 +23,21 @@ namespace FlowerShop.Achievements
         [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly SoundsHandler soundsHandler;
         [Inject] private readonly TopPlayerFlowerShop topPlayerFlowerShop;
-        
+
+        private protected delegate void OnAwardReceived();
+        private protected OnAwardReceived OnAwardReceivedEvent;
+
         [SerializeField, HideInInspector] private protected TextMeshProUGUI achievementText;
         [SerializeField, HideInInspector] private protected TextMeshProUGUI achievementDescription;
         [SerializeField, HideInInspector] private protected Scrollbar achievementScrollbar;
         [SerializeField, HideInInspector] private protected Button achievementButton;
+        [SerializeField, HideInInspector] private protected CanvasElementScaler achievementButtonScaler;
 
+        [SerializeField, HideInInspector] private LocalizeStringEvent localizeAchievementNameStringEvent;
+        [SerializeField, HideInInspector] private LocalizeStringEvent localizeAchievementDescriptionStringEvent;
+
+        [SerializeField] private LocalizedString localizeAchievementText;
+        [SerializeField] private LocalizedString localizeAchievementDescription;
         [SerializeField] private MeshRenderer achievementModel;
         [field: Tooltip("0 - LowMoneyReward;\n1 - MediumMoneyReward;\n2 - HighMoneyReward.")]
         [SerializeField, Range(0,2)] private int moneyRewardIndex;
@@ -41,18 +53,19 @@ namespace FlowerShop.Achievements
         {
             achievementScrollbar = GetComponentInChildren<Scrollbar>();
             achievementButton = GetComponentInChildren<Button>();
-            
-            TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
+            achievementButtonScaler = GetComponentInChildren<CanvasElementScaler>();
 
-            foreach (TextMeshProUGUI text in texts)
+            LocalizeStringEvent[] texts = GetComponentsInChildren<LocalizeStringEvent>();
+
+            foreach (LocalizeStringEvent text in texts)
             {
                 if (text.gameObject.name == "AchievementText")
                 {
-                    achievementText = text;
+                    localizeAchievementNameStringEvent = text;
                 }
                 else if (text.gameObject.name == "AchievementDescription")
                 {
-                    achievementDescription = text;
+                    localizeAchievementDescriptionStringEvent = text;
                 }
                 else
                 {
@@ -63,15 +76,18 @@ namespace FlowerShop.Achievements
 
         private void Awake()
         {
+            localizeAchievementNameStringEvent.StringReference = localizeAchievementText;
+            localizeAchievementDescriptionStringEvent.StringReference = localizeAchievementDescription;
+
             Load();
         }
 
-        private void OnEnable()
+        private protected virtual void OnEnable()
         {
             achievementButton.onClick.AddListener(OnAchievementButtonClick);
         }
-        
-        private void OnDisable()
+
+        private protected virtual void OnDisable()
         {
             achievementButton.onClick.RemoveListener(OnAchievementButtonClick);
         }
@@ -87,6 +103,8 @@ namespace FlowerShop.Achievements
                 {
                     CompleteAchievement();
                 }
+
+                Save();
             }
         }
         
@@ -135,6 +153,7 @@ namespace FlowerShop.Achievements
                     else
                     {
                         achievementButton.image.sprite = achievementsSettings.AwardAwaitingReceipt;
+                        achievementButtonScaler.ActivateEffect();
                         ShowIndicators();
                     }
                 }
@@ -165,12 +184,11 @@ namespace FlowerShop.Achievements
         private protected void UpdateScrollbar()
         {
             achievementScrollbar.size = (float)achievementProgress / achievementMaxProgress;
-            
-            Save();
         }
 
         private void CompleteAchievement()
         {
+            achievementButtonScaler.ActivateEffect();
             isAchievementDone = true;
             achievementButton.image.sprite = achievementsSettings.AwardAwaitingReceipt;
             ShowIndicators();
@@ -183,7 +201,8 @@ namespace FlowerShop.Achievements
             achievementButton.image.sprite = achievementsSettings.AwardReceived;
             isAwardReceived = true;
             achievementModel.enabled = true;
-            
+            achievementButtonScaler.DeactivateEffect();
+
             int currentMoneyReward = 0;
             switch (moneyRewardIndex)
             {
@@ -199,9 +218,13 @@ namespace FlowerShop.Achievements
             }
             playerMoney.AddPlayerMoney(currentMoneyReward);
             soundsHandler.PlayAddMoneyAudio();
-            
+
+            HideIndicators();
+
             topPlayerFlowerShop.IncreaseProgress();
-            
+            OnAwardReceivedEvent?.Invoke();
+
+
             Save();
         }
 
@@ -209,6 +232,12 @@ namespace FlowerShop.Achievements
         {
             computerTable.ShowIndicator();
             computerMainPageCanvasLiaison.ShowAchievementsIndicator();
+        }
+
+        private void HideIndicators()
+        {
+            computerTable.HideIndicator();
+            computerMainPageCanvasLiaison.HideAchievementsIndicator();
         }
     }
 }

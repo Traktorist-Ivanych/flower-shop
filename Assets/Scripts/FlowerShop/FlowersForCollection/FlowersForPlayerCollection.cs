@@ -12,6 +12,7 @@ namespace FlowerShop.FlowersForCollection
     public class FlowersForPlayerCollection : MonoBehaviour
     {
         [Inject] private readonly AspiringCollector aspiringCollector;
+        [Inject] private readonly FlowersCanvasLiaison flowersCanvasLiaison;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly LoverOfDecorativeFlowers loverOfDecorativeFlowers;
         [Inject] private readonly LoverOfExoticFlowers loverOfExoticFlowers;
@@ -22,6 +23,8 @@ namespace FlowerShop.FlowersForCollection
         public void AddFlowerToCollectionList(FlowerInfo addedFlowerInfo)
         {
             flowerCollection.Add(addedFlowerInfo);
+
+            flowersCanvasLiaison.SetInCollectionInicator(addedFlowerInfo);
 
             if (addedFlowerInfo.GrowingRoom.Equals(flowersSettings.GrowingRoomDecorative))
             {

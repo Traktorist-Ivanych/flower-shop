@@ -6,6 +6,7 @@ using FlowerShop.Environment;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersSale;
+using FlowerShop.Help;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
@@ -27,6 +28,7 @@ namespace FlowerShop.Installers
         [SerializeField] private FertilizersSetting fertilizersSetting;
         [SerializeField] private FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [SerializeField] private FlowersSettings flowersSettings;
+        [SerializeField] private HelpTexts helpTexts;
         [SerializeField] private RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [SerializeField] private SoundSettings soundSettings;
         [SerializeField] private TablesSettings tablesSettings;
@@ -44,6 +46,7 @@ namespace FlowerShop.Installers
             Container.Bind<FlowersForSaleCoeffCalculatorSettings>()
                 .FromInstance(flowersForSaleCoeffCalculatorSettings).AsSingle().NonLazy();
             Container.Bind<FlowersSettings>().FromInstance(flowersSettings).AsSingle().NonLazy();
+            Container.Bind<HelpTexts>().FromInstance(helpTexts).AsSingle().NonLazy();
             Container.Bind<RepairsAndUpgradesSettings>().FromInstance(repairsAndUpgradesSettings).AsSingle().NonLazy();
             Container.Bind<SoundSettings>().FromInstance(soundSettings).AsSingle().NonLazy();
             Container.Bind<TablesSettings>().FromInstance(tablesSettings).AsSingle().NonLazy();

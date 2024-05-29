@@ -1,4 +1,6 @@
-﻿using FlowerShop.Effects;
+﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
+using FlowerShop.Effects;
 using PlayerControl;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,35 +8,39 @@ using Zenject;
 
 namespace FlowerShop.Fertilizers
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class BuyFertilizersCancelButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         
-        [HideInInspector, SerializeField] private Button canselButton;
+        [HideInInspector, SerializeField] private UIButton canselButton;
 
         private void OnValidate()
         {
-            canselButton = GetComponent<Button>();
+            canselButton = GetComponent<UIButton>();
         }
         
         private void OnEnable()
         {
-            canselButton.onClick.AddListener(OnUpgradeCancelButtonClick);
+            canselButton.OnClickEvent += OnUpgradeCancelButtonClick;
         }
 
         private void OnDisable()
         {
-            canselButton.onClick.RemoveListener(OnUpgradeCancelButtonClick);
+            canselButton.OnClickEvent -= OnUpgradeCancelButtonClick;
         }
 
         private void OnUpgradeCancelButtonClick()
         {
-            fertilizersCanvasLiaison.DisableCanvas();
-            playerBusyness.SetPlayerFree();
-            selectedTableEffect.ActivateEffectWithDelay();
+            if (!educationHandler.IsEducationActive)
+            {
+                fertilizersCanvasLiaison.DisableCanvas();
+                playerBusyness.SetPlayerFree();
+                selectedTableEffect.ActivateEffectWithDelay();
+            }
         }
     }
 }

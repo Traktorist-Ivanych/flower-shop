@@ -1,5 +1,6 @@
 ﻿using FlowerShop.ComputerPages;
 using FlowerShop.Education;
+using FlowerShop.Sounds;
 using UnityEngine;
 using Zenject;
 
@@ -30,7 +31,7 @@ namespace FlowerShop.Flowers
 
         private void OnButtonClick()
         {
-            flowersCanvasLiaison.FlowersCanvas.enabled = true;
+            flowersCanvasLiaison.ShowFlowersCanvas();
             
             if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
             {

@@ -3,6 +3,8 @@ using DG.Tweening;
 using FlowerShop.Customers;
 using FlowerShop.Customers.VipAndComplaints;
 using FlowerShop.Flowers;
+using FlowerShop.FlowersSale;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -20,10 +22,14 @@ namespace FlowerShop.Tables
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly ComplaintsHandler complaintsHandler;
         [Inject] private readonly CustomersSpawner customersSpawner;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
-        
+        [Inject] private readonly ShopRating shopRating;
+
         [SerializeField] private MeshRenderer soilRenderer;
         [SerializeField] private MeshRenderer flowerRenderer;
         
@@ -61,10 +67,63 @@ namespace FlowerShop.Tables
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(UseComplaintsTable);
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
         }
-        
-        public void ExecuteSpecialSale()
+
+        private void TryToShowHelpCanvas()
         {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+                }
+                else if (!complaintsHandler.IsComplaintActive)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoAvailableComplaintOrders);
+                }
+                else if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (!currentPot.PlantedFlowerInfo.Equals(complaintsHandler.ComplaintFlowerInfo))
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongFlower);
+                }
+                else if (currentPot.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerDidNotGrow);
+                }
+                else if (currentPot.IsWeedInPot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WeedInPot);
+                }
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyHands);
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
+        }
+
+            public void ExecuteSpecialSale()
+        {
+            shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
+
             isPotOnTable = false;
             soilRenderer.enabled = false;
             flowerRenderer.enabled = false;
@@ -102,7 +161,7 @@ namespace FlowerShop.Tables
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerUseComplaintsTable();
+            return CanPlayerUseComplaintsTable() || CanPlayerUseTableInfoCanvas();
         }
 
         private bool CanPlayerUseComplaintsTable()
@@ -117,6 +176,16 @@ namespace FlowerShop.Tables
             }
             
             return false;
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private void UseComplaintsTable()

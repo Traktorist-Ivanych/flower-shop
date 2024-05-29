@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: PoppyInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413137
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u041C\u0430\u043A"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 8a86efd77b08f394c9c0d9894face718, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 395243e9c18359848ac8ce57e5ca9be2, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -773357636, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: a3378782e563f0f4683a01125df83ebd, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: 3802139435699379502, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
   - {fileID: -7058457246559321773, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
   - {fileID: 6030152942502147821, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 88d7e2b22b7468a4191f75bb567fd892, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 70900069b0603bc4e90c725e9ecfcc5c, type: 2}
+  references:
+    version: 2
+    RefIds: []

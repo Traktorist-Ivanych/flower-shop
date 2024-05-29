@@ -1,9 +1,12 @@
 using System.Collections;
+using FlowerShop.Effects;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
+using FlowerShop.Tables.Helpers;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -13,16 +16,26 @@ namespace FlowerShop.Tables
     public class WateringTable : UpgradableBreakableTable, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly SoundsHandler soundsHandler;
         
         [SerializeField] private Transform wateringCanTableTransform;
         [SerializeField] private WateringCan wateringCan;
         [SerializeField] private ParticleSystem waterPS;
 
+        [HideInInspector, SerializeField] private ActionProgressbar actionProgressbar;
+
         private bool isWateringCanInPlayerHands;
         private int currentFlowersThatNeedWaterQuantity;
         
         [field: SerializeField] public string UniqueKey { get; private set; }
+        private protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            actionProgressbar = GetComponentInChildren<ActionProgressbar>();
+        }
 
         private protected override void Awake()
         {
@@ -65,16 +78,62 @@ namespace FlowerShop.Tables
                 }
                 else if (CanPlayerUpgradeTable())
                 {
-                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas); 
+                    SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
+                }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
                 }
             }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
         }
-        
+
+        private void TryToShowHelpCanvas()
+        {
+            if (IsTableBroken)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.BrokenTable);
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (wateringCan.IsWateringCanNeedForReplenish())
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WateringCanReplenish);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is WateringCan currentWateringCan)
+            {
+                if (!currentWateringCan.Equals(wateringCan))
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableHasMaxLvl);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
+        }
+
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
             return CanPlayerTakeWateringCanInHandsForSelectableEffect() || 
                    CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect() || 
-                   CanPlayerPutWateringCanOnTable();
+                   CanPlayerPutWateringCanOnTable() || CanPlayerUseTableInfoCanvas();
         }
 
         public override void UpgradeTableFinish()
@@ -186,6 +245,10 @@ namespace FlowerShop.Tables
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
             waterPS.Play();
             soundsHandler.StartPlayingReplenishWateringCanAudio();
+
+            float currentReplenishTime = wateringCan.ReplenishWateringCanTime();
+
+            actionProgressbar.EnableActionProgressbar(currentReplenishTime);
             yield return new WaitForSeconds(wateringCan.ReplenishWateringCanTime());
             waterPS.Stop();
             soundsHandler.StopPlayingReplenishWateringCanAudio();
@@ -201,6 +264,16 @@ namespace FlowerShop.Tables
             FixBreakableFlowerTable(
                 repairsAndUpgradesSettings.WateringTableMinQuantity * (tableLvl + 1),
                 repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return !IsTableBroken && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
     }
 }

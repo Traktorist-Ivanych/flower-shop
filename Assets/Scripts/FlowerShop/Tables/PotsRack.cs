@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
@@ -13,6 +14,8 @@ namespace FlowerShop.Tables
     public class PotsRack : UpgradableTable, ISavableObject
     {
         [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly TablesSettings tablesSettings;
         
         [SerializeField] private Transform potObjectsTransform;
@@ -59,13 +62,58 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (currentFreePots <= 0)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NotEnoughPots);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (currentPot.GrowingRoom != growingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (currentPot.IsSoilInsidePot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PotNotEmpty);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableHasMaxLvl);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
             }
         }
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
             return CanPlayerTakePotInHandsForSelectedEffect() || CanPlayerPutPotOnTable() || 
-                   CanPlayerUpgradeTableForSelectableEffect();
+                   CanPlayerUpgradeTableForSelectableEffect() || CanPlayerUseTableInfoCanvas();
         }
 
         public override void UpgradeTableFinish()
@@ -139,6 +187,16 @@ namespace FlowerShop.Tables
             currentFreePots--;
             pots.Last().TakeInPlayerHandsAndSetPlayerFree();
             pots.Remove(pots.Last());
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private bool CanPlayerPutPotOnTable()

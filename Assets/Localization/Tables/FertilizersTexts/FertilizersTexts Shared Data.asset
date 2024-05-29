@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: FertilizersTexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: FertilizersTexts
+  m_TableCollectionNameGuidString: d53393f82b3a52449816920cf9232556
+  m_Entries:
+  - m_Id: 15121309696
+    m_Key: GrowerToMaxLvlName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 490658914304
+    m_Key: GrowerToMaxLvlDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 686994284544
+    m_Key: GrowingLvlIncreaserName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 736931667968
+    m_Key: GrowingLvlIncreaserDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 790056722432
+    m_Key: GrowthAcceleratorName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 818628321280
+    m_Key: GrowthAcceleratorDescription
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 46299799734976607
+  references:
+    version: 2
+    RefIds:
+    - rid: 46299799734976607
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1716212128356

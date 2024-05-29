@@ -8,7 +8,9 @@ namespace FlowerShop.Sounds
     {
         [Inject] private readonly SoundSettings soundSettings;
 
-        [Header("AudioClips")] 
+        [Header("AudioClips")]
+        [SerializeField] private AudioClip uIButton;
+        [SerializeField] private AudioClip computerTableIndicator;
         [SerializeField] private AudioClip openTrashCan;
         [SerializeField] private AudioClip closeTrashCan;
         [SerializeField] private AudioClip openDoor;
@@ -22,8 +24,9 @@ namespace FlowerShop.Sounds
         [SerializeField] private AudioClip takeMoney;
         [SerializeField] private AudioClip fillCoffeeCup;
         [SerializeField] private AudioClip automaticDoorOpenClose;
-        
+
         [Header("AudioSources")]
+        [SerializeField] private AudioSource uIAudioSource;
         [SerializeField] private AudioSource effectsSingleAudioSource;
         [SerializeField] private AudioSource wateringTablesAudioSource;
         [SerializeField] private AudioSource soilPreparationAudioSource;
@@ -35,6 +38,16 @@ namespace FlowerShop.Sounds
         private int currentCrossingSoundsActive;
         private int currentGrowingTablesWithFansActive;
         private int currentBrokenTablesActive;
+
+        public void PlayUIButtonAudio()
+        {
+            uIAudioSource.PlayOneShot(uIButton);
+        }
+
+        public void PlayComputerTableIndicator()
+        {
+            effectsSingleAudioSource.PlayOneShot(computerTableIndicator);
+        }
 
         public void StartPlayingReplenishWateringCanAudio()
         {

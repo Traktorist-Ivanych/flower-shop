@@ -1,46 +1,67 @@
-﻿using FlowerShop.Flowers;
+﻿using FlowerShop.Customers;
+using FlowerShop.Customers.VipAndComplaints;
+using FlowerShop.Flowers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.ComputerPages
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     [RequireComponent(typeof(Image))]
     public class ComputerFlowerInfoButton : MonoBehaviour
     {
+        [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
-        
+        [Inject] private readonly VipOrdersHandler vipOrdersHandler;
+
+        [SerializeField] private bool vipOrderMode;
+
         private FlowerInfo flowerInfo;
 
-        [HideInInspector, SerializeField] private Button flowerButton;
+        [HideInInspector, SerializeField] private UIButton flowerButton;
         [HideInInspector, SerializeField] private Image flowerImage;
         
         private void OnValidate()
         {
-            flowerButton = GetComponent<Button>();
+            flowerButton = GetComponent<UIButton>();
             flowerImage = GetComponent<Image>();
         }
 
         private void OnEnable()
         {
-            flowerButton.onClick.AddListener(OnButtonClick);
+            flowerButton.OnClickEvent += OnButtonClick;
         }
 
         private void OnDisable()
         {
-            flowerButton.onClick.RemoveListener(OnButtonClick);
+            flowerButton.OnClickEvent -= OnButtonClick;
         }
 
         public void SetFlowerInfo(FlowerInfo targetFlowerInfo)
         {
             flowerInfo = targetFlowerInfo;
-            flowerImage.sprite = flowerInfo.FlowerSprite;
+            flowerImage.sprite = flowerInfo.FlowerSprite512;
         }
 
         private void OnButtonClick()
         {
-            flowerInfoCanvasLiaison.ShowFlowerInfo(flowerInfo, flowerInfo.FlowerSprite);
+            if (flowerInfo.FlowerLvl > 0)
+            {
+                if (vipOrderMode)
+                {
+                    string VipOrderPriceMultiplerText = "";
+                    if (vipOrdersHandler.CurrentVipOrderPriceMultipler > customersSettings.MinPriceMultipler)
+                    {
+                        VipOrderPriceMultiplerText = " * " + vipOrdersHandler.CurrentVipOrderPriceMultipler.ToString();
+                    }
+                    flowerInfoCanvasLiaison.ShowFlowerInfo(flowerInfo, VipOrderPriceMultiplerText);
+                }
+                else
+                {
+                    flowerInfoCanvasLiaison.ShowFlowerInfo(true, flowerInfo);
+                }
+            }
         }
     }
 }

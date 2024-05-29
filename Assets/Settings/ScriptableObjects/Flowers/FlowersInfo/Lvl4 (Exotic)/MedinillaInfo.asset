@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: MedinillaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413287
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6809122037760
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u041C\u0435\u0434\u0438\u043D\u0438\u043B\u043B\u0430"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 650b01b74e546534fac714ff13d3fdf7, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 924e92c7321c1c34da2bd5769c4322ee, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -1629817348, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: fb3d929e5a39f6b4c96d51cded1226df, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -9135561779046365579, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: 965474955830900389, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: -2103399517078487219, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: cd9428b81633c7346ad4e41a52929494, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 81fa5e33d820c6c4e9ffbe169c07b576, type: 2}
+  references:
+    version: 2
+    RefIds: []

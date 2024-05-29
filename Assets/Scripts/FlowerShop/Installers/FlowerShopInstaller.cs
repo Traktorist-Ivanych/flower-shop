@@ -1,4 +1,5 @@
 using FlowerShop.Ads;
+using FlowerShop.Back;
 using FlowerShop.Coffee;
 using FlowerShop.ComputerPages;
 using FlowerShop.Customers;
@@ -10,11 +11,11 @@ using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
 using FlowerShop.FlowersSale;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Sounds;
 using FlowerShop.Tables;
-using FlowerShop.Tables.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +26,7 @@ namespace FlowerShop.Installers
         [Header("Flowers Containers")]
         [SerializeField] private FlowersContainer flowersContainer;
         [SerializeField] private FlowersForPlayerCollection flowersForPlayerCollection;
+        [SerializeField] private RareFlowersHandler rareFlowersHandler;
         [Header("Sale")]
         [SerializeField] private FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
         [SerializeField] private FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
@@ -42,7 +44,11 @@ namespace FlowerShop.Installers
         [SerializeField] private EducationCanvasLiaison educationCanvasLiaison;
         [SerializeField] private FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
         [SerializeField] private FlowersCanvasLiaison flowersCanvasLiaison;
+        [SerializeField] private HelpCanvasLiaison helpCanvasLiaison;
+        [SerializeField] private QuitCanvasLiaison quitCanvasLiaison;
+        [SerializeField] private SoundsSettingsCanvasLiaison soundsSettingsCanvasLiaison;
         [SerializeField] private StatsCanvasLiaison statsCanvasLiaison;
+        [SerializeField] private TableInfoCanvasLiaison tableInfoCanvasLiaison;
         [SerializeField] private UpgradeCanvasLiaison upgradeCanvasLiaison;
         [SerializeField] private VipCanvasLiaison vipCanvasLiaison;
         [Header("Canvas Elements")]
@@ -54,11 +60,14 @@ namespace FlowerShop.Installers
         [SerializeField] private FertilizersTable fertilizersTable;
         [SerializeField] private FertilizersCanvasLiaison fertilizersCanvasLiaison;
         [Header("Player")]
+        [SerializeField] private ActionProgressbar actionProgressbar;
         [SerializeField] private PlayerSounds playerSounds;
         [Header("Sounds")]
+        [SerializeField] private MusicSongsSwitcherTable musicSongsSwitcherTable;
         [SerializeField] private SoundsHandler soundsHandler;
         [Header("Environment")]
         [SerializeField] private AutomaticDoors automaticDoors;
+        [SerializeField] private PassersSpawner passersSpawner;
         [Header("Effects")]
         [SerializeField] private SelectedTableEffect selectedTableEffect;
         [Header("Education")]
@@ -74,6 +83,7 @@ namespace FlowerShop.Installers
         {
             Container.Bind<FlowersContainer>().FromInstance(flowersContainer).AsSingle().NonLazy();
             Container.Bind<FlowersForPlayerCollection>().FromInstance(flowersForPlayerCollection).AsSingle().NonLazy();
+            Container.Bind<RareFlowersHandler>().FromInstance(rareFlowersHandler).AsSingle().NonLazy();
 
             Container.Bind<FlowersForSaleCoeffCalculator>().FromInstance(flowersForSaleCoeffCalculator).AsSingle().NonLazy();
             Container.Bind<FlowersSaleTablesForCustomers>().FromInstance(flowersSaleTablesForCustomers).AsSingle().NonLazy();
@@ -91,7 +101,11 @@ namespace FlowerShop.Installers
             Container.Bind<FlowerInfoCanvasLiaison>().FromInstance(flowerInfoCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<EducationCanvasLiaison>().FromInstance(educationCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<FlowersCanvasLiaison>().FromInstance(flowersCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<HelpCanvasLiaison>().FromInstance(helpCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<QuitCanvasLiaison>().FromInstance(quitCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<SoundsSettingsCanvasLiaison>().FromInstance(soundsSettingsCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<StatsCanvasLiaison>().FromInstance(statsCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<TableInfoCanvasLiaison>().FromInstance(tableInfoCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<UpgradeCanvasLiaison>().FromInstance(upgradeCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<VipCanvasLiaison>().FromInstance(vipCanvasLiaison).AsSingle().NonLazy();
             
@@ -103,12 +117,15 @@ namespace FlowerShop.Installers
             Container.Bind<FertilizersTable>().FromInstance(fertilizersTable).AsSingle().NonLazy();
             Container.Bind<FertilizersCanvasLiaison>().FromInstance(fertilizersCanvasLiaison).AsSingle().NonLazy();
             
+            Container.Bind<ActionProgressbar>().FromInstance(actionProgressbar).AsSingle().NonLazy();
             Container.Bind<PlayerSounds>().FromInstance(playerSounds).AsSingle().NonLazy();
-            
+
+            Container.Bind<MusicSongsSwitcherTable>().FromInstance(musicSongsSwitcherTable).AsSingle().NonLazy();
             Container.Bind<SoundsHandler>().FromInstance(soundsHandler).AsSingle().NonLazy();
             
             Container.Bind<AutomaticDoors>().FromInstance(automaticDoors).AsSingle().NonLazy();
-            
+            Container.Bind<PassersSpawner>().FromInstance(passersSpawner).AsSingle().NonLazy();
+
             Container.Bind<SelectedTableEffect>().FromInstance(selectedTableEffect).AsSingle().NonLazy();
             
             Container.Bind<EducationHandler>().FromInstance(educationHandler).AsSingle().NonLazy();

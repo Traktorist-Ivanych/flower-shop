@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: PassionflowerInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413412
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 7200006004736
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u041F\u0430\u0441\u0441\u0438\u0444\u043B\u043E\u0440\u0430"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: cc70edd7efd7a2f4e9ed1b12ffdc609c, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: ddad2f858979b3c40afa366bc6125afb, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 958639295, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: deea5db117179054dab2552697b96b46, type: 2}
-  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 156c7b77863da174bb472df42ff7ce24, type: 2}
   <FlowerLvl>k__BackingField: 5
   <FlowerSellingPrice>k__BackingField: 3000
   <FlowerSoilMesh>k__BackingField: {fileID: -1036173772136047727, guid: 703790e61f24a3240890f0a292b64061, type: 3}
@@ -25,7 +35,19 @@ MonoBehaviour:
   - {fileID: 3310225787589936349, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
   - {fileID: 7965277037723760653, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
   - {fileID: -8559416182744932350, guid: 567c76a2535b95b4598877a582d32cdc, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89474248531968
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0435
     \u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 9f098dd6307190a4c94c2c7ef4cae8d9, type: 2}
+  references:
+    version: 2
+    RefIds: []

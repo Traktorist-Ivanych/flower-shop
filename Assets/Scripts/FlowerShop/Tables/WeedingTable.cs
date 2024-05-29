@@ -1,13 +1,18 @@
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
 using Saves;
 using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.Tables
 {
     public class WeedingTable : UpgradableTable, ISavableObject
     {
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
+
         [SerializeField] private Transform hoeOnTableTransform;
         [SerializeField] private WeedingHoe weedingHoe;
         
@@ -41,12 +46,46 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe currentWeedingHoe)
+            {
+                if (!currentWeedingHoe.Equals(weedingHoe))
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableHasMaxLvl);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
             }
         }
 
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerTakeHoeInHandsForSelectableEffect() ||
+            return CanPlayerTakeHoeInHandsForSelectableEffect() || CanPlayerUseTableInfoCanvas() ||
                    CanPlayerUpgradeTableForSelectableEffect() || CanPlayerPutHoeOnTable();
         }
 
@@ -132,6 +171,16 @@ namespace FlowerShop.Tables
             weedingHoe.PutOnTableAndSetPlayerFree(hoeOnTableTransform);
             
             Save();
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
     }
 }

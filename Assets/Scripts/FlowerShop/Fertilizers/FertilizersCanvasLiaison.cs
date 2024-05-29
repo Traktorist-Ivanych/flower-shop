@@ -9,7 +9,6 @@ namespace FlowerShop.Fertilizers
     [Binding]
     public class FertilizersCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly PlayerInputActions playerInputActions;
         
         [SerializeField] private GrowthAccelerator growthAccelerator;
@@ -61,14 +60,19 @@ namespace FlowerShop.Fertilizers
         {
             fertilizerInfoPanel.SetActive(true);
 
-            FertilizerName = fertilizerInfo.FertilizerName;
+            FertilizerName = fertilizerInfo.LocalizedFertilizerName.GetLocalizedString();
             OnPropertyChanged(nameof(FertilizerName));
             
             FertilizerSprite = fertilizerInfo.FertilizerSprite;
             OnPropertyChanged(nameof(FertilizerSprite));
             
-            FertilizerDescription = fertilizerInfo.FertilizerDescription;
+            FertilizerDescription = fertilizerInfo.LocalizedFertilizerDescription.GetLocalizedString();
             OnPropertyChanged(nameof(FertilizerDescription));
+        }
+
+        public void HideFertilizerInfoPanel()
+        {
+            fertilizerInfoPanel.SetActive(false);
         }
 
         private void OnPropertyChanged(string propertyName)

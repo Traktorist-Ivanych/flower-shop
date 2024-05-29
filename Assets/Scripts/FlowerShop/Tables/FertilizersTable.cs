@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using FlowerShop.Ads;
 using FlowerShop.Fertilizers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Tables.Abstract;
 using UnityEngine;
@@ -10,10 +10,11 @@ namespace FlowerShop.Tables
 {
     public class FertilizersTable : Table
     {
-        [Inject] private readonly LevelPlayAds levelPlayAds;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
-        
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
+
         [SerializeField] private Transform fertilizersTableTransform;
         [SerializeField] private Fertilizer[] fertilizers;
         
@@ -69,10 +70,30 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(PutFertilizerOnTable);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
             }
         }
 
-        public void TakeFertilizerInPlayerHands(Fertilizer fertilizerToTakePlayer)
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.HandsFull);
+            }
+        }
+
+            public void TakeFertilizerInPlayerHands(Fertilizer fertilizerToTakePlayer)
         {
             for (int i = 0; i < fertilizers.Length; i++)
             {
@@ -90,7 +111,8 @@ namespace FlowerShop.Tables
         
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerTakeFertilizerInHandsForSelectableEffect() || CanPlayerPutFertilizerOnTable();
+            return CanPlayerTakeFertilizerInHandsForSelectableEffect() || CanPlayerPutFertilizerOnTable() || 
+                CanPlayerUseTableInfoCanvas();
         }
         
         public void IncreaseAvailableFertilizersUsesNumber()
@@ -152,7 +174,6 @@ namespace FlowerShop.Tables
 
         private void ShowFertilizerCanvas()
         {
-            levelPlayAds.LoadRewardedAd();
             fertilizersCanvasLiaison.EnableCanvas();
         }
 
@@ -170,6 +191,16 @@ namespace FlowerShop.Tables
         private void PutFertilizerOnTable()
         {
             currentPlayerFertilizer.PutOnTableAndSetPlayerFree(fertilizersTableTransform);
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
     }
 }

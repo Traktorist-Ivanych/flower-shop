@@ -1,13 +1,13 @@
+using FlowerShop.ComputerPages;
 using FlowerShop.Education;
 using FlowerShop.PickableObjects;
 using PlayerControl;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.RepairsAndUpgrades
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class UpgradeButton : MonoBehaviour
     {
         [Inject] private readonly EducationHandler educationHandler;
@@ -15,21 +15,21 @@ namespace FlowerShop.RepairsAndUpgrades
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
 
-        [SerializeField] private Button upgradeButton;
+        [SerializeField] private UIButton upgradeButton;
 
         private void OnValidate()
         {
-            upgradeButton = GetComponent<Button>();
+            upgradeButton = GetComponent<UIButton>();
         }
 
         private void OnEnable()
         {
-            upgradeButton.onClick.AddListener(OnUpgradeButtonClick);
+            upgradeButton.OnClickEvent += OnUpgradeButtonClick;
         }
 
         private void OnDisable()
         {
-            upgradeButton.onClick.RemoveListener(OnUpgradeButtonClick);
+            upgradeButton.OnClickEvent -= OnUpgradeButtonClick;
         }
 
         private void OnUpgradeButtonClick()

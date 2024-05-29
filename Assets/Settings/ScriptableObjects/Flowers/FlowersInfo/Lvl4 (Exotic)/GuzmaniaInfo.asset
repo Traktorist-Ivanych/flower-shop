@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: GuzmaniaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413286
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6710119686144
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0413\u0443\u0437\u043C\u0430\u043D\u0438\u044F"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 521758cc1e2dee2458644c58ffc0687d, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: fa9bc8662328d274d934b037053b1092, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -2146053812, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 48a3030d76341e646b4bc03d9443013e, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -5562362247718854288, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: -5854730646687917480, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
   - {fileID: -7661519937302818779, guid: 04f47a749ade3ab4998b09f8711389be, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: b2a8583300c72d44cbc18cb228bd7485, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: c324187da6c6a9a41a12ca48ee19223f, type: 2}
+  references:
+    version: 2
+    RefIds: []

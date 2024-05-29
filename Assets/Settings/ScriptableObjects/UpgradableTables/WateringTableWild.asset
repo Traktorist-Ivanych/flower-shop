@@ -18,10 +18,41 @@ MonoBehaviour:
   upgradeSprites:
   - {fileID: 21300000, guid: f782ae744c2bc1546b4f83d301896195, type: 3}
   - {fileID: 21300000, guid: bd0bd54183e9d9b418b58bd6dd34be07, type: 3}
+  localizedUpgradeDescriptions:
+  - m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 1237144363008
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 1264323452928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   upgradeDescriptions:
-  - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0432\u043C\u0435\u0441\u0442\u0438\u043C\u043E\u0441\u0442\u044C
-    \u043B\u0435\u0439\u043A\u0438 \u0434\u043E 6 \u043F\u043E\u043B\u0438\u0432\u043E\u0432"
-  - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0432\u043C\u0435\u0441\u0442\u0438\u043C\u043E\u0441\u0442\u044C
-    \u043B\u0435\u0439\u043A\u0438 \u0434\u043E 9 \u043F\u043E\u043B\u0438\u0432\u043E\u0432"
+  - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
+    \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043B\u0438\u0432\u043E\u0432
+    \u043B\u0435\u0439\u043A\u043E\u0439 \u0434\u043E 6 \u0440\u0430\u0437."
+  - "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
+    \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043B\u0438\u0432\u043E\u0432
+    \u043B\u0435\u0439\u043A\u043E\u0439 \u0434\u043E 9 \u0440\u0430\u0437."
   upgradePrices: b004000060090000
+  <LocalizedTableName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 1216621633536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0441 \u043B\u0435\u0439\u043A\u043E\u0439"
+  references:
+    version: 2
+    RefIds: []

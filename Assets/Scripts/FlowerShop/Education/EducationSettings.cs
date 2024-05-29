@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 namespace FlowerShop.Education
 {
@@ -8,125 +9,47 @@ namespace FlowerShop.Education
         order = 17)]
     public class EducationSettings : ScriptableObject
     {
-        [field: Header("Texts")]
-        [field: SerializeField] public Vector2 WelcomeCoordinates { get; private set; }
-        [field: SerializeField, Multiline] public string WelcomeText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 FirstDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string FirstDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 MoneyAndShopRatingDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string MoneyAndShopRatingDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 FlowersCanvasDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string FlowersCanvasDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PotsRackDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PotsRackDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 SoilPreparationDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string SoilPreparationDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 SeedPlantDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string SeedPlantDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 GrowingTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string GrowingTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PlantNextFlowerDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PlantNextFlowerDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 FertilizersDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string FertilizersDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 FertilizersEndUsingDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string FertilizersEndUsingDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CrossingTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CrossingTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CrossingTableProcessDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CrossingTableProcessDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CrossingTableProcessStartDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CrossingTableProcessStartDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 BrokenTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string BrokenTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 UpgradeTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string UpgradeTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CompleteUpgradingTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CompleteUpgradingTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 SoilForNewSeedDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string SoilForNewSeedDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 WaitThenPlantNewSeedDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string WaitThenPlantNewSeedDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PlantNewSeedDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PlantNewSeedDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 GrowthAcceleratorUsingDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string GrowthAcceleratorUsingDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 GrowthAcceleratorEndUsingDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string GrowthAcceleratorEndUsingDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 TakePotFromCrossingTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string TakePotFromCrossingTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 WeedDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string WeedDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PourPotFirstTimeDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PourPotFirstTimeDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 GrowingLvlIncreaserDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string GrowingLvlIncreaserDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PourPotSecondTimeDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PourPotSecondTimeDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CollectionRoomDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CollectionRoomDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PutPotInCollectionRoomDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PutPotInCollectionRoomDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 StorageTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string StorageTableRoomDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 SalesDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string SalesDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PutPotOnSaleTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PutPotOnSaleTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PutPotOnPotsRackDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PutPotOnPotsRackDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 PourPotLastTimeDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string PourPotLastTimeDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 ComputerTableDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string ComputerTableDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 ComplaintsDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string ComplaintsDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 VipDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string VipDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 CoffeeDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string CoffeeDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 MusicDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string MusicDescriptionText { get; private set; }
-        [field: Space]
-        [field: SerializeField] public Vector2 EducationEndDescriptionCoordinates { get; private set; }
-        [field: SerializeField] public string EducationEndDescriptionText { get; private set; }
+        [field: SerializeField] public float HeightCanvasFieldsForEducationText { get; private set; }
+        [field: SerializeField] public LocalizedString WelcomeText { get; private set; }
+        [field: SerializeField] public LocalizedString FirstDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString MoneyAndShopRatingDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString FlowersCanvasDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PotsRackDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString SoilPreparationDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString SeedPlantDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString GrowingTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PlantNextFlowerDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString FertilizersDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString FertilizersEndUsingDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString CrossingTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString CrossingTableProcessDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString CrossingTableProcessStartDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString BrokenTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString UpgradeTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString CompleteUpgradingTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString SoilForNewSeedDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString WaitThenPlantNewSeedDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PlantNewSeedDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString GrowthAcceleratorUsingDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString GrowthAcceleratorEndUsingDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString TakePotFromCrossingTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString WeedDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PourPotFirstTimeDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString GrowingLvlIncreaserDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PourPotSecondTimeDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString CollectionRoomDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PutPotInCollectionRoomDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString StorageTableRoomDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString SalesDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PutPotOnSaleTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PutPotOnPotsRackDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString PourPotLastTimeDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString ComputerTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString ComplaintsDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString VipDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString AchievementsText { get; private set; }
+        [field: SerializeField] public LocalizedString CoffeeDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString MusicDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString EducationEndDescriptionText { get; private set; }
     }
 }

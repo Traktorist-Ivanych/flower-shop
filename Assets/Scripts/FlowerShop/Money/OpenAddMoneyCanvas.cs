@@ -1,17 +1,11 @@
-using FlowerShop.Ads;
 using FlowerShop.ComputerPages;
-using Input;
 using UnityEngine;
-using Zenject;
 
 namespace FlowerShop.Money
 {
     [RequireComponent(typeof(UIButton))]
     public class OpenAddMoneyCanvas : MonoBehaviour
     {
-        [Inject] private readonly LevelPlayAds levelPlayAds;
-        [Inject] private readonly PlayerInputActions playerInputActions;
-
         [SerializeField] private Canvas addMoneyCanvas;
         
         [HideInInspector, SerializeField] private UIButton uiButton;
@@ -33,9 +27,7 @@ namespace FlowerShop.Money
 
         private void OnButtonClick()
         {
-            levelPlayAds.LoadRewardedAd();
             addMoneyCanvas.enabled = true;
-            playerInputActions.EnableCanvasControlMode();
         }
     }
 }

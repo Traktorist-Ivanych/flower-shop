@@ -25,10 +25,16 @@ namespace PlayerControl
             playerAbility = transmittedPlayerAbility;
         }
 
+        public void ResetPlayerAbility()
+        {
+            playerAbility = null;
+        }
+
         private void ExecutePlayerAbility()
         {
             playerAbility?.ExecutePlayerAbility();
-            playerAbility = null;
+
+            ResetPlayerAbility();
         }
     }
 }

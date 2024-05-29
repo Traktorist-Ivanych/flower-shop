@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.CoffeeLover;
-            achievementDescription.text = achievementsTextSettings.CoffeeLoverDescription;
-            
             achievementMaxProgress = achievementsSettings.CoffeeLoverMaxProgress;
             UpdateScrollbar();
         }

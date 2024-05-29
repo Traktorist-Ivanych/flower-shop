@@ -2,6 +2,8 @@
 using DG.Tweening;
 using FlowerShop.Achievements;
 using FlowerShop.FlowersSale;
+using FlowerShop.Help;
+using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Tables.Abstract;
@@ -15,7 +17,11 @@ namespace FlowerShop.Tables
     public class CustomerAccessControllerTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly Sprinter sprinter;
 
@@ -60,12 +66,38 @@ namespace FlowerShop.Tables
             if (CanPlayerUseTable())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(() => StartCoroutine(UseTable()));
+
+                if (flowersForSaleCoeffCalculator.CalculateCurrentGrade() < flowersForSaleCoeffCalculatorSettings.MaxShopGrade &&
+                    !IsAccessOpen)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.IncreaseNumberOfFlowersForSale);
+                }
+            }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
             }
         }
-        
+
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (!playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.HandsFull);
+            }
+        }
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerUseTableForSelectedEffect();
+            return CanPlayerUseTableForSelectedEffect() || CanPlayerUseTableInfoCanvas();
         }
 
         private bool CanPlayerUseTable()
@@ -83,6 +115,15 @@ namespace FlowerShop.Tables
             return flowersSaleTablesForCustomers.GetCurrentSaleTableWithFlowerCount() > 6 && CanPlayerUseTable();
         }
 
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
         private IEnumerator UseTable()
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartCrossingTrigger);

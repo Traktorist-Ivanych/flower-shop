@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using FlowerShop.Achievements;
+using FlowerShop.Help;
+using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
@@ -15,6 +17,8 @@ namespace FlowerShop.Tables
     public class MusicPowerSwitcherTable : Table, ISavableObject
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly LetThereBeSound letThereBeSound;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly SoundSettings soundSettings;
@@ -57,10 +61,37 @@ namespace FlowerShop.Tables
                 SetPlayerDestinationAndOnPlayerArriveAction(
                     () => StartCoroutine(UseMusicPowerSwitcherTable()));
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
         }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (!playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.HandsFull);
+            }
+        }
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerUseMusicPowerSwitcherTable();
+            return CanPlayerUseMusicPowerSwitcherTable() || CanPlayerUseTableInfoCanvas();
+        }
+
+        public void SetAudioClip(AudioClip audioClip)
+        {
+            musicAudioSource.clip = audioClip;
+            musicAudioSource.Play();
         }
 
         public void StartPlayingMusicAudioSource(AudioClip currentSong)
@@ -125,6 +156,16 @@ namespace FlowerShop.Tables
                     duration: actionsWithTransformSettings.MovingPickableObjectTimeDelay, 
                     mode: RotateMode.Fast).
                 OnComplete(OnMusicPowerSwitcherRotationComplete);
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private void OnMusicPowerSwitcherRotationComplete()

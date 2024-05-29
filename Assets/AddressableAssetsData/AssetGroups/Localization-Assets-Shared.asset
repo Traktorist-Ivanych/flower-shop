@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 70db279571998c3468011a8af7a7c7ce
+  m_SerializeEntries:
+  - m_GUID: b71746b59fd24e140a7e5801bd223d78
+    m_Address: Assets/Localization/Tables/CanvasesTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d480af65bae4a04888bff068d4c1a48
+    m_Address: Assets/Localization/Tables/FlowersTexts/FlowersTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d53393f82b3a52449816920cf9232556
+    m_Address: Assets/Localization/Tables/FertilizersTexts/FertilizersTexts Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbcb8859aa67a194d8337a3c2c878178
+    m_Address: Assets/Localization/Tables/TablesTexts/TablesTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcc0276f630155949abd1445386d7464
+    m_Address: Assets/Localization/Tables/ComplaintAndVipTexts/ComplaintAndVipTexts
+      Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe20eb91e7853eb4d8c892e409124e08
+    m_Address: Assets/Localization/Tables/AchievementsTexts/AchievementsTexts Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_Address: Assets/Localization/Tables/EducationTexts/EducationTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdac9435460b91e4eafd22763e555137
+    m_Address: Assets/Localization/Tables/EntryPointText/EntryPointText Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 505f798886258484ebec515ff5fa85ac
+    m_Address: Assets/Localization/Tables/HelpTexts/HelpTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e30a4a335b2069b48b61835a66a329e9
+    m_Address: Assets/Localization/Tables/TablesInfoText/TablesInfoText Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 22a865f7b6281c941a0951f9cb8135c7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: af027ee877c59f84288ee950a3cfd370, type: 2}
+    - {fileID: 11400000, guid: b3c9facaeab0d99408adeba0ca7a7a1f, type: 2}

@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: IrisInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202413135
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6442451787776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0418\u0440\u0438\u0441"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: d1827a2c1078cc14a9034c97c4742839, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 208b2a512098d5144bd5cf779af77570, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1217631826, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 2e462c248f611e34a860f9837510072d, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -1396315069475631703, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
   - {fileID: 7743576083347251166, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
   - {fileID: 5687682283121530719, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 7ec852fda13f40e438f618619f1c4f2f, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 44f2d2e1853e7db47a6c8976eca75d1b, type: 2}
+  references:
+    version: 2
+    RefIds: []

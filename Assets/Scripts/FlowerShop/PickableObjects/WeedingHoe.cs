@@ -14,6 +14,7 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class WeedingHoe : MonoBehaviour, IPickableObject
     {
+        [Inject] private readonly ActionProgressbar playerActionProgressbar;
         [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly PlayerBusyness playerBusyness;
@@ -61,7 +62,11 @@ namespace FlowerShop.PickableObjects
         public IEnumerator DeleteWeed(Pot potForDeletingWeed, WeedPlanter weedPlanterToAddPotIntoList)
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartWeedingTrigger);
-            yield return new WaitForSeconds(weedSettings.WeedingTime - weedSettings.WeedingTimeLvlDelta * weedingHoeLvl);
+
+            float currentWeedingTime = weedSettings.WeedingTime - weedSettings.WeedingTimeLvlDelta * weedingHoeLvl;
+            playerActionProgressbar.EnableActionProgressbar(currentWeedingTime);
+            yield return new WaitForSeconds(currentWeedingTime);
+
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishWeedingTrigger);
             potForDeletingWeed.DeleteWeed();
             weedPlanterToAddPotIntoList.AddPotInPlantingWeedList(potForDeletingWeed);

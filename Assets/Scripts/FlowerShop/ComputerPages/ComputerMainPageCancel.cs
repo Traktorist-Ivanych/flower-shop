@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using FlowerShop.Effects;
+using Input;
 using PlayerControl;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,7 @@ namespace FlowerShop.ComputerPages
         [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerInputActions playerInputActions;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
         
         [HideInInspector, SerializeField] private UIButton uiButton;
 
@@ -31,6 +33,7 @@ namespace FlowerShop.ComputerPages
 
         private void OnButtonClick()
         {
+            selectedTableEffect.ActivateEffectWithDelay();
             computerMainPageCanvasLiaison.ComputerMainPageCanvas.enabled = false;
             playerInputActions.DisableCanvasControlMode();
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopUsingComputer);

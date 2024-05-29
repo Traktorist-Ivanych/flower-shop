@@ -1,5 +1,6 @@
 using Saves;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace FlowerShop.Flowers
 {
@@ -9,8 +10,10 @@ namespace FlowerShop.Flowers
         [field: SerializeField] public string UniqueKey { get; private set; }
         
         [field: Header("FlowerInfo")]
+        [field: SerializeField] public LocalizedString LocalizedFlowerName { get; private set; }
         [field: SerializeField] public string FlowerNameRus { get; private set; }
-        [field: SerializeField] public Sprite FlowerSprite { get; private set; }
+        [field: SerializeField] public Sprite FlowerSprite512 { get; private set; }
+        [field: SerializeField] public Sprite FlowerSprite128 { get; private set; }
         [field: SerializeField] public FlowerName FlowerName { get; private set; }
         [field: SerializeField] public GrowingRoom GrowingRoom { get; private set; }
         [field: SerializeField] public int FlowerLvl { get; private set; }
@@ -20,6 +23,7 @@ namespace FlowerShop.Flowers
         
     
         [field: Header("FlowerCrossingRecipe")]
+        [field: SerializeField] public LocalizedString LocalizedCrossingRecipeDescription { get; private set; }
         [field: SerializeField] public string CrossingRecipeDescription { get; private set; }
         [field: SerializeField] public FlowerInfo FirstCrossingFlowerInfo { get; private set; }
         [field: SerializeField] public FlowerInfo SecondCrossingFlowerInfo { get; private set; }

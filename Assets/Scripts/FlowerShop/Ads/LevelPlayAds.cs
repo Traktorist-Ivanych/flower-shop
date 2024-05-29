@@ -1,18 +1,11 @@
-using FlowerShop.Tables;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 namespace FlowerShop.Ads
 {
     public class LevelPlayAds : MonoBehaviour
-    {
-        [Inject] private readonly FertilizersTable fertilizersTable;
-        
+    {        
         public delegate void AdReward();
         private event AdReward AdRewardEvent;
-        
-        [SerializeField] private Image adsImage;
         
         private void Start()
         {
@@ -32,16 +25,22 @@ namespace FlowerShop.Ads
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
         }
 
-        private void OnApplicationPause(bool isPaused) {                 
-            IronSource.Agent.onApplicationPause(isPaused);
+        private void OnDisable()
+        {
+            IronSourceEvents.onSdkInitializationCompletedEvent -= SdkInitializationCompletedEvent;
+
+            IronSourceRewardedVideoEvents.onAdOpenedEvent -= RewardedVideoOnAdOpenedEvent;
+            IronSourceRewardedVideoEvents.onAdClosedEvent -= RewardedVideoOnAdClosedEvent;
+            IronSourceRewardedVideoEvents.onAdAvailableEvent -= RewardedVideoOnAdAvailable;
+            IronSourceRewardedVideoEvents.onAdUnavailableEvent -= RewardedVideoOnAdUnavailable;
+            IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
+            IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
+            IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
         }
 
-        public void LoadRewardedAd()
-        {
-            if (!IronSource.Agent.isRewardedVideoAvailable())
-            {
-                IronSource.Agent.loadRewardedVideo();
-            }
+        private void OnApplicationPause(bool isPaused) 
+        {                 
+            IronSource.Agent.onApplicationPause(isPaused);
         }
 
         public void ShowRewardedAd(AdReward reward)
@@ -58,7 +57,6 @@ namespace FlowerShop.Ads
         private void SdkInitializationCompletedEvent()
         {
             IronSource.Agent.validateIntegration();
-            adsImage.enabled = true;
         }
         
         /************* RewardedVideo AdInfo Delegates *************/ 

@@ -1,4 +1,5 @@
-﻿using FlowerShop.Effects;
+﻿using FlowerShop.ComputerPages;
+using FlowerShop.Effects;
 using PlayerControl;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,28 +7,28 @@ using Zenject;
 
 namespace FlowerShop.Coffee
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class BuyCoffeeCancelButton : MonoBehaviour
     {
         [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly SelectedTableEffect selectedTableEffect;
         
-        [HideInInspector, SerializeField] private Button canselButton;
+        [HideInInspector, SerializeField] private UIButton canselButton;
 
         private void OnValidate()
         {
-            canselButton = GetComponent<Button>();
+            canselButton = GetComponent<UIButton>();
         }
         
         private void OnEnable()
         {
-            canselButton.onClick.AddListener(OnUpgradeCancelButtonClick);
+            canselButton.OnClickEvent += OnUpgradeCancelButtonClick;
         }
 
         private void OnDisable()
         {
-            canselButton.onClick.RemoveListener(OnUpgradeCancelButtonClick);
+            canselButton.OnClickEvent -= OnUpgradeCancelButtonClick;
         }
 
         private void OnUpgradeCancelButtonClick()

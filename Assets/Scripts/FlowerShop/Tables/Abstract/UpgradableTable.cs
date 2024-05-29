@@ -46,6 +46,11 @@ namespace FlowerShop.Tables.Abstract
             soundsHandler.PlayUpgradeFinishAudio();
             upgradableTableBaseComponent.FinishUpgradeTableProcessEffects();
             allTheBest.IncreaseProgress();
+
+            if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+            {
+                upgradableTableBaseComponent.HideIndicator();
+            }
         }
 
         private protected void LoadLvlMesh()
@@ -56,6 +61,19 @@ namespace FlowerShop.Tables.Abstract
         public void ShowUpgradeCanvas()
         {
             upgradableTableBaseComponent.SetUpgradableTableInfoToCanvas(tableLvl);
+        }
+
+        public void ShowIndicator()
+        {
+            if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+            {
+                upgradableTableBaseComponent.ShowIndicator();
+            }
+        }
+
+        public void HideIndicator()
+        {
+            upgradableTableBaseComponent.HideIndicator();
         }
 
         private protected bool CanPlayerUpgradeTableForSelectableEffect()

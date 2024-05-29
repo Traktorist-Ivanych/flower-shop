@@ -90,6 +90,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -173,6 +175,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -261,6 +265,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -319,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e272a466c3f0cf148bab1fa41edc1d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableInfo: {fileID: 11400000, guid: 20e71b23a4937874988e19ecde2e7c6a, type: 2}
   growingRoom: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   destinationTarget: {fileID: 5138302613347569018}
   targetToLookAt: {fileID: 4576132668423984018}
@@ -327,7 +334,6 @@ MonoBehaviour:
   soilTablePosition: {fileID: 4576132669818811386}
   soilMeshRenderer: {fileID: 8493052632014749935}
   flowerMeshRenderer: {fileID: 3877048764379093213}
-  flowersForCollection: {fileID: 0}
   soilTransform: {fileID: 1108944222814913916}
   flowerMeshFilter: {fileID: 1511881277981875663}
   <UniqueKey>k__BackingField: 

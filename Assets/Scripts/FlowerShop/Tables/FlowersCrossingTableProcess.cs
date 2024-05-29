@@ -1,6 +1,8 @@
 using System.Collections;
 using FlowerShop.Achievements;
+using FlowerShop.Effects;
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -23,7 +25,10 @@ namespace FlowerShop.Tables
         [Inject] private readonly FlowersContainer flowersContainer;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly HardworkingBreeder hardworkingBreeder;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly RareFlowersHandler rareFlowersHandler;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly SoundsHandler soundsHandler;
         [Inject] private readonly TablesSettings tablesSettings;
@@ -56,7 +61,8 @@ namespace FlowerShop.Tables
         [HideInInspector, SerializeField] private TableObjectsRotation tableObjectsRotation;
         [HideInInspector, SerializeField] private MeshFilter firstFlowersCrossingTableMeshFilter;
         [HideInInspector, SerializeField] private MeshFilter secondFlowersCrossingTableMeshFilter;
-        
+        [HideInInspector, SerializeField] private ActionProgressbar actionProgressbar;
+
         private Pot potForPlanting;
         private float crossingFlowerTime;
         private float currentCrossingFlowerTime;
@@ -77,6 +83,7 @@ namespace FlowerShop.Tables
             firstFlowersCrossingTableMeshFilter = firstFlowersCrossingTable.GetComponent<MeshFilter>();
             secondFlowersCrossingTableMeshFilter = secondFlowersCrossingTable.GetComponent<MeshFilter>();
             tableObjectsRotation = GetComponent<TableObjectsRotation>();
+            actionProgressbar = GetComponentInChildren<ActionProgressbar>();
         }
 
         private protected override void Awake()
@@ -95,6 +102,7 @@ namespace FlowerShop.Tables
             if (IsSeedCrossing)
             {
                 tableObjectsRotation.StartObjectsRotation();
+                actionProgressbar.EnableActionProgressbar(crossingFlowerTime, currentCrossingFlowerTime);
             }
         }
 
@@ -102,7 +110,16 @@ namespace FlowerShop.Tables
         {
             base.TryInteractWithTable();
 
-            if (!playerBusyness.IsPlayerFree || IsSeedCrossing) return;
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+                return;
+            }
+            else if (IsSeedCrossing)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.SeedCrossing);
+                return;
+            }
             
             if (CanPlayerStartFlowersCrossing())
             {
@@ -112,20 +129,87 @@ namespace FlowerShop.Tables
             {
                 SetPlayerDestinationAndOnPlayerArriveAction( () => StartCoroutine(PlantCrossedSeed()));
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
             else if (CanPlayerFixTable())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(FixCrossingTable);
             }
-            else if (CanPlayerUpgradeTable())
+            else if (CanPlayerUpgradeTable() && !IsSeedCrossing)
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(ShowUpgradeCanvas);
             }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
         }
-        
+
+        private void TryToShowHelpCanvas()
+        {
+            if (IsTableBroken)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.BrokenTable);
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (IsCrossingSeedReady)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.SeedAlreadyCrossed);
+                }
+                else if (!isFlowerReadyForCrossing)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.CrossingTableCanNotStartCrossing);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (!IsCrossingSeedReady)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.SeedNotCrossed);
+                }
+                else if (currentPot.GrowingRoom != FlowerInfoForPlanting.GrowingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoomForCrossingTable);
+                }
+                else if (!currentPot.IsSoilInsidePot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoSoilInsidePot);
+                }
+                else if (currentPot.PlantedFlowerInfo != flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerAlreadyPlanted);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer)
+            {
+                if (tableLvl >= repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableHasMaxLvl);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return !IsTableBroken && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerStartFlowersCrossing() || CanPlayerPlantCrossedSeed() ||
-                   CanPlayerFixTable() || CanPlayerUpgradeTableForSelectableEffect();
+            return CanPlayerStartFlowersCrossing() || CanPlayerPlantCrossedSeed() || CanPlayerUseTableInfoCanvas() ||
+                   CanPlayerFixTable() || (CanPlayerUpgradeTableForSelectableEffect() && !IsSeedCrossing);
         }
 
         public void CheckCrossingAbility()
@@ -152,20 +236,23 @@ namespace FlowerShop.Tables
 
             if (isFlowerReadyForCrossing)
             {
-                FlowerInfoForPlanting = flowersContainer.GetFlowerFromCrossingRecipe(
+                FlowerInfo currentFlowerInfo = flowersContainer.GetFlowerFromCrossingRecipe(
                     firstFlowersCrossingTable.PotOnTable.PlantedFlowerInfo.FlowerName,
                     secondFlowersCrossingTable.PotOnTable.PlantedFlowerInfo.FlowerName);
 
-                if (FlowerInfoForPlanting.FlowerName == flowersSettings.FlowerNameEmpty)
+                if (currentFlowerInfo.FlowerName == flowersSettings.FlowerNameEmpty)
                 {
                     isFlowerReadyForCrossing = false;
                 }
                 else
                 {
                     crossingAbilityRedIndicator.enabled = false;
-
-                    isFlowerReadyForCrossing = true;
                     crossingAbilityGreenIndicator.enabled = true;
+
+                    if (!IsCrossingSeedReady)
+                    {
+                        FlowerInfoForPlanting = currentFlowerInfo;
+                    }
 
                     CheckFlowerInfoForPlantingRoomIndicator();
                 }
@@ -243,7 +330,7 @@ namespace FlowerShop.Tables
 
         private bool CanPlayerStartFlowersCrossing()
         {
-            return !IsTableBroken && !IsCrossingSeedReady && 
+            return !IsTableBroken && !IsCrossingSeedReady && !IsSeedCrossing &&
                    playerPickableObjectHandler.IsPickableObjectNull && 
                    isFlowerReadyForCrossing;
         }
@@ -259,7 +346,8 @@ namespace FlowerShop.Tables
             tableObjectsRotation.StartObjectsRotation();
             selectedTableEffect.ActivateEffectWithDelay();
             StartFlowersCrossingProcess();
-            
+            actionProgressbar.EnableActionProgressbar(crossingFlowerTime, currentCrossingFlowerTime);
+
             educationHandler.TryBrokenSoilPreparationTableDuringEducation();
         }
 
@@ -271,7 +359,7 @@ namespace FlowerShop.Tables
             firstFlowersCrossingTable.PlayCrossingFlowerEffects();
             secondFlowersCrossingTable.PlayCrossingFlowerEffects();
             soundsHandler.StartPlayingCrossingSound();
-            
+
             Observable.EveryUpdate().Subscribe( updateCrossingFlowersTimer =>
             {
                 
@@ -326,8 +414,15 @@ namespace FlowerShop.Tables
             potForPlanting.PutOnTableAndKeepPlayerBusy(tablePotTransform);
 
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
-            potForPlanting.PlantSeed(FlowerInfoForPlanting);
-            flowersContainer.TryToAddAvailableFlowerInfo(FlowerInfoForPlanting);
+            if (!educationHandler.IsEducationActive && rareFlowersHandler.IsRareFlowerResultOfCrossing())
+            {
+                potForPlanting.PlantSeed(rareFlowersHandler.GetRareFlower());
+            }
+            else
+            {
+                potForPlanting.PlantSeed(FlowerInfoForPlanting);
+                flowersContainer.TryToAddAvailableFlowerInfo(FlowerInfoForPlanting);
+            }
             ResetFlowerInfoForPlanting();
             IsCrossingSeedReady = false;
             CheckCrossingAbility();

@@ -6,9 +6,12 @@ namespace Input
 {
     public class PlayerInputActions : MonoBehaviour
     {
-        [Inject] private MainCameraMover mainCameraMover;
-        [Inject] private PlayerTapInput playerTapInput;
-        
+        [Inject] private readonly MainCameraMover mainCameraMover;
+        [Inject] private readonly PlayerTapInput playerTapInput;
+
+        public delegate void BackCall();
+        public event BackCall BackCallEvent;
+
         private InputActions inputControls;
         private bool isCanvasControlEnable;
 
@@ -22,18 +25,20 @@ namespace Input
             inputControls.Player.Enable();
             inputControls.Player.Tap.started += TapInput;
             inputControls.Player.UIButton.started += OnUiButtonClick;
+            inputControls.Player.Back.started += OnBackCall;
         }
 
         private void OnDisable()
         {
             inputControls.Player.UIButton.started -= OnUiButtonClick;
             inputControls.Player.Tap.started -= TapInput;
+            inputControls.Player.Back.started -= OnBackCall;
             inputControls.Player.Disable();
         }
 
         private void Update()
         {
-            if (isCanvasControlEnable) return;
+            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()) return;
             
             if (inputControls.Player.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
             {
@@ -59,14 +64,19 @@ namespace Input
 
         private void OnUiButtonClick(InputAction.CallbackContext context)
         {
-            EnableCanvasControlMode();
+            //EnableCanvasControlMode();
         }
 
         private void TapInput(InputAction.CallbackContext context)
         {
-            if (isCanvasControlEnable) return;
+            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()) return;
             
             playerTapInput.PlayerTap(inputControls.Player.TapPosition.ReadValue<Vector2>());
+        }
+
+        private void OnBackCall(InputAction.CallbackContext context)
+        {
+            BackCallEvent?.Invoke();
         }
     }
 }

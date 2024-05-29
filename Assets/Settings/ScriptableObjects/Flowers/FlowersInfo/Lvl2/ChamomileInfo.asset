@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: ChamomileInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: ChamomileInfo 5
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 5774907334656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0420\u043E\u043C\u0430\u0448\u043A\u0430"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 22528068085da5c41a9ef3e1d49c356b, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: b172c6b80e4e41948968e7a7584c3d1d, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: 1985794893, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 794df34992e6d3d4a986eaf479a6c3b8, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   <FlowerLvl>k__BackingField: 2
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: 8650944331761263078, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
   - {fileID: 847605268145884212, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
   - {fileID: 595564499547454137, guid: f1b32fbcf25d80e40a0c1d93f789074a, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: ef4433b348803be40ac5c66cb4ee7a70, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: a87e93ce45366a94f94c55cc3c51b1bc, type: 2}
+  references:
+    version: 2
+    RefIds: []

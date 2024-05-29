@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.TheBestFlowerShop;
-            achievementDescription.text = achievementsTextSettings.TheBestFlowerShopDescription;
-
             achievementMaxProgress = achievementsSettings.TheBestFlowerShopMaxProgress;
             UpdateScrollbar();
         }

@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.AspiringCollector;
-            achievementDescription.text = achievementsTextSettings.AspiringCollectorDescription;
-            
             achievementMaxProgress = achievementsSettings.AspiringCollectorMaxProgress;
             UpdateScrollbar();
         }

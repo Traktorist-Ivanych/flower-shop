@@ -18,9 +18,44 @@ MonoBehaviour:
   upgradeSprites:
   - {fileID: 21300000, guid: 2fb8225b8bf7ace4f8df87d7779ca0f3, type: 3}
   - {fileID: 21300000, guid: 36417c7e98ea9bd40b8cf4be67dc7c94, type: 3}
+  localizedUpgradeDescriptions:
+  - m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 610548899840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 610548899840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   upgradeDescriptions:
-  - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0440\u043E\u0441\u0442 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439"
-  - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0440\u043E\u0441\u0442 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439"
+  - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u0440\u0435\u043C\u044F
+    \u043F\u0435\u0440\u0435\u0445\u043E\u0434\u0430 \u0446\u0432\u0435\u0442\u043A\u0430
+    \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E \u0441\u0442\u0430\u0434\u0438\u044E
+    \u0440\u043E\u0441\u0442\u0430."
+  - "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u0440\u0435\u043C\u044F
+    \u043F\u0435\u0440\u0435\u0445\u043E\u0434\u0430 \u0446\u0432\u0435\u0442\u043A\u0430
+    \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E \u0441\u0442\u0430\u0434\u0438\u044E
+    \u0440\u043E\u0441\u0442\u0430."
   upgradePrices: 8403000008070000
+  <LocalizedTableName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178
+    m_TableEntryReference:
+      m_KeyId: 575748759552
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <TableName>k__BackingField: "\u0421\u0442\u043E\u043B \u0434\u043B\u044F \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u043D\u0438\u044F
     \u0446\u0432\u0435\u0442\u043E\u0432"
+  references:
+    version: 2
+    RefIds: []

@@ -16,6 +16,8 @@ MonoBehaviour:
   <AllUniqueFlowersCount>k__BackingField: 55
   <SoilPrice>k__BackingField: 150
   <FirstLvlFlowersPrice>k__BackingField: 50
+  <RareFlowerLvl>k__BackingField: 5
+  <MinFlowerLvl>k__BackingField: 1
   <CrossingFlowerMinLvl>k__BackingField: 2
   <CrossingFlowerMaxLvl>k__BackingField: 4
   <MaxFlowerGrowingLvl>k__BackingField: 3
@@ -26,5 +28,53 @@ MonoBehaviour:
   <GrowingRoomDecorative>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
   <GrowingRoomExotic>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <GrowingRoomWild>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
-  <UnknownFlower>k__BackingField: {fileID: 21300000, guid: 4d9a04e8f1596114488b849a34ad324c, type: 3}
-  <UnplayableFlower>k__BackingField: {fileID: 21300000, guid: 789ecc3c04393bd44bd7eada24806ca4, type: 3}
+  <InCollectionIndicator>k__BackingField: {fileID: 21300000, guid: 6a013c7e3ca3219498f08704d0ce0228, type: 3}
+  <UnknownFlower>k__BackingField: {fileID: 21300000, guid: 8f2a15f4c4c66bd4baf319b4de1e85c7, type: 3}
+  <UnknownFlower128>k__BackingField: {fileID: 1966325704, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
+  <UnplayableFlower>k__BackingField: {fileID: 21300000, guid: 231bda3e0a92b9044a9f1292158abc02, type: 3}
+  <UnknownWord>k__BackingField: "\u041D\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043D\u043E"
+  <QuestionMark>k__BackingField: '?'
+  rareFlowerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.025641
+      outSlope: 1.025641
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4875
+      value: 0.5
+      inSlope: 0.5128205
+      outSlope: 0.5128205
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5125
+      value: 0.5
+      inSlope: -0.5128205
+      outSlope: -0.5128205
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.025641
+      outSlope: -1.025641
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  appearanceRareFlowerSuccessBorder: 0.5
+  <GuaranteedRareFlowerCrossingMaxIndex>k__BackingField: 40

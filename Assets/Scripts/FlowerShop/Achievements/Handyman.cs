@@ -4,9 +4,6 @@
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.Handyman;
-            achievementDescription.text = achievementsTextSettings.HandymanDescription;
-            
             achievementMaxProgress = achievementsSettings.HandymanMaxProgress;
             UpdateScrollbar();
         }

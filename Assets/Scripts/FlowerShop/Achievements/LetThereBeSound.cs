@@ -4,9 +4,6 @@ namespace FlowerShop.Achievements
     {
         private void Start()
         {
-            achievementText.text = achievementsTextSettings.LetThereBeSound;
-            achievementDescription.text = achievementsTextSettings.LetThereBeSoundDescription;
-            
             achievementMaxProgress = achievementsSettings.LetThereBeSoundMaxProgress;
             UpdateScrollbar();
         }

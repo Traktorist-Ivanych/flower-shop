@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: HippeastrumInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: 0205202412527
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6242060525568
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0413\u0438\u043F\u043F\u0435\u0430\u0441\u0442\u0440\u0443\u043C"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: 7f1c9b845d553a34e98ef0705d558507, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 3803dcef90b42384b8ddea14e56a2992, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -26413817, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 0196729c07785c642896a6d64b48e575, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
   <FlowerLvl>k__BackingField: 4
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: 2051800259325112468, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
   - {fileID: -7403216463637933198, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
   - {fileID: 2604121191699270818, guid: 01a38d9e52b666d4aa7509c356c66545, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 4d5e2e130ee269e41b1e77f660ce0a73, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: d7238afd561d27b408dded6c2c57d390, type: 2}
+  references:
+    version: 2
+    RefIds: []

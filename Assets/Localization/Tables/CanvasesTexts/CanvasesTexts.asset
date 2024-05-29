@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: CanvasesTexts
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: b71746b59fd24e140a7e5801bd223d78, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 61b5d6b1cef588b4da0712f9b4d1749b, type: 2}
+  - {fileID: 11400000, guid: d7532a59d013a9647ad1ce5d190e58b4, type: 2}
+  - {fileID: 11400000, guid: c8df34356247c3e4e95d3ce970370a38, type: 2}
+  - {fileID: 11400000, guid: d01d7166054263b4aa6098507cdca4a1, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

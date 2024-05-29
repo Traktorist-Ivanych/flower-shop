@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: EducationTexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: EducationTexts
+  m_TableCollectionNameGuidString: 7a75d0d0d9eb7b24c9116c12c0eb07db
+  m_Entries:
+  - m_Id: 7605116928
+    m_Key: EducationCanvasName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4809684738048
+    m_Key: WelcomeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4858082811904
+    m_Key: FirstDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4909425287168
+    m_Key: MoneyAndShopRatingDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4960302194688
+    m_Key: FlowersCanvasDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5006414372864
+    m_Key: PotsRackDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5059237437440
+    m_Key: SoilPreparationDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5139633856512
+    m_Key: SeedPlantDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5196508618752
+    m_Key: GrowingTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5245506478080
+    m_Key: PlantNextFlowerDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5294714052608
+    m_Key: FertilizersDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5353769852928
+    m_Key: FertilizersEndUsingDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423596625920
+    m_Key: CrossingTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5471990505472
+    m_Key: CrossingTableProcessDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5527363706880
+    m_Key: CrossingTableProcessStartDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5578542604288
+    m_Key: BrokenTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5628446433280
+    m_Key: UpgradeTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5676773203968
+    m_Key: CompleteUpgradingTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5722390454272
+    m_Key: SoilForNewSeedDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5765382070272
+    m_Key: WaitThenPlantNewSeedDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5816292532224
+    m_Key: PlantNewSeedDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5885716652032
+    m_Key: GrowthAcceleratorUsingDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5935519817728
+    m_Key: GrowthAcceleratorEndUsingDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5982617657344
+    m_Key: TakePotFromCrossingTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030134927360
+    m_Key: WeedDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6094559436800
+    m_Key: PourPotFirstTimeDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6144664592384
+    m_Key: GrowingLvlIncreaserDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211337248768
+    m_Key: PourPotSecondTimeDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6260133781504
+    m_Key: CollectionRoomDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6322524053504
+    m_Key: PutPotInCollectionRoomDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6374738944000
+    m_Key: StorageTableRoomDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6417193689088
+    m_Key: SalesDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6608093241344
+    m_Key: PutPotOnSaleTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6662694690816
+    m_Key: PutPotOnPotsRackDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6713240248320
+    m_Key: PourPotLastTimeDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6759046242304
+    m_Key: ComputerTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6841359458304
+    m_Key: ComplaintsDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6887735877632
+    m_Key: VipDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939350982656
+    m_Key: AchievementsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6998910099456
+    m_Key: CoffeeDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7044225359872
+    m_Key: MusicDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7092455661568
+    m_Key: EducationEndDescriptionText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 46299799734976722
+  references:
+    version: 2
+    RefIds:
+    - rid: 46299799734976722
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1716229391085

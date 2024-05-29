@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: AchievementsTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: fe20eb91e7853eb4d8c892e409124e08, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9127649280
+    m_Localized: All the best
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11006592737280
+    m_Localized: Upgrade all tables to maximum level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11087253397504
+    m_Localized: Aspiring Collector
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11157147279360
+    m_Localized: Collect a collection of all the flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11228794380288
+    m_Localized: Burnout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11296817602560
+    m_Localized: Receive 1 star rating from buyer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11363397984256
+    m_Localized: Coffee lover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11425503043584
+    m_Localized: Drink 5 cups of coffee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11519426093056
+    m_Localized: Wide coverage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11588883767296
+    m_Localized: Serve 150 clients
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11635432153088
+    m_Localized: Decent Citizen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11732941332480
+    m_Localized: Use the trash can 10 times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11847491969024
+    m_Localized: Dedication
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11913967493120
+    m_Localized: Successfully complete 10 complaints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11969923702784
+    m_Localized: Exemplary student
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12059132354560
+    m_Localized: Complete training
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12128279650304
+    m_Localized: Great collector
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12268700753920
+    m_Localized: Collect a collection of all rare flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12338183593984
+    m_Localized: Handyman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12411500027904
+    m_Localized: Repair equipment 25 times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12469813436416
+    m_Localized: Hardworking breeder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12570954883072
+    m_Localized: Cross flowers 100 times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12649572917248
+    m_Localized: I know a lot about business
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12697085992960
+    m_Localized: Successfully complete 15 VIP orders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12840959008768
+    m_Localized: Let there be sound!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12883489251328
+    m_Localized: Play music for the first time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12986086121472
+    m_Localized: Lover of decorative flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13038124851200
+    m_Localized: Collect a collection of all decorative flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13100670312448
+    m_Localized: Lover of exotic flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13161240256512
+    m_Localized: Collect a collection of all exotic flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13243897405440
+    m_Localized: Music lover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13306258317312
+    m_Localized: Listen to all songs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13371551047680
+    m_Localized: Plant growing plant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13433136013312
+    m_Localized: Fill 20 of any plant growing tables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13495568228352
+    m_Localized: Sprinter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13557920751616
+    m_Localized: Receive a 5-star rating 10 times in a row during one store opening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13626833166336
+    m_Localized: Taking care of plants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13685616336896
+    m_Localized: Water the flowers 300 times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13737936084992
+    m_Localized: The best flower shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13822531002368
+    m_Localized: The best flower shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14004735762432
+    m_Localized: Achieve a 5.0 rating in the last 25 ratings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14068933779456
+    m_Localized: There's no time to wait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14129793130496
+    m_Localized: Use fertilizer 50 times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14190723784704
+    m_Localized: To capacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14245589475328
+    m_Localized: Fill all sales tables with flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14313822412800
+    m_Localized: Flower Shop Top Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14372022575104
+    m_Localized: Complete all achievements
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14429656506368
+    m_Localized: Warehouse Logistics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14488800387072
+    m_Localized: Fill any 20 waiting tables with flowers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14547029909504
+    m_Localized: Weed killer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14643083665408
+    m_Localized: Get rid of 25 weeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14781097238528
+    m_Localized: Wildflower lover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14827268136960
+    m_Localized: Collect a collection of all wildflowers
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

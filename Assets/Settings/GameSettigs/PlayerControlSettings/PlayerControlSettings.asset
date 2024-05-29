@@ -22,7 +22,7 @@ MonoBehaviour:
   <PlayerNavAgentCoffeeAngularSpeed>k__BackingField: 1100
   <PlayerNavAgentCoffeeAcceleration>k__BackingField: 110
   <PlayerMovingCoffeeRotation>k__BackingField: 12
-  <CoffeeEffectDurationTime>k__BackingField: 600
+  <CoffeeEffectDurationTime>k__BackingField: 900
   <FirstAvailableMoney>k__BackingField: 2500
   <AdsMoneyReward>k__BackingField: 2500
   <IAPMoneyRewardFirst>k__BackingField: 10000

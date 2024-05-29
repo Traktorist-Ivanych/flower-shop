@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: HydrangeaInfo
   m_EditorClassIdentifier: 
   <UniqueKey>k__BackingField: HydrangeaInfo 12
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 5801641828352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <FlowerNameRus>k__BackingField: "\u0413\u043E\u0440\u0442\u0435\u043D\u0437\u0438\u044F"
-  <FlowerSprite>k__BackingField: {fileID: 21300000, guid: d888d549666598a44ad433d2ba2d14ef, type: 3}
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: d797919c75114824080ac836d530a46a, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -963829367, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 657331aa4608d904684281789204b5b8, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: c31bc57042d6a24449ae4bd635deb250, type: 2}
   <FlowerLvl>k__BackingField: 3
@@ -25,6 +35,18 @@ MonoBehaviour:
   - {fileID: -7816449684507328498, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
   - {fileID: -205884777659084559, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
   - {fileID: -9026008469587085439, guid: 9e072fc2b2c14e7498f4c6f9d1e82ad8, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
   <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 408c4720ae305bd409d5022dcbfe68ba, type: 2}
   <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 3f8558972f2f36b439d4c7d3a2d95731, type: 2}
+  references:
+    version: 2
+    RefIds: []
