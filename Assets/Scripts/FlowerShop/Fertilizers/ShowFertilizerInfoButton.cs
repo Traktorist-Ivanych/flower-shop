@@ -1,35 +1,43 @@
-﻿using UnityEngine;
+﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.Fertilizers
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class ShowFertilizerInfoButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
         
         [SerializeField] private FertilizerInfo fertilizerInfo;
         
-        [HideInInspector, SerializeField] private Button showButton;
+        [HideInInspector, SerializeField] private UIButton showButton;
 
         private void OnValidate()
         {
-            showButton = GetComponent<Button>();
+            showButton = GetComponent<UIButton>();
         }
 
         private void OnEnable()
         {
-            showButton.onClick.AddListener(ShowInfoPanel);
+            showButton.OnClickEvent += ShowInfoPanel;
         }
 
         private void OnDisable()
         {
-            showButton.onClick.RemoveListener(ShowInfoPanel);
+            showButton.OnClickEvent -= ShowInfoPanel;
         }
 
         private void ShowInfoPanel()
         {
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
+
             fertilizersCanvasLiaison.ShowFertilizerInfoPanel(fertilizerInfo);
         }
     }

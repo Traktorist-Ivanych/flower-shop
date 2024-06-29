@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FertilizersTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d53393f82b3a52449816920cf9232556, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 15121309696
+    m_Localized: Grower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 490658914304
+    m_Localized: In one go, it instantly completes flower growth. It is most effective
+      when treating newly planted or bred flowers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 686994284544
+    m_Localized: Growth stage magnifier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 736931667968
+    m_Localized: In one go, it instantly transfers a flower to the next stage of
+      growth. It is most effective when treating flowers that have lost one stage
+      of growth during the crossing process.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 790056722432
+    m_Localized: Growth accelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 818628321280
+    m_Localized: Increases flower growth speed by 5 times. Can be applied once per
+      flower. It is most effective when treating newly planted or bred flowers.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

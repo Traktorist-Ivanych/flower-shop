@@ -48,9 +48,9 @@ MonoBehaviour:
   weedPlantingSuccessBorder: 0.5
   <MaxWeedGrowingLvl>k__BackingField: 3
   <PrimaryWeedGrowingLvl>k__BackingField: 1
-  <MinWeedPlantTime>k__BackingField: 90
-  <MinWeedPlantTimeLvlDelta>k__BackingField: 60
-  <MaxWeedPlantTime>k__BackingField: 160
-  <MaxWeedPlantTimeLvlDelta>k__BackingField: 90
-  <WeedingTime>k__BackingField: 8
-  <WeedingTimeLvlDelta>k__BackingField: 3
+  <MinWeedPlantTime>k__BackingField: 240
+  <MinWeedPlantTimeLvlDelta>k__BackingField: 240
+  <MaxWeedPlantTime>k__BackingField: 360
+  <MaxWeedPlantTimeLvlDelta>k__BackingField: 360
+  <WeedingTime>k__BackingField: 15
+  <WeedingTimeLvlDelta>k__BackingField: 6

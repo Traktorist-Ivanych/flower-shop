@@ -9,6 +9,7 @@ namespace PlayerControl
     {
         [field: Header("Moving Setting")]
         [field: SerializeField] public float RemainingDistance { get; private set; }
+        [field: SerializeField] public float MinMovableMagnitude { get; private set; }
         
         [field: Header("Ordinary Nav Agent Setting")]
         [field: SerializeField] public float PlayerNavAgentSpeed { get; private set; }
@@ -27,5 +28,13 @@ namespace PlayerControl
         
         [field: Header("Money")]
         [field: SerializeField] public int FirstAvailableMoney { get; private set; }
+        [field: SerializeField] public int AdsMoneyReward { get; private set; }
+        [field: SerializeField] public int IAPMoneyRewardFirst { get; private set; }
+        [field: SerializeField] public int IAPMoneyRewardSecond { get; private set; }
+        
+        [field: Header("Canvas Money Effect")]
+        [field: SerializeField] public float MoneyEffectMovingSpeed { get; private set; }
+        [field: SerializeField] public float MoneyEffectTimeDuration { get; private set; }
+        [field: SerializeField] public float MoneyEffectStartHidingTime { get; private set; }
     }
 }

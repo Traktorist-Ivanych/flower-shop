@@ -1,0 +1,402 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TablesInfoText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e30a4a335b2069b48b61835a66a329e9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9426882560
+    m_Localized: 'Interacts with room objects:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72022675456
+    m_Localized: 'Can be broken:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113881829376
+    m_Localized: 'Could be improved:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146580623360
+    m_Localized: 'Description:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16906738388992
+    m_Localized: "   The crossing table is designed to produce seeds of new flowers
+      through crossing process.\r\n   To crossbreed, you need to place fully grown,
+      weed-free flowers in the side sections of the table. Flowers should grow in
+      the same room where the table is located.\r\n If flowers can be crossed, the
+      side indicators of the table will light up green, otherwise the colour of the
+      indicators will be red. You can only cross different flowers of the same level.\r\n  
+      Also, if flowers can be crossed, the center indicator of the table will light
+      up with the colour of the room where the bred flower needs to be grown, otherwise
+      the colour of the center indicator will be red. The pot and soil for the hatched
+      seed must be brought from the room indicated by the central indicator.\r\n  
+      Once flowers have been placed in the side sections and the indicators have
+      stopped glowing red, click on the center section of the table to start the
+      crossing process. It will take some time. The higher the table level is, the
+      less time this process takes. To start the crossing process, Carrie should
+      not have any objects in her hands.\r\n   Once the crossing process is complete,
+      flowers on the side sections will lose 1 stage of growth and the side indicators
+      will turn red, while the center indicator will still be the room colour of
+      the hatched seed. To plant a seed, you need to place a pot of soil in the center
+      section of the table.\r\n   The result of crossing any two colours, with a
+      small chance, can become one of the Rare colours. Rare flowers emit additional
+      effects when planted, watered or fertilized.\r\n   To breed a level 3 flower,
+      the crossing table must be improved to level 2 or higher. To breed a level
+      4 flower, the crossing table must be improved to the maximum level 3."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224483690598400
+    m_Localized: "   The table with the coffee machine is designed to make coffee
+      for Carrie.\r\n   To interact with the coffee machine, click on the table.
+      At this moment, Carrie should not have any objects in her hands.\r\n   After
+      Carrie drinks a cup of coffee, she will be given a speed boost effect. An indicator
+      will appear at the bottom of the screen that will reflect the remaining time
+      of the acceleration effect. Carrie will only be able to drink a cup of coffee
+      again after the effect wears off.\r\n   You can get the acceleration effect
+      for a while by watching a promotional video. If the play button does not start
+      the video, check your internet connection. If the connection is stable, restart
+      the game or try playing the video later.\r\n   You can get a permanent acceleration
+      effect by purchasing it in the in-game store. Also in this case, the Coffee
+      Lover achievement will be automatically completed."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229623248113664
+    m_Localized: Complaint table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229651777769472
+    m_Localized: "   The complaints table is designed to fulfill customer complaints
+      requests.\r\n   To fulfill the complaint, place the fully grown flower from
+      the order on this table. There should be no weeds in the soil of the flower.\r\n  
+      As soon as a complaint request is received, an audible alert will play and
+      the Laptop Table will display a message indicator. You can obtain detailed
+      information regarding the request in the corresponding tab in the laptop. Time
+      to complete a complaint is limited. The higher the level of the requested flower,
+      the more time is allocated.\r\n   If the complaint request is successfully
+      completed, the client will come for the flower and leave the maximum rating,
+      while the client will not pay for the flower. If the flower is not placed on
+      the table within the allotted time, the client will leave a minimum rating."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232534040563712
+    m_Localized: Table with laptop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232557180538880
+    m_Localized: "   The table with a laptop is designed to display additional information
+      about current VIP orders and complaints, view the conditions of achievement
+      tasks and receive rewards for their completion, as well as view the last 25
+      ratings of the store.\r\n   To interact with the laptop, click on the table.
+      At this moment, Carrie should not have any objects in her hands.\r\n   To get
+      to know the conditions of achievement tasks, you need to open the Achievements
+      tab on the Main page. To collect a reward for a completed achievement, in the
+      Achievements tab, on the drop-down list, you need to find the completed achievement
+      and click on the question mark to the right of the achievement name column.
+      At this point, the cash reward will be credited and the medal will be displayed
+      on the achievement tables located at the entrance doors to the store in the
+      sales area. The progress of the achievement is displayed with a green line
+      under the condition description.\r\n   To read detailed information about the
+      process of fulfilling VIP orders and complaints, click on their tables in the
+      store. At this moment, Carrie should have a book with instructions in her hands.
+      These tables are located in a sales area with white walls. They display the
+      corresponding indicators.\r\n   As soon as a VIP order, complaint or achievement
+      is completed, a message indicator will appear above the table and a sound alert
+      will play. You will be able to open the Home page and select the desired tab
+      for detailed information."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238108203470848
+    m_Localized: Client Access Control Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238126343835648
+    m_Localized: "   The customer access control table is designed to open and close
+      the store.\r\n   To change clients' access, click on the table. At this moment,
+      Carrie should not have any objects in her hands.\r\n   Customers will not look
+      into the store while the access is closed to them. They leave ratings to the
+      store based on the variety of flowers for sale. To get the maximum score, try
+      to keep at least 6 different colours on the Sale Tables. As soon as the Sales
+      Tables are empty, close the access to customers and replenish them with flowers.
+      The customers inside the store or on the way to it will buy one flower from
+      the remaining ones and leave. However, new clients will not come until the
+      access is reopened for them.\r\n   VIP orders and complaint requests will be
+      received even if customers' access is closed."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241345971277824
+    m_Localized: Table with fertilizers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241365755809792
+    m_Localized: "   The fertilizer table is designed for storing and receiving fertilizers.\r\n  
+      For Carrie to pick up a fertilizer, click on the table and select the required
+      fertilizer from the menu that appears. Before doing this, free Carrie's hands.\r\n  
+      To return the fertilizer back to the table, click on it while Carrie is holding
+      the fertilizer.\r\n   To view detailed information about a specific fertilizer,
+      click on the button with the \u201Ci\u201D icon under the image of the fertilizer
+      on the Fertilizer Table menu.\r\n   You can replenish each fertilizer with
+      5 units by watching the promotional video. If the play button does not start
+      the video, check your internet connection. If the connection is stable, restart
+      the game or try playing the video later.\r\n   You can also replenish each
+      fertilizer with 50 units if you purchase them from the in-game store."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 248938785591296
+    m_Localized: Collection table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 248956456194048
+    m_Localized: "   The collection table is designed to form your own collection
+      of unique flowers.\r\n   To place a flower in the collection, click on the
+      table. Carrie should be holding a pot with a fully grown, unique, weed-free
+      flower. Carrie will place the soil on the table, holding the pot in her hands.
+      The colour of the room for growing the flower should match the colour of the
+      room where the table is located.\r\n   VIP orders come precisely from the flowers
+      placed in the collection on these tables.\r\n   By filling out the collection
+      of colours, you visually display your progress in the game. Feel free to admire
+      your own collection as you complete it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252234275409920
+    m_Localized: "   The growing table is designed for growing flowers.\r\n   You
+      can only place a pot with a planted flower on the table, but not a fully grown
+      one.\r\n   As soon as the flower is placed on the table, the lamps are turned
+      on and the flower begins to grow, alternately gaining stages of growth. In
+      order for the flower to move to the next stage of growth, it must be watered.
+      When a flower needs watering, a blue droplet indicator appears above it.\r\n  
+      To water a flower, click on the table with the flower that has a droplet indicator.
+      At this moment, Carrie should have a Watering Can in her hands from the same
+      room as the Growing Table.\r\n   You can also fertilize flowers on this table
+      if they are not fully grown. Click on the Growing Table when Carrie is holding
+      a fertilizer to use it on the flower on that table.\r\n   The Growing Table
+      allows you to remove weeds using a hoe. As soon as a weed appears in the pot,
+      a negative effect will be displayed and the flower will stop growing. The flower
+      will continue to grow only after the weed is removed. To remove the weed, click
+      on this table when Carrie is holding a hoe from the same room where this table
+      is located.\r\n   In addition, the table may break down. Each cycle of turning
+      the table lamp on and off negatively affects its resource. When the table breaks
+      down, sparks and smoke will come out of it. You won't be able to interact with
+      a broken table. To repair it, click on the Crossing Table while Carrie is holding
+      a hammer.\r\n   This table can be improved. To do it, click on it when Carrie
+      is holding a hammer. Upgrades cost a certain amount of coins. The higher the
+      table level is, the faster the flower will grow on it. Also, the higher the
+      level of the table is, the longer its resource can be, and the more cycles
+      of turning the lamp on and off can be done before the table fails.\r\n   To
+      grow level 3 flowers, the Growing Table must be improved to level 2 or higher.
+      To grow level 4 flowers, the Growing Table must be improved to the maximum
+      level 3."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258287192952832
+    m_Localized: Table for sale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258302481190912
+    m_Localized: "   The sales table is designed to display flowers for sale to customers.\r\n  
+      To display a flower for sale, place a fully grown, weed-free flower on the
+      table. Carrie will place the soil on the table, leaving the pot in her hands.
+      Once you place a flower for sale, you cannot take it back.\r\n   Customers
+      leave ratings for the store based on the variety of flowers for sale. To get
+      the maximum score, try to keep at least 6 different colours on the Sales Tables.\r\n  
+      Approaching the table, a client will think whether to buy this flower or not.
+      However, if for some reason he doesn't like the flower, don't worry. If a customer
+      enters a store and there are flowers on the tables for sale, he will not leave
+      until he buys a flower."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 262399028547584
+    m_Localized: Storage table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 262416648818688
+    m_Localized: "   The storage table is designed for storing flowers.\r\n   To
+      place a pot on the Storage Table, just click on it while Carrie has the pot
+      in her hands. The pot can be either empty or contain a flower at any stage
+      of growth.\r\n   Flowers on storage tables do not grow, but they can be watered
+      if they need watering. To water a flower, click on the table with the flower
+      that has a droplet indicator. At this moment, Carrie should have a Watering
+      Can in her hands from the same room where the Storage Table is located.\r\n  
+      You can also fertilize flowers on this table if they are not fully grown. Click
+      on the Storage Table when Carrie is holding a fertilizer to use it on the flower
+      located on that table.\r\n   The Storage Table allows you to remove weeds using
+      a hoe. As soon as a weed appears in the pot, a negative effect will be displayed
+      and the flower will stop growing. The flower will continue to grow only after
+      the weed is removed. To remove the weed, click on this table when Carrie is
+      holding a hoe from the same room where this table is located."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263656573161472
+    m_Localized: Sound switch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263672897392640
+    m_Localized: "   A table with a sound switch is designed to turn music on and
+      off.\r\n   To interact with this table, just click on it when Carrie does not
+      have any objects in her hands.\r\n   If music is turned off, Carrie's interaction
+      with the given table will turn it on. If music is on, Carrie will do the opposite.\r\n  
+      You can adjust music volume in the game settings. The settings button is in
+      the upper left corner."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264963811889152
+    m_Localized: Tune switch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264978064134144
+    m_Localized: "   A table with a tune switch is designed for switching tunes.\r\n  
+      To interact with this table, just click on it when Carrie does not have any
+      objects in her hands.\r\n   When Carrie interacts with the table, she switches
+      to the next tune.\r\n   In the game settings you can select a play mode. There
+      are 3 modes to choose from. Repeat \u2013 after a melody has finished playing,
+      it plays again. Sequentially \u2013 after finishing playing a melody, the next
+      melody in the queue is automatically played. Random - after finishing playing
+      a melody, the next melody is selected randomly from all available ones."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 267081213988864
+    m_Localized: Table with seeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 267098679070720
+    m_Localized: "   The table with seeds is designed to plant level 1 flowers.\r\n  
+      To plant a flower, click on this table. Carrie should have a pot of soil without
+      flowers in her hands. Each level 1 flower seed costs a certain number of coins.\r\n  
+      You can plant level 1 flower seeds on this table only in pots with soil from
+      the yellow room."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268253463236608
+    m_Localized: "   The pot rack is designed to store empty pots.\r\n   For Carrie
+      to pick up the pot, click on this table. At this moment, Carrie should not
+      have any objects in her hands.\r\n   To make Carrie return the pot to the Rack,
+      click on this table when she has an empty pot in her hands. If the pot is not
+      empty, you will not be able to place it on the Rack.\r\n   The pot rack could
+      be improved. Each next level adds 8 empty pots at your disposal. Initially,
+      only 8 pots are available to you. At the maximum level 3 of the Rack, the total
+      available number of pots will be 24 pieces."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 270863272431616
+    m_Localized: "   This collection table is designed to form a collection of unique
+      Rare flowers.\r\n   To place a flower in the collection, click on the table.
+      Carrie should be holding a pot with a fully grown unique Rare flower without
+      weeds. Carrie will place the soil on the table, holding the pot in her hands.
+      The colour of the room where the Rare Flower is grown does not matter for this
+      table. For the convenience of forming a collection of Rare Flowers, if you
+      place a Rare Flower on this table, it will no longer be formed by the Crossing
+      Table until you fill the collection with all Rare Flowers. There are a total
+      of 6 different Rare colours available in the store.\r\n   By filling out the
+      collection of colours, you visually display your progress in the game. Feel
+      free to admire your own collection as you complete it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272421674471424
+    m_Localized: Table with hammer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272438044839936
+    m_Localized: "   The table with a hammer is designed to store the hammer, which
+      can be used to repair and improve shop equipment.\r\n   To make Carrie pick
+      up the hammer, click on this table. At this moment, Carrie should not have
+      any objects in her hands.\r\n   To make Carrie return the hammer, also click
+      on this table. But Carrie must have the hammer in her hands.\r\n   When Carrie
+      picks up the hammer, those tables in the store that you have enough money to
+      improve are highlighted in green. Broken tables are also highlighted in green.\r\n  
+      To find out more information about an upcoming table upgrade, click on the
+      table you want to upgrade when Carrie is holding the hammer. She will run up
+      to the table you clicked on. You will see a separate menu, which will indicate
+      the cost of the improvement and information about the new table parameters."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 274669062246400
+    m_Localized: "   The soil preparation table is designed to form the soil in a
+      placed pot.\r\n   To form soil and place it in a pot, click on this table when
+      Carrie has an empty pot in her hands.\r\n Soil costs a certain amount of money.\r\n  
+      The soil preparation table may break down. To repair it, click on the table
+      while Carrie is holding a hammer. Each individual soil preparation process
+      takes a resource away from the table.\r\n   This table can also be improved.
+      Click on it when Carrie is holding a hammer. When Carrie approaches the table,
+      a menu will open that will indicate the cost of the upgrade. Improving the
+      table reduces the time of soil formation and increases its resource."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 276303943225344
+    m_Localized: Trash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 276324738584576
+    m_Localized: "   The trash can is for emptying pots.\r\n   To empty a pot, click
+      on the Trash Can when Carrie is holding a non-empty pot from the same room
+      where the Trash Can is located. After emptying the pot, you will not get back
+      the money spent on soil and seeds, so use the Trash Can only in extreme cases."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 277713351004160
+    m_Localized: Table for VIP orders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 277729276776448
+    m_Localized: "   The table for VIP orders is designed for fulfilling VIP orders.\r\n  
+      To complete a VIP order, place the fully grown flower from the order on this
+      table. There should be no weeds in the soil of the flower.\r\n   Once a VIP
+      order is received, a sound alert will play and the Laptop Table will display
+      a message indicator. You can obtain detailed information regarding the order
+      in the corresponding tab in the laptop. Time to complete a VIP order is limited.
+      The higher the level of the requested flower is, the more time is allocated.\r\n  
+      The frequency of appearance of VIP orders depends on the number of flowers
+      in the collection and the current rating of the store. The higher the store\u2019s
+      rating and the more flowers there are in the collection, the more often you
+      will receive VIP orders.\r\n   To access VIP orders, you must place at least
+      4 flowers in the collection."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281270733164544
+    m_Localized: "   A table with a watering can is designed to store a watering
+      can and fill it with water.\r\n   To get Carrie to pick up the watering can,
+      click on the table when she doesn't have any objects in her hands. To return
+      the watering can, click on this table again when Carrie is holding the watering
+      can. The watering can has a limited volume and, accordingly, a limited number
+      of waterings. To refill the watering can, return it to the table and wait a
+      moment. Carrie won't be able to pick up the watering can while the table is
+      filling it with water.\r\n   The table with the watering can may break down.
+      Every time the table fills the watering can with water, it loses its resource.
+      To repair the table, click on it when Carrie is holding a hammer.\r\n   Also,
+      the Table with a Watering Can can be improved. Just click on it when Carrie
+      has a hammer in her hands. As soon as Carrie approaches the table, the upgrade
+      menu will open. Improvements increase the resource of the table and the volume
+      of the watering can. Initially, the watering can is designed for 3 full waterings,
+      with each new improvement the number of available waterings will increase by
+      3. The maximum level of the watering can accommodate 9 waterings."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283231771611136
+    m_Localized: "   The table with a hoe is designed to store a hoe.\r\n   The hoe
+      is designed to remove weeds in pots with soil.\r\n   To get Carrie to pick
+      up the hoe, click on the table when she doesn't have any objects in her hands.
+      When Carrie takes the hoe in her hands, wait a little, then the tables with
+      weeds, if any, will be highlighted in green. To return the hoe, click on this
+      table again when Carrie has the hoe in her hands.\r\n   The hoe table can be
+      improved. Just click on it when Carrie has a hammer in her hands. As soon as
+      Carrie approaches the table, the upgrade menu will open. Upgrading the table
+      also improves the hoe. The tool becomes more efficient. This means it will
+      take Carrie less time to remove the weed from the flower's soil."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

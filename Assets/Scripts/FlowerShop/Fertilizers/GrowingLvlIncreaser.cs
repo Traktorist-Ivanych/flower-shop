@@ -1,12 +1,10 @@
-﻿using FlowerShop.PickableObjects;
-
-namespace FlowerShop.Fertilizers
+﻿namespace FlowerShop.Fertilizers
 {
     public class GrowingLvlIncreaser : Fertilizer
     {
-        public override void TreatPot(Pot potForTreating)
+        private protected override void FinishTreatingPot()
         {
-            base.TreatPot(potForTreating);
+            base.FinishTreatingPot();
             
             potForTreating.TreatPotByGrowingLvlIncreaser();
         }

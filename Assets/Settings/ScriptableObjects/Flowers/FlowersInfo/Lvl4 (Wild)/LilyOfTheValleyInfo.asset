@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd486eecd6832234cabc6c6075bb208e, type: 3}
+  m_Name: LilyOfTheValleyInfo
+  m_EditorClassIdentifier: 
+  <UniqueKey>k__BackingField: 0205202413136
+  <LocalizedFlowerName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:1d480af65bae4a04888bff068d4c1a48
+    m_TableEntryReference:
+      m_KeyId: 6488501051392
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowerNameRus>k__BackingField: "\u041B\u0430\u043D\u0434\u044B\u0448"
+  <FlowerSprite512>k__BackingField: {fileID: 21300000, guid: 0636c851a331ec74b870b0e226675c3e, type: 3}
+  <FlowerSprite128>k__BackingField: {fileID: -1341980735, guid: 07eec080c0e83044d84663deaa34af7c, type: 3}
+  <FlowerName>k__BackingField: {fileID: 11400000, guid: 4245c418f99975e4099375f806042de0, type: 2}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <FlowerLvl>k__BackingField: 4
+  <FlowerSellingPrice>k__BackingField: 1000
+  <FlowerSoilMesh>k__BackingField: {fileID: -1036173772136047727, guid: 703790e61f24a3240890f0a292b64061, type: 3}
+  flowerLvlMeshes:
+  - {fileID: -2121138016917750333, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}
+  - {fileID: -3302720770063468040, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
+  - {fileID: -5547013420821584215, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
+  - {fileID: 4960480053458692966, guid: 6f27f421228d5374f8c13f666baafcd5, type: 3}
+  <LocalizedCrossingRecipeDescription>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 89048040136704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CrossingRecipeDescription>k__BackingField: "\u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u0435"
+  <FirstCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 2f7fc916fc022d44b87861f03464e10f, type: 2}
+  <SecondCrossingFlowerInfo>k__BackingField: {fileID: 11400000, guid: 7ec852fda13f40e438f618619f1c4f2f, type: 2}
+  references:
+    version: 2
+    RefIds: []

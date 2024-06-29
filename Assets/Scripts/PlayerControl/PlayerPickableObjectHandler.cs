@@ -56,7 +56,7 @@ namespace PlayerControl
 
                 if (loadedIUniqueKey is IPickableObject loadedPickableObject)
                 {
-                    CurrentPickableObject = loadedPickableObject;
+                    currentPickableObject = loadedPickableObject;
                     CurrentPickableObject.LoadInPlayerHands();
                 }
             }

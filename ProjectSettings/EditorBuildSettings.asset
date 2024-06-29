@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/EntryPoint.unity
+    guid: 3f604c358db80f44db649a5a85cfb2d5
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/Cut-Scene.unity
+    guid: 3f32ef9871c46464299e8250c1a21d04
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: f35a1f6e5e6d97c469c4ffdfbd4e9f5b, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: f7470fbab30b0324293c456bd1b8d2d3, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 39f2f77b1016f4a42a464352dae2b42c, type: 2}
   m_UseUCBPForAssetBundles: 0

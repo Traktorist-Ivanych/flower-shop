@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: AchievementsTexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: AchievementsTexts
+  m_TableCollectionNameGuidString: fe20eb91e7853eb4d8c892e409124e08
+  m_Entries:
+  - m_Id: 9127649280
+    m_Key: AllTheBestName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11006592737280
+    m_Key: AllTheBestDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11087253397504
+    m_Key: AspiringCollectorName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11157147279360
+    m_Key: AspiringCollectorDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11228794380288
+    m_Key: BurnoutName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11296817602560
+    m_Key: BurnoutDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11363397984256
+    m_Key: CoffeeLoverName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11425503043584
+    m_Key: CoffeeLoverDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11519426093056
+    m_Key: CustomerFocusName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11588883767296
+    m_Key: CustomerFocusDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11635432153088
+    m_Key: DecentCitizenName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11732941332480
+    m_Key: DecentCitizenDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11847491969024
+    m_Key: DedicationName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11913967493120
+    m_Key: DedicationDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11969923702784
+    m_Key: ExemplaryStudentName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12059132354560
+    m_Key: ExemplaryStudentDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12128279650304
+    m_Key: GreatCollectorName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12268700753920
+    m_Key: GreatCollectorDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12338183593984
+    m_Key: HandymanName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12411500027904
+    m_Key: HandymanDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12469813436416
+    m_Key: HardworkingBreederName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12570954883072
+    m_Key: HardworkingBreederDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12649572917248
+    m_Key: KnowALotAboutBusinessName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12697085992960
+    m_Key: KnowALotAboutBusinessDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12840959008768
+    m_Key: LetThereBeSoundName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12883489251328
+    m_Key: LetThereBeSoundDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12986086121472
+    m_Key: LoverOfDecorativeFlowersName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13038124851200
+    m_Key: LoverOfDecorativeFlowersDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13100670312448
+    m_Key: LoverOfExoticFlowersName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13161240256512
+    m_Key: LoverOfExoticFlowersDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13243897405440
+    m_Key: MusicLoverName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13306258317312
+    m_Key: MusicLoverDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13371551047680
+    m_Key: PlantGrowingPlantName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13433136013312
+    m_Key: PlantGrowingPlantDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13495568228352
+    m_Key: SprinterName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13557920751616
+    m_Key: SprinterDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13626833166336
+    m_Key: TakingCareOfPlantsName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13685616336896
+    m_Key: TakingCareOfPlantsDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13737936084992
+    m_Key: TheBestFlowerShopName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13822531002368
+    m_Key: The best flower shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14004735762432
+    m_Key: TheBestFlowerShopDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14068933779456
+    m_Key: ThereIsNoTimeToWaitName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14129793130496
+    m_Key: ThereIsNoTimeToWaitDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14190723784704
+    m_Key: ToCapacityName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14245589475328
+    m_Key: ToCapacityDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14313822412800
+    m_Key: TopPlayerFlowerShopName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14372022575104
+    m_Key: TopPlayerFlowerShopDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14429656506368
+    m_Key: WarehouseLogisticsName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14488800387072
+    m_Key: WarehouseLogisticsDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14547029909504
+    m_Key: WeedKillerName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14643083665408
+    m_Key: WeedKillerDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14781097238528
+    m_Key: WildflowerLoverName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14827268136960
+    m_Key: WildflowerLoverDescription
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 46299799734976678
+  references:
+    version: 2
+    RefIds:
+    - rid: 46299799734976678
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1716220272672

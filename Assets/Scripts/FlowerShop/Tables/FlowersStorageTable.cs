@@ -1,5 +1,7 @@
+using FlowerShop.Achievements;
 using FlowerShop.Fertilizers;
 using FlowerShop.Flowers;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Tables.Abstract;
@@ -13,10 +15,13 @@ namespace FlowerShop.Tables
 {
     public class FlowersStorageTable : Table, ISavableObject
     {
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerAnimationEvents playerAnimationEvents;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
-        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly WarehouseLogistics warehouseLogistics;
         
         [SerializeField] private Transform tablePotTransform;
         [SerializeField] private WeedPlanter weedPlanter;
@@ -42,8 +47,10 @@ namespace FlowerShop.Tables
             }
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
+            base.TryInteractWithTable();
+
             if (playerBusyness.IsPlayerFree)
             {
                 if (CanPlayerPutPotOnTable())
@@ -66,7 +73,116 @@ namespace FlowerShop.Tables
                 {
                     SetPlayerDestinationAndOnPlayerArriveAction(TakePotInPlayerHands);
                 }
+                else if (CanPlayerUseTableInfoCanvas())
+                {
+                    SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+                }
+                else
+                {
+                    TryToShowHelpCanvas();
+                }
             }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (currentPot.GrowingRoom != growingRoom && growingRoom != flowersSettings.GrowingRoomAny)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is WateringCan currentWateringCan)
+            {
+                if (!isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyTable);
+                }
+                else if (currentWateringCan.GrowingRoom != potOnTable.GrowingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (potOnTable.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (!potOnTable.IsFlowerNeedWater)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerDoesNotNeedWatering);
+                }
+                else if (currentWateringCan.CurrentWateringsNumber <= 0)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyWateringCan);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is WeedingHoe currentWeedingHoe)
+            {
+                if (!isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyTable);
+                }
+                else if (currentWeedingHoe.GrowingRoom != potOnTable.GrowingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (!potOnTable.IsSoilInsidePot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoSoilInsidePot);
+                }
+                else if (!potOnTable.IsWeedInPot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoWeed);
+                }
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Fertilizer currentFertilizer)
+            {
+                if (!isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyTable);
+                }
+                else if (potOnTable.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (currentFertilizer.AvailableUsesNumber <= 0)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FertilizersAreOut);
+                }
+                else if (potOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerAlreadyGrown);
+                }
+                else if (potOnTable.IsPotTreatedByGrothAccelerator)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerAlreadyProcessed);
+                }
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                if (!isPotOnTable)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyTable);
+                }
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
+        }
+
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutPotOnTable() || CanPlayerPourPotOnTable() ||
+                   CanPlayerDeleteWeedInPot() || CanPlayerUseFertilizer() || CanPlayerUseTableInfoCanvas();
         }
 
         public void Load()
@@ -113,7 +229,19 @@ namespace FlowerShop.Tables
             isPotOnTable = true;
             TryAddPotOnTableInPlantingWeedList();
             
+            warehouseLogistics.IncreaseProgress();
+            
             Save();
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private bool CanPlayerPourPotOnTable()
@@ -164,6 +292,7 @@ namespace FlowerShop.Tables
                 fertilizer = currentFertilizer;
                 return fertilizer.AvailableUsesNumber > 0 &&
                        !potOnTable.IsPotTreatedByGrothAccelerator &&
+                       potOnTable.PlantedFlowerInfo != flowersSettings.FlowerInfoEmpty &&
                        potOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl;
             }
 
@@ -172,7 +301,7 @@ namespace FlowerShop.Tables
 
         private void UseFertilizer()
         {
-            fertilizer.TreatPot(potOnTable);
+            StartCoroutine(fertilizer.PotTreating(potOnTable));
         }
 
         private bool CanPlayerTakePotInHands()
@@ -187,6 +316,8 @@ namespace FlowerShop.Tables
             weedPlanter.RemovePotFormPlantingWeedList(potOnTable);
             potOnTable = null;
 
+            warehouseLogistics.DecreaseAchievementProgress();
+            
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
 

@@ -1,42 +1,37 @@
+using FlowerShop.ComputerPages;
 using FlowerShop.Tables;
-using PlayerControl;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.Coffee
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class BuyCoffeeButton : MonoBehaviour
     {
-        [Inject] private readonly PlayerMoney playerMoney;
-        [Inject] private readonly CoffeeSettings coffeeSettings;
+        [Inject] private readonly CoffeeCanvasLiaison coffeeCanvasLiaison;
+        [Inject] private readonly CoffeeTable coffeeTable;
 
-        [SerializeField] private CoffeeTable coffeeTable;
-
-        [HideInInspector, SerializeField] private Button buyButton;
-
+        [HideInInspector, SerializeField] private UIButton uiButton;
+        
         private void OnValidate()
         {
-            buyButton = GetComponent<Button>();
+            uiButton = GetComponent<UIButton>();
         }
 
         private void OnEnable()
         {
-            buyButton.onClick.AddListener(OnBuyCoffeeButtonClick);
+            uiButton.OnClickEvent += OnButtonClick;
         }
-
+        
         private void OnDisable()
         {
-            buyButton.onClick.RemoveListener(OnBuyCoffeeButtonClick);
+            uiButton.OnClickEvent -= OnButtonClick;
         }
 
-        private void OnBuyCoffeeButtonClick()
+        private void OnButtonClick()
         {
-            if (playerMoney.CurrentPlayerMoney - coffeeSettings.CoffeePrice >= 0)
-            {
-                StartCoroutine(coffeeTable.MakeCoffeeProcess());
-            }
+            //coffeeCanvasLiaison.DisableCanvas();
+            //StartCoroutine(coffeeTable.MakeCoffeeProcess());
         }
     }
 }

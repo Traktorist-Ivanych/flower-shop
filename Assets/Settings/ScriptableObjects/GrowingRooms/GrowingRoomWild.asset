@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GrowingRoomWild
   m_EditorClassIdentifier: 
   <RoomName>k__BackingField: Wild
+  <RoomColorSprite>k__BackingField: {fileID: 21300000, guid: 9937f0c728631de428a2db0b364e115a, type: 3}

@@ -12,14 +12,332 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2281d2dbb54a7bab864069a72ea14a, type: 3}
   m_Name: CustomersSettings
   m_EditorClassIdentifier: 
+  <MinRemainingDistanceBetweenPathPoints>k__BackingField: 0.5
   <RemainingDistanceToStartRotation>k__BackingField: 0.1
   <AngelToStopRotation>k__BackingField: 2.5
-  <RotationSpeed>k__BackingField: 7
-  <NavAgentSpeed>k__BackingField: 7
-  <MinSpawnTime>k__BackingField: 40
-  <MinSpawnTimeDelta>k__BackingField: 25
-  <MaxSpawnTime>k__BackingField: 90
-  <MaxSpawnTimeDelta>k__BackingField: 50
+  <RotationSpeed>k__BackingField: 6
+  <NavAgentSpeed>k__BackingField: 6
+  <MinSpawnTime>k__BackingField: 180
+  <MinSpawnTimeDelta>k__BackingField: 140
+  <MaxSpawnTime>k__BackingField: 300
+  <MaxSpawnTimeDelta>k__BackingField: 220
+  <MinTimeBetweenSpawn>k__BackingField: 5
+  <MinComplaintsTime>k__BackingField: 1800
+  <MaxComplaintsTime>k__BackingField: 4800
+  <LocalizedComplaintDescriptions>k__BackingField:
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 13267427328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 107307917312
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 121534996480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 132247248896
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 142569431040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 153814360064
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 166271442944
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 176929169408
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 187272323072
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 196977942528
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <ComplaintDescriptions>k__BackingField:
+  - "\u041E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0439 \u043D\u0435\u0442."
+  - "\u041D\u0430\u0448 \u043F\u043E\u0441\u0442\u043E\u044F\u043D\u043D\u044B\u0439
+    \u043A\u043B\u0438\u0435\u043D\u0442 \u043D\u0435\u0434\u0430\u0432\u043D\u043E
+    \u043A\u0443\u043F\u0438\u043B \u0446\u0432\u0435\u0442\u043E\u043A, \u0438 \u0432\u0441\u043A\u043E\u0440\u0435
+    \u043E\u043D \u0437\u0430\u0432\u044F\u043B. \u041C\u044B \u0440\u0438\u0441\u043A\u0443\u0435\u043C
+    \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0433\u043D\u0435\u0432\u043D\u044B\u0439
+    \u043E\u0442\u0437\u044B\u0432. \u041D\u0443\u0436\u043D\u043E \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0435\u043C\u0443 \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u041A\u043B\u0438\u0435\u043D\u0442 \u043A\u0443\u043F\u0438\u043B \u0446\u0432\u0435\u0442\u043E\u043A,
+    \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u0434\u0430\u0440\u0438\u0442\u044C
+    \u0435\u0433\u043E \u0441\u0432\u043E\u0435\u0439 \u0434\u0435\u0432\u0443\u0448\u043A\u0435
+    \u0432 \u0435\u0451 \u0434\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F,
+    \u043D\u043E \u0446\u0432\u0435\u0442\u043E\u043A \u0437\u0430\u0440\u043E\u0441
+    \u0441\u043E\u0440\u043D\u044F\u043A\u0430\u043C\u0438. \u041E\u043D \u043F\u0440\u043E\u0441\u0438\u0442
+    \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0442\u0430\u043A\u0438\u043C \u0436\u0435 \u043D\u043E\u0432\u044B\u043C."
+  - "\u041A\u043B\u0438\u0435\u043D\u0442 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u043B
+    \u0443 \u043D\u0430\u0441 \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0438 \u0432\u0441\u043A\u043E\u0440\u0435 \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0438\u043B,
+    \u0447\u0442\u043E \u043F\u043E \u043D\u0435\u043C\u0443 \u043F\u043E\u043B\u0437\u0430\u044E\u0442
+    \u043A\u0430\u043A\u0438\u0435-\u0442\u043E \u0441\u0442\u0440\u0430\u043D\u043D\u044B\u0435
+    \u0436\u0443\u0447\u043A\u0438. \u041E\u043D \u043F\u0440\u043E\u0441\u0438\u0442
+    \u043F\u0440\u0435\u0434\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0442\u0430\u043A\u043E\u0439
+    \u0436\u0435 \u043D\u043E\u0432\u044B\u0439 \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u0414\u0435\u0432\u0443\u0448\u043A\u0430 \u043A\u0443\u043F\u0438\u043B\u0430
+    \u0446\u0432\u0435\u0442\u043E\u043A, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u044C
+    \u0438\u043C \u0441\u0432\u043E\u044E \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044E,
+    \u043D\u043E \u043B\u0438\u0441\u0442\u044C\u044F \u0446\u0432\u0435\u0442\u043A\u0430
+    \u0441\u044A\u0435\u043B\u0438 \u043A\u0430\u043A\u0438\u0435-\u0442\u043E \u0436\u0443\u0447\u043A\u0438
+    \u0438 \u043E\u043D \u0437\u0430\u0432\u044F\u043B. \u0414\u0435\u0432\u0443\u0448\u043A\u0430
+    \u043F\u0440\u043E\u0441\u0438\u0442 \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u041F\u0430\u0440\u0435\u043D\u044C \u043A\u0443\u043F\u0438\u043B \u0441\u0432\u043E\u0435\u0439
+    \u043C\u0430\u043C\u0435 \u0432 \u043F\u043E\u0434\u0430\u0440\u043E\u043A \u0446\u0432\u0435\u0442\u043E\u043A,
+    \u043D\u043E \u043A\u0430\u043A \u0442\u043E\u043B\u044C\u043A\u043E \u043E\u043D
+    \u0432\u044B\u0448\u0435\u043B \u0438\u0437 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430,
+    \u0446\u0432\u0435\u0442\u043E\u043A \u0437\u0430\u0440\u043E\u0441 \u0441\u043E\u0440\u043D\u044F\u043A\u0430\u043C\u0438.
+    \u041F\u0430\u0440\u0435\u043D\u044C \u043F\u0440\u043E\u0441\u0438\u0442 \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u041C\u0443\u0436\u0447\u0438\u043D\u0430 \u0437\u0430\u0445\u043E\u0442\u0435\u043B
+    \u0441\u0434\u0435\u043B\u0430\u0442\u044C \u0436\u0435\u043D\u0435 \u043F\u043E\u0434\u0430\u0440\u043E\u043A
+    \u0438 \u043A\u0443\u043F\u0438\u043B \u0443 \u043D\u0430\u0441 \u0446\u0432\u0435\u0442\u043E\u043A.
+    \u041A\u0430\u043A \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u0438\u0448\u0435\u043B
+    \u0434\u043E\u043C\u043E\u0439, \u043E\u043D \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0438\u043B
+    \u043A\u0430\u043A\u0438\u0445-\u0442\u043E \u0441\u0442\u0440\u0430\u043D\u043D\u044B\u0445
+    \u0436\u0443\u0447\u043A\u043E\u0432. \u0426\u0432\u0435\u0442\u043E\u043A \u0441\u043B\u0435\u0434\u0443\u0435\u0442
+    \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C."
+  - "\u041F\u043E\u0441\u0442\u043E\u044F\u043D\u043D\u044B\u0439 \u043A\u043B\u0438\u0435\u043D\u0442
+    \u043A\u0443\u043F\u0438\u043B \u0443 \u043D\u0430\u0441 \u044D\u0442\u043E\u0442
+    \u0446\u0432\u0435\u0442\u043E\u043A \u0438 \u043F\u043E\u0441\u043B\u0435 \u043F\u043E\u043A\u0443\u043F\u043A\u0438
+    \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0438\u043B, \u0447\u0442\u043E \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0437\u0430\u0440\u043E\u0441 \u0441\u043E\u0440\u043D\u044F\u043A\u0430\u043C\u0438.
+    \u041E\u043D \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u0414\u0435\u0432\u0443\u0448\u043A\u0430 \u0437\u0430\u0445\u043E\u0442\u0435\u043B\u0430
+    \u0443\u043A\u0440\u0430\u0441\u0438\u0442\u044C \u0438\u043D\u0442\u0435\u0440\u044C\u0435\u0440
+    \u0441\u0432\u043E\u0435\u0439 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u044B
+    \u043D\u0430\u0448\u0438\u043C \u0446\u0432\u0435\u0442\u043A\u043E\u043C, \u043D\u043E
+    \u043D\u0435 \u0443\u0441\u043F\u0435\u043B\u0430 \u043E\u043D\u0430 \u0434\u043E\u043D\u0435\u0441\u0442\u0438
+    \u0435\u0433\u043E \u0434\u043E\u043C\u043E\u0439, \u043A\u0430\u043A \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0437\u0430\u0432\u044F\u043B. \u0421\u043B\u0435\u0434\u0443\u0435\u0442 \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0435\u0439 \u0446\u0432\u0435\u0442\u043E\u043A."
+  - "\u041F\u0430\u0440\u0435\u043D\u044C \u043A\u0443\u043F\u0438\u043B \u0443 \u043D\u0430\u0441
+    \u0446\u0432\u0435\u0442\u043E\u043A, \u0447\u0442\u043E\u0431\u044B \u0443\u043A\u0440\u0430\u0441\u0438\u0442\u044C
+    \u0438\u043C \u043F\u043E\u0434\u043E\u043A\u043E\u043D\u043D\u0438\u043A \u043D\u0430
+    \u0440\u0430\u0431\u043E\u0447\u0435\u043C \u043C\u0435\u0441\u0442\u0435 \u0432
+    \u043E\u0444\u0438\u0441\u0435, \u043D\u043E \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0432\u0441\u043A\u043E\u0440\u0435 \u0437\u0430\u0440\u043E\u0441 \u0441\u043E\u0440\u043D\u044F\u043A\u0430\u043C\u0438.
+    \u041E\u043D \u043F\u0440\u043E\u0441\u0438\u0442 \u0437\u0430\u043C\u0435\u043D\u0438\u0442\u044C
+    \u0446\u0432\u0435\u0442\u043E\u043A."
+  <MaxPriceMultiplerGradesBorder>k__BackingField: 4.8
+  <MiddlePriceMultiplerGradesBorder>k__BackingField: 4
+  <MinGradesCountForMaxPriceMultipler>k__BackingField: 5
+  <MinPriceMultipler>k__BackingField: 1.2
+  <MiddlePriceMultipler>k__BackingField: 1.5
+  <MaxPriceMultipler>k__BackingField: 2
+  <MinFlowersInPlayerCollectionCount>k__BackingField: 4
+  <AverageGradeInfluence>k__BackingField: 0.65
+  <FlowersInPlayerCollectionInfluence>k__BackingField: 0.35
+  <MinVipTime>k__BackingField: 2000
+  <MinVipTimeDelta>k__BackingField: 800
+  <MaxVipTime>k__BackingField: 5000
+  <MaxVipTimeDelta>k__BackingField: 3200
+  <LocalizedVipDescriptions>k__BackingField:
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 209523105792
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 245946441728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 255601729536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 265160548352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 276044767232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 286966734848
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 296097734656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 304612171776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 313969664000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
+    m_TableEntryReference:
+      m_KeyId: 322551209984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <VipDescriptions>k__BackingField:
+  - "\u041E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0439 \u043D\u0435\u0442."
+  - "\u041A\u043B\u0438\u0435\u043D\u0442 \u0437\u0430\u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043E\u0432\u0430\u043B\u0441\u044F
+    \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C\u044E \u043F\u043E\u043A\u0443\u043F\u043A\u0438
+    \u044D\u0442\u043E\u0433\u043E \u0446\u0432\u0435\u0442\u043A\u0430 \u043F\u043E\u0434
+    \u0437\u0430\u043A\u0430\u0437. \u041D\u0430\u0434\u043E \u043F\u043E\u0441\u0442\u0430\u0440\u0430\u0442\u044C\u0441\u044F
+    \u0438 \u0443\u0434\u043E\u0432\u043B\u0435\u0442\u0432\u043E\u0440\u0438\u0442\u044C
+    \u0435\u0433\u043E \u043F\u043E\u0442\u0440\u0435\u0431\u043D\u043E\u0441\u0442\u044C."
+  - "\u041F\u043E\u0441\u0442\u0443\u043F\u0438\u043B \u0437\u0430\u043A\u0430\u0437
+    \u043D\u0430 \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A, \u043D\u043E
+    \u0435\u0433\u043E \u043D\u0443\u0436\u043D\u043E \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u0442\u044C
+    \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438.
+    \u0417\u0430\u043A\u0430\u0437\u0447\u0438\u043A - \u043E\u0447\u0435\u043D\u044C
+    \u0443\u0432\u0430\u0436\u0430\u0435\u043C\u044B\u0439 \u0447\u0435\u043B\u043E\u0432\u0435\u043A
+    \u0432 \u0448\u0438\u0440\u043E\u043A\u0438\u0445 \u043A\u0440\u0443\u0433\u0430\u0445."
+  - "\u041A\u043B\u0438\u0435\u043D\u0442 \u0443\u0432\u0438\u0434\u0435\u043B \u043D\u0430
+    \u043D\u0430\u0448\u0435\u043C \u0441\u0430\u0439\u0442\u0435 \u044D\u0442\u043E\u0442
+    \u0446\u0432\u0435\u0442\u043E\u043A \u0438 \u043E\u0447\u0435\u043D\u044C \u0441\u0438\u043B\u044C\u043D\u043E
+    \u0437\u0430\u0445\u043E\u0442\u0435\u043B \u0435\u0433\u043E \u043A\u0443\u043F\u0438\u0442\u044C.
+    \u0413\u043E\u0442\u043E\u0432 \u043F\u043B\u0430\u0442\u0438\u0442\u044C \u043B\u044E\u0431\u044B\u0435
+    \u0434\u0435\u043D\u044C\u0433\u0438, \u043B\u0438\u0448\u044C \u0431\u044B \u044D\u0442\u043E\u0442
+    \u0446\u0432\u0435\u0442\u043E\u043A \u043F\u043E\u043F\u0430\u043B \u043A \u043D\u0435\u043C\u0443."
+  - "\u041D\u0430\u0448\u0435\u043C\u0443 \u0437\u0430\u043A\u0430\u0437\u0447\u0438\u043A\u0443
+    \u043F\u043E\u043D\u0440\u0430\u0432\u0438\u043B\u0441\u044F \u0438\u043C\u0435\u043D\u043D\u043E
+    \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A. \u041E\u043D \u043E\u0442\u043B\u0438\u0447\u043D\u043E
+    \u0432\u043F\u0438\u0441\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u0432 \u0438\u043D\u0442\u0435\u0440\u044C\u0435\u0440
+    \u0435\u0433\u043E \u0434\u043E\u043C\u0430. \u0417\u0430\u043A\u0430\u0437\u0447\u0438\u043A
+    \u0433\u043E\u0442\u043E\u0432 \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u044C
+    \u043A\u0440\u0443\u043F\u043D\u0443\u044E \u0441\u0443\u043C\u043C\u0443."
+  - "\u0414\u0435\u0432\u0443\u0448\u043A\u0430 \u0437\u0430\u0445\u043E\u0442\u0435\u043B\u0430
+    \u043F\u043E\u0441\u0430\u0434\u0438\u0442\u044C \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0432\u043E \u0434\u0432\u043E\u0440\u0435 \u0441\u0432\u043E\u0435\u0433\u043E
+    \u0434\u043E\u043C\u0430. \u041F\u0440\u043E\u0441\u0438\u0442 \u0432\u044B\u0440\u0430\u0441\u0442\u0438\u0442\u044C
+    \u0435\u0433\u043E \u043A\u0430\u043A \u043C\u043E\u0436\u043D\u043E \u0441\u043A\u043E\u0440\u0435\u0435.
+    \u041E\u0431\u0435\u0449\u0430\u0435\u0442 \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u044C
+    \u043B\u044E\u0431\u0443\u044E \u0441\u0443\u043C\u043C\u0443."
+  - "\u0414\u0435\u0432\u0443\u0448\u043A\u0430 \u0437\u0430\u0445\u043E\u0442\u0435\u043B\u0430
+    \u0443\u043A\u0440\u0430\u0441\u0438\u0442\u044C \u0441\u0432\u043E\u0435 \u0440\u0430\u0431\u043E\u0447\u0435\u0435
+    \u043C\u0435\u0441\u0442\u043E \u0432 \u043E\u0444\u0438\u0441\u0435 \u0438\u043C\u0435\u043D\u043D\u043E
+    \u044D\u0442\u0438\u043C \u0446\u0432\u0435\u0442\u043A\u043E\u043C. \u0421\u043E\u0433\u043B\u0430\u0441\u043D\u0430
+    \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u044C \u0432\u0441\u0435 \u0440\u0430\u0441\u0445\u043E\u0434\u044B
+    \u043F\u043E \u043E\u0442\u043A\u043B\u043E\u043D\u0435\u043D\u0438\u044E \u043E\u0442
+    \u0433\u0440\u0430\u0444\u0438\u043A\u0430 \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u043D\u0438\u044F."
+  - "\u041C\u0443\u0436\u0447\u0438\u043D\u0430 \u0437\u0430\u0445\u043E\u0442\u0435\u043B
+    \u043F\u043E\u0434\u0430\u0440\u0438\u0442\u044C \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A
+    \u0436\u0435\u043D\u0435 \u043D\u0430 \u0434\u0435\u043D\u044C \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F.
+    \u042D\u0442\u043E \u0435\u0435 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0446\u0432\u0435\u0442\u043E\u043A.
+    \u0426\u0432\u0435\u0442\u043E\u043A \u0435\u043C\u0443 \u043D\u0443\u0436\u0435\u043D
+    \u0441\u0440\u043E\u0447\u043D\u043E, \u043E\u043F\u043B\u0430\u0442\u0430 \u0431\u0443\u0434\u0435\u0442
+    \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0435\u0439."
+  - "\u041F\u0430\u0440\u0435\u043D\u044C \u0437\u0430\u043A\u0430\u0437\u0430\u043B
+    \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A, \u0442\u0430\u043A
+    \u043A\u0430\u043A \u043E\u043D \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439
+    \u0432 \u0435\u0433\u043E \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438.
+    \u0421\u043E\u0433\u043B\u0430\u0441\u0438\u043B\u0441\u044F \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u044C
+    \u043A\u0440\u0443\u0433\u043B\u0443\u044E \u0441\u0443\u043C\u043C\u0443. \u041F\u0440\u043E\u0441\u0438\u0442
+    \u0432\u044B\u0440\u0430\u0441\u0442\u0438\u0442\u044C \u0435\u0433\u043E \u043A\u0430\u043A
+    \u043C\u043E\u0436\u043D\u043E \u0441\u043A\u043E\u0440\u0435\u0435."
+  - "\u0416\u0435\u043D\u0449\u0438\u043D\u0430 \u0437\u0430\u043A\u0430\u0437\u0430\u043B\u0430
+    \u044D\u0442\u043E\u0442 \u0446\u0432\u0435\u0442\u043E\u043A, \u0442\u0430\u043A
+    \u043A\u0430\u043A \u0432\u044B\u0447\u0438\u0442\u0430\u043B\u0430, \u0447\u0442\u043E
+    \u0438\u0437 \u043D\u0435\u0433\u043E \u043C\u043E\u0436\u043D\u043E \u0438\u0437\u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C
+    \u0446\u0435\u043B\u0435\u0431\u043D\u0443\u044E \u043C\u0430\u0437\u044C. \u041E\u0447\u0435\u043D\u044C
+    \u0441\u0438\u043B\u044C\u043D\u043E \u0436\u0434\u0435\u0442 \u044D\u0442\u043E\u0442
+    \u0446\u0432\u0435\u0442\u043E\u043A."
+  <CompletingOrderTimeMain>k__BackingField: 360
+  <CompletingOrderTimeForFlowerLvl>k__BackingField: 180
+  <InactiveOrder>k__BackingField: {fileID: 11400000, guid: f8956ff9fe0773a4797806f448174468, type: 2}
   buyingFlowerCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,30 +345,33 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 1.9134185
-      outSlope: 1.9134185
-      tangentMode: 0
-      weightedMode: 0
+      outSlope: 0.48403347
+      tangentMode: 5
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0.23425975
+      outWeight: 0.3277778
     - serializedVersion: 3
-      time: 0.3
+      time: 0.55
       value: 0.5
-      inSlope: 1.2963694
-      outSlope: 1.2963694
+      inSlope: 1.1355324
+      outSlope: 1.1355324
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.12896006
+      inWeight: 0.23148146
+      outWeight: 0.29761907
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.4312722
+      inSlope: 1.1111112
       outSlope: 0.4312722
-      tangentMode: 0
+      tangentMode: 69
       weightedMode: 0
-      inWeight: 0.36946186
+      inWeight: 0.21666662
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   buyingFlowerSuccessBorder: 0.5
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: TablesInfoText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: TablesInfoText
+  m_TableCollectionNameGuidString: e30a4a335b2069b48b61835a66a329e9
+  m_Entries:
+  - m_Id: 9426882560
+    m_Key: TableGrowingRoomDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72022675456
+    m_Key: TableBrokenDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113881829376
+    m_Key: TableImprovementDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146580623360
+    m_Key: TableInfoMainDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16906738388992
+    m_Key: CrossingTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224483690598400
+    m_Key: CoffeeTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229623248113664
+    m_Key: ComplaintsTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229651777769472
+    m_Key: ComplaintsTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232534040563712
+    m_Key: ComputerTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232557180538880
+    m_Key: ComputerTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238108203470848
+    m_Key: CustomerAccessControllerTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238126343835648
+    m_Key: CustomerAccessControllerTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241345971277824
+    m_Key: FertilizersTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241365755809792
+    m_Key: FertilizersTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 248938785591296
+    m_Key: FlowersForCollectionTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 248956456194048
+    m_Key: FlowersForCollectionTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252234275409920
+    m_Key: FlowersGrowingTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258287192952832
+    m_Key: FlowersSaleTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258302481190912
+    m_Key: FlowersSaleTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 262399028547584
+    m_Key: FlowersStorageTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 262416648818688
+    m_Key: FlowersStorageTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263656573161472
+    m_Key: MusicPowerSwitcherTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263672897392640
+    m_Key: MusicPowerSwitcherTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264963811889152
+    m_Key: MusicSongsSwitcherTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264978064134144
+    m_Key: MusicSongsSwitcherTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 267081213988864
+    m_Key: PlantingSeedsTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 267098679070720
+    m_Key: PlantingSeedsTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268253463236608
+    m_Key: PotsRackInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 270863272431616
+    m_Key: RareFlowersForCollectionTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272421674471424
+    m_Key: RepairsAndUpgradesTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272438044839936
+    m_Key: RepairsAndUpgradesTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 274669062246400
+    m_Key: SoilPreparationTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 276303943225344
+    m_Key: TrashCanName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 276324738584576
+    m_Key: TrashCanInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 277713351004160
+    m_Key: VipOrdersTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 277729276776448
+    m_Key: VipOrdersTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281270733164544
+    m_Key: WateringTableInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283231771611136
+    m_Key: WeedingTableInfo
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 46299943394869248
+  references:
+    version: 2
+    RefIds:
+    - rid: 46299943394869248
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1716755531673

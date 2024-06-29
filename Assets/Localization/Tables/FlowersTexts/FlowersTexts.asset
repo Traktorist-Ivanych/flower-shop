@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: FlowersTexts
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 1d480af65bae4a04888bff068d4c1a48, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 9b070f662d00ee14fb0d2a71f841e62e, type: 2}
+  - {fileID: 11400000, guid: 567094a47476419419f8f1d5ce1fe5fd, type: 2}
+  - {fileID: 11400000, guid: 0082c74cec983934cb31dd1d356dbf5b, type: 2}
+  - {fileID: 11400000, guid: bc8c6018279d38541b4c4e6d39367cbb, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

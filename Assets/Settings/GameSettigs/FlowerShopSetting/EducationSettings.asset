@@ -1,0 +1,459 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7574ba1c4114df89d4cb91f844642b4, type: 3}
+  m_Name: EducationSettings
+  m_EditorClassIdentifier: 
+  <HeightCanvasFieldsForEducationText>k__BackingField: 105
+  <WelcomeText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 4809684738048
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FirstDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 4858082811904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <MoneyAndShopRatingDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 4909425287168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FlowersCanvasDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 4960302194688
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PotsRackDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5006414372864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SoilPreparationDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5059237437440
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SeedPlantDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 8263811045969920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <GrowingTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5196508618752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PlantNextFlowerDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5245506478080
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FertilizersDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5294714052608
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FertilizersEndUsingDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5353769852928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CrossingTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5423596625920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CrossingTableProcessDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5471990505472
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CrossingTableProcessStartDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5527363706880
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <BrokenTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5578542604288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <UpgradeTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5628446433280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CompleteUpgradingTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5676773203968
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SoilForNewSeedDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5722390454272
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WaitThenPlantNewSeedDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5765382070272
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PlantNewSeedDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5816292532224
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <GrowthAcceleratorUsingDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5885716652032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <GrowthAcceleratorEndUsingDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5935519817728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <TakePotFromCrossingTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 5982617657344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <WeedDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6030134927360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PourPotFirstTimeDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6094559436800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <GrowingLvlIncreaserDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6144664592384
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PourPotSecondTimeDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6211337248768
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CollectionRoomDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6260133781504
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PutPotInCollectionRoomDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6322524053504
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <StorageTableRoomDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6374738944000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SalesDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6417193689088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PutPotOnSaleTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6608093241344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PutPotOnPotsRackDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6662694690816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <PourPotLastTimeDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6713240248320
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <ComputerTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6759046242304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <ComplaintsDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6841359458304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <VipDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6887735877632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <AchievementsText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6939350982656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CoffeeDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 6998910099456
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <MusicDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 7044225359872
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EducationEndDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 7092455661568
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <VipOrderDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 3515523499479040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <VipOrderEnableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 3515585436766208
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <InfoTableDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 3964369543286784
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <RatingPanelDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 3964376203841536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EnableHelpDescriptionText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 3964431006617600
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <FirstLvlClue>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 7527684559261696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <SecondLvlClue>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 7527687163924480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <ThirdLvlClue>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:7a75d0d0d9eb7b24c9116c12c0eb07db
+    m_TableEntryReference:
+      m_KeyId: 7527689177190400
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

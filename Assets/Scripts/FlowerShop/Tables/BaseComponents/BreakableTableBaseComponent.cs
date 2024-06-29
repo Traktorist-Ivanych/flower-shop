@@ -1,33 +1,40 @@
 using System.Collections;
+using FlowerShop.Achievements;
+using FlowerShop.Education;
+using FlowerShop.Effects;
 using FlowerShop.RepairsAndUpgrades;
-using FlowerShop.Tables.Interfaces;
+using FlowerShop.Sounds;
 using PlayerControl;
+using Saves;
 using UnityEngine;
 using Zenject;
 
 namespace FlowerShop.Tables.BaseComponents
 {
-    public class BreakableTableBaseComponent : MonoBehaviour, IBreakableTable
+    public class BreakableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly ActionProgressbar playerActionProgressbar;
+        [Inject] private readonly EducationHandler educationHandler;
+        [Inject] private readonly Handyman handyman;
+        [Inject] private readonly RepairsAndUpgradesTable repairsAndUpgradesTable;
         [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerBusyness playerBusyness;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
+        [Inject] private readonly SoundsHandler soundsHandler;
 
-        [SerializeField] private MeshRenderer breakdownIndicatorRenderer;
         [SerializeField] private ParticleSystem[] brokenEffects;
+        [SerializeField] private MeshRenderer brokenIndicator;
+
+        private ISavableObject savingTable;
 
         public int ActionsBeforeBrokenQuantity { get; private set; }
 
         public bool IsTableBroken { get; private set; }
 
-        public void HideBreakdownIndicator()
+        private void Start()
         {
-            breakdownIndicatorRenderer.enabled = false;
-        }
-
-        public void ShowBreakdownIndicator()
-        {
-            breakdownIndicatorRenderer.enabled = true;
+            savingTable = GetComponent<ISavableObject>();
         }
 
         public void UseBreakableTable()
@@ -40,22 +47,63 @@ namespace FlowerShop.Tables.BaseComponents
         {
             if (ActionsBeforeBrokenQuantity <= 0)
             {
-                IsTableBroken = true;
-
-                foreach (ParticleSystem brokenEffect in brokenEffects)
-                {
-                    brokenEffect.Play();
-                }
+                BrokenTable();
             }
         }
 
-        public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
+        public void ShowBrokenIndicator()
+        {
+            brokenIndicator.enabled = true;
+        }
+
+        public void HideBrokenIndicator()
+        {
+            brokenIndicator.enabled = false;
+        }
+
+        public void BrokenTable()
+        {
+            ActionsBeforeBrokenQuantity = 0;
+            repairsAndUpgradesTable.IncreaseTablesThatNeedRepairQuantity();
+            selectedTableEffect.TryToRecalculateEffect();
+            IsTableBroken = true;
+
+            soundsHandler.StartPlayingBrokenTableAudio();
+                
+            foreach (ParticleSystem brokenEffect in brokenEffects)
+            {
+                brokenEffect.Play();
+            }
+        }
+
+        public IEnumerator FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StartBuildsTrigger);
-            breakdownIndicatorRenderer.enabled = false;
-            SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
 
-            StartCoroutine(FixBreakableFlowerTableProcess());
+            playerActionProgressbar.EnableActionProgressbar(repairsAndUpgradesSettings.TableRepairTime);
+            yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
+            
+            SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
+            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
+            IsTableBroken = false;
+            playerBusyness.SetPlayerFree();
+            soundsHandler.StopPlayingBrokenTableAudio();
+            selectedTableEffect.ActivateEffectWithoutDelay();
+            repairsAndUpgradesTable.DecreaseTablesThatNeedRepairQuantity();
+            
+            foreach (ParticleSystem brokenEffect in brokenEffects)
+            {
+                brokenEffect.Stop();
+            }
+            
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
+            
+            handyman.IncreaseProgress();
+            
+            savingTable.Save();
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
@@ -66,20 +114,6 @@ namespace FlowerShop.Tables.BaseComponents
         public void LoadActionsBeforeBrokenQuantity(int loadedActionsBeforeBrokenQuantity)
         {
             ActionsBeforeBrokenQuantity = loadedActionsBeforeBrokenQuantity;
-        }
-
-        private IEnumerator FixBreakableFlowerTableProcess()
-        {
-            yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
-
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.FinishBuildsTrigger);
-            IsTableBroken = false;
-            playerBusyness.SetPlayerFree();
-
-            foreach (ParticleSystem brokenEffect in brokenEffects)
-            {
-                brokenEffect.Stop();
-            }
         }
     }
 }

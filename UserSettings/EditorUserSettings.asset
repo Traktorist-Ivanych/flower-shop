@@ -6,7 +6,31 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
+      value: 0503075154070a0c540f082149720f44464f1d727b7a24617f7e186bb0b5373e
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 00525756045659035c5c5a7540770c4842151c2e2d7f72337f7f196abbb76d6f
+      flags: 0
+    RecentlyUsedSceneGuid-2:
+      value: 5157065504530d5d0e5f5a7515765d4410164d797a7827607b7f4567bab33139
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 5057025651565a0e550a0e7a40250b4412154e7e75297331757c1e35e0b2306d
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 50570754005350035a5f0f7646770944444e412f747a73602e781c61b3e4646c
+      flags: 0
+    RecentlyUsedSceneGuid-5:
       value: 5a5757560101590a5d0c0e24427b5d44434e4c7a7b7a23677f2b4565b7b5353a
+      flags: 0
+    UnityEditor.ShaderGraph.Blackboard:
+      value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd2e2d293c4ead313b08042de6030a0afa240c0d020be94c4baf5e435d8715fa32c70d15d11612dacc11fee5d3c5d1fe9ab1b7968e93e2ffcbc3e7e2f0b3ffe0e8b0be9afbf9aafff79297949199e7919d919c90e29e93cafc8981818f98d68f80de818881d4f6d9fac4f3b98e
+      flags: 0
+    UnityEditor.ShaderGraph.FloatingWindowsLayout2:
+      value: 181344140043005e1a220d3b1f364b524c0c5a27130c293326201334cee5322ca0bd22fbf23f737e343dcb3307350831f53e061bb4511e19040bb14c1cc0261603d111c61bc4301acd0a19da8f4789ad828f8db381b2b58b898ff6a2a1a4b9b4b7fc9ad3a5baf5daa5a1eab0a3edc1c2d2cfa38696979f9ff4829d91b3ece1dac3d3c78cc2c5c09983dff3daecc5fefdcaf8f4cec1f1cef9cbcbcbfe22aaed3a343430f4e8e8e6d0ede03cd62722d3db26229b646a
+      flags: 0
+    UnityEditor.ShaderGraph.InspectorWindow:
+      value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a560393d3511ea7046333e09f7181d02f50a06241708ee0b05bd4a40478b4f9c439146499f4b4e9d9b4e83bb9994d9d5f0e4f5d1c4d0aee6f5fcc1fef3e2a0efe8f2ab92e4ffb2f3a2fdf4cddbcff59ed784d185e081838bf08382838985d58388d08d8c81dceccfbbd2fdf7c2f5eac5ccfcc0f2cec6c5e434ebfb347b7a
       flags: 0
     UnityRemoteDevice:
       value: 2d5e5a03
@@ -29,3 +53,4 @@ EditorUserSettings:
   m_VCOtherOverlayIcons: 1
   m_VCAllowAsyncUpdate: 1
   m_ArtifactGarbageCollection: 1
+  m_CompressAssetsOnImport: 1

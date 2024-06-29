@@ -28,7 +28,7 @@ namespace PlayerControl
 
         private void Update()
         {
-            if (playerAgent.velocity == Vector3.zero)
+            if (playerAgent.velocity.magnitude <= playerControlSettings.MinMovableMagnitude)
             {
                 playerAnimator.SetBool(PlayerAnimatorParameters.IsPlayerWalkBool, false);
 
@@ -63,12 +63,19 @@ namespace PlayerControl
             needForRotation = true;
         }
 
+        public void SetNotTablePlayerDestination(Vector3 destinationTarget)
+        {
+            playerAgent.destination = destinationTarget;
+            needForRotation = false;
+        }
+
         public void SetCoffeeNavAgentSetting()
         {
             playerAgent.speed = playerControlSettings.PlayerNavAgentCoffeeSpeed;
             playerAgent.angularSpeed = playerControlSettings.PlayerNavAgentCoffeeAngularSpeed;
             playerAgent.acceleration = playerControlSettings.PlayerNavAgentCoffeeAcceleration;
             rotationSpeed = playerControlSettings.PlayerMovingCoffeeRotation;
+            SetWalkSpeedAnimatorParameter();
         }
 
         public void SetOrdinaryNavAgentSetting()
@@ -77,6 +84,13 @@ namespace PlayerControl
             playerAgent.angularSpeed = playerControlSettings.PlayerNavAgentAngularSpeed;
             playerAgent.acceleration = playerControlSettings.PlayerNavAgentAcceleration;
             rotationSpeed = playerControlSettings.PlayerMovingRotation;
+            SetWalkSpeedAnimatorParameter();
+        }
+
+        private void SetWalkSpeedAnimatorParameter()
+        {
+            float currentWalkSpeed = playerAgent.speed / playerControlSettings.PlayerNavAgentSpeed; 
+            playerAnimator.SetFloat(PlayerAnimatorParameters.WalkSpeed, currentWalkSpeed);
         }
     }
 }

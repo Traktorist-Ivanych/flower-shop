@@ -1,0 +1,11 @@
+# ninja log v5
+33	354	7397475849818308	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	d16633019ffff0d0
+356	517	7397475851029440	D:/Study/UnityProgects/FlowerShop/Library/PramData/AndroidApplicationController/Cache/com.RoyalLily.FlowerShop/gradle-project/unityLibrary/build/intermediates/cxx/Debug/6r5j154s/obj/arm64-v8a/libswappywrapper.so	4371f2df54ba7067
+17	1764	7397475863866096	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	7891eafa608a156b
+22	1784	7397475864097242	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	b07f66ff18522109
+27	1802	7397475864277283	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1bf8e4179bccad66
+10	1823	7397475864487348	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	562de82c5f9695d9
+1	1824	7397475864507339	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	90ef2b1ec438cf10
+13	1897	7397475865222737	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	36a6115b728bbd14
+5	1924	7397475865498184	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	eafdc4148b67463
+1924	2031	7397475866248361	D:/Study/UnityProgects/FlowerShop/Library/PramData/AndroidApplicationController/Cache/com.RoyalLily.FlowerShop/gradle-project/unityLibrary/build/intermediates/cxx/Debug/6r5j154s/obj/arm64-v8a/libgame.so	4c385942f9dc8ac7

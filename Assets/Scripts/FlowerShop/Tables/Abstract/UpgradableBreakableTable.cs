@@ -1,11 +1,13 @@
-using System.Collections;
+using FlowerShop.PickableObjects;
+using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
+using System.Collections;
 using UnityEngine;
 
 namespace FlowerShop.Tables.Abstract
 {
-    [RequireComponent (typeof(BreakableTableBaseComponent))]
+    [RequireComponent(typeof(BreakableTableBaseComponent))]
     public abstract class UpgradableBreakableTable : UpgradableTable, IBreakableTable
     {
         [HideInInspector, SerializeField] private protected BreakableTableBaseComponent breakableTableBaseComponent;
@@ -15,42 +17,8 @@ namespace FlowerShop.Tables.Abstract
         private protected override void OnValidate()
         {
             base.OnValidate();
-            
+
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
-        }
-
-        public override void ShowUpgradeIndicator()
-        {
-            if (IsTableBroken)
-            {
-                ShowBreakdownIndicator();
-            }
-            else
-            {
-                base.ShowUpgradeIndicator();
-            }
-        }
-
-        public override void HideUpgradeIndicator()
-        {
-            if (IsTableBroken) 
-            {
-                HideBreakdownIndicator();
-            }
-            else
-            {
-                base.HideUpgradeIndicator();
-            }
-        }
-
-        public void ShowBreakdownIndicator()
-        {
-            breakableTableBaseComponent.ShowBreakdownIndicator();
-        }
-
-        public void HideBreakdownIndicator()
-        {
-            breakableTableBaseComponent.HideBreakdownIndicator();
         }
 
         public void UseBreakableTable()
@@ -58,21 +26,53 @@ namespace FlowerShop.Tables.Abstract
             breakableTableBaseComponent.UseBreakableTable();
         }
 
+        private protected void ForciblyBrokenTable()
+        {
+            breakableTableBaseComponent.BrokenTable();
+        }
+
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
-            breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity);
-            StartCoroutine(ShowImprovableIndicatorAfterRepair());
+            StartCoroutine(breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity));
+            StartCoroutine(HideBrokenIndicator());
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
         {
             breakableTableBaseComponent.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
         }
+        public override void ShowIndicator()
+        {
+            if (IsTableBroken)
+            {
+                breakableTableBaseComponent.ShowBrokenIndicator();
+            }
+            else
+            {
+                base.ShowIndicator();
+            }
+        }
 
-        private IEnumerator ShowImprovableIndicatorAfterRepair()
+        public override void HideIndicator()
+        {
+            base.HideIndicator();
+
+            breakableTableBaseComponent.HideBrokenIndicator();
+        }
+
+        private protected bool CanPlayerFixTable()
+        {
+            return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
+                   IsTableBroken;
+        }
+
+        private IEnumerator HideBrokenIndicator() 
         {
             yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
-            base.ShowUpgradeIndicator();
+            HideIndicator();
+
+            base.ShowIndicator();
         }
+
     }
 }

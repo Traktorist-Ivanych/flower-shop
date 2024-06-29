@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d1b8062db8d41429b7ca7c649b37cb, type: 3}
+  m_Name: AchievementsSettings
+  m_EditorClassIdentifier: 
+  <AwardReceived>k__BackingField: {fileID: -1104769942, guid: 9058a078f617c7c4db9c2339204326bd, type: 3}
+  <AwardAwaitingReceipt>k__BackingField: {fileID: -1932286592, guid: 9058a078f617c7c4db9c2339204326bd, type: 3}
+  <LowMoneyReward>k__BackingField: 250
+  <MediumMoneyReward>k__BackingField: 500
+  <HighMoneyReward>k__BackingField: 1000
+  <GreatCollectorMaxProgress>k__BackingField: 6
+  <AllTheBestMaxProgress>k__BackingField: 102
+  <BurnoutMaxProgress>k__BackingField: 1
+  <LetThereBeSoundMaxProgress>k__BackingField: 1
+  <ThereIsNoTimeToWaitMaxProgress>k__BackingField: 50
+  <PlantGrowingPlantMaxProgress>k__BackingField: 20
+  <KnowALotAboutBusinessMaxProgress>k__BackingField: 15
+  <CustomerFocusMaxProgress>k__BackingField: 150
+  <TopPlayerFlowerShopMaxProgress>k__BackingField: 25
+  <TheBestFlowerShopMaxProgress>k__BackingField: 25
+  <LoverOfDecorativeFlowersMaxProgress>k__BackingField: 15
+  <CoffeeLoverMaxProgress>k__BackingField: 5
+  <WildflowerLoverMaxProgress>k__BackingField: 25
+  <LoverOfExoticFlowersMaxProgress>k__BackingField: 15
+  <HandymanMaxProgress>k__BackingField: 25
+  <MusicLoverMaxProgress>k__BackingField: 12
+  <ToCapacityMaxProgress>k__BackingField: 20
+  <DecentCitizenMaxProgress>k__BackingField: 10
+  <ExemplaryStudentMaxProgress>k__BackingField: 1
+  <TakingCareOfPlantsMaxProgress>k__BackingField: 300
+  <DedicationMaxProgress>k__BackingField: 10
+  <WarehouseLogisticsMaxProgress>k__BackingField: 20
+  <SprinterMaxProgress>k__BackingField: 10
+  <HardworkingBreederMaxProgress>k__BackingField: 100
+  <WeedKillerMaxProgress>k__BackingField: 25
+  <AspiringCollectorMaxProgress>k__BackingField: 55

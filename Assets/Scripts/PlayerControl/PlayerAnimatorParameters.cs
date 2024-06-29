@@ -23,5 +23,10 @@ namespace PlayerControl
         public const string StartCrossingTrigger = "StartCrossing";
         public const string LoadToHold = "LoadToHold";
         public const string LoadToHoldLittleObject = "LoadToHoldLittleObject";
+        public const string WalkSpeed = "WalkSpeed";
+        public const string StartUsingComputer = "StartUsingComputer";
+        public const string StopUsingComputer = "StopUsingComputer";
+        public const string StartWelcome = "StartWelcome";
+        public const string StopWelcome = "StopWelcome";
     }
 }

@@ -1,16 +1,22 @@
 using System.ComponentModel;
+using Input;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityWeld.Binding;
+using Zenject;
 
 namespace FlowerShop.RepairsAndUpgrades
 {
     [Binding]
     public class UpgradeCanvasLiaison : MonoBehaviour, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Inject] private readonly PlayerInputActions playerInputActions;
         
-        [field: SerializeField] public Canvas UpgradeCanvas { get; private set; }
-    
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [SerializeField] private Canvas upgradeCanvas;
+        [SerializeField] private LocalizedString priceWord;
+
         [Binding]
         public string TableName { get; private set; }
     
@@ -24,10 +30,16 @@ namespace FlowerShop.RepairsAndUpgrades
         public string Price { get; private set; }
     
         public int PriceInt { get; private set; }
-    
+        
+        public void DisableCanvas()
+        {
+            playerInputActions.DisableCanvasControlMode();
+            upgradeCanvas.enabled = false;
+        }
+        
         public void SetUpgradableTableInfo(string tableName, string description, int priceInt, Sprite tableSprite)
         {
-            UpgradeCanvas.enabled = true;
+            EnableCanvas();
 
             TableName = tableName;
             OnPropertyChanged(nameof(TableName));
@@ -39,8 +51,14 @@ namespace FlowerShop.RepairsAndUpgrades
             OnPropertyChanged(nameof(Description));
 
             PriceInt = priceInt;
-            Price = priceInt.ToString();
+            Price = priceWord.GetLocalizedString() + " " + priceInt.ToString();
             OnPropertyChanged(nameof(Price));
+        }
+        
+        private void EnableCanvas()
+        {
+            playerInputActions.EnableCanvasControlMode();
+            upgradeCanvas.enabled = true;
         }
 
         private void OnPropertyChanged(string propertyName)

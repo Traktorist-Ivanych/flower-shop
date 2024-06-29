@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: CanvasesTexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: CanvasesTexts
+  m_TableCollectionNameGuidString: b71746b59fd24e140a7e5801bd223d78
+  m_Entries:
+  - m_Id: 144746274816
+    m_Key: SeedsCanvasName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16058283778048
+    m_Key: FertilizersCanvasName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436857462784
+    m_Key: AddFertilizersAdDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16447255142400
+    m_Key: AddFertilizersIAPDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17180562087936
+    m_Key: ADSButtonText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18642285420544
+    m_Key: BuyButtonText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28464217120768
+    m_Key: PriceWord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29036798337024
+    m_Key: ImprovementButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41847318437888
+    m_Key: UseCoffeeTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41909972951040
+    m_Key: BuyCoffeeEffect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44047457378304
+    m_Key: MainComputerPageName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44662635945984
+    m_Key: VipPageName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45074143305728
+    m_Key: VipDescriptionTextMain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50145971200000
+    m_Key: ComplaintPageName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51431961583616
+    m_Key: StatisticsPageName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51667790520320
+    m_Key: StatisticsTitleText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52350132477952
+    m_Key: AchievementsPageName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83439613960192
+    m_Key: FlowersCanvasName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83730455388160
+    m_Key: Lvl1Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83763292594176
+    m_Key: Lvl2Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83773149208576
+    m_Key: Lvl3Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83781370044416
+    m_Key: Lvl4Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83789616046080
+    m_Key: RareText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84839735549952
+    m_Key: LvlText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85115943051264
+    m_Key: FlowerGrowingRoomDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85441999855616
+    m_Key: FlowerRecipeDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86650521444352
+    m_Key: SellingPriceText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88963457802240
+    m_Key: BuySeedText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89048040136704
+    m_Key: CrossingText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89474248531968
+    m_Key: RandomCrossingText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99093897338880
+    m_Key: SettingCanvasText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99306632437760
+    m_Key: PurchasesRestorationText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99568700940288
+    m_Key: SoundVolumeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99625479233536
+    m_Key: MusicVolumeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99957840076800
+    m_Key: MusicPlaybackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103717740011520
+    m_Key: RepeatText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103720978014208
+    m_Key: ConsistentlyText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103722857062400
+    m_Key: RandomOrderText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105123943342080
+    m_Key: QuitQuestionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105215362392064
+    m_Key: QuitText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105220433305600
+    m_Key: CancelText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5116220045185024
+    m_Key: FractionalSeparationSign
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9412834981236736
+    m_Key: CoinsText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 46299799734976512
+  references:
+    version: 2
+    RefIds:
+    - rid: 46299799734976512
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1716207512355

@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ComplaintAndVipTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: dcc0276f630155949abd1445386d7464, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 13267427328
+    m_Localized: There are no requests.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 209523105792
+    m_Localized: There are no requests.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107307917312
+    m_Localized: Our regular customer recently bought a flower, and soon it withered.
+      We risk receiving an angry review. We need to replace his flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 121534996480
+    m_Localized: The client bought a flower to give to his girlfriend on her birthday,
+      but the flower was overgrown with weeds. He asks to replace the flower with
+      the same new one.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 132247248896
+    m_Localized: The client purchased this flower from us and soon discovered that
+      some strange bugs were crawling on it. He asks for the same new flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142569431040
+    m_Localized: The girl bought a flower to add to her collection, but some bugs
+      ate the leaves of the flower and it withered. The girl asks to replace the
+      flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 166271442944
+    m_Localized: A man wanted to give his wife a gift and bought a flower from us.
+      As soon as he came home, he discovered some strange bugs. The flower should
+      be replaced.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 153814360064
+    m_Localized: The guy bought a flower for his mother as a gift, but as soon as
+      he left the store, the flower was overgrown with weeds. The guy asks to replace
+      the flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 176929169408
+    m_Localized: A regular customer bought this flower from us and after purchasing
+      it, he discovered that the flower was overgrown with weeds. He demands to replace
+      the flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 187272323072
+    m_Localized: The girl wanted to decorate the interior of her apartment with our
+      flower, but before she had time to bring it home, the flower withered. She
+      should replace the flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196977942528
+    m_Localized: The guy bought a flower from us to decorate the window sill at his
+      office workplace, but the flower was soon overgrown with weeds. He asks to
+      replace the flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245946441728
+    m_Localized: The client was interested in the possibility of purchasing this
+      flower to order. We must try and satisfy his need.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 255601729536
+    m_Localized: An order has been received for this flower, but it needs to be completed
+      as soon as possible. The customer is a very respected person in wide circles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 265160548352
+    m_Localized: The client saw this flower on our website and really wanted to buy
+      it. He is ready to pay any money to get this flower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 276044767232
+    m_Localized: Our customer liked this particular flower. It fits perfectly into
+      the interior of his home. The customer is ready to pay a large sum of money.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286966734848
+    m_Localized: The girl wanted to plant this flower in the yard of her house. She
+      asks to grow it as soon as possible. She promises to pay any sum of money.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 296097734656
+    m_Localized: The girl wanted to decorate her office workplace with this flower.
+      She agrees to pay all costs for deviations from the growing schedule.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 304612171776
+    m_Localized: The man wanted to give this flower to his wife for her birthday.
+      This is her favourite flower. He needs the flower urgently, the payment will
+      be appropriate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 313969664000
+    m_Localized: The guy ordered this flower because it was the last one in his collection.
+      He agreed to pay a good sum of money. He asks to raise the flower as soon as
+      possible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 322551209984
+    m_Localized: The woman ordered this flower because she had read a healing ointment
+      could be made from it. She's really looking forward to this flower.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

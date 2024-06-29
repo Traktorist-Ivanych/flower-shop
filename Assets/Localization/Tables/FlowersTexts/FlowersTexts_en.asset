@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FlowersTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 1d480af65bae4a04888bff068d4c1a48, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9735823360
+    m_Localized: Cactus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495348146176
+    m_Localized: Dandelion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 565955059712
+    m_Localized: Rose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 586649755648
+    m_Localized: Tulip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5576453840896
+    m_Localized: Cornflower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5655143178240
+    m_Localized: Hibiscus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5683580559360
+    m_Localized: Narcissus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5725037060096
+    m_Localized: Sunflower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5747682107392
+    m_Localized: Primrose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5774907334656
+    m_Localized: Chamomile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5801641828352
+    m_Localized: Hydrangea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5830548971520
+    m_Localized: Lily
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5854456504320
+    m_Localized: Orchid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5883674025984
+    m_Localized: Peony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5909192171520
+    m_Localized: Chrysanthemum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5933745627136
+    m_Localized: Pansies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5957661548544
+    m_Localized: Carnation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5980394676224
+    m_Localized: Clover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6002632876032
+    m_Localized: Bell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6028318793728
+    m_Localized: Daisy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6049017683968
+    m_Localized: Anthurium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6076553289728
+    m_Localized: Begonia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6098481111040
+    m_Localized: Decembrist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6127128207360
+    m_Localized: Kalanchoe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150029107200
+    m_Localized: Fuchsia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6173341048832
+    m_Localized: Aster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6194169962496
+    m_Localized: Gerbera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6219990097920
+    m_Localized: Hyacinth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6242060525568
+    m_Localized: Hippeastrum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6264835596288
+    m_Localized: Gypsophila
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6289548435456
+    m_Localized: Gladiolus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310276685824
+    m_Localized: Jasmine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6334226161664
+    m_Localized: Calla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6361656909824
+    m_Localized: Lilac
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6384029327360
+    m_Localized: Eustoma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6414949736448
+    m_Localized: Delphinium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6442451787776
+    m_Localized: Iris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6463377170432
+    m_Localized: Crocus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6488501051392
+    m_Localized: Lily Of The Valley
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6515831136256
+    m_Localized: Buttercup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6538169999360
+    m_Localized: Poppy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6563654590464
+    m_Localized: Tansy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6584986820608
+    m_Localized: Snowdrop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6607795445760
+    m_Localized: Yarrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6631199662080
+    m_Localized: Celandine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6661293793280
+    m_Localized: Adenium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6686304428032
+    m_Localized: Gardenia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6710119686144
+    m_Localized: Guzmania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6734027218944
+    m_Localized: Calceolaria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6809122037760
+    m_Localized: Medinilla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6858488995840
+    m_Localized: Pedilanthus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6883344441344
+    m_Localized: Plumeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6911714713600
+    m_Localized: Poinsettia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7084503261184
+    m_Localized: Cyclamen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7107748093952
+    m_Localized: Echeveria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7152115441664
+    m_Localized: Venus Flytrap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7179118370816
+    m_Localized: Lotus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7200006004736
+    m_Localized: Passionflower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7221103353856
+    m_Localized: Protea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243911979008
+    m_Localized: Rafflesia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7267249086464
+    m_Localized: Strelitzia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11435967832064
+    m_Localized: Unknown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11477256560640
+    m_Localized: Absent
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

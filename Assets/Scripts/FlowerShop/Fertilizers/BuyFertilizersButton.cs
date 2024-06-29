@@ -1,42 +1,37 @@
-﻿using FlowerShop.Tables;
-using PlayerControl;
+﻿using FlowerShop.ComputerPages;
+using FlowerShop.Tables;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace FlowerShop.Fertilizers
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UIButton))]
     public class BuyFertilizersButton : MonoBehaviour
     {
         [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly FertilizersTable fertilizersTable;
-        [Inject] private readonly PlayerMoney playerMoney;
         
-        [HideInInspector, SerializeField] private Button buyButton;
-
+        [HideInInspector, SerializeField] private UIButton uiButton;
+        
         private void OnValidate()
         {
-            buyButton = GetComponent<Button>();
+            uiButton = GetComponent<UIButton>();
         }
 
         private void OnEnable()
         {
-            buyButton.onClick.AddListener(TryToBuyFertilizers);
+            uiButton.OnClickEvent += OnButtonClick;
         }
-
+        
         private void OnDisable()
         {
-            buyButton.onClick.RemoveListener(TryToBuyFertilizers);
+            uiButton.OnClickEvent -= OnButtonClick;
         }
 
-        private void TryToBuyFertilizers()
+        private void OnButtonClick()
         {
-            if (playerMoney.CurrentPlayerMoney >= fertilizersSetting.FertilizersPrice)
-            {
-                playerMoney.TakePlayerMoney(fertilizersSetting.FertilizersPrice);
-                fertilizersTable.IncreaseAvailableFertilizersUsesNumber();
-            }
+            //playerMoney.TakePlayerMoney(fertilizersSetting.IncreaseFertilizerAmountIAP);
+            //fertilizersTable.IncreaseAvailableFertilizersUsesNumber();
         }
     }
 }

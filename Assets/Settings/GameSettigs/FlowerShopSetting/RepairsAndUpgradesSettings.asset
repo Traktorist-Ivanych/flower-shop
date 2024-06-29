@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95984190f88640b8a66654f019e9b9a8, type: 3}
   m_Name: RepairsAndUpgradesSettings
   m_EditorClassIdentifier: 
-  <TableUpgradeTime>k__BackingField: 8
+  <TableUpgradeTime>k__BackingField: 15
   <MaxUpgradableTableLvl>k__BackingField: 2
-  <TableRepairTime>k__BackingField: 8
-  <SoilPreparationMinQuantity>k__BackingField: 10
-  <SoilPreparationMaxQuantity>k__BackingField: 20
+  <TableRepairTime>k__BackingField: 10
+  <SoilPreparationMinQuantity>k__BackingField: 8
+  <SoilPreparationMaxQuantity>k__BackingField: 16
   <WateringTableMinQuantity>k__BackingField: 10
   <WateringTableMaxQuantity>k__BackingField: 20
-  <FlowerGrowingTableMinQuantity>k__BackingField: 7
+  <FlowerGrowingTableMinQuantity>k__BackingField: 8
   <FlowerGrowingTableMaxQuantity>k__BackingField: 14
-  <CrossingTableMinQuantity>k__BackingField: 6
-  <CrossingTableMaxQuantity>k__BackingField: 12
+  <CrossingTableMinQuantity>k__BackingField: 8
+  <CrossingTableMaxQuantity>k__BackingField: 14

@@ -1,7 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using FlowerShop.Achievements;
 using FlowerShop.FlowersSale;
 using FlowerShop.Settings;
 using FlowerShop.Tables;
+using FlowerShop.Tables.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -13,147 +17,254 @@ namespace FlowerShop.Customers
     [RequireComponent(typeof(Animator))]
     public class CustomerMoving : MonoBehaviour
     {
-        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
-        [Inject] private readonly CustomersSpawner customersSpawner;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly CustomerFocus customerFocus;
+        [Inject] private readonly CustomersObserver customersObserver;
         [Inject] private readonly CustomersSettings customersSettings;
+        [Inject] private readonly CustomersSpawner customersSpawner;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
+        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
+        [Inject] private readonly ShopRating shopRating;
 
         [SerializeField] private Transform waitingTransform;
 
         [HideInInspector, SerializeField] private CustomerActions customerActions;
-        [HideInInspector, SerializeField] private NavMeshAgent buyerAgent;
-        [HideInInspector, SerializeField] private Animator buyerAnimator;
+        [HideInInspector, SerializeField] private NavMeshAgent navAgent;
+        [HideInInspector, SerializeField] private Animator animator;
+
+        private delegate void OnArrive();
+        private event OnArrive OnArriveEvent;
         
         private FlowersSaleTable customerFlowersSaleTable;
-        private Vector3 targetToLookAt;
-        private bool needForRotation;
-        private bool isCustomerBusy;
+        private ISpecialSaleTable specialSaleTable;
+        private List<Transform> currentPathPoints;
+        private Transform currentDestinationTarget;
+        private int currentPathPointIndex;
+        private bool isCustomerMoveForSpecialSale;
 
         private void OnValidate()
         {
             customerActions = GetComponent<CustomerActions>();
-            buyerAgent = GetComponent<NavMeshAgent>();
-            buyerAnimator = GetComponent<Animator>();
+            navAgent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
         }
 
         private void Awake()
         {
             customersSpawner.AddBuyerMoving(this);
+            navAgent.isStopped = true;
         }
 
         private void Update()
         {
-            if (buyerAgent.velocity == Vector3.zero)
-            {
-                buyerAnimator.SetBool(CustomerAnimatorKeys.IsPlayerWalk, false);
+            PlayWalkOrStayAnimations();
 
-                if (buyerAgent.remainingDistance < customersSettings.RemainingDistanceToStartRotation && needForRotation)
+            if (navAgent.isStopped) return;
+
+            TrySetDestinationOrRotateCustomer();
+        }
+
+        public void SpawnCustomerForSpecialSale(Transform startTransform, List<Transform> pathPoints, 
+            ISpecialSaleTable targetSpecialSaleTable)
+        {
+            specialSaleTable = targetSpecialSaleTable;
+            isCustomerMoveForSpecialSale = true;
+            SpawnCustomer(startTransform, pathPoints);
+        }
+        
+        public void SpawnCustomer(Transform startTransform, List<Transform> pathPoints)
+        {
+            navAgent.Warp(startTransform.position);
+            currentPathPoints = pathPoints;
+            currentPathPointIndex = 0;
+            navAgent.isStopped = false;
+            customersObserver.AddActiveCustomer(this);
+            customersSpawner.RemoveCustomerMoving(this);
+            SetDestination(currentPathPoints[currentPathPointIndex]);
+            SetOnArriveEvent(PlayLookAroundAnimation);
+        }
+
+        private void PlayWalkOrStayAnimations()
+        {
+            if (navAgent.velocity == Vector3.zero)
+            {
+                animator.SetBool(CustomerAnimatorKeys.IsPlayerWalk, false);
+            }
+            else
+            {
+                animator.SetBool(CustomerAnimatorKeys.IsPlayerWalk, true);
+                
+                animator.SetFloat(
+                    id: CustomerAnimatorKeys.WalkSpeed, 
+                    value: navAgent.velocity.magnitude / customersSettings.NavAgentSpeed);
+            }
+        }
+
+        private void TrySetDestinationOrRotateCustomer()
+        {
+            if (currentPathPointIndex < currentPathPoints.Count - 1)
+            {
+                if (navAgent.remainingDistance <= customersSettings.MinRemainingDistanceBetweenPathPoints)
                 {
-                    RotateCustomer();
+                    currentPathPointIndex++;
+                    SetDestination(currentPathPoints[currentPathPointIndex]);
                 }
             }
-            else
+            else if (navAgent.remainingDistance < customersSettings.RemainingDistanceToStartRotation)
             {
-                buyerAnimator.SetBool(CustomerAnimatorKeys.IsPlayerWalk, true);
-                
-                buyerAnimator.SetFloat(
-                    id: CustomerAnimatorKeys.WalkSpeed, 
-                    value: buyerAgent.velocity.magnitude / customersSettings.NavAgentSpeed);
+                RotateCustomer();
             }
-        }
-
-        public void SetBuyerStartDestination(Transform startTransform, FlowersSaleTable targetFlowersSaleTable)
-        {
-            customerFlowersSaleTable = targetFlowersSaleTable;
-            transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
-            SetBuyerDestination();
-            isCustomerBusy = true;
-            buyerAgent.isStopped = false;
-            customersSpawner.RemoveBuyerMoving(this);
-        }
-
-        public void CustomerThink()
-        {
-            buyerAnimator.SetTrigger(customersSettings.IsCustomerBuyingFlower()
-                ? CustomerAnimatorKeys.Yes
-                : CustomerAnimatorKeys.No);
-        }
-
-        public void CustomerThinkNo()
-        {
-            FlowersSaleTable nextFlowersSaleTable = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
-            flowersSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowersSaleTable);
-
-            customerFlowersSaleTable = nextFlowersSaleTable;
-            
-            if (customerFlowersSaleTable == null)
-            {
-                SetBuyerEndTransform();
-            }
-            else
-            {
-                SetBuyerDestination();
-            }
-        }
-
-        public void CustomerThinkYes()
-        {
-            customerActions.BuyFlower(customerFlowersSaleTable);
-            StartCoroutine(SetBuyerEndTransformWithFlower());
         }
 
         private void RotateCustomer()
         {
-            Vector3 relativeTargetDirection = new(
-                x: targetToLookAt.x - transform.position.x, 
-                y: 0,
-                z: targetToLookAt.z - transform.position.z);
-
             transform.rotation = Quaternion.Slerp(
                 a: transform.rotation, 
-                b: Quaternion.LookRotation(relativeTargetDirection),
+                b: currentDestinationTarget.rotation,
                 t: Time.deltaTime * customersSettings.RotationSpeed);
 
             float currentAngelBetweenCustomerAndRelativeTargetDirection =
-                Quaternion.Angle(transform.rotation, Quaternion.LookRotation(relativeTargetDirection));
+                Quaternion.Angle(transform.rotation, currentDestinationTarget.rotation);
 
             if (currentAngelBetweenCustomerAndRelativeTargetDirection < customersSettings.AngelToStopRotation)
             {
-                transform.rotation = Quaternion.LookRotation(relativeTargetDirection);
-                needForRotation = false;
-                if (isCustomerBusy)
-                {
-                    buyerAnimator.SetTrigger(CustomerAnimatorKeys.Think);
-                }
-                else
-                {
-                    buyerAnimator.SetTrigger(CustomerAnimatorKeys.Clear);
-                    customerActions.ClearFlowerInHands();
-                    buyerAgent.isStopped = true;
-                    transform.position = waitingTransform.position;
-                    customersSpawner.AddBuyerMoving(this);
-                }
+                transform.rotation = currentDestinationTarget.rotation;
+                
+                InvokeOnCustomerArriveEvent();
             }
         }
 
-        private void SetBuyerDestination()
+        private void SetDestination(Transform destinationTarget)
         {
-            buyerAgent.destination = customerFlowersSaleTable.CustomerDestinationTarget.position;
-            targetToLookAt = customerFlowersSaleTable.TargetToLookAt.position;
-            needForRotation = true;
+            currentDestinationTarget = destinationTarget;
+            navAgent.destination = currentDestinationTarget.position;
         }
 
-        private IEnumerator SetBuyerEndTransformWithFlower()
+        private void InvokeOnCustomerArriveEvent()
+        {
+            navAgent.isStopped = true;
+            OnArriveEvent?.Invoke();
+        }
+
+        private void SetOnArriveEvent(OnArrive onArrive)
+        {
+            navAgent.isStopped = false;
+            OnArriveEvent = null;
+            OnArriveEvent += onArrive;
+        }
+
+        private void PlayLookAroundAnimation()
+        {
+            animator.SetTrigger(CustomerAnimatorKeys.LookAround);
+        }
+
+        private void LookAroundEndAnimationEvent()
+        {
+            if (isCustomerMoveForSpecialSale)
+            {
+                currentPathPoints = specialSaleTable.ToFlowerPathPoints;
+                currentPathPointIndex = 0;
+                SetDestination(currentPathPoints[currentPathPointIndex]);
+                SetOnArriveEvent(PlayThinkAnimation);
+            }
+            else
+            {
+                FlowersSaleTable currentFlowersSaleTable = flowersSaleTablesForCustomers.GetSaleTableWithFlower();
+
+                if (customerFlowersSaleTable)
+                {
+                    flowersSaleTablesForCustomers.AddSaleTableWithFlower(customerFlowersSaleTable);
+                }
+            
+                customerFlowersSaleTable = currentFlowersSaleTable;
+
+                if (customerFlowersSaleTable)
+                {
+                    currentPathPoints = customerFlowersSaleTable.ToFlowerPathPoints;
+                    currentPathPointIndex = 0;
+                    SetDestination(currentPathPoints[currentPathPointIndex]);
+                    SetOnArriveEvent(PlayThinkAnimation);
+                }
+                else
+                {
+                    shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MinShopGrade);
+                    currentPathPoints = customersSpawner.GetFinishPathPoints();
+                    currentPathPointIndex = 0;
+                    SetDestination(currentPathPoints[currentPathPointIndex]);
+                    SetOnArriveEvent(ResetCustomer);
+                }
+            }
+        }
+        
+        private void PlayThinkAnimation()
+        {
+            animator.SetTrigger(CustomerAnimatorKeys.Think);
+        }
+
+        private void CustomerThinkEndAnimationEvent()
+        {
+            if (isCustomerMoveForSpecialSale)
+            {
+                animator.SetTrigger(CustomerAnimatorKeys.Yes);
+            }
+            else
+            {
+                animator.SetTrigger(customersSettings.IsCustomerBuyingFlower()
+                    ? CustomerAnimatorKeys.Yes
+                    : CustomerAnimatorKeys.No);
+            }
+        }
+
+        private void CustomerThinkNoEndAnimationEvent()
+        {
+            List<Transform> tempPath = customerFlowersSaleTable.OutFlowerPathPoints.ToList();
+            tempPath.Add(customersSpawner.GetNextLookAroundPathPoint());
+            currentPathPoints = tempPath;
+            
+            currentPathPointIndex = 0;
+            SetDestination(currentPathPoints[currentPathPointIndex]);
+            SetOnArriveEvent(PlayLookAroundAnimation);
+        }
+
+        private void CustomerThinkYesEndAnimationEvent()
+        {
+            if (isCustomerMoveForSpecialSale)
+            {
+                isCustomerMoveForSpecialSale = false;
+                customerActions.ExecuteSpecialSale(specialSaleTable);
+                StartCoroutine(
+                    SetBuyerEndTransformWithFlower(specialSaleTable.FinishWithFlowerPathPoints));
+            }
+            else
+            {
+                customerActions.BuyFlower(customerFlowersSaleTable);
+                StartCoroutine(
+                    SetBuyerEndTransformWithFlower(customerFlowersSaleTable.FinishWithFlowerPathPoints));
+                
+                customerFocus.IncreaseProgress();
+            }
+        }
+
+        private IEnumerator SetBuyerEndTransformWithFlower(List<Transform> finishPathPoints)
         {
             yield return new WaitForSeconds(actionsWithTransformSettings.MovingPickableObjectTimeDelay);
-            SetBuyerEndTransform();
+            
+            currentPathPoints = finishPathPoints;
+            currentPathPointIndex = 0;
+            SetDestination(currentPathPoints[currentPathPointIndex]);
+            SetOnArriveEvent(ResetCustomer);
         }
 
-        private void SetBuyerEndTransform()
+        private void ResetCustomer()
         {
-            buyerAgent.destination = customersSpawner.GetEndTransform().position;
-            needForRotation = true;
-            isCustomerBusy = false;
+            animator.SetTrigger(CustomerAnimatorKeys.Clear);
+            customerActions.ClearFlowerInHands();
+            navAgent.Warp(waitingTransform.position);
+            navAgent.isStopped = true;
+            customersSpawner.AddBuyerMoving(this);
+            customersObserver.RemoveInactiveCustomer(this);
+            customerFlowersSaleTable = null;
+            specialSaleTable = null;
         }
     }
 }

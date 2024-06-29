@@ -16,16 +16,6 @@ namespace FlowerShop.Tables.Abstract
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
         }
 
-        public void ShowBreakdownIndicator()
-        {
-            breakableTableBaseComponent.ShowBreakdownIndicator();
-        }
-
-        public void HideBreakdownIndicator()
-        {
-            breakableTableBaseComponent.HideBreakdownIndicator();
-        }
-
         public void UseBreakableTable()
         {
             breakableTableBaseComponent.UseBreakableTable();
@@ -33,7 +23,7 @@ namespace FlowerShop.Tables.Abstract
 
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
-            breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity);
+            StartCoroutine(breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity));
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)

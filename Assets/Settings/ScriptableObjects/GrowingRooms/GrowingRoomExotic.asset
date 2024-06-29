@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GrowingRoomExotic
   m_EditorClassIdentifier: 
   <RoomName>k__BackingField: Exotic
+  <RoomColorSprite>k__BackingField: {fileID: 21300000, guid: 32d062b5be1c0394eb8034b16dc8b9a7, type: 3}

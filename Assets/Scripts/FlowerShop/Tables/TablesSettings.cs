@@ -14,12 +14,13 @@ namespace FlowerShop.Tables
         [field: SerializeField] public float PrimaryGrowingLvlTime { get; private set; }
         [field: SerializeField] public float UpGrowingLvlTime { get; private set; }
         [field: SerializeField] public float UpGrowingLvlTableLvlTimeDelta { get; private set; }
+        [field: SerializeField] public int FansEnableLvl { get; private set; }
         
         
         [field: Header("Watering Table")]
         [field: SerializeField] public int WateringsNumber { get; private set; }
         [field: SerializeField] public int WateringsNumberLvlDelta { get; private set; }
-        [field: SerializeField] public float ReplenishWateringCanTime { get; private set; }
+        [field: SerializeField] public float TimeForReplenishWateringCanWithOneWatering { get; private set; }
         
         [field: Header("Soil Preparation Table")]
         [field: SerializeField] public float SoilPreparationTime { get; private set; }

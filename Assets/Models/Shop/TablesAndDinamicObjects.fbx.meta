@@ -12,11 +12,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: EffectsAtlas
-    second: {fileID: 2100000, guid: 7d13378e7b8d21f43a847639a7e3aedc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: EnvironmentAtlas
     second: {fileID: 2100000, guid: f2aadcec3cf1a9e43828c088552795bb, type: 2}
   - first:
@@ -96,7 +91,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []

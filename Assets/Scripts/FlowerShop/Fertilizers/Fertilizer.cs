@@ -1,7 +1,11 @@
 using System.Collections;
+using FlowerShop.Achievements;
+using FlowerShop.Education;
+using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Saves.SaveData;
+using FlowerShop.Sounds;
 using PlayerControl;
 using Saves;
 using UnityEngine;
@@ -12,17 +16,24 @@ namespace FlowerShop.Fertilizers
     [RequireComponent(typeof(ObjectMoving))]
     public abstract class Fertilizer : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly FertilizersCanvasLiaison fertilizersCanvasLiaison;
         [Inject] private readonly FertilizersSetting fertilizersSetting;
         [Inject] private readonly PlayerBusyness playerBusyness;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
+        [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly ThereIsNoTimeToWait thereIsNoTimeToWait;
 
         [SerializeField] private ParticleSystem treatEffect;
         
         [HideInInspector, SerializeField] private ObjectMoving objectMoving;
+
+        private protected Pot potForTreating;
         
         [field: SerializeField] public string UniqueKey { get; private set; }
+        
         public int AvailableUsesNumber { get; private set; }
         public bool IsFertilizerInPlayerHands { get; private set; }
 
@@ -41,15 +52,21 @@ namespace FlowerShop.Fertilizers
             fertilizersCanvasLiaison.UpdateFertilizersAvailableUsesNumber();
         }
 
-        public virtual void TreatPot(Pot potForTreating)
+        public IEnumerator PotTreating(Pot transmittedPotForTreating)
         {
-            StartCoroutine(ShowTreatEffects());
+            potForTreating = transmittedPotForTreating;
+            treatEffect.Play();
+            
+            yield return new WaitForSeconds(fertilizersSetting.FertilizerTreatingTime);
+
+            FinishTreatingPot();
         }
 
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             IsFertilizerInPlayerHands = true;
             playerPickableObjectHandler.CurrentPickableObject = this;
+            selectedTableEffect.ActivateEffectWithDelay();
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForCoffeeTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeLittleObjectTrigger, 
@@ -60,15 +77,16 @@ namespace FlowerShop.Fertilizers
         {
             IsFertilizerInPlayerHands = false;
             playerPickableObjectHandler.ResetPickableObject();
+            selectedTableEffect.ActivateEffectWithDelay();
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveLittleObjectTrigger, 
                 setPlayerFree: true);
         }
 
-        public void IncreaseAvailableUsesNumber()
+        public void IncreaseAvailableUsesNumber(int quantity)
         {
-            AvailableUsesNumber += fertilizersSetting.IncreaseFertilizerAmount;
+            AvailableUsesNumber += quantity;
             fertilizersCanvasLiaison.UpdateFertilizersAvailableUsesNumber();
             
             Save();
@@ -77,8 +95,9 @@ namespace FlowerShop.Fertilizers
         public void LoadInPlayerHands()
         {
             IsFertilizerInPlayerHands = true;
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForCoffeeTransform);
+            objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForCoffeeTransform);
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHoldLittleObject);
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void Load()
@@ -102,17 +121,21 @@ namespace FlowerShop.Fertilizers
             SavesHandler.Save(UniqueKey, fertilizerForSaving);
         }
 
-        private IEnumerator ShowTreatEffects()
+        private protected virtual void FinishTreatingPot()
         {
             AvailableUsesNumber--;
             fertilizersCanvasLiaison.UpdateFertilizersAvailableUsesNumber();
-            treatEffect.Play();
+            playerBusyness.SetPlayerFree();
+            soundsHandler.PlayFertilizerTreatAudio();
+            
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
+            
+            thereIsNoTimeToWait.IncreaseProgress();
             
             Save();
-
-            yield return new WaitForSeconds(fertilizersSetting.FertilizerTreatingTime);
-            
-            playerBusyness.SetPlayerFree();
         }
     }
 }

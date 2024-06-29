@@ -1,3 +1,6 @@
+using FlowerShop.Achievements;
+using FlowerShop.Education;
+using FlowerShop.Effects;
 using FlowerShop.Flowers;
 using FlowerShop.PickableObjects.Moving;
 using FlowerShop.Saves.SaveData;
@@ -12,9 +15,12 @@ namespace FlowerShop.PickableObjects
     [RequireComponent(typeof(ObjectMoving))]
     public class WateringCan : MonoBehaviour, IPickableObject, ISavableObject
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly PlayerPickableObjectHandler playerPickableObjectHandler;
         [Inject] private readonly TablesSettings tablesSettings;
+        [Inject] private readonly TakingCareOfPlants takingCareOfPlants;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly SelectedTableEffect selectedTableEffect;
     
         [SerializeField] private Transform wateringCanIndicatorTransform;
         [SerializeField] private Mesh[] wateringCanLvlMeshes = new Mesh[2];
@@ -46,27 +52,39 @@ namespace FlowerShop.PickableObjects
         public void TakeInPlayerHandsAndSetPlayerFree()
         {
             playerPickableObjectHandler.CurrentPickableObject = this;
+            wateringCanIndicatorMeshRenderer.enabled = true;
+            UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
+            
             objectMoving.MoveObject(
                 targetFinishTransform: playerComponents.PlayerHandsForBigObjectTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.TakeBigObjectTrigger, 
                 setPlayerFree: true);
-            wateringCanIndicatorMeshRenderer.enabled = true;
-            UpdateWateringCanIndicator();
         }
 
         public void PutOnTableAndSetPlayerFree(Transform targetTransform) 
         {
+            selectedTableEffect.ActivateEffectWithDelay();
+            wateringCanIndicatorMeshRenderer.enabled = false;
+            
             objectMoving.MoveObject(
                 targetFinishTransform: targetTransform, 
                 movingObjectAnimatorTrigger: PlayerAnimatorParameters.GiveBigObjectTrigger, 
                 setPlayerFree: true);
-            wateringCanIndicatorMeshRenderer.enabled = false;
         }
 
         public void PourPotWithWateringCan()
         {
             CurrentWateringsNumber--;
             UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
+            
+            takingCareOfPlants.IncreaseProgress();
             
             Save();
         }
@@ -78,7 +96,7 @@ namespace FlowerShop.PickableObjects
 
         public float ReplenishWateringCanTime()
         {
-            return tablesSettings.ReplenishWateringCanTime * (maxWateringsNumber - CurrentWateringsNumber) / maxWateringsNumber;
+            return tablesSettings.TimeForReplenishWateringCanWithOneWatering * (maxWateringsNumber - CurrentWateringsNumber);
         }
 
         public void ReplenishWateringCan()
@@ -108,11 +126,12 @@ namespace FlowerShop.PickableObjects
 
         public void LoadInPlayerHands()
         {
-            objectMoving.SetParentAndParentPositionAndRotationOnLoad(playerComponents.PlayerHandsForBigObjectTransform);
+            objectMoving.SetParentAndParentPositionAndRotation(playerComponents.PlayerHandsForBigObjectTransform);
             playerPickableObjectHandler.CurrentPickableObject = this;
             playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.LoadToHold);
             wateringCanIndicatorMeshRenderer.enabled = true;
             UpdateWateringCanIndicator();
+            selectedTableEffect.ActivateEffectWithDelay();
         }
 
         public void Load()

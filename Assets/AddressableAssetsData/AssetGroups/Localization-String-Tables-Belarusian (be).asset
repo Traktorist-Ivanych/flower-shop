@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Belarusian (be)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-String-Tables-Belarusian (be)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4ca9493e377ab984fb751a4a34755976
+  m_SerializeEntries:
+  - m_GUID: 6c3ebd4295c967540878a3b9b3305ba7
+    m_Address: AchievementsTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8df34356247c3e4e95d3ce970370a38
+    m_Address: CanvasesTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e468e4d1d0e377459920b9dff7e0513
+    m_Address: ComplaintAndVipTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb4b74d81d075b24790ed099772cd6a8
+    m_Address: EducationTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdab32baecaaf704b8c9a23e2330fc91
+    m_Address: FertilizersTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0082c74cec983934cb31dd1d356dbf5b
+    m_Address: FlowersTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22f50290ff269164c8d0ea43b1970c36
+    m_Address: TablesTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17b6ea5ef38c0284da177f47a3e6ecc3
+    m_Address: EntryPointText_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea78ee9bdb4cbb044a83bf31165cbde3
+    m_Address: HelpTexts_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 432f2d77316f17248a7e45e60970bcce
+    m_Address: TablesInfoText_be
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-be
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 22a865f7b6281c941a0951f9cb8135c7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 93a3ed20e4cab3343b6e6356064ce979, type: 2}
+    - {fileID: 11400000, guid: 316b8c2f3402ede4389cba863cebb005, type: 2}

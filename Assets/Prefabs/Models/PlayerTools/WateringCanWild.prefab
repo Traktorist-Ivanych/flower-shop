@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6777705918880737258}
-  m_Mesh: {fileID: 3390558720134950976, guid: d015ef105becc934b9fb95486b1baa0c, type: 3}
+  m_Mesh: {fileID: -1409290673004404430, guid: d015ef105becc934b9fb95486b1baa0c, type: 3}
 --- !u!23 &4976411547222754879
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58,10 +58,12 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d13378e7b8d21f43a847639a7e3aedc, type: 2}
+  - {fileID: 2100000, guid: 722730248319d5b4aa60b5611b46fe80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,6 +146,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -181,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9736497a36cd44dae78a420a8f42dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
   wateringCanIndicatorTransform: {fileID: 6144298794168270160}
   wateringCanLvlMeshes:
   - {fileID: -3076382647288971543, guid: 703790e61f24a3240890f0a292b64061, type: 3}
@@ -189,6 +192,8 @@ MonoBehaviour:
   objectMoving: {fileID: 9089130743166341446}
   wateringCanMeshFilter: {fileID: 6978310876165696557}
   wateringCanIndicatorMeshRenderer: {fileID: 4976411547222754879}
+  <GrowingRoom>k__BackingField: {fileID: 11400000, guid: 2d09f46561e4d8e4997e47a6dd568964, type: 2}
+  <UniqueKey>k__BackingField: 
 --- !u!114 &9089130743166341446
 MonoBehaviour:
   m_ObjectHideFlags: 0

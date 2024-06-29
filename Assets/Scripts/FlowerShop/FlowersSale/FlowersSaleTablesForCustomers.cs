@@ -26,6 +26,11 @@ namespace FlowerShop.FlowersSale
             return null;
         }
 
+        public int GetCurrentSaleTableWithFlowerCount()
+        {
+            return saleTables.Count;
+        }
+
         private void RemoveSaleTable(FlowersSaleTable table)
         {
             if (saleTables.Contains(table))

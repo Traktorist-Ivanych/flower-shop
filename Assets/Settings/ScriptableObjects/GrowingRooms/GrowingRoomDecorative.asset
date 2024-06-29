@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GrowingRoomDecorative
   m_EditorClassIdentifier: 
   <RoomName>k__BackingField: Decorative
+  <RoomColorSprite>k__BackingField: {fileID: 21300000, guid: d35d37c7ac27afc49804d1653b72c9a5, type: 3}

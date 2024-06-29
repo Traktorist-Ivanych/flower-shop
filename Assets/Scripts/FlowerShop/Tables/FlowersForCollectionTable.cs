@@ -1,7 +1,7 @@
-using System;
 using DG.Tweening;
 using FlowerShop.Flowers;
 using FlowerShop.FlowersForCollection;
+using FlowerShop.Help;
 using FlowerShop.PickableObjects;
 using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
@@ -18,15 +18,17 @@ namespace FlowerShop.Tables
     /// </summary>
     public class FlowersForCollectionTable : Table, ISavableObject
     {
-        [Inject] private readonly ReferencesForLoad referencesForLoad;
-        [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
+        [Inject] private readonly FlowersForPlayerCollection flowersForCollection;
+        [Inject] private readonly FlowersSettings flowersSettings;
+        [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
+        [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
+        [Inject] private readonly ReferencesForLoad referencesForLoad;
 
         [SerializeField] private Transform soilTablePosition;
         [SerializeField] private MeshRenderer soilMeshRenderer;
         [SerializeField] private MeshRenderer flowerMeshRenderer;
-        [SerializeField] private FlowersForPlayerCollection flowersForCollection;
 
         [HideInInspector, SerializeField] private Transform soilTransform;
         [HideInInspector, SerializeField] private MeshFilter flowerMeshFilter;
@@ -47,12 +49,71 @@ namespace FlowerShop.Tables
             flowerMeshFilter = flowerMeshRenderer.GetComponent<MeshFilter>();
         }
 
-        public override void ExecuteClickableAbility()
+        private protected override void TryInteractWithTable()
         {
+            base.TryInteractWithTable();
+
             if (CanPlayerPutFlowerOnTable())
             {
                 SetPlayerDestinationAndOnPlayerArriveAction(PutFlowerOnTable);
             }
+            else if (CanPlayerUseTableInfoCanvas())
+            {
+                SetPlayerDestinationAndOnPlayerArriveAction(UseTableInfoCanvas);
+            }
+            else
+            {
+                TryToShowHelpCanvas();
+            }
+        }
+
+        private void TryToShowHelpCanvas()
+        {
+            if (!playerBusyness.IsPlayerFree)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
+            }
+            else if (flowerInfoForCollection != null)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+            }
+            else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
+            {
+                if (currentPot.PlantedFlowerInfo.GrowingRoom != growingRoom)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.MismatchGrowingRoom);
+                }
+                else if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
+                }
+                else if (currentPot.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerDidNotGrow);
+                }
+                else if (currentPot.IsWeedInPot)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WeedInPot);
+                }
+                else if (!flowersForCollection.IsFlowerForCollectionUnique(currentPot.PlantedFlowerInfo))
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.FlowerAlreadyInCollection);
+                }
+            }
+            else if (playerPickableObjectHandler.IsPickableObjectNull)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.EmptyHands);
+            }
+            else
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WrongPickableObject);
+            }
+        }
+
+
+        private protected override bool CanSelectedTableEffectBeDisplayed()
+        {
+            return CanPlayerPutFlowerOnTable() || CanPlayerUseTableInfoCanvas();
         }
 
         public void Load()
@@ -86,7 +147,7 @@ namespace FlowerShop.Tables
             {
                 playerPot = currentPot;
 
-                return playerPot.GrowingRoom == growingRoom &&
+                return playerPot.PlantedFlowerInfo.GrowingRoom == growingRoom &&
                        playerPot.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
                        !playerPot.IsWeedInPot &&
                        flowersForCollection.IsFlowerForCollectionUnique(playerPot.PlantedFlowerInfo);
@@ -116,6 +177,16 @@ namespace FlowerShop.Tables
                 .OnComplete(() => playerBusyness.SetPlayerFree());
             
             Save();
+        }
+
+        private bool CanPlayerUseTableInfoCanvas()
+        {
+            return playerBusyness.IsPlayerFree && playerPickableObjectHandler.CurrentPickableObject is InfoBook;
+        }
+
+        private void UseTableInfoCanvas()
+        {
+            tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
 
         private void SetFlowerOnTable()

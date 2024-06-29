@@ -1,0 +1,324 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: EducationTexts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 7a75d0d0d9eb7b24c9116c12c0eb07db, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 7605116928
+    m_Localized: Education
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4809684738048
+    m_Localized: "   Welcome!\r\n   My name is Carrie. I am an employee of this flower
+      shop. I found out that you have become its owner. Let me tell you what's what."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4858082811904
+    m_Localized: '   We have to breed and grow many different types of flowers, fight
+      weeds, improve the store, serve customers, listen to music, drink coffee and
+      much more.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4909425287168
+    m_Localized: "   In the upper right corner the amount of money and the rating
+      of the flower shop are displayed.\r\n   Money will be needed to improve equipment
+      and purchase soil and seeds.\r\n   The rating reflects customer satisfaction.
+      The higher the rating, the more often they will visit us."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4960302194688
+    m_Localized: "   In the lower right corner of the screen you can see the Almanac
+      of all flowers button.\r\n   It displays detailed information about each flower
+      and the recipe for obtaining it.\r\n   To display a new flower, you need to
+      make a seed.\r\n   Close the hint and look in the Almanac."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5006414372864
+    m_Localized: "   Now let's try to grow our first flower.\r\n   Close the hint
+      and click on the pot rack."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5059237437440
+    m_Localized: "   The pot needs to be filled with soil, but keep in mind that
+      you need to pay for it.\r\n   Close the hint panel and click on the soil preparation
+      table."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5196508618752
+    m_Localized: "   In order for our Cactus to start growing, it needs to be placed
+      under a lamp.\r\n   All flowers have 3 stages of growth. They can only grow
+      under lamps. To move to the next stage, the flowers must be watered."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5245506478080
+    m_Localized: '   Now let''s plant a Dandelion.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5294714052608
+    m_Localized: "   You can speed up the growth process of flowers by using fertilizers.
+      There are 3 types of them in total.\r\n   Let's read what purple fertilizer
+      does and use it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5353769852928
+    m_Localized: "   And now we have 2 fully grown flowers. Instantly. What beauty!\r\n  
+      Let's bring the fertilizer back."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423596625920
+    m_Localized: "   Now we can breed the seed of a new flower!\r\n   To do this,
+      you need to place the flowers in the appropriate sections of the crossing table."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5471990505472
+    m_Localized: "   The crossing table is equipped with indicators.\r\n   If the
+      side indicators are green, then the table will be able to produce a new seed,
+      and if it is red, it doesn\u2019t like something.\r\n   The central indicator
+      tells you the colour of the room from which you should bring a pot of soil
+      and in which you will need to grow a new flower.\r\n   The colour of the room
+      can be determined by the colour of the walls."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5527363706880
+    m_Localized: "   With a small chance, the result of crossing may become a Rare
+      flower. It is easy to identify - when watered, it emits an interesting glow.\r\n  
+      Rare flowers are very profitable to sell.\r\n   Click on the center section
+      of the crossing table and I'll launch it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5578542604288
+    m_Localized: "   Oops, it seems our soil preparation table is broken. I can fix
+      anything with a hammer!\r\n   Find the table with the hammer and click on it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5628446433280
+    m_Localized: "   Like this! A couple of blows and the table is operational again.\r\n  
+      You can also use a hammer to improve equipment. Improved tables work faster
+      and are less likely to break.\r\n   Let's try to improve the table for growing
+      flowers."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5676773203968
+    m_Localized: '   We''ve dealt with the hammer, let''s put it back in place.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5722390454272
+    m_Localized: "   The seed of a new flower is about to be ready.\r\n   Since the
+      indicator of the central section of the crossing table is yellow, the pot and
+      soil are needed from the yellow room."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5765382070272
+    m_Localized: '   The new seed is still being produced. As soon as the table stops
+      buzzing, click on the central section.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5816292532224
+    m_Localized: "   The new seed has already been produced, great! We made Cornflowers.\r\n  
+      Click on the center section of the crossing table and I will plant them."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5885716652032
+    m_Localized: '   Now let''s take the green fertilizer and treat our produced
+      flower.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5935519817728
+    m_Localized: "   Green fertilizer significantly accelerates flower growth.\r\n  
+      Now let's put the fertilizer back in place."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5982617657344
+    m_Localized: '   After crossing, the side flowers lose 1 stage of growth. If
+      you put them under lamps, they will grow again.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030134927360
+    m_Localized: "   Oops, it looks like one of our flowers is overgrown with weeds.
+      It needs to be removed urgently!\r\n   A flower overgrown with weeds cannot
+      be sold or crossed."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6094559436800
+    m_Localized: '   Look, our Cornflowers require watering. You need to use a watering
+      can.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6144664592384
+    m_Localized: '   Now let''s take the blue fertilizer and treat the 2 crossed
+      flowers.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211337248768
+    m_Localized: "   Cornflowers need watering again.\r\n   Let's bring them some
+      water."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6260133781504
+    m_Localized: "   Grown flowers can be placed in special rooms to form your own
+      collection.\r\n   You will receive VIP orders for these flowers. The more flowers
+      there are in the collection, the more often VIP orders arrive.\r\n   To unlock
+      VIP orders, you need to add at least a few flowers to your collection."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6322524053504
+    m_Localized: "   Fill the tables with unique flowers and don\u2019t deny yourself
+      the opportunity to admire your collection, because it is the result of your
+      work!\r\n   The tables for the Rare Flowers collection are in a room with white
+      walls. Rare flowers are not included in VIP orders.\r\n   Let's put Dandelions
+      in the collection."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6374738944000
+    m_Localized: "   Now let's place the empty pot on the orange table with the clock
+      icon.\r\n   These tables are designed to store pots and flowers at any stage
+      of growth.\r\n   There is a trash can next to the pot rack. You can throw the
+      soil with the unwanted flower into it and thereby free the pot."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6417193689088
+    m_Localized: "   Now I will tell you about sales.\r\n   To put a flower up for
+      sale, you need to place it on the appropriate table. It is in a room with white
+      walls and is marked with a dollar sign.\r\n   Customers always leave a rating
+      for the store after purchasing flowers. The more diverse their selection, the
+      higher the score."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6608093241344
+    m_Localized: '   Let''s put the Cactus up for sale.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6662694690816
+    m_Localized: '   Now let''s return the empty pot to the rack.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6713240248320
+    m_Localized: '   All we have to do is water the Cornflowers one last time, and
+      they will bloom.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6759046242304
+    m_Localized: "   In the sales room there is a table with a laptop.\r\n   Here
+      you can get acquainted with information about complaints, VIP orders, see details
+      of the latest store ratings and the progress of your achievements."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6841359458304
+    m_Localized: "   Sometimes we will receive complaints about the quality of our
+      flowers from customers.\r\n   As soon as the customer submits a complaint,
+      an indicator with circular arrows will appear in the lower left corner of the
+      screen.\r\n   For information about the flower, look at the laptop.\r\n   If
+      the complaint is completed on time, we will receive the maximum rating. Otherwise,
+      the rating will be the lowest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6887735877632
+    m_Localized: "   Once we receive a VIP order, a VIP order indicator will appear
+      in the lower left corner of the screen.\r\n   Information about the ordered
+      flower can be viewed in the laptop.\r\n   To satisfy the customer, simply place
+      the ordered flower on the table with the VIP order badge. If we complete the
+      order on time, the client will pay a large amount and leave the maximum rating,
+      otherwise we will receive the lowest rating."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939350982656
+    m_Localized: "   Now let's talk about achievements.\r\n   In the laptop you can
+      see the conditions of tasks, as well as the progress of their completion.\r\n  
+      Once the task is completed, the indicator above the laptop will light up. You
+      will need to open the achievements tab, find the completed achievement on the
+      list and click on the question mark to the right of the task. Then you will
+      receive a cash reward and a corresponding figurine on the achievement table.\r\n  
+      There are two such tables in total. They are located in the sales hall near
+      the entrance doors to the store."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6998910099456
+    m_Localized: "   In our store, in the sales area, there is a coffee machine.\r\n  
+      I really love coffee. After drinking a cup, I feel a surge of strength, and
+      therefore the speed of my movement increases significantly.\r\n   I hid enough
+      coffee beans for one cup, I should drink it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7044225359872
+    m_Localized: "   I would also like to tell you about music.\r\n   You can turn
+      the sound on and off yourself, as well as switch the melody being played, at
+      any time on tables with audio equipment."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7092455661568
+    m_Localized: "   Oh, what gorgeous coffee! I wish I could drink it more often...\r\n  
+      This concludes our training. From now on, you are at the helm, and I will do
+      everything you say. But within reasonable limits!\r\n   Don't forget to open
+      a shop when you're ready to sell flowers.\r\n   Check your laptop, you will
+      receive a reward for the first achievement you complete!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3515523499479040
+    m_Localized: "   I just found a VIP client for our Cornflowers.\r\n   Let's open
+      the laptop and check the VIP order page. After we get acquainted with all the
+      information, we will need to place Cornflowers on the table for VIP orders."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3515585436766208
+    m_Localized: "   Our first VIP order has been completed! Remember, we will only
+      be able to receive further VIP orders after we place at least 4 flowers in
+      the collection.\r\n   It is also worth considering that the multiplier of the
+      sales price of a VIP order directly depends on the current rating of our store.
+      The maximum multiplier is 2, and it will only be applied if our store's rating
+      is above 4.8."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964369543286784
+    m_Localized: '   In our store there is a book with instructions for each table.
+      You can use it any time to figure out why a particular table is needed. Let''s
+      use it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964376203841536
+    m_Localized: '   Also in the instruction book there is a separate column about
+      the rating. Let''s take a look. You can read it again at any time.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964431006617600
+    m_Localized: '   Now let''s turn on clues. They will describe the reason why
+      I cannot fulfill your request. You can turn them off at any time.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527684559261696
+    m_Localized: You have just bred your first level 2 flower. In order to breed
+      a level 3 flower, you need to improve the crossing table to level 2.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527687163924480
+    m_Localized: You have just bred your first level 3 flower. Level 3 flowers can
+      only grow on level 2 or higher growing tables, and in order to breed level
+      4 flowers, you need to improve the crossing table to level 3.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527689177190400
+    m_Localized: You have just bred your first level 4 flower. Level 4 flowers can
+      only grow on level 3 growing tables.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8263811045969920
+    m_Localized: "   Great, the soil is ready!\r\n   Now we need to buy and plant
+      a seed. Let's plant a Cactus first."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

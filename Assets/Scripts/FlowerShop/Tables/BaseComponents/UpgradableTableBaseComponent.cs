@@ -1,5 +1,8 @@
+using FlowerShop.Education;
+using FlowerShop.Effects;
 using FlowerShop.PickableObjects;
 using FlowerShop.RepairsAndUpgrades;
+using PlayerControl;
 using UnityEngine;
 using Zenject;
 
@@ -8,10 +11,13 @@ namespace FlowerShop.Tables.BaseComponents
     [RequireComponent(typeof(IUpgradableTable))]
     public class UpgradableTableBaseComponent : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
+        [Inject] private readonly PlayerMoney playerMoney;
         [Inject] private readonly UpgradeCanvasLiaison upgradeCanvasLiaison;
         [Inject] private readonly RepairingAndUpgradingHammer repairingAndUpgradingHammer;
+        [Inject] private readonly RepairsAndUpgradesSettings repairsAndUpgradesSettings;
 
-        [SerializeField] private MeshRenderer upgradeIndicatorRenderer;
+        [SerializeField] private MeshRenderer upgradableIndicator;
         [SerializeField] private MeshFilter tableMeshFilter; 
         [SerializeField] private UpgradableTableInfo upgradableTableInfo;
         [SerializeField] private ParticleSystem UpgradeTableSuccessPS;
@@ -23,20 +29,20 @@ namespace FlowerShop.Tables.BaseComponents
             upgradableTable = GetComponent<IUpgradableTable>();
         }
 
-        public void ShowUpgradeIndicator()
+        public bool CanPlayerBuyUpgrade(int tableLvl)
         {
-            upgradeIndicatorRenderer.enabled = true;
-        }
+            if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
+            {
+                return playerMoney.CurrentPlayerMoney >= upgradableTableInfo.GetUpgradableTablePrice(tableLvl);
+            }
 
-        public void HideUpgradeIndicator()
-        {
-            upgradeIndicatorRenderer.enabled = false;
+            return false;
         }
 
         public void SetUpgradableTableInfoToCanvas(int nextTableLvl)
         {
             upgradeCanvasLiaison.SetUpgradableTableInfo(
-                tableName: upgradableTableInfo.TableName,
+                tableName: upgradableTableInfo.LocalizedTableName.GetLocalizedString(),
                 description: upgradableTableInfo.GetUpgradableTableDescription(nextTableLvl),
                 priceInt: upgradableTableInfo.GetUpgradableTablePrice(nextTableLvl),
                 tableSprite: upgradableTableInfo.GetUpgradableTableSprite(nextTableLvl));
@@ -47,6 +53,11 @@ namespace FlowerShop.Tables.BaseComponents
         public void FinishUpgradeTableProcessEffects()
         {
             UpgradeTableSuccessPS.Play();
+
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            {
+                educationHandler.CompleteEducationStep();
+            }
         }
 
         public void SetNextLvlMesh(int nextTableLvl)
@@ -60,6 +71,16 @@ namespace FlowerShop.Tables.BaseComponents
         public int GetUpgradePrice(int nextTableLvl)
         {
             return upgradableTableInfo.GetUpgradableTablePrice(nextTableLvl);
+        }
+
+        public void ShowIndicator()
+        {
+            upgradableIndicator.enabled = true;
+        }
+
+        public void HideIndicator()
+        {
+            upgradableIndicator.enabled = false;
         }
     }
 }

@@ -6,9 +6,7 @@ namespace FlowerShop.Coffee
                      menuName = "Settings/Coffee Settings", 
                      order = 5)]
     public class CoffeeSettings : ScriptableObject
-    {
-        [field: SerializeField] public int CoffeePrice { get; private set; }
-        
+    {        
         [field: Tooltip("Time, it takes for CoffeeLiquid move from empty to full position or conversely. " +
                         "Important: depends on PlayerAnimation!")]
         [field: SerializeField] public float CoffeeLiquidMovingTime { get; private set; }

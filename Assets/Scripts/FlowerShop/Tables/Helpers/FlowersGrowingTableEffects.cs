@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using FlowerShop.Sounds;
+using UnityEngine;
+using Zenject;
 
 namespace FlowerShop.Tables.Helpers
 {
     [RequireComponent(typeof(TableObjectsRotation))]
     public class FlowersGrowingTableEffects : MonoBehaviour
     {
+        [Inject] private readonly SoundsHandler soundsHandler;
+        [Inject] private readonly TablesSettings tablesSettings;
+        
         [SerializeField] private MeshRenderer growingLightMeshRenderer;
         [SerializeField] private MeshRenderer growingTableFanMeshRenderer;
         [SerializeField] private Mesh[] growingLightLvlMeshes = new Mesh[2];
@@ -14,6 +19,7 @@ namespace FlowerShop.Tables.Helpers
         [HideInInspector, SerializeField] private MeshFilter growingLightMeshFilter;
 
         private int currentTableLvl;
+        private bool isEffectsEnabled;
 
         private void OnValidate()
         {
@@ -24,45 +30,57 @@ namespace FlowerShop.Tables.Helpers
         public void SetFlowersGrowingTableLvlForEffects(int flowersGrowingTableLvl)
         {
             currentTableLvl = flowersGrowingTableLvl;
-            if (currentTableLvl > 0)
+            growingLightMeshFilter.mesh = growingLightLvlMeshes[currentTableLvl - 1];
+            
+            if (currentTableLvl >= tablesSettings.FansEnableLvl)
             {
                 growingTableFanMeshRenderer.enabled = true;
-                growingLightMeshFilter.mesh = growingLightLvlMeshes[currentTableLvl - 1];
+                if (currentTableLvl == tablesSettings.FansEnableLvl && isEffectsEnabled)
+                {
+                    EnableUpgradableEffects();
+                }
             }
         }
 
         public void EnableEffects()
         {
-            growingLightMeshRenderer.enabled = true;
-            if (currentTableLvl > 0)
+            if (!isEffectsEnabled)
             {
-                foreach (ParticleSystem wind in windPS)
+                isEffectsEnabled = true;
+                growingLightMeshRenderer.enabled = true;
+                if (currentTableLvl >= tablesSettings.FansEnableLvl)
                 {
-                    wind.Play();
+                    EnableUpgradableEffects();
                 }
             }
-        }
-
-        public void StartFansRotation()
-        {
-            tableObjectsRotation.StartObjectsRotation();
         }
 
         public void DisableEffects()
         {
-            growingLightMeshRenderer.enabled = false;
-            if (currentTableLvl > 0)
+            if (isEffectsEnabled)
             {
-                foreach (ParticleSystem wind in windPS)
+                isEffectsEnabled = false;
+                growingLightMeshRenderer.enabled = false;
+                if (currentTableLvl >= tablesSettings.FansEnableLvl)
                 {
-                    wind.Stop();
+                    soundsHandler.StopPlayingGrowingTableFansAudio();
+                    tableObjectsRotation.PauseObjectsRotation();
+                    foreach (ParticleSystem wind in windPS)
+                    {
+                        wind.Stop();
+                    }
                 }
             }
         }
 
-        public void StopFansRotation()
+        private void EnableUpgradableEffects()
         {
-            tableObjectsRotation.PauseObjectsRotation();
+            soundsHandler.StartPlayingGrowingTableFansAudio();
+            tableObjectsRotation.StartObjectsRotation();
+            foreach (ParticleSystem wind in windPS)
+            {
+                wind.Play();
+            }
         }
     }
 }
