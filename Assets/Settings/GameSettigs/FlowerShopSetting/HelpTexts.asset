@@ -367,6 +367,33 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  <RatingHelpText>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 3249330951737344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <InconsistencyFlowerAndCrossingTableLvl>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 6787978158592000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <InconsistencyFlowerAndGrowingTableLvl>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:505f798886258484ebec515ff5fa85ac
+    m_TableEntryReference:
+      m_KeyId: 6789763241791488
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []

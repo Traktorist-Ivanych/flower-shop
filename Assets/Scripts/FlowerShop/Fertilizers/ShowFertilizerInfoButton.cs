@@ -33,15 +33,12 @@ namespace FlowerShop.Fertilizers
 
         private void ShowInfoPanel()
         {
-            if (!educationHandler.IsEducationActive)
-            {
-                fertilizersCanvasLiaison.ShowFertilizerInfoPanel(fertilizerInfo);
-            }
-            else if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
             {
                 educationHandler.CompleteEducationStep();
-                fertilizersCanvasLiaison.ShowFertilizerInfoPanel(fertilizerInfo);
             }
+
+            fertilizersCanvasLiaison.ShowFertilizerInfoPanel(fertilizerInfo);
         }
     }
 }

@@ -290,7 +290,9 @@ namespace FlowerShop.PickableObjects
         {
             --FlowerGrowingLvl;
             PotObjects.SetFlowerLvlMesh(PlantedFlowerInfo, FlowerGrowingLvl);
-            
+
+            ResetGrowingLvlTimeProgress();
+
             Save();
         }
 
@@ -520,6 +522,56 @@ namespace FlowerShop.PickableObjects
         {
             IsPotTreatedByGrothAccelerator = false;
             currentGrothAcceleratorCoeff = fertilizersSetting.PrimaryGrothAcceleratorCoeff;
+        }
+
+
+
+        public void Load(PotForSaving potForLoading) // CutScene
+        {
+            if (potForLoading.IsValuesSaved)
+            {
+                FlowerGrowingLvl = potForLoading.FlowerGrowingLvl;
+                currentUpGrowingLvlTime = potForLoading.CurrentUpGrowingLvlTime;
+                IsPotTreatedByGrothAccelerator = potForLoading.IsPotTreatedByGrothAccelerator;
+                weedGrowingLvl = potForLoading.WeedGrowingLvl;
+
+                if (potForLoading.IsSoilInsidePot)
+                {
+                    ShowSoil();
+                }
+
+                PlantedFlowerInfo =
+                    referencesForLoad.GetReference<FlowerInfo>(potForLoading.PlantedFlowerInfoUniqueKey);
+
+                if (PlantedFlowerInfo != flowersSettings.FlowerInfoEmpty)
+                {
+                    ShowSeed(PlantedFlowerInfo);
+                }
+
+                if (potForLoading.IsFlowerNeedWater)
+                {
+                    ShowWaterIndicator();
+                }
+
+                if (potForLoading.IsWeedInPot)
+                {
+                    ShowWeed();
+                }
+
+                if (potForLoading.IsPotTreatedByGrothAccelerator)
+                {
+                    SetTreatedGrothAcceleratorCoeff();
+                }
+                else
+                {
+                    ResetGrothAcceleratorParameters();
+                }
+            }
+            else
+            {
+                ResetPlantedFlowerInfo();
+                ResetGrothAcceleratorParameters();
+            }
         }
     }
 }

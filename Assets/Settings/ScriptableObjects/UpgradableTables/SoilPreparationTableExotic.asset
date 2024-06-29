@@ -44,7 +44,7 @@ MonoBehaviour:
     \u043F\u043E\u0447\u0432\u044B. \u0422\u0430\u043A\u0436\u0435 \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
     \u0441\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u044F\u0435\u043C\u043E\u0441\u0442\u044C
     \u043F\u043E\u0447\u0432\u044B \u0441\u043E\u0440\u043D\u044F\u043A\u0430\u043C."
-  upgradePrices: e2040000c4090000
+  upgradePrices: a60e00004c1d0000
   <LocalizedTableName>k__BackingField:
     m_TableReference:
       m_TableCollectionName: GUID:dbcb8859aa67a194d8337a3c2c878178

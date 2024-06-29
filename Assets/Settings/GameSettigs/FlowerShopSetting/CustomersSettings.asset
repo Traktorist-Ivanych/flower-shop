@@ -17,13 +17,13 @@ MonoBehaviour:
   <AngelToStopRotation>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 6
   <NavAgentSpeed>k__BackingField: 6
-  <MinSpawnTime>k__BackingField: 60
-  <MinSpawnTimeDelta>k__BackingField: 30
-  <MaxSpawnTime>k__BackingField: 120
-  <MaxSpawnTimeDelta>k__BackingField: 60
+  <MinSpawnTime>k__BackingField: 180
+  <MinSpawnTimeDelta>k__BackingField: 140
+  <MaxSpawnTime>k__BackingField: 300
+  <MaxSpawnTimeDelta>k__BackingField: 220
   <MinTimeBetweenSpawn>k__BackingField: 5
-  <MinComplaintsTime>k__BackingField: 1500
-  <MaxComplaintsTime>k__BackingField: 2400
+  <MinComplaintsTime>k__BackingField: 1800
+  <MaxComplaintsTime>k__BackingField: 4800
   <LocalizedComplaintDescriptions>k__BackingField:
   - m_TableReference:
       m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
@@ -179,16 +179,16 @@ MonoBehaviour:
   <MaxPriceMultiplerGradesBorder>k__BackingField: 4.8
   <MiddlePriceMultiplerGradesBorder>k__BackingField: 4
   <MinGradesCountForMaxPriceMultipler>k__BackingField: 5
-  <MinPriceMultipler>k__BackingField: 1
-  <MiddlePriceMultipler>k__BackingField: 2
-  <MaxPriceMultipler>k__BackingField: 3
+  <MinPriceMultipler>k__BackingField: 1.2
+  <MiddlePriceMultipler>k__BackingField: 1.5
+  <MaxPriceMultipler>k__BackingField: 2
   <MinFlowersInPlayerCollectionCount>k__BackingField: 4
   <AverageGradeInfluence>k__BackingField: 0.65
   <FlowersInPlayerCollectionInfluence>k__BackingField: 0.35
-  <MinVipTime>k__BackingField: 1500
-  <MinVipTimeDelta>k__BackingField: 500
-  <MaxVipTime>k__BackingField: 2400
-  <MaxVipTimeDelta>k__BackingField: 1000
+  <MinVipTime>k__BackingField: 2000
+  <MinVipTimeDelta>k__BackingField: 800
+  <MaxVipTime>k__BackingField: 5000
+  <MaxVipTimeDelta>k__BackingField: 3200
   <LocalizedVipDescriptions>k__BackingField:
   - m_TableReference:
       m_TableCollectionName: GUID:dcc0276f630155949abd1445386d7464
@@ -335,8 +335,8 @@ MonoBehaviour:
     \u0446\u0435\u043B\u0435\u0431\u043D\u0443\u044E \u043C\u0430\u0437\u044C. \u041E\u0447\u0435\u043D\u044C
     \u0441\u0438\u043B\u044C\u043D\u043E \u0436\u0434\u0435\u0442 \u044D\u0442\u043E\u0442
     \u0446\u0432\u0435\u0442\u043E\u043A."
-  <CompletingOrderTimeMain>k__BackingField: 240
-  <CompletingOrderTimeForFlowerLvl>k__BackingField: 120
+  <CompletingOrderTimeMain>k__BackingField: 360
+  <CompletingOrderTimeForFlowerLvl>k__BackingField: 180
   <InactiveOrder>k__BackingField: {fileID: 11400000, guid: f8956ff9fe0773a4797806f448174468, type: 2}
   buyingFlowerCurve:
     serializedVersion: 2
@@ -351,7 +351,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.3277778
     - serializedVersion: 3
-      time: 0.6
+      time: 0.55
       value: 0.5
       inSlope: 1.1355324
       outSlope: 1.1355324
@@ -362,7 +362,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1.2500001
+      inSlope: 1.1111112
       outSlope: 0.4312722
       tangentMode: 69
       weightedMode: 0

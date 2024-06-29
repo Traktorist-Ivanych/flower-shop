@@ -32,6 +32,10 @@ namespace FlowerShop.Education
             {
                 educationHandler.CompleteEducationStep();
             }
+            else if (!educationHandler.IsEducationActive)
+            {
+                educationHandler.HideEducationDescription();
+            }
         }
     }
 }

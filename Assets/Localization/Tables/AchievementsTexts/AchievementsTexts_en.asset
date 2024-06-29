@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 11087253397504
-    m_Localized: Aspiring Collector
+    m_Localized: Ambitious collector
     m_Metadata:
       m_Items: []
   - m_Id: 11157147279360
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 11296817602560
-    m_Localized: Receive 1 star rating from buyer
+    m_Localized: Receive a 1-star rating from the buyer
     m_Metadata:
       m_Items: []
   - m_Id: 11363397984256
@@ -147,7 +147,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13371551047680
-    m_Localized: Plant growing plant
+    m_Localized: Plant growing factory
     m_Metadata:
       m_Items: []
   - m_Id: 13433136013312
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14190723784704
-    m_Localized: To capacity
+    m_Localized: To full capacity
     m_Metadata:
       m_Items: []
   - m_Id: 14245589475328
@@ -199,7 +199,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14313822412800
-    m_Localized: Flower Shop Top Player
+    m_Localized: Flower Shop top player
     m_Metadata:
       m_Items: []
   - m_Id: 14372022575104

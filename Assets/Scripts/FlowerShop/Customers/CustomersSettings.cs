@@ -33,9 +33,9 @@ namespace FlowerShop.Customers
         [field: SerializeField] public float MaxPriceMultiplerGradesBorder { get; private set; }
         [field: SerializeField] public float MiddlePriceMultiplerGradesBorder { get; private set; }
         [field: SerializeField] public int MinGradesCountForMaxPriceMultipler { get; private set; }
-        [field: SerializeField] public int MinPriceMultipler { get; private set; }
-        [field: SerializeField] public int MiddlePriceMultipler { get; private set; }
-        [field: SerializeField] public int MaxPriceMultipler { get; private set; }
+        [field: SerializeField] public float MinPriceMultipler { get; private set; }
+        [field: SerializeField] public float MiddlePriceMultipler { get; private set; }
+        [field: SerializeField] public float MaxPriceMultipler { get; private set; }
         [field: SerializeField] public int MinFlowersInPlayerCollectionCount { get; private set; }
         [field: SerializeField] public float AverageGradeInfluence { get; private set; }
         [field: SerializeField] public float FlowersInPlayerCollectionInfluence { get; private set; }

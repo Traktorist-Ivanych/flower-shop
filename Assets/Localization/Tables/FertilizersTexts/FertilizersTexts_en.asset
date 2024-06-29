@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 490658914304
-    m_Localized: In one use, it instantly completes flower growth. It is most effective
+    m_Localized: In one go, it instantly completes flower growth. It is most effective
       when treating newly planted or bred flowers.
     m_Metadata:
       m_Items: []
@@ -32,8 +32,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 736931667968
-    m_Localized: In one use, it instantly transfers the flower to the next stage
-      of growth. It is most effective when treating flowers that have lost one stage
+    m_Localized: In one go, it instantly transfers a flower to the next stage of
+      growth. It is most effective when treating flowers that have lost one stage
       of growth during the crossing process.
     m_Metadata:
       m_Items: []

@@ -219,5 +219,18 @@ namespace FlowerShop.Tables
             currentPlayerPot.PutOnTableAndSetPlayerFree(potObjectsTransform);
             playerPickableObjectHandler.ResetPickableObject();
         }
+
+
+
+        public void Load(PotsRackForSaving potsRackForLoading) // CutScene
+        {
+            if (potsRackForLoading.IsValuesSaved)
+            {
+                tableLvl = potsRackForLoading.TableLvl;
+                LoadLvlMesh();
+            }
+
+            currentFreePots += (tableLvl + 1) * tablesSettings.PotsCountAvailableOnUpgradeDelta;
+        }
     }
 }

@@ -83,13 +83,13 @@ namespace FlowerShop.Tables
             {
                 helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
             }
+            else if (isPotOnTable)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+            }
             else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
-                if (isPotOnTable)
-                {
-                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
-                }
-                else if (!complaintsHandler.IsComplaintActive)
+                if (!complaintsHandler.IsComplaintActive)
                 {
                     helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoAvailableComplaintOrders);
                 }

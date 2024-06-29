@@ -6,7 +6,6 @@ using FlowerShop.Saves.SaveData;
 using FlowerShop.Settings;
 using FlowerShop.Sounds;
 using FlowerShop.Tables.Abstract;
-using FlowerShop.Tables.Helpers;
 using Saves;
 using UnityEngine;
 using Zenject;
@@ -274,6 +273,32 @@ namespace FlowerShop.Tables
         private void UseTableInfoCanvas()
         {
             tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
+
+        
+
+        public void Load(WateringTableForSaving wateringTableForLoading) // CutScene
+        {
+            if (wateringTableForLoading.IsValuesSaved)
+            {
+                if (wateringTableForLoading.TableLvl > 0)
+                {
+                    tableLvl = wateringTableForLoading.TableLvl;
+                    LoadLvlMesh();
+                }
+
+                isWateringCanInPlayerHands = wateringTableForLoading.IsWateringCanInPlayerHands;
+
+                breakableTableBaseComponent.LoadActionsBeforeBrokenQuantity(
+                    wateringTableForLoading.ActionsBeforeBrokenQuantity);
+
+            }
+            else
+            {
+                SetActionsBeforeBrokenQuantity(
+                    repairsAndUpgradesSettings.WateringTableMinQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.WateringTableMaxQuantity * (tableLvl + 1));
+            }
         }
     }
 }

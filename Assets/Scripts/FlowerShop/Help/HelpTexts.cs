@@ -52,5 +52,8 @@ namespace FlowerShop.Help
         [field: SerializeField] public LocalizedString CoffeeEffectPurchased { get; private set; }
         [field: SerializeField] public LocalizedString NoAvailableVipOrders { get; private set; }
         [field: SerializeField] public LocalizedString NoAvailableComplaintOrders { get; private set; }
+        [field: SerializeField] public LocalizedString RatingHelpText { get; private set; }
+        [field: SerializeField] public LocalizedString InconsistencyFlowerAndCrossingTableLvl { get; private set; }
+        [field: SerializeField] public LocalizedString InconsistencyFlowerAndGrowingTableLvl { get; private set; }
     }
 }

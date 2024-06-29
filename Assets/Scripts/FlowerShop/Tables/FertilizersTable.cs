@@ -17,7 +17,7 @@ namespace FlowerShop.Tables
 
         [SerializeField] private Transform fertilizersTableTransform;
         [SerializeField] private Fertilizer[] fertilizers;
-        
+
         [HideInInspector, SerializeField] private MeshRenderer[] fertilizersMeshRenderers;
 
         private readonly List<Pot> activePots = new();
@@ -26,7 +26,7 @@ namespace FlowerShop.Tables
         private void OnValidate()
         {
             fertilizersMeshRenderers = new MeshRenderer[fertilizers.Length];
-            
+
             for (int i = 0; i < fertilizers.Length; i++)
             {
                 fertilizersMeshRenderers[i] = fertilizers[i].GetComponent<MeshRenderer>();
@@ -93,7 +93,7 @@ namespace FlowerShop.Tables
             }
         }
 
-            public void TakeFertilizerInPlayerHands(Fertilizer fertilizerToTakePlayer)
+        public void TakeFertilizerInPlayerHands(Fertilizer fertilizerToTakePlayer)
         {
             for (int i = 0; i < fertilizers.Length; i++)
             {
@@ -104,17 +104,17 @@ namespace FlowerShop.Tables
                 }
                 else
                 {
-                    fertilizersMeshRenderers[i].enabled = false; 
+                    fertilizersMeshRenderers[i].enabled = false;
                 }
             }
         }
-        
+
         private protected override bool CanSelectedTableEffectBeDisplayed()
         {
-            return CanPlayerTakeFertilizerInHandsForSelectableEffect() || CanPlayerPutFertilizerOnTable() || 
+            return CanPlayerTakeFertilizerInHandsForSelectableEffect() || CanPlayerPutFertilizerOnTable() ||
                 CanPlayerUseTableInfoCanvas();
         }
-        
+
         public void IncreaseAvailableFertilizersUsesNumber()
         {
             foreach (Fertilizer fertilizer in fertilizers)
@@ -122,7 +122,7 @@ namespace FlowerShop.Tables
                 fertilizer.IncreaseAvailableUsesNumber(fertilizersSetting.IncreaseFertilizerAmount);
             }
         }
-        
+
         public void IncreaseAvailableFertilizersUsesNumberByIAP()
         {
             foreach (Fertilizer fertilizer in fertilizers)
@@ -135,17 +135,17 @@ namespace FlowerShop.Tables
         {
             activePots.Add(potToAdd);
         }
-        
+
         public void RemoveActivePot(Pot potToAdd)
         {
             activePots.Remove(potToAdd);
         }
-        
+
         private bool CanPlayerTakeFertilizerInHandsForSelectableEffect()
         {
             bool isFertilizersHaveEnoughUsages = false;
             bool canActivePotsBeTreated = false;
-            
+
             foreach (Fertilizer fertilizer in fertilizers)
             {
                 if (fertilizer.AvailableUsesNumber > 0)
@@ -153,7 +153,7 @@ namespace FlowerShop.Tables
                     isFertilizersHaveEnoughUsages = true;
                 }
             }
-            
+
             foreach (Pot activePot in activePots)
             {
                 if (activePot.CanPotBeTreated())
@@ -162,7 +162,7 @@ namespace FlowerShop.Tables
                     break;
                 }
             }
-            
+
             return isFertilizersHaveEnoughUsages && canActivePotsBeTreated &&
                    CanPlayerTakeFertilizerInHands();
         }
@@ -201,6 +201,20 @@ namespace FlowerShop.Tables
         private void UseTableInfoCanvas()
         {
             tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
+        }
+
+
+
+        public void TryInteractWithTableForCutScene() // CutScene
+        {
+            base.TryInteractWithTable();
+
+            SetPlayerDestinationAndOnPlayerArriveAction(GetFertilizerForCutScene);
+        }
+
+        private void GetFertilizerForCutScene()
+        {
+            TakeFertilizerInPlayerHands(fertilizers[2]);
         }
     }
 }

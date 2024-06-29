@@ -2,9 +2,7 @@ using FlowerShop.ComputerPages;
 using FlowerShop.Education;
 using FlowerShop.Tables;
 using Input;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Components;
 using Zenject;
 
 namespace FlowerShop.Flowers
@@ -17,18 +15,12 @@ namespace FlowerShop.Flowers
         
         [SerializeField] private FlowerInfo plantingFlowerInfo;
         [SerializeField] private PlantingSeedsTable plantingSeedsTable;
-        [SerializeField] private LocalizeStringEvent localizeStringEvent;
 
         [HideInInspector, SerializeField] private UIButton seedButton;
 
         private void OnValidate()
         {
             seedButton = GetComponent<UIButton>();
-        }
-
-        private void Awake()
-        {
-            localizeStringEvent.StringReference = plantingFlowerInfo.LocalizedFlowerName;
         }
 
         private void OnEnable()

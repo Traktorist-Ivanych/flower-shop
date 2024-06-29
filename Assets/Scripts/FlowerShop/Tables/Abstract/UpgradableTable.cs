@@ -63,7 +63,7 @@ namespace FlowerShop.Tables.Abstract
             upgradableTableBaseComponent.SetUpgradableTableInfoToCanvas(tableLvl);
         }
 
-        public void ShowIndicator()
+        public virtual void ShowIndicator()
         {
             if (tableLvl < repairsAndUpgradesSettings.MaxUpgradableTableLvl)
             {
@@ -71,7 +71,7 @@ namespace FlowerShop.Tables.Abstract
             }
         }
 
-        public void HideIndicator()
+        public virtual void HideIndicator()
         {
             upgradableTableBaseComponent.HideIndicator();
         }

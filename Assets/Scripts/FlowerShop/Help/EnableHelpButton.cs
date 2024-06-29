@@ -1,4 +1,5 @@
 ﻿using FlowerShop.ComputerPages;
+using FlowerShop.Education;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,6 +9,7 @@ namespace FlowerShop.Help
     [RequireComponent(typeof(UIButton))]
     public class EnableHelpButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
         [Inject] private readonly HelpTexts helpTexts;
 
@@ -40,15 +42,28 @@ namespace FlowerShop.Help
 
         private void OnButtonClick()
         {
-            if (helpCanvasLiaison.ShouldHelpCanvasDisplay)
+            if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
             {
-                helpCanvasLiaison.DisableHelpCanvasDisplaying();
-                helpIndicatorImage.sprite = helpTexts.DisableSprite;
+                if (!helpCanvasLiaison.ShouldHelpCanvasDisplay)
+                {
+                    helpCanvasLiaison.EnableHelpCanvasDisplaying();
+                    helpIndicatorImage.sprite = helpTexts.EnableSprite;
+                }
+
+                educationHandler.CompleteEducationStep();
             }
             else
             {
-                helpCanvasLiaison.EnableHelpCanvasDisplaying();
-                helpIndicatorImage.sprite = helpTexts.EnableSprite;
+                if (helpCanvasLiaison.ShouldHelpCanvasDisplay)
+                {
+                    helpCanvasLiaison.DisableHelpCanvasDisplaying();
+                    helpIndicatorImage.sprite = helpTexts.DisableSprite;
+                }
+                else
+                {
+                    helpCanvasLiaison.EnableHelpCanvasDisplaying();
+                    helpIndicatorImage.sprite = helpTexts.EnableSprite;
+                }
             }
         }
     }

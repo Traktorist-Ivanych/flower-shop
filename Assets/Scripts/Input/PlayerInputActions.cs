@@ -38,7 +38,8 @@ namespace Input
 
         private void Update()
         {
-            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()) return;
+            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()
+                || inputControls.Player.UIButton.inProgress) return;
             
             if (inputControls.Player.Touch1Delta.ReadValue<Vector2>() == Vector2.zero)
             {
@@ -69,8 +70,9 @@ namespace Input
 
         private void TapInput(InputAction.CallbackContext context)
         {
-            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()) return;
-            
+            if (isCanvasControlEnable || inputControls.Player.UIButton.IsPressed()
+                || inputControls.Player.UIButton.inProgress) return;
+
             playerTapInput.PlayerTap(inputControls.Player.TapPosition.ReadValue<Vector2>());
         }
 

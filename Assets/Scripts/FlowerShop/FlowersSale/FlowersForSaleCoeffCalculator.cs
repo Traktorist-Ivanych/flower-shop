@@ -45,8 +45,7 @@ namespace FlowerShop.FlowersSale
         public int CalculateCurrentGrade()
         {
             int currentGrade = Mathf.RoundToInt(
-                CurrentFlowersForSaleCoeff * flowersForSaleCoeffCalculatorSettings.MaxShopGrade / 
-                flowersForSaleCoeffCalculatorSettings.SaleCoeffForMaxGrade);
+                CurrentFlowersForSaleCoeff * flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
             
             return Mathf.Clamp(
                 value: currentGrade, 
@@ -56,19 +55,9 @@ namespace FlowerShop.FlowersSale
 
         private void CalculateFlowersForSaleCoeff()
         {
-            float allAndUniqueFlowersForSale = 
-                flowersForSaleCoeffCalculatorSettings.AllFlowersForSale + 
-                flowersForSaleCoeffCalculatorSettings.UniqueFlowersForSale;
-
-            float allFlowersForSaleCoeff = 
-                Mathf.Min(saleTablesWithFlowers.Count, flowersForSaleCoeffCalculatorSettings.AllFlowersForSale) / 
-                allAndUniqueFlowersForSale;
-
-            float uniqueFlowersForSaleCoeff = 
-                Mathf.Min(uniqueFlowersForSale.Count, flowersForSaleCoeffCalculatorSettings.UniqueFlowersForSale) / 
-                allAndUniqueFlowersForSale;
-
-            CurrentFlowersForSaleCoeff = allFlowersForSaleCoeff + uniqueFlowersForSaleCoeff;
+            CurrentFlowersForSaleCoeff =
+                Mathf.Min(uniqueFlowersForSale.Count, flowersForSaleCoeffCalculatorSettings.MaxUniqueFlowersForSale) /
+                (float)flowersForSaleCoeffCalculatorSettings.MaxUniqueFlowersForSale;
         }
     }
 }

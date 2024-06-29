@@ -24,7 +24,8 @@ namespace FlowerShop.Tables.BaseComponents
         [Inject] private readonly SoundsHandler soundsHandler;
 
         [SerializeField] private ParticleSystem[] brokenEffects;
-        
+        [SerializeField] private MeshRenderer brokenIndicator;
+
         private ISavableObject savingTable;
 
         public int ActionsBeforeBrokenQuantity { get; private set; }
@@ -48,6 +49,16 @@ namespace FlowerShop.Tables.BaseComponents
             {
                 BrokenTable();
             }
+        }
+
+        public void ShowBrokenIndicator()
+        {
+            brokenIndicator.enabled = true;
+        }
+
+        public void HideBrokenIndicator()
+        {
+            brokenIndicator.enabled = false;
         }
 
         public void BrokenTable()

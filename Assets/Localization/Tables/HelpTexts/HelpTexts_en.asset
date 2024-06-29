@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 238397211987968
-    m_Localized: It looks like the fertilizer has run out.
+    m_Localized: It looks like we have run out of the fertilizer.
     m_Metadata:
       m_Items: []
   - m_Id: 238416732278784
@@ -109,7 +109,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 263906243301376
-    m_Localized: You cannot interact with the breeding table while it is producing
+    m_Localized: You cannot interact with the crossing table while it is producing
       a new seed.
     m_Metadata:
       m_Items: []
@@ -119,7 +119,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 269806366543872
-    m_Localized: The breeding table cannot start hatching a new seed. Place the flowers
+    m_Localized: The crossing table cannot start hatching a new seed. Place the flowers
       needed for the recipe in the side sections of the table.
     m_Metadata:
       m_Items: []
@@ -134,7 +134,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 269881662689280
     m_Localized: To plant the hatched seed, you need a pot with soil from another
-      room. The color of the center indicator of the crossing table will indicate
+      room. The colour of the center indicator of the crossing table will indicate
       the color of the room needed.
     m_Metadata:
       m_Items: []
@@ -192,6 +192,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2064676106194944
     m_Localized: Hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3249330951737344
+    m_Localized: "   Buyers leave a rating for the store every time they buy a flower.
+      Their valuation depends on the variety of flowers offered for sale. To get
+      the maximum score, you must select at least 6 different colours.\r\n   The
+      average store rating is calculated using the arithmetic average of the last
+      25 customer ratings. The higher the store\u2019s rating is, the more often
+      customers come to buy flowers, the more often VIP orders appear, and the higher
+      the multiplier for the sale price of a flower for a VIP order is."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6787978158592000
+    m_Localized: The crossing table at the current level cannot cross the flower
+      in Carrie's hands. Improve the crossing table.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6789763241791488
+    m_Localized: The flower growing table at the current level cannot grow the flower
+      in Carrie's hands. Improve the flower growing table.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8210298622365696
+    m_Localized: There are no videos available at this time. Please try again later.
     m_Metadata:
       m_Items: []
   references:

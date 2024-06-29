@@ -1,6 +1,8 @@
 ﻿using FlowerShop.Customers;
 using FlowerShop.Customers.VipAndComplaints;
+using FlowerShop.Education;
 using FlowerShop.Flowers;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -11,6 +13,7 @@ namespace FlowerShop.ComputerPages
     [RequireComponent(typeof(Image))]
     public class ComputerFlowerInfoButton : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
         [Inject] private readonly VipOrdersHandler vipOrdersHandler;
@@ -50,16 +53,22 @@ namespace FlowerShop.ComputerPages
             {
                 if (vipOrderMode)
                 {
-                    string VipOrderPriceMultiplerText = "";
-                    if (vipOrdersHandler.CurrentVipOrderPriceMultipler > customersSettings.MinPriceMultipler)
-                    {
-                        VipOrderPriceMultiplerText = " * " + vipOrdersHandler.CurrentVipOrderPriceMultipler.ToString();
-                    }
+                    string VipOrderPriceMultiplerText = " * " + 
+                        vipOrdersHandler.CurrentVipOrderPriceMultipler.ToString(CultureInfo.CurrentCulture);
+
                     flowerInfoCanvasLiaison.ShowFlowerInfo(flowerInfo, VipOrderPriceMultiplerText);
                 }
                 else
                 {
                     flowerInfoCanvasLiaison.ShowFlowerInfo(true, flowerInfo);
+                }
+            }
+
+            if (educationHandler.IsEducationActive)
+            {
+                if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+                {
+                    educationHandler.CompleteEducationStep();
                 }
             }
         }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95984190f88640b8a66654f019e9b9a8, type: 3}
   m_Name: RepairsAndUpgradesSettings
   m_EditorClassIdentifier: 
-  <TableUpgradeTime>k__BackingField: 8
+  <TableUpgradeTime>k__BackingField: 15
   <MaxUpgradableTableLvl>k__BackingField: 2
-  <TableRepairTime>k__BackingField: 8
+  <TableRepairTime>k__BackingField: 10
   <SoilPreparationMinQuantity>k__BackingField: 8
   <SoilPreparationMaxQuantity>k__BackingField: 16
   <WateringTableMinQuantity>k__BackingField: 10

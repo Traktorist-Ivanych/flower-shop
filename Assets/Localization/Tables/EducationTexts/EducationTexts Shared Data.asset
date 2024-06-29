@@ -43,10 +43,6 @@ MonoBehaviour:
     m_Key: SoilPreparationDescriptionText
     m_Metadata:
       m_Items: []
-  - m_Id: 5139633856512
-    m_Key: SeedPlantDescriptionText
-    m_Metadata:
-      m_Items: []
   - m_Id: 5196508618752
     m_Key: GrowingTableDescriptionText
     m_Metadata:
@@ -181,6 +177,42 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7092455661568
     m_Key: EducationEndDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3515523499479040
+    m_Key: VipOrderDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3515585436766208
+    m_Key: VipOrderEnableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964369543286784
+    m_Key: InfoTableDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964376203841536
+    m_Key: RatingPanelDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964431006617600
+    m_Key: EnableHelpDescriptionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527684559261696
+    m_Key: FirstLvlClue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527687163924480
+    m_Key: SecondLvlClue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7527689177190400
+    m_Key: ThirdLvlClue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8263811045969920
+    m_Key: SeedPlantDescriptionText
     m_Metadata:
       m_Items: []
   m_Metadata:

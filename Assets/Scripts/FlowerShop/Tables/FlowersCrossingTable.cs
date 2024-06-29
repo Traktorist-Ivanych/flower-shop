@@ -92,6 +92,16 @@ namespace FlowerShop.Tables
                 {
                     helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.WeedInPot);
                 }
+                else if (currentPot.PlantedFlowerInfo.FlowerLvl == flowersSettings.MediumFlowerLvlForTableLvl - 1 &&
+                    flowersCrossingTableProcess.TableLvl < flowersSettings.MediumTableLvlForFlowerLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.InconsistencyFlowerAndCrossingTableLvl);
+                }
+                else if (currentPot.PlantedFlowerInfo.FlowerLvl == flowersSettings.MaxFlowerLvlForTableLvl - 1 &&
+                    flowersCrossingTableProcess.TableLvl < flowersSettings.MaxTableLvlForFlowerLvl)
+                {
+                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.InconsistencyFlowerAndCrossingTableLvl);
+                }
             }
             else if (playerPickableObjectHandler.IsPickableObjectNull)
             {
@@ -162,10 +172,29 @@ namespace FlowerShop.Tables
             {
                 PotOnTable = currentPot;
 
-                return PotOnTable.GrowingRoom == growingRoom &&
-                       PotOnTable.FlowerGrowingLvl >= flowersSettings.MaxFlowerGrowingLvl &&
-                       !PotOnTable.IsWeedInPot &&
-                       !flowersCrossingTableProcess.IsTableBroken;
+                if (PotOnTable.FlowerGrowingLvl < flowersSettings.MaxFlowerGrowingLvl)
+                {
+                    return false;
+                }
+                else
+                {
+                    if (PotOnTable.PlantedFlowerInfo.FlowerLvl == flowersSettings.MediumFlowerLvlForTableLvl - 1 &&
+                        flowersCrossingTableProcess.TableLvl < flowersSettings.MediumTableLvlForFlowerLvl)
+                    {
+                        return false;
+                    }
+                    else if (PotOnTable.PlantedFlowerInfo.FlowerLvl == flowersSettings.MaxFlowerLvlForTableLvl - 1 &&
+                        flowersCrossingTableProcess.TableLvl < flowersSettings.MaxTableLvlForFlowerLvl)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return PotOnTable.GrowingRoom == growingRoom &&
+                               !PotOnTable.IsWeedInPot &&
+                               !flowersCrossingTableProcess.IsTableBroken;
+                    }
+                }
             }
 
             return false;
@@ -211,6 +240,22 @@ namespace FlowerShop.Tables
             PotOnTable = null;
 
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
+        }
+
+
+
+        public void Load(FlowersCrossingTableForSaving flowersCrossingTableForLoading) // CutScene
+        {
+            if (flowersCrossingTableForLoading.IsValuesSaved)
+            {
+                PotOnTable = referencesForLoad.GetReference<Pot>(flowersCrossingTableForLoading.PotUniqueKey);
+
+                if (PotOnTable != null)
+                {
+                    PotOnTable.LoadOnTable(tablePotTransform);
+                    IsPotOnCrossingTable = true;
+                }
+            }
         }
     }
 }

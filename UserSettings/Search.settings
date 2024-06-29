@@ -87,6 +87,10 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"CoinsText"
+	"dandel"
+	"cactus"
+	"InfoTableDescriptionText"
 	"WeedingTable"
 	"WateringTable"
 	"SoilPreparationTable"
@@ -103,9 +107,6 @@ recentSearches = [
 	"CustomerAccessControllerTabl"
 	"ComputerTable"
 	"ComplaintsTableName"
-	"coffeetablena"
-	"crossingTableN"
-	"coffeeeffe"
 ]
 searchItemFavorites = [
 ]

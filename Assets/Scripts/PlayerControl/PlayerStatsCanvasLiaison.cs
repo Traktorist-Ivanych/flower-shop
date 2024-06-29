@@ -22,6 +22,9 @@ namespace PlayerControl
         [Binding]
         public float CoffeeEffectIndicatorFillAmount { get; private set; }
 
+        [field: SerializeField] public Transform PointerTransform { get; private set; }
+        [field: SerializeField] public Image PointerImage { get; private set; }
+
         public void UpdatePlayerMoneyOnCanvas(string transmittedPlayerMoney)
         {
             PlayerMoney = transmittedPlayerMoney;

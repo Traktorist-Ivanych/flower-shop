@@ -1,11 +1,13 @@
 using FlowerShop.PickableObjects;
+using FlowerShop.RepairsAndUpgrades;
 using FlowerShop.Tables.BaseComponents;
 using FlowerShop.Tables.Interfaces;
+using System.Collections;
 using UnityEngine;
 
 namespace FlowerShop.Tables.Abstract
 {
-    [RequireComponent (typeof(BreakableTableBaseComponent))]
+    [RequireComponent(typeof(BreakableTableBaseComponent))]
     public abstract class UpgradableBreakableTable : UpgradableTable, IBreakableTable
     {
         [HideInInspector, SerializeField] private protected BreakableTableBaseComponent breakableTableBaseComponent;
@@ -15,7 +17,7 @@ namespace FlowerShop.Tables.Abstract
         private protected override void OnValidate()
         {
             base.OnValidate();
-            
+
             breakableTableBaseComponent = GetComponent<BreakableTableBaseComponent>();
         }
 
@@ -32,11 +34,30 @@ namespace FlowerShop.Tables.Abstract
         public void FixBreakableFlowerTable(int minQuantity, int maxQuantity)
         {
             StartCoroutine(breakableTableBaseComponent.FixBreakableFlowerTable(minQuantity, maxQuantity));
+            StartCoroutine(HideBrokenIndicator());
         }
 
         public void SetActionsBeforeBrokenQuantity(int minQuantity, int maxQuantity)
         {
             breakableTableBaseComponent.SetActionsBeforeBrokenQuantity(minQuantity, maxQuantity);
+        }
+        public override void ShowIndicator()
+        {
+            if (IsTableBroken)
+            {
+                breakableTableBaseComponent.ShowBrokenIndicator();
+            }
+            else
+            {
+                base.ShowIndicator();
+            }
+        }
+
+        public override void HideIndicator()
+        {
+            base.HideIndicator();
+
+            breakableTableBaseComponent.HideBrokenIndicator();
         }
 
         private protected bool CanPlayerFixTable()
@@ -44,5 +65,14 @@ namespace FlowerShop.Tables.Abstract
             return playerPickableObjectHandler.CurrentPickableObject is RepairingAndUpgradingHammer &&
                    IsTableBroken;
         }
+
+        private IEnumerator HideBrokenIndicator() 
+        {
+            yield return new WaitForSeconds(repairsAndUpgradesSettings.TableRepairTime);
+            HideIndicator();
+
+            base.ShowIndicator();
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using FlowerShop.Effects;
+﻿using FlowerShop.Education;
+using FlowerShop.Effects;
 using Input;
 using PlayerControl;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace FlowerShop.ComputerPages
     [RequireComponent(typeof(UIButton))]
     public class ComputerMainPageCancel : MonoBehaviour
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly ComputerMainPageCanvasLiaison computerMainPageCanvasLiaison;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerInputActions playerInputActions;
@@ -33,10 +35,24 @@ namespace FlowerShop.ComputerPages
 
         private void OnButtonClick()
         {
-            selectedTableEffect.ActivateEffectWithDelay();
-            computerMainPageCanvasLiaison.ComputerMainPageCanvas.enabled = false;
-            playerInputActions.DisableCanvasControlMode();
-            playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopUsingComputer);
+            if (educationHandler.IsEducationActive)
+            {
+                if (educationHandler.IsMonoBehaviourCurrentEducationStep(this))
+                {
+                    selectedTableEffect.ActivateEffectWithDelay();
+                    computerMainPageCanvasLiaison.ComputerMainPageCanvas.enabled = false;
+                    playerInputActions.DisableCanvasControlMode();
+                    playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopUsingComputer);
+                    educationHandler.CompleteEducationStep();
+                }
+            }
+            else
+            {
+                selectedTableEffect.ActivateEffectWithDelay();
+                computerMainPageCanvasLiaison.ComputerMainPageCanvas.enabled = false;
+                playerInputActions.DisableCanvasControlMode();
+                playerComponents.PlayerAnimator.SetTrigger(PlayerAnimatorParameters.StopUsingComputer);
+            }
         }
     }
 }

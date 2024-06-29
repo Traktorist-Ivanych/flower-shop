@@ -86,13 +86,13 @@ namespace FlowerShop.Tables
             {
                 helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
             }
+            else if (isPotOnTable)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+            }
             else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
-                if (isPotOnTable)
-                {
-                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
-                }
-                else if (!vipOrdersHandler.IsVipOrderActive)
+                if (!vipOrdersHandler.IsVipOrderActive)
                 {
                     helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoAvailableVipOrders);
                 }
@@ -125,8 +125,10 @@ namespace FlowerShop.Tables
 
         public void ExecuteSpecialSale()
         {
-            playerMoney.AddPlayerMoney(vipOrderFlowerInfo.FlowerSellingPrice * 
-                                       vipOrdersHandler.CurrentVipOrderPriceMultipler);
+            float currentVipFlowerPrice = vipOrderFlowerInfo.FlowerSellingPrice *
+                                       vipOrdersHandler.CurrentVipOrderPriceMultipler;
+
+            playerMoney.AddPlayerMoney((int)currentVipFlowerPrice);
             soundsHandler.PlayAddMoneyAudio();
             shopRating.AddGrade(flowersForSaleCoeffCalculatorSettings.MaxShopGrade);
 

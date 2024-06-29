@@ -18,6 +18,7 @@ namespace FlowerShop.Effects
         [field: SerializeField] public Material FailMaterial { get; private set; }
 
         [field: Header("Canvas Scaler")]
+        [field: SerializeField] public float OnButtonClickScalingTime { get; private set; }
         [field: SerializeField] public float ScalingTime { get; private set; }
         [field: SerializeField] public Vector3 StartScale { get; private set; }
         [field: SerializeField] public Vector3 EndScale { get; private set; }

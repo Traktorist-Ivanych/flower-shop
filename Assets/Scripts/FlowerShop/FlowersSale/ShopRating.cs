@@ -16,7 +16,6 @@ namespace FlowerShop.FlowersSale
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly PlayerStatsCanvasLiaison playerStatsCanvasLiaison;
-        [Inject] private readonly Sprinter sprinter;
         [Inject] private readonly StatsEffects statsEffects;
         [Inject] private readonly StatsCanvasLiaison statsCanvasLiaison;
         [Inject] private readonly TheBestFlowerShop theBestFlowerShop;
@@ -33,7 +32,8 @@ namespace FlowerShop.FlowersSale
         private int oneStar;
 
         public int CurrentGradesCount { get; private set; }
-        public float CurrentAverageGrade { get; private set; } 
+        public float CurrentAverageGrade { get; private set; }
+        public float CurrentCustomersSpawnCoeff { get; private set; }
         [field: SerializeField] public string UniqueKey { get; private set; }
 
         private void Awake()
@@ -65,15 +65,6 @@ namespace FlowerShop.FlowersSale
             {
                 burnout.IncreaseProgress();
             }
-            
-            if (currentGrade == flowersForSaleCoeffCalculatorSettings.MaxShopGrade)
-            {
-                sprinter.IncreaseProgress();
-            }
-            else
-            {
-                sprinter.SetProgress(0);
-            }
 
             vipOrdersHandler.CalculateCurrentVipOrderPriceMultipler();
 
@@ -94,7 +85,8 @@ namespace FlowerShop.FlowersSale
             {
                 shopGrades = new int[flowersSettings.MaxGradesCount];
                 CurrentAverageGrade = 0;
-                UpdateGradeRatingOnCanvas("0,0");
+                UpdateGradeRatingOnCanvas(
+                    "0" + flowersForSaleCoeffCalculatorSettings.FractionalSeparationSign.GetLocalizedString() + "0");
                 statsCanvasLiaison.UpdateStatsCanvas(gradesCount, fiveStars, fourStars, treeStars, twoStars, oneStar);
             }
         }
@@ -151,17 +143,26 @@ namespace FlowerShop.FlowersSale
             if (gradesCount > 0)
             {
                 CurrentAverageGrade = (float)gradesSumForCurrentAverage / gradesCount;
-                string ratingText = (gradesSumForCurrentAverage / gradesCount).ToString() + "," + 
+                string ratingText = (gradesSumForCurrentAverage / gradesCount).ToString() + 
+                    flowersForSaleCoeffCalculatorSettings.FractionalSeparationSign.GetLocalizedString() + 
                     (gradesSumForCurrentAverage % gradesCount * 10 / gradesCount).ToString();
                 UpdateGradeRatingOnCanvas(ratingText);
             }
             else
             {
                 CurrentAverageGrade = 0;
-                UpdateGradeRatingOnCanvas("0,0");
+                UpdateGradeRatingOnCanvas(
+                    "0" + flowersForSaleCoeffCalculatorSettings.FractionalSeparationSign.GetLocalizedString() + "0");
             }
 
             statsCanvasLiaison.UpdateStatsCanvas(gradesCount, fiveStars, fourStars, treeStars, twoStars, oneStar);
+
+            CalculateCurrentCustomersSpawnCoeff();
+        }
+
+        private void CalculateCurrentCustomersSpawnCoeff()
+        {
+            CurrentCustomersSpawnCoeff = CurrentAverageGrade / flowersForSaleCoeffCalculatorSettings.MaxShopGrade;
         }
 
         private void UpdateGradeRatingOnCanvas(string rating)

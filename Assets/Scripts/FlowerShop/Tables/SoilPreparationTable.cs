@@ -251,5 +251,32 @@ namespace FlowerShop.Tables
         {
             tableInfoCanvasLiaison.ShowCanvas(tableInfo, growingRoom);
         }
+
+
+
+        public void Load(SoilPreparationTableForSaving soilPreparationTableForLoading) // CutScene
+        {
+            if (soilPreparationTableForLoading.IsValuesSaved)
+            {
+                tableLvl = soilPreparationTableForLoading.TableLvl;
+                if (tableLvl > 0)
+                {
+                    for (int i = 0; i <= tableLvl; i++)
+                    {
+                        gearsMeshRenderers[i].enabled = true;
+                    }
+                    LoadLvlMesh();
+                }
+
+                breakableTableBaseComponent.LoadActionsBeforeBrokenQuantity(
+                    soilPreparationTableForLoading.ActionsBeforeBrokenQuantity);
+            }
+            else
+            {
+                SetActionsBeforeBrokenQuantity(
+                    repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.SoilPreparationMaxQuantity * (tableLvl + 1));
+            }
+        }
     }
 }

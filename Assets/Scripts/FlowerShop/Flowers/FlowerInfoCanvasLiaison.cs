@@ -35,11 +35,11 @@ namespace FlowerShop.Flowers
         [Binding]
         public string FlowerRecipeDescription { get; private set; }
         
-        [field: SerializeField] public Canvas UpgradeCanvas { get; private set; }
+        [field: SerializeField] public Canvas FlowerInfoCanvas { get; private set; }
 
         public void ShowFlowerInfo(bool isFlowerAvailable, FlowerInfo flowerInfo)
         {
-            UpgradeCanvas.enabled = true;
+            FlowerInfoCanvas.enabled = true;
 
             FlowerLvl = LocalizedLvlText.GetLocalizedString() + " " + flowerInfo.FlowerLvl.ToString();
             OnPropertyChanged(nameof(FlowerLvl));
@@ -50,18 +50,16 @@ namespace FlowerShop.Flowers
             flowerInfoButtonFirst.SetFlowerInfo(flowerInfo.FirstCrossingFlowerInfo);
             flowerInfoButtonSecond.SetFlowerInfo(flowerInfo.SecondCrossingFlowerInfo);
 
+            growingTableImage.sprite = flowerInfo.GrowingRoom.RoomColorSprite;
+
             if (isFlowerAvailable || flowerInfo.FlowerLvl == flowersSettings.MinFlowerLvl)
             {
-                growingTableImage.sprite = flowerInfo.GrowingRoom.RoomColorSprite;
-
                 FlowerSprite = flowerInfo.FlowerSprite512;
                 FlowerName = flowerInfo.LocalizedFlowerName.GetLocalizedString();
                 FlowerSellingPrice = LocalizedPriceText.GetLocalizedString() + " " + flowerInfo.FlowerSellingPrice.ToString();
             }
             else
             {
-                growingTableImage.sprite = flowersSettings.UnknownFlower;
-
                 FlowerSprite = flowersSettings.UnknownFlower;
                 FlowerName = flowersSettings.FlowerInfoEmpty.LocalizedFlowerName.GetLocalizedString();
                 FlowerSellingPrice = LocalizedPriceText.GetLocalizedString() + " " + flowersSettings.QuestionMark;
@@ -75,7 +73,7 @@ namespace FlowerShop.Flowers
 
         public void ShowFlowerInfo(FlowerInfo flowerInfo, string vipOrderMultipler)
         {
-            UpgradeCanvas.enabled = true;
+            FlowerInfoCanvas.enabled = true;
 
             FlowerLvl = LocalizedLvlText.GetLocalizedString() + " " + flowerInfo.FlowerLvl.ToString();
             OnPropertyChanged(nameof(FlowerLvl));

@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff74b018bb3400086c2227b6c145cb0, type: 3}
   m_Name: FlowersForSaleCoeffCalculatorSettings
   m_EditorClassIdentifier: 
-  <AllFlowersForSale>k__BackingField: 10
-  <UniqueFlowersForSale>k__BackingField: 5
-  <SaleCoeffForMaxGrade>k__BackingField: 0.55
   <MinShopGrade>k__BackingField: 1
   <MaxShopGrade>k__BackingField: 5
+  <MaxUniqueFlowersForSale>k__BackingField: 6
+  <FractionalSeparationSign>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:b71746b59fd24e140a7e5801bd223d78
+    m_TableEntryReference:
+      m_KeyId: 5116220045185024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

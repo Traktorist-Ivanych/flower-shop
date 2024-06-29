@@ -28,7 +28,7 @@ MonoBehaviour:
   <FlowerName>k__BackingField: {fileID: 11400000, guid: 1ad802c690eba364f8074a5d3cd18829, type: 2}
   <GrowingRoom>k__BackingField: {fileID: 11400000, guid: d725a178af3380d4a881c54fa35412b1, type: 2}
   <FlowerLvl>k__BackingField: 4
-  <FlowerSellingPrice>k__BackingField: 1270
+  <FlowerSellingPrice>k__BackingField: 1150
   <FlowerSoilMesh>k__BackingField: {fileID: -5944614252197831104, guid: 703790e61f24a3240890f0a292b64061, type: 3}
   flowerLvlMeshes:
   - {fileID: 2838768563372361112, guid: 5bbfc0a9781226f42863056cc7977b83, type: 3}

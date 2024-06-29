@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using DG.Tweening;
 using FlowerShop.Achievements;
 using FlowerShop.Flowers;
@@ -20,12 +21,14 @@ namespace FlowerShop.Tables
     {
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
+        [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
         [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly FlowersSettings flowersSettings;
         [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
         [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
         [Inject] private readonly PlayerMoney playerMoney;
+        [Inject] private readonly Sprinter sprinter;
         [Inject] private readonly ToCapacity toCapacity;
         [Inject] private readonly ReferencesForLoad referencesForLoad;
         [Inject] private readonly ShopRating shopRating;
@@ -87,13 +90,13 @@ namespace FlowerShop.Tables
             {
                 helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.PlayerBusy);
             }
+            else if (isFlowerOnSaleTable)
+            {
+                helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
+            }
             else if (playerPickableObjectHandler.CurrentPickableObject is Pot currentPot)
             {
-                if (isFlowerOnSaleTable)
-                {
-                    helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.TableAlreadyHasPot);
-                }
-                else if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
+                if (currentPot.PlantedFlowerInfo == flowersSettings.FlowerInfoEmpty)
                 {
                     helpCanvasLiaison.EnableCanvasAndSetHelpText(helpTexts.NoFlowerPlanted);
                 }
@@ -126,7 +129,19 @@ namespace FlowerShop.Tables
             isFlowerOnSaleTable = false;
             salableSoilRenderer.enabled = false;
             salableFlowerRenderer.enabled = false;
-            shopRating.AddGrade(flowersForSaleCoeffCalculator.CalculateCurrentGrade());
+
+            int currentGrade = flowersForSaleCoeffCalculator.CalculateCurrentGrade();
+            shopRating.AddGrade(currentGrade);
+
+            if (currentGrade == flowersForSaleCoeffCalculatorSettings.MaxShopGrade)
+            {
+                sprinter.IncreaseProgress();
+            }
+            else
+            {
+                sprinter.SetProgress(0);
+            }
+
             flowersForSaleCoeffCalculator.RemoveFlowerSaleTableWithoutFlowerFromList(this);
             playerMoney.AddPlayerMoney(FlowerInfoForSale.FlowerSellingPrice);
             soundsHandler.PlayAddMoneyAudio();
@@ -134,7 +149,9 @@ namespace FlowerShop.Tables
             ResetFlowerInfoOnTable();
             
             toCapacity.DecreaseAchievementProgress();
-            
+
+            selectedTableEffect.TryToRecalculateEffect();
+
             SavesHandler.DeletePlayerPrefsKey(UniqueKey);
         }
 
@@ -282,6 +299,23 @@ namespace FlowerShop.Tables
                     }
                 }
                 Gizmos.DrawLineStrip(finishFlowerPathPoints, false);
+            }
+        }
+
+
+
+        public void Load(FlowerInfoReferenceForSaving flowerInfoReferenceForLoading) // CutScene
+        {
+            if (flowerInfoReferenceForLoading.IsValuesSaved)
+            {
+                flowerInfoOnTableUniqueKey = flowerInfoReferenceForLoading.FlowerInfoOnTableUniqueKey;
+
+                FlowerInfoForSale = referencesForLoad.GetReference<FlowerInfo>(flowerInfoOnTableUniqueKey);
+
+                if (FlowerInfoForSale != flowersSettings.FlowerInfoEmpty)
+                {
+                    SetFlowerOnSaleTable();
+                }
             }
         }
     }

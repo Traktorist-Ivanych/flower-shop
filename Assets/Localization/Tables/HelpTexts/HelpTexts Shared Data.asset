@@ -179,6 +179,22 @@ MonoBehaviour:
     m_Key: HelpButtonText
     m_Metadata:
       m_Items: []
+  - m_Id: 3249330951737344
+    m_Key: RatingHelpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6787978158592000
+    m_Key: InconsistencyFlowerAndCrossingTableLvl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6789763241791488
+    m_Key: InconsistencyFlowerAndGrowingTableLvl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8210298622365696
+    m_Key: NoAvailableAds
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

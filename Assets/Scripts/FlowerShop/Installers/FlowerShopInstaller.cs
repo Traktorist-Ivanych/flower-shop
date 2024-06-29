@@ -45,6 +45,7 @@ namespace FlowerShop.Installers
         [SerializeField] private FlowerInfoCanvasLiaison flowerInfoCanvasLiaison;
         [SerializeField] private FlowersCanvasLiaison flowersCanvasLiaison;
         [SerializeField] private HelpCanvasLiaison helpCanvasLiaison;
+        [SerializeField] private NoAdsCanvas noAdsCanvas;
         [SerializeField] private QuitCanvasLiaison quitCanvasLiaison;
         [SerializeField] private SoundsSettingsCanvasLiaison soundsSettingsCanvasLiaison;
         [SerializeField] private StatsCanvasLiaison statsCanvasLiaison;
@@ -69,6 +70,7 @@ namespace FlowerShop.Installers
         [SerializeField] private AutomaticDoors automaticDoors;
         [SerializeField] private PassersSpawner passersSpawner;
         [Header("Effects")]
+        [SerializeField] private CanvasPointer canvasPointer;
         [SerializeField] private SelectedTableEffect selectedTableEffect;
         [Header("Education")]
         [SerializeField] private EducationHandler educationHandler;
@@ -102,6 +104,7 @@ namespace FlowerShop.Installers
             Container.Bind<EducationCanvasLiaison>().FromInstance(educationCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<FlowersCanvasLiaison>().FromInstance(flowersCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<HelpCanvasLiaison>().FromInstance(helpCanvasLiaison).AsSingle().NonLazy();
+            Container.Bind<NoAdsCanvas>().FromInstance(noAdsCanvas).AsSingle().NonLazy();
             Container.Bind<QuitCanvasLiaison>().FromInstance(quitCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<SoundsSettingsCanvasLiaison>().FromInstance(soundsSettingsCanvasLiaison).AsSingle().NonLazy();
             Container.Bind<StatsCanvasLiaison>().FromInstance(statsCanvasLiaison).AsSingle().NonLazy();
@@ -126,6 +129,7 @@ namespace FlowerShop.Installers
             Container.Bind<AutomaticDoors>().FromInstance(automaticDoors).AsSingle().NonLazy();
             Container.Bind<PassersSpawner>().FromInstance(passersSpawner).AsSingle().NonLazy();
 
+            Container.Bind<CanvasPointer>().FromInstance(canvasPointer).AsSingle().NonLazy();
             Container.Bind<SelectedTableEffect>().FromInstance(selectedTableEffect).AsSingle().NonLazy();
             
             Container.Bind<EducationHandler>().FromInstance(educationHandler).AsSingle().NonLazy();

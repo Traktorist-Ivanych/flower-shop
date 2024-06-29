@@ -19,7 +19,6 @@ namespace FlowerShop.Tables
         [Inject] private readonly ActionsWithTransformSettings actionsWithTransformSettings;
         [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
         [Inject] private readonly FlowersForSaleCoeffCalculatorSettings flowersForSaleCoeffCalculatorSettings;
-        [Inject] private readonly FlowersSaleTablesForCustomers flowersSaleTablesForCustomers;
         [Inject] private readonly HelpCanvasLiaison helpCanvasLiaison;
         [Inject] private readonly HelpTexts helpTexts;
         [Inject] private readonly PlayerComponents playerComponents;
@@ -109,10 +108,12 @@ namespace FlowerShop.Tables
         {
             if (IsAccessOpen)
             {
-                return flowersSaleTablesForCustomers.GetCurrentSaleTableWithFlowerCount() < 3 && CanPlayerUseTable(); 
+                return flowersForSaleCoeffCalculator.CalculateCurrentGrade() < flowersForSaleCoeffCalculatorSettings.MaxShopGrade &&
+                    CanPlayerUseTable(); 
             }
             
-            return flowersSaleTablesForCustomers.GetCurrentSaleTableWithFlowerCount() > 6 && CanPlayerUseTable();
+            return flowersForSaleCoeffCalculator.CalculateCurrentGrade() >= flowersForSaleCoeffCalculatorSettings.MaxShopGrade && 
+                CanPlayerUseTable();
         }
 
         private bool CanPlayerUseTableInfoCanvas()
@@ -159,6 +160,21 @@ namespace FlowerShop.Tables
             customerAccessSign.DOLocalRotate(rotationTarget,
                 actionsWithTransformSettings.MovingPickableObjectTime,
                 RotateMode.FastBeyond360);
+        }
+
+
+
+        public void Load(BoolForSaving boolForLoading) // CutScene
+        {
+            if (boolForLoading.IsValuesSaved)
+            {
+                IsAccessOpen = boolForLoading.SavingBool;
+
+                if (IsAccessOpen)
+                {
+                    customerAccessSign.rotation = signOpen.rotation;
+                }
+            }
         }
     }
 }

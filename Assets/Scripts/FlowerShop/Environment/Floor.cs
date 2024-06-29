@@ -1,3 +1,4 @@
+using FlowerShop.Education;
 using FlowerShop.Effects;
 using Input;
 using PlayerControl;
@@ -9,6 +10,7 @@ namespace FlowerShop.Environment
 {
     public class Floor : MonoBehaviour, IClicableFloor
     {
+        [Inject] private readonly EducationHandler educationHandler;
         [Inject] private readonly EffectsSettings effectsSettings;
         [Inject] private readonly PlayerAbilityExecutor playerAbilityExecutor;
         [Inject] private readonly PlayerBusyness playerBusyness;
@@ -29,34 +31,58 @@ namespace FlowerShop.Environment
 
         public void ExecuteClickableFloorAbility(Vector3 floorClickCoordinates)
         {
-            sphereCompositeDisposable.Clear();
-            currentSphereEnableTime = 0;
-            sphereRenderer.enabled = true;
-
-            if (playerBusyness.IsPlayerFree)
+            if (educationHandler.IsEducationActive)
             {
-                playerAbilityExecutor.ResetPlayerAbility();
-                playerMoving.SetNotTablePlayerDestination(floorClickCoordinates);
-                sphereRenderer.material = effectsSettings.SuccessMaterial;
+                sphereCompositeDisposable.Clear();
+                currentSphereEnableTime = 0;
+                sphereRenderer.enabled = true;
+                sphereRenderer.material = effectsSettings.FailMaterial;
+
+                sphereTransform.position = floorClickCoordinates;
+
+                Observable.EveryUpdate().Subscribe(updateProgressbar =>
+                {
+                    currentSphereEnableTime += Time.deltaTime;
+
+                    if (currentSphereEnableTime >= effectsSettings.ClickableEffectDuration)
+                    {
+                        sphereRenderer.enabled = false;
+
+                        sphereCompositeDisposable.Clear();
+                    }
+                }).AddTo(sphereCompositeDisposable);
             }
             else
             {
-                sphereRenderer.material = effectsSettings.FailMaterial;
-            }
+                sphereCompositeDisposable.Clear();
+                currentSphereEnableTime = 0;
+                sphereRenderer.enabled = true;
 
-            sphereTransform.position = floorClickCoordinates;
-
-            Observable.EveryUpdate().Subscribe(updateProgressbar =>
-            {
-                currentSphereEnableTime += Time.deltaTime;
-
-                if (currentSphereEnableTime >= effectsSettings.ClickableEffectDuration)
+                if (playerBusyness.IsPlayerFree)
                 {
-                    sphereRenderer.enabled = false;
-
-                    sphereCompositeDisposable.Clear();
+                    playerAbilityExecutor.ResetPlayerAbility();
+                    playerMoving.SetNotTablePlayerDestination(floorClickCoordinates);
+                    sphereRenderer.material = effectsSettings.SuccessMaterial;
                 }
-            }).AddTo(sphereCompositeDisposable);
+                else
+                {
+                    sphereRenderer.material = effectsSettings.FailMaterial;
+                }
+
+                sphereTransform.position = floorClickCoordinates;
+
+                Observable.EveryUpdate().Subscribe(updateProgressbar =>
+                {
+                    currentSphereEnableTime += Time.deltaTime;
+
+                    if (currentSphereEnableTime >= effectsSettings.ClickableEffectDuration)
+                    {
+                        sphereRenderer.enabled = false;
+
+                        sphereCompositeDisposable.Clear();
+                    }
+                }).AddTo(sphereCompositeDisposable);
+            }
         }
     }
 }

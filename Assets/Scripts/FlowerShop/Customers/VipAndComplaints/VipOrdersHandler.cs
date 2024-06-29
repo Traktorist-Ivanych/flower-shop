@@ -28,8 +28,9 @@ namespace FlowerShop.Customers.VipAndComplaints
         private float currentVipOrderTime;
         private int vipOrderDescriptionIndex;
         private string vipOrderFlowerInfoUniqueKey;
+        private bool isCurrentVipOrderEducation;
         
-        public int CurrentVipOrderPriceMultipler {  get; private set; }
+        public float CurrentVipOrderPriceMultipler {  get; private set; }
         [field: SerializeField] public string UniqueKey { get; private set; }
         [field: HideInInspector, SerializeField] public FlowerInfo VipOrderFlowerInfo { get; private set; }
         [field: HideInInspector, SerializeField] public bool IsVipOrderActive { get; private set; }
@@ -71,6 +72,11 @@ namespace FlowerShop.Customers.VipAndComplaints
             if (IsVipOrderActive)
             {
                 currentVipOrderHandleTime += Time.deltaTime;
+                if (isCurrentVipOrderEducation && currentVipOrderHandleTime >= vipOrderHandleTime - 5)
+                {
+                    currentVipOrderHandleTime = vipOrderHandleTime - 5;
+                }
+
                 UpdateVipOrderIndicator();
 
                 if (currentVipOrderHandleTime >= vipOrderHandleTime)
@@ -97,11 +103,24 @@ namespace FlowerShop.Customers.VipAndComplaints
             }
         }
 
+        public void SetEducationVipOrder(FlowerInfo vipOrderFlowerInfo)
+        {
+            VipOrderFlowerInfo = vipOrderFlowerInfo;
+            isCurrentVipOrderEducation = true;
+            vipOrderFlowerInfoUniqueKey = VipOrderFlowerInfo.UniqueKey;
+            vipOrderDescriptionIndex = Random.Range(1, customersSettings.LocalizedVipDescriptions.Length);
+
+            SetVipOrderMain();
+
+            Save();
+        }
+
         public void CompleteVipOrder()
         {
             RemoveVipOrder();
             knowALotAboutBusiness.IncreaseProgress();
-            
+            isCurrentVipOrderEducation = false;
+
             Save();
         }
 
@@ -207,6 +226,12 @@ namespace FlowerShop.Customers.VipAndComplaints
         private void UpdateVipOrderIndicator()
         {
             canvasIndicators.VipIndicatorImage.fillAmount = currentVipOrderHandleTime / vipOrderHandleTime;
+        }
+
+        [ContextMenu("Set currentVipOrderTime to 10 s")]
+        public void DeleteAllPlayerPrefsKeys()
+        {
+            currentVipOrderTime = 10;
         }
     }
 }

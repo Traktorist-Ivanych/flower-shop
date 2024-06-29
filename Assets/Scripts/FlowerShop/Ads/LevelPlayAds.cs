@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
+using Zenject;
 
 namespace FlowerShop.Ads
 {
     public class LevelPlayAds : MonoBehaviour
-    {        
+    {
+        [Inject] private readonly NoAdsCanvas noAdsCanvas;
+
         public delegate void AdReward();
         private event AdReward AdRewardEvent;
         
         private void Start()
         {
-            IronSource.Agent.init ("1e0f975c5");
+            IronSource.Agent.init("1e0f975c5", IronSourceAdUnits.REWARDED_VIDEO);
         }
 
         private void OnEnable()
@@ -47,10 +51,14 @@ namespace FlowerShop.Ads
         {
             AdRewardEvent = null;
             AdRewardEvent += reward;
-            
+
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo();
+            }
+            else
+            {
+                noAdsCanvas.EnableCanvas();
             }
         }
 
@@ -72,7 +80,7 @@ namespace FlowerShop.Ads
         // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
         void RewardedVideoOnAdUnavailable()
         {
-            
+
         } 
         
         // The Rewarded Video ad view has opened. Your activity will loose focus.
@@ -99,7 +107,7 @@ namespace FlowerShop.Ads
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
         {
-            
+            Debug.LogError(error);
         } 
         
         // Invoked when the video ad was clicked.

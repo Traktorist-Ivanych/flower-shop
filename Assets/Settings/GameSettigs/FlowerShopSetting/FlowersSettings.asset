@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193023b51b96419d9057f9ff38315445, type: 3}
   m_Name: FlowersSettings
   m_EditorClassIdentifier: 
+  <MediumFlowerLvlForTableLvl>k__BackingField: 3
+  <MediumTableLvlForFlowerLvl>k__BackingField: 1
+  <MaxFlowerLvlForTableLvl>k__BackingField: 4
+  <MaxTableLvlForFlowerLvl>k__BackingField: 2
   <MaxGradesCount>k__BackingField: 25
   <AllUniqueFlowersCount>k__BackingField: 55
-  <SoilPrice>k__BackingField: 150
-  <FirstLvlFlowersPrice>k__BackingField: 50
+  <SoilPrice>k__BackingField: 200
+  <FirstLvlFlowersPrice>k__BackingField: 25
   <RareFlowerLvl>k__BackingField: 5
   <MinFlowerLvl>k__BackingField: 1
   <CrossingFlowerMinLvl>k__BackingField: 2

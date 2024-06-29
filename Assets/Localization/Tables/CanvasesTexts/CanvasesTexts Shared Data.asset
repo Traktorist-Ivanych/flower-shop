@@ -179,6 +179,14 @@ MonoBehaviour:
     m_Key: CancelText
     m_Metadata:
       m_Items: []
+  - m_Id: 5116220045185024
+    m_Key: FractionalSeparationSign
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9412834981236736
+    m_Key: CoinsText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -17,7 +17,7 @@ namespace FlowerShop.Customers
         [Inject] private readonly CustomersSettings customersSettings;
         [Inject] private readonly CyclicalSaver cyclicalSaver;
         [Inject] private readonly EducationHandler educationHandler;
-        [Inject] private readonly FlowersForSaleCoeffCalculator flowersForSaleCoeffCalculator;
+        [Inject] private readonly ShopRating shopRating;
 
         [SerializeField] private List<Transform> spawnPathPoints;
         [SerializeField] private List<Transform> enterShopPathPoints;
@@ -31,7 +31,6 @@ namespace FlowerShop.Customers
         private float maxSpawnTime;
         private float currentSpawnTime;
         private float timeBetweenSpawnForSpecialSales;
-        private int pathIndexes;
         private int nextLookAroundPathPointsIndex;
         private int finishPathPointsIndex;
         private bool canCustomerBeSpawnForSpecialSale;
@@ -145,10 +144,10 @@ namespace FlowerShop.Customers
         private void CalculateCurrentSpawnTime()
         {
             minSpawnTime = customersSettings.MinSpawnTime -
-                           customersSettings.MinSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
+                           customersSettings.MinSpawnTimeDelta * shopRating.CurrentCustomersSpawnCoeff;
 
             maxSpawnTime = customersSettings.MaxSpawnTime -
-                           customersSettings.MaxSpawnTimeDelta * flowersForSaleCoeffCalculator.CurrentFlowersForSaleCoeff;
+                           customersSettings.MaxSpawnTimeDelta * shopRating.CurrentCustomersSpawnCoeff;
 
             currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         }

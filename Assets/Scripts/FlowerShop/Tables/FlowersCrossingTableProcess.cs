@@ -75,6 +75,7 @@ namespace FlowerShop.Tables
         public bool IsSeedCrossing { get; private set; } 
         public bool IsCrossingSeedReady { get; private set; }
         public FlowerInfo FlowerInfoForPlanting { get; private set; }
+        public int TableLvl => tableLvl;
 
         private protected override void OnValidate()
         {
@@ -349,6 +350,8 @@ namespace FlowerShop.Tables
             actionProgressbar.EnableActionProgressbar(crossingFlowerTime, currentCrossingFlowerTime);
 
             educationHandler.TryBrokenSoilPreparationTableDuringEducation();
+
+            Save();
         }
 
         private void StartFlowersCrossingProcess()
@@ -422,6 +425,22 @@ namespace FlowerShop.Tables
             {
                 potForPlanting.PlantSeed(FlowerInfoForPlanting);
                 flowersContainer.TryToAddAvailableFlowerInfo(FlowerInfoForPlanting);
+
+                if (!educationHandler.IsEducationActive)
+                {
+                    if (FlowerInfoForPlanting.FlowerLvl == 2)
+                    {
+                        educationHandler.TryToDisplayFirstLvlClue();
+                    }
+                    else if (FlowerInfoForPlanting.FlowerLvl == 3)
+                    {
+                        educationHandler.TryToDisplaySecondLvlClue();
+                    }
+                    else if (FlowerInfoForPlanting.FlowerLvl == 4)
+                    {
+                        educationHandler.TryToDisplayThirdLvlClue();
+                    }
+                }
             }
             ResetFlowerInfoForPlanting();
             IsCrossingSeedReady = false;
@@ -473,6 +492,44 @@ namespace FlowerShop.Tables
         private void ResetFlowerInfoForPlanting()
         {
             FlowerInfoForPlanting = flowersSettings.FlowerInfoEmpty;
+        }
+
+
+
+        public void Load(FlowersCrossingTableProcessForSaving flowersCrossingTableProcessForLoading) // CutScene
+        {
+            if (flowersCrossingTableProcessForLoading.IsValuesSaved)
+            {
+                tableLvl = flowersCrossingTableProcessForLoading.TableLvl;
+                if (tableLvl > 0)
+                {
+                    UpgradeCrossingTableObjects();
+                    LoadLvlMesh();
+                }
+
+                breakableTableBaseComponent.LoadActionsBeforeBrokenQuantity(
+                    flowersCrossingTableProcessForLoading.ActionsBeforeBrokenQuantity);
+
+                currentCrossingFlowerTime = flowersCrossingTableProcessForLoading.CurrentCrossingFlowerTime;
+
+                if (flowersCrossingTableProcessForLoading.IsSeedCrossing)
+                {
+                    StartFlowersCrossingProcess();
+                }
+
+                IsCrossingSeedReady = flowersCrossingTableProcessForLoading.IsCrossingSeedReady;
+
+                FlowerInfoForPlanting =
+                    referencesForLoad.GetReference<FlowerInfo>(
+                        flowersCrossingTableProcessForLoading.PlantedFlowerInfoUniqueKey);
+            }
+            else
+            {
+                ResetFlowerInfoForPlanting();
+                SetActionsBeforeBrokenQuantity(
+                    repairsAndUpgradesSettings.FlowerGrowingTableMinQuantity * (tableLvl + 1),
+                    repairsAndUpgradesSettings.FlowerGrowingTableMaxQuantity * (tableLvl + 1));
+            }
         }
     }
 }

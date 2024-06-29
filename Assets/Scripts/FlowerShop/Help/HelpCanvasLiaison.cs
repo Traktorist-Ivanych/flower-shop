@@ -41,6 +41,19 @@ namespace FlowerShop.Help
             }
         }
 
+        public void EnableCanvasAndSetHelpTextForcibly(LocalizedString localizedText)
+        {
+            playerInputActions.EnableCanvasControlMode();
+            HelpCanvas.enabled = true;
+
+            helpText.text = localizedText.GetLocalizedString();
+            helpText.ForceMeshUpdate();
+
+            Vector2 panelRect = helpPanelRectTransform.sizeDelta;
+            panelRect.y = helpText.renderedHeight + helpTexts.HeightCanvasFieldsForHelpText;
+            helpPanelRectTransform.sizeDelta = panelRect;
+        }
+
         public void EnableHelpCanvasDisplaying()
         {
             ShouldHelpCanvasDisplay = true;

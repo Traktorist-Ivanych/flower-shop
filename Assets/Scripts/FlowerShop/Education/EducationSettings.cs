@@ -51,5 +51,13 @@ namespace FlowerShop.Education
         [field: SerializeField] public LocalizedString CoffeeDescriptionText { get; private set; }
         [field: SerializeField] public LocalizedString MusicDescriptionText { get; private set; }
         [field: SerializeField] public LocalizedString EducationEndDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString VipOrderDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString VipOrderEnableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString InfoTableDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString RatingPanelDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString EnableHelpDescriptionText { get; private set; }
+        [field: SerializeField] public LocalizedString FirstLvlClue { get; private set; }
+        [field: SerializeField] public LocalizedString SecondLvlClue { get; private set; }
+        [field: SerializeField] public LocalizedString ThirdLvlClue { get; private set; }
     }
 }

@@ -419,11 +419,18 @@ MonoBehaviour:
   - {fileID: 5299223783302535545}
   musicPowerSwitcherTable: {fileID: 3653680356500423154}
   song:
-  - {fileID: 8300000, guid: 081a2927c64a2d44b91bdce6ea4f3205, type: 3}
   - {fileID: 8300000, guid: a5e3d310575f3d94aa1da4a08daf81fa, type: 3}
   - {fileID: 8300000, guid: bef49e8f91b3d044ab3fa727c786f642, type: 3}
+  - {fileID: 8300000, guid: 6cb78c180954afa45814cbffffe1cf80, type: 3}
+  - {fileID: 8300000, guid: ef817817e511fd74e950d9bc58cc237e, type: 3}
   - {fileID: 8300000, guid: 285060f8e1ada874281c1747f5181dbb, type: 3}
   - {fileID: 8300000, guid: 82488186ecce40b4e803e7a262a2d1f4, type: 3}
+  - {fileID: 8300000, guid: 1a2e9942eb8396143aab594316e2433f, type: 3}
+  - {fileID: 8300000, guid: 081a2927c64a2d44b91bdce6ea4f3205, type: 3}
+  - {fileID: 8300000, guid: b3bcd866bd73bdd4797fcb5b7ce62ca7, type: 3}
+  - {fileID: 8300000, guid: e257912c67b39c540a00367fe7d0cc1d, type: 3}
+  - {fileID: 8300000, guid: 9c6d999fd0454384aa6bc6635fdcf682, type: 3}
+  - {fileID: 8300000, guid: b2dac46f810083b48bd214a40c547c89, type: 3}
   musicSongsSwitcherTableAnimator: {fileID: 908268743278677632}
   <UniqueKey>k__BackingField: 
 --- !u!95 &908268743278677632

@@ -9,6 +9,7 @@ namespace FlowerShop.Effects
 
         [HideInInspector, SerializeField] private RectTransform rectTransform;
 
+        private Vector3 targetEndScale;
         private float currentScalingTime;
         private bool isScaleIncrease;
         private bool isEffectActive;
@@ -40,11 +41,11 @@ namespace FlowerShop.Effects
 
                 if (isScaleIncrease)
                 {
-                    rectTransform.localScale = Vector3.Lerp(effectsSettings.StartScale, effectsSettings.EndScale, currentLerpCoeff);
+                    rectTransform.localScale = Vector3.Lerp(effectsSettings.StartScale, targetEndScale, currentLerpCoeff);
                 }
                 else
                 {
-                    rectTransform.localScale = Vector3.Lerp(effectsSettings.EndScale, effectsSettings.StartScale, currentLerpCoeff);
+                    rectTransform.localScale = Vector3.Lerp(targetEndScale, effectsSettings.StartScale, currentLerpCoeff);
                 }
             }
         }
@@ -54,6 +55,15 @@ namespace FlowerShop.Effects
             isEffectActive = true;
             isScaleIncrease = true;
             shouldEffectActive = true;
+            targetEndScale = effectsSettings.EndScale;
+        }
+
+        public void ActivateEffect(Vector3 overrideTargetEndScale)
+        {
+            isEffectActive = true;
+            isScaleIncrease = true;
+            shouldEffectActive = true;
+            targetEndScale = overrideTargetEndScale;
         }
 
         public void DeactivateEffect()

@@ -4977,7 +4977,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2446635945039045833}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5152,6 +5152,7 @@ MonoBehaviour:
   progressIndicatorMeshRenderer: {fileID: 5219471966185067296}
   waterIndicatorTransform: {fileID: 7659491145203873894}
   seedIndicatorPSRenderer: {fileID: 4148944772852361763}
+  mainIndicatorTransform: {fileID: 2293480400412418698}
   progressIndicatorTransform: {fileID: 1153876890556927389}
   <FlowerMeshFilter>k__BackingField: {fileID: 2637177926263653202}
   <SoilMeshFilter>k__BackingField: {fileID: 8551759505480889826}
@@ -5399,6 +5400,11 @@ PrefabInstance:
 --- !u!4 &1153876890556927389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1508576197516513137, guid: 64e5db6060179cb43a76d7e53a6465ea, type: 3}
+  m_PrefabInstance: {fileID: 354921134509605612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2293480400412418698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1961593210947919974, guid: 64e5db6060179cb43a76d7e53a6465ea, type: 3}
   m_PrefabInstance: {fileID: 354921134509605612}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &4476865322861264231 stripped
